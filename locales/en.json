@@ -1,0 +1,627 @@
+{
+  "common": {
+    "save": "Save",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "create": "Create",
+    "add": "Add",
+    "remove": "Remove",
+    "search": "Search...",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "noData": "No data available",
+    "success": "Success!",
+    "error": "Error!",
+    "warning": "Warning!",
+    "info": "Information",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "open": "Open",
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "none": "None",
+    "select": "Select",
+    "selected": "selected",
+    "required": "Required",
+    "optional": "Optional",
+    "more": "More",
+    "less": "Less",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "seeAll": "See all",
+    "goHome": "Go Home",
+    "goBack": "Go Back",
+    "tryAgain": "Try Again",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "helpSupport": "Help & Support"
+  },
+  "navigation": {
+    "overview": "Overview",
+    "analytics": "Analytics",
+    "ecommerce": "E-commerce",
+    "finance": "Finance",
+    "projects": "Projects",
+    "crm": "CRM",
+    "inventory": "Inventory",
+    "helpdesk": "Help Desk",
+    "saas": "SaaS",
+    "healthcare": "Healthcare",
+    "hr": "HR",
+    "marketing": "Marketing",
+    "realEstate": "Real Estate",
+    "education": "Education",
+    "cryptoTrading": "Crypto Trading",
+    "restaurant": "Restaurant",
+    "calendar": "Calendar",
+    "chat": "Chat",
+    "email": "Email",
+    "components": "Components",
+    "users": "Users",
+    "reports": "Reports",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Log out",
+    "sectionMain": "Main",
+    "sectionDashboards": "Dashboards",
+    "sectionSystems": "Systems",
+    "sectionShowcase": "Showcase",
+    "sectionManagement": "Management",
+    "sectionSystem": "System"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "fullName": "Full Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "rememberMe": "Remember me for 30 days",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "createAccount": "Create account",
+    "orContinueWith": "Or continue with",
+    "termsAgree": "I agree to the",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "and": "and",
+    "welcomeBack": "Welcome back",
+    "enterCredentials": "Enter your credentials to access your account",
+    "createAnAccount": "Create an account",
+    "startFreeTrial": "Start your 14-day free trial",
+    "forgotPasswordTitle": "Forgot password?",
+    "forgotPasswordSubtitle": "No worries, we'll send you reset instructions",
+    "sendResetLink": "Send Reset Link",
+    "checkYourEmail": "Check your email",
+    "weSentResetLink": "We sent a password reset link to",
+    "backToLogin": "Back to login",
+    "didntReceiveEmail": "Didn't receive the email?",
+    "clickToResend": "Click to resend",
+    "sending": "Sending...",
+    "setNewPassword": "Set new password",
+    "mustBeAtLeast8": "Must be at least 8 characters",
+    "newPasswordLabel": "New password",
+    "confirmNewPassword": "Confirm new password",
+    "passwordResetSuccess": "Password reset successful",
+    "passwordResetSuccessText": "Your password has been successfully reset.\nYou can now sign in with your new password.",
+    "continueToLogin": "Continue to login",
+    "rememberYourPassword": "Remember your password?",
+    "createPasswordPlaceholder": "Create a strong password",
+    "enterPasswordPlaceholder": "Enter your password",
+    "enterNewPasswordPlaceholder": "Enter your new password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "confirmNewPasswordPlaceholder": "Confirm your new password",
+    "enterEmailPlaceholder": "Enter your email address",
+    "namePlaceholder": "John Doe",
+    "emailPlaceholder": "name@example.com",
+    "acceptTermsError": "You must accept the terms and conditions"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email",
+    "minLength": "Minimum {min} characters",
+    "maxLength": "Maximum {max} characters",
+    "passwordMatch": "Passwords do not match",
+    "invalidCredentials": "Invalid email or password"
+  },
+  "time": {
+    "now": "Now",
+    "justNow": "Just now",
+    "minutesAgo": "{count} minute(s) ago",
+    "hoursAgo": "{count} hour(s) ago",
+    "daysAgo": "{count} day(s) ago",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "thisWeek": "This week",
+    "lastWeek": "Last week",
+    "thisMonth": "This month",
+    "lastMonth": "Last month"
+  },
+  "theme": {
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "language": "Language",
+    "selectLanguage": "Select language"
+  },
+  "header": {
+    "notifications": "Notifications",
+    "new": "new",
+    "noNotifications": "No notifications",
+    "viewAllNotifications": "View all notifications",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logOut": "Log out"
+  },
+  "landing": {
+    "hero": {
+      "badge": "Introducing Pulse 2.0",
+      "title1": "The Modern Dashboard",
+      "title2": "for Growing Teams",
+      "subtitle": "Track metrics, manage projects, and scale your business with the dashboard that breathes life into your data.",
+      "cta": "Start Free Trial",
+      "watchDemo": "Watch Demo",
+      "trustedBy": "Trusted by 10,000+ teams worldwide"
+    },
+    "logos": {
+      "badge": "Cutting-Edge Stack",
+      "title": "The technology behind the teams shaping the future",
+      "subtitle": "Built with the same tools used by the world's top tech companies"
+    },
+    "features": {
+      "badge": "Features",
+      "title": "Everything you need to scale",
+      "subtitle": "Powerful features that help teams work smarter, not harder.",
+      "analytics": {
+        "title": "Real-time Analytics",
+        "description": "Get instant insights with live dashboards that update in real-time. Track every metric that matters to your business with beautiful visualizations.",
+        "point1": "Live dashboards that update instantly",
+        "point2": "Custom reports in seconds",
+        "point3": "AI-powered insights and predictions"
+      },
+      "collaboration": {
+        "title": "Team Collaboration",
+        "description": "Work together seamlessly with real-time collaboration, comments, mentions, and comprehensive activity tracking across your organization.",
+        "point1": "Real-time collaboration tools",
+        "point2": "Comments, mentions & reactions",
+        "point3": "Activity feed & audit trail"
+      },
+      "integrations": {
+        "title": "Powerful Integrations",
+        "description": "Connect with 150+ tools you already use. Custom API access, webhooks, and automation—all built-in and ready to go.",
+        "point1": "150+ native integrations",
+        "point2": "Custom API with full documentation",
+        "point3": "Webhooks and automation workflows"
+      },
+      "miniFeatures": {
+        "security": {
+          "title": "Enterprise Security",
+          "description": "SOC2 compliant with end-to-end encryption"
+        },
+        "api": {
+          "title": "Full API Access",
+          "description": "REST & GraphQL API with webhooks support"
+        },
+        "support": {
+          "title": "24/7 Support",
+          "description": "Dedicated support team always ready to help"
+        },
+        "mobile": {
+          "title": "Mobile Ready",
+          "description": "Native iOS and Android applications"
+        },
+        "export": {
+          "title": "Data Export",
+          "description": "Export to CSV, PDF, or Excel anytime"
+        },
+        "sso": {
+          "title": "SSO & SAML",
+          "description": "Enterprise single sign-on with SAML & OAuth"
+        }
+      },
+      "andMore": "And so much more...",
+      "andMoreSubtitle": "Everything your team needs, out of the box"
+    },
+    "stats": {
+      "pages": "Ready Pages",
+      "components": "Components",
+      "lighthouse": "Lighthouse Score",
+      "typescript": "TypeScript"
+    },
+    "testimonials": {
+      "badge": "Testimonials",
+      "title": "Loved by teams worldwide",
+      "subtitle": "See what our customers have to say about Pulse"
+    },
+    "pricing": {
+      "badge": "Pricing",
+      "title": "Simple, transparent pricing",
+      "subtitle": "No hidden fees. No surprises. Cancel anytime.",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "save": "Save 20%",
+      "popular": "Most Popular",
+      "trial": "All plans include a 14-day free trial",
+      "noCard": "No credit card required"
+    },
+    "faq": {
+      "badge": "FAQ",
+      "title": "Frequently asked questions",
+      "subtitle": "Can't find what you're looking for? Contact our support team."
+    },
+    "cta": {
+      "title": "Ready to transform your data?",
+      "subtitle": "Join thousands of teams already using Pulse to make smarter, data-driven decisions every day.",
+      "placeholder": "Enter your work email",
+      "button": "Start Free Trial",
+      "trial": "Free 14-day trial",
+      "noCard": "No credit card required",
+      "cancel": "Cancel anytime"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "About the Creator",
+      "title": "Hi, I'm Andri Amaro",
+      "subtitle": "Full Stack Developer passionate about building beautiful, performant, and accessible dashboards. Pulse is my authorial project, built with the most modern technologies available."
+    },
+    "story": {
+      "title": "The Pulse Story",
+      "p1": "Pulse was born from my frustration with existing dashboard templates: many were outdated, poorly organized, or simply ugly. I knew I could build something better.",
+      "p2": "I decided to build from scratch a theme I'd actually want to use — with modern architecture (React 19, Next.js 16, strict TypeScript), reusable components with CVA, and a complete design system with premium dark mode.",
+      "p3": "The result is Pulse: 96 components, 16 themed dashboards, 126 pages, and support for 3 languages. A theme that outperforms $99 competitors in both technical and visual quality."
+    },
+    "timeline": {
+      "y1": {
+        "year": "2024",
+        "title": "Project Inception",
+        "description": "Frustrated with existing templates, I started planning a better solution."
+      },
+      "y2": {
+        "year": "2025 Q1",
+        "title": "Foundation",
+        "description": "Architecture defined: React 19, Next.js 16, strict TypeScript, Atomic Design."
+      },
+      "y3": {
+        "year": "2025 Q2",
+        "title": "First Dashboards",
+        "description": "16 dashboards created: Finance, CRM, SaaS, Crypto, Restaurant, Real Estate..."
+      },
+      "y4": {
+        "year": "2025 Q3",
+        "title": "Complete Design System",
+        "description": "96 components finalized. Premium dark mode. Advanced animations."
+      },
+      "y5": {
+        "year": "2026",
+        "title": "Today",
+        "description": "i18n in 3 languages. 126 pages. Ready for the world."
+      }
+    },
+    "tech": {
+      "title": "Tech Stack",
+      "subtitle": "Built with the most modern tools in the React ecosystem",
+      "react": {
+        "title": "React 19",
+        "description": "The latest version with concurrent features and improved performance."
+      },
+      "nextjs": {
+        "title": "Next.js 16",
+        "description": "App Router, Server Components, and automatic optimizations."
+      },
+      "typescript": {
+        "title": "TypeScript",
+        "description": "Strict mode, generics, zero any — 100% typed codebase."
+      },
+      "tailwind": {
+        "title": "Tailwind CSS v4",
+        "description": "Custom design system with native CSS variables."
+      },
+      "cva": {
+        "title": "CVA",
+        "description": "Class Variance Authority for type-safe component variants."
+      },
+      "intl": {
+        "title": "next-intl",
+        "description": "Full internationalization with 3 languages (PT, EN, ES)."
+      }
+    },
+    "included": {
+      "title": "What's Included",
+      "subtitle": "Everything you need to build amazing dashboards",
+      "dashboards": {
+        "title": "16 Dashboards",
+        "description": "Finance, CRM, SaaS, Crypto, Restaurant, Real Estate, Education, Healthcare and more."
+      },
+      "components": {
+        "title": "96 Components",
+        "description": "Primitives, Patterns, Organisms — all reusable and customizable with CVA."
+      },
+      "darkMode": {
+        "title": "Premium Dark Mode",
+        "description": "Custom design with card glow, glassmorphism, and animated gradients."
+      },
+      "i18n": {
+        "title": "3 Languages",
+        "description": "Português, English, Español — complete i18n and easy to expand."
+      },
+      "responsive": {
+        "title": "100% Responsive",
+        "description": "Mobile-first design, tested across all breakpoints."
+      },
+      "stack": {
+        "title": "Modern Stack",
+        "description": "React 19, Next.js 16, strict TypeScript — the best of the ecosystem."
+      },
+      "apps": {
+        "title": "Complete Apps",
+        "description": "Calendar (3 views), Chat (auto-response), Email (compose modal)."
+      },
+      "production": {
+        "title": "Production Ready",
+        "description": "Optimized build, 0 TypeScript errors, verified performance."
+      }
+    },
+    "stats": {
+      "title": "By the Numbers",
+      "subtitle": "Real metrics from this project",
+      "components": "Components",
+      "pages": "Pages",
+      "dashboards": "Dashboards",
+      "languages": "Languages"
+    },
+    "cta": {
+      "title": "Let's Work Together?",
+      "subtitle": "I'm available for freelance and full-time opportunities.",
+      "github": "View on GitHub",
+      "contact": "Get in Touch"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Contact",
+      "title": "Get in Touch",
+      "subtitle": "Have a project in mind or want to know more about Pulse? Send me a message and I'll respond as soon as possible."
+    },
+    "options": {
+      "sales": {
+        "title": "Projects & Freelance",
+        "description": "Interested in working together? Let's talk about your project.",
+        "cta": "Send Proposal"
+      },
+      "support": {
+        "title": "Theme Support",
+        "description": "Questions about the Pulse theme? I'm here to help.",
+        "cta": "Get Support"
+      }
+    },
+    "form": {
+      "title": "Send a message",
+      "name": "Full Name",
+      "email": "Email",
+      "company": "Company",
+      "subject": "Subject",
+      "selectSubject": "Select a subject",
+      "subjectOptions": {
+        "general": "General Inquiry",
+        "sales": "Project / Freelance",
+        "support": "Theme Support",
+        "partnership": "Partnership",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Describe your project or question...",
+      "privacy": "I agree to the",
+      "submit": "Send Message",
+      "success": "Message sent!",
+      "successSubtitle": "I'll respond within 48 hours.",
+      "sendAnother": "Send another message",
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "messageRequired": "Message is required",
+      "privacyRequired": "You must agree to the Privacy Policy",
+      "privacyPolicyLink": "Privacy Policy"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Quick answers to common questions.",
+      "items": {
+        "q1": "What is your response time?",
+        "a1": "I usually respond within 48 hours. For urgent projects, mention it in your message and I'll prioritize my reply.",
+        "q2": "Are you available for freelance?",
+        "a2": "Yes! I'm available for freelance projects and also open to full-time opportunities. Let's discuss your project.",
+        "q3": "Is the Pulse theme available for purchase?",
+        "a3": "Pulse will be launched on ThemeForest soon. Get in touch to be notified when it's available."
+      }
+    },
+    "info": {
+      "title": "Contact Information",
+      "followUs": "Social Links",
+      "location": "Brazil (Remote Work)",
+      "schedule": "Mon-Fri, 9am-6pm (BRT)",
+      "response": "Response within 48 hours"
+    }
+  },
+  "blog": {
+    "hero": {
+      "badge": "Blog",
+      "title": "Insights & Updates",
+      "subtitle": "The latest news, tutorials, and insights from the Pulse team"
+    },
+    "search": "Search articles...",
+    "featured": "Featured",
+    "categories": {
+      "all": "All",
+      "product": "Product",
+      "engineering": "Engineering",
+      "design": "Design",
+      "company": "Company",
+      "tutorials": "Tutorials"
+    },
+    "readMore": "Read more",
+    "minRead": "min read",
+    "writtenBy": "Written by",
+    "publishedOn": "Published on",
+    "relatedPosts": "You might also like",
+    "onThisPage": "On this page",
+    "share": "Share",
+    "shareArticle": "Share this article",
+    "copyLink": "Copy link",
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "subtitle": "Get the latest posts, tutorials, and product updates delivered straight to your inbox. No spam, unsubscribe anytime.",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe"
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated",
+    "version": "Version",
+    "toc": "Contents"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "version": "Version",
+    "toc": "Contents"
+  },
+  "utility": {
+    "notFound": {
+      "title": "Page not found",
+      "subtitle": "Oops! The page you're looking for doesn't exist or has been moved.",
+      "search": "Try searching for what you need...",
+      "goHome": "Go Home",
+      "goBack": "Go Back",
+      "popularPages": "Popular pages",
+      "contactSupport": "Contact Support"
+    },
+    "serverError": {
+      "title": "Something went wrong",
+      "subtitle": "We're experiencing technical difficulties. Our team has been notified and is working on it.",
+      "status": "Status: Investigating",
+      "tryAgain": "Try Again",
+      "goHome": "Go Home",
+      "errorDetails": "Error Details",
+      "reference": "Reference ID",
+      "dataSafe": "Don't worry, your data is safe",
+      "checkStatus": "Check System Status"
+    },
+    "comingSoon": {
+      "badge": "Coming Soon",
+      "title": "Something awesome is brewing",
+      "subtitle": "We're working hard to bring you an amazing new experience. Be the first to know when we launch.",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Min",
+      "seconds": "Sec",
+      "notify": "Get notified when we launch",
+      "placeholder": "Enter your email",
+      "notifyButton": "Notify Me",
+      "success": "You're on the list!",
+      "successSubtitle": "We'll notify you as soon as we launch.",
+      "featuresTitle": "Features coming with launch",
+      "progress": "Development Progress",
+      "followUs": "Follow us for updates",
+      "backToSite": "← Back to main site"
+    },
+    "maintenance": {
+      "badge": "Scheduled Maintenance",
+      "title": "We'll be back soon",
+      "subtitle": "We're performing scheduled maintenance to improve your experience. Thanks for your patience!",
+      "details": {
+        "title": "Maintenance Details",
+        "started": "Started",
+        "expected": "Expected",
+        "duration": "Duration",
+        "progress": "Progress",
+        "status": "Database migration in progress"
+      },
+      "statusUpdates": "Status Updates",
+      "whileWait": "While you wait",
+      "notify": "Get notified when we're back",
+      "notifySuccess": "We'll notify you when we're back!",
+      "questions": "Questions? Contact"
+    }
+  },
+  "navbar": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "signIn": "Sign In",
+    "getStarted": "Get Started Free"
+  },
+  "footer": {
+    "tagline": "Data that breathes. The modern dashboard for growing teams.",
+    "product": {
+      "title": "Product",
+      "features": "Features",
+      "pricing": "Pricing",
+      "integrations": "Integrations",
+      "changelog": "Changelog",
+      "roadmap": "Roadmap"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About",
+      "blog": "Blog",
+      "careers": "Careers",
+      "press": "Press Kit",
+      "contact": "Contact"
+    },
+    "resources": {
+      "title": "Resources",
+      "documentation": "Documentation",
+      "helpCenter": "Help Center",
+      "community": "Community",
+      "templates": "Templates",
+      "webinars": "Webinars"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy",
+      "gdpr": "GDPR",
+      "security": "Security"
+    },
+    "newsletter": {
+      "title": "Stay up to date",
+      "description": "Get the latest news and updates delivered to your inbox.",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe"
+    },
+    "copyright": "© {year} Pulse. All rights reserved."
+  }
+}

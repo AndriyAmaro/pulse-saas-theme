@@ -1,0 +1,627 @@
+{
+  "common": {
+    "save": "Guardar",
+    "saveChanges": "Guardar Cambios",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "view": "Ver",
+    "create": "Crear",
+    "add": "Agregar",
+    "remove": "Quitar",
+    "search": "Buscar...",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "import": "Importar",
+    "download": "Descargar",
+    "upload": "Subir",
+    "loading": "Cargando...",
+    "noResults": "No se encontraron resultados",
+    "noData": "No hay datos disponibles",
+    "success": "¡Éxito!",
+    "error": "¡Error!",
+    "warning": "¡Atención!",
+    "info": "Información",
+    "confirm": "Confirmar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "yes": "Sí",
+    "no": "No",
+    "all": "Todos",
+    "none": "Ninguno",
+    "select": "Seleccionar",
+    "selected": "seleccionado(s)",
+    "required": "Requerido",
+    "optional": "Opcional",
+    "more": "Más",
+    "less": "Menos",
+    "showMore": "Mostrar más",
+    "showLess": "Mostrar menos",
+    "seeAll": "Ver todos",
+    "goHome": "Ir al inicio",
+    "goBack": "Volver",
+    "tryAgain": "Intentar de nuevo",
+    "learnMore": "Saber más",
+    "getStarted": "Comenzar",
+    "contactUs": "Contáctenos",
+    "helpSupport": "Ayuda y Soporte"
+  },
+  "navigation": {
+    "overview": "Resumen",
+    "analytics": "Analíticas",
+    "ecommerce": "E-commerce",
+    "finance": "Finanzas",
+    "projects": "Proyectos",
+    "crm": "CRM",
+    "inventory": "Inventario",
+    "helpdesk": "Soporte",
+    "saas": "SaaS",
+    "healthcare": "Salud",
+    "hr": "RRHH",
+    "marketing": "Marketing",
+    "realEstate": "Inmuebles",
+    "education": "Educación",
+    "cryptoTrading": "Crypto Trading",
+    "restaurant": "Restaurante",
+    "calendar": "Calendario",
+    "chat": "Chat",
+    "email": "Correo",
+    "components": "Componentes",
+    "users": "Usuarios",
+    "reports": "Reportes",
+    "notifications": "Notificaciones",
+    "settings": "Configuración",
+    "profile": "Perfil",
+    "logout": "Cerrar Sesión",
+    "sectionMain": "Principal",
+    "sectionDashboards": "Paneles",
+    "sectionSystems": "Sistemas",
+    "sectionShowcase": "Vitrina",
+    "sectionManagement": "Gestión",
+    "sectionSystem": "Sistema"
+  },
+  "auth": {
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "resetPassword": "Restablecer Contraseña",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "currentPassword": "Contraseña Actual",
+    "newPassword": "Nueva Contraseña",
+    "fullName": "Nombre Completo",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "rememberMe": "Recordarme por 30 días",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "createAccount": "Crear cuenta",
+    "orContinueWith": "O continúa con",
+    "termsAgree": "Acepto los",
+    "termsOfService": "Términos de Servicio",
+    "privacyPolicy": "Política de Privacidad",
+    "and": "y",
+    "welcomeBack": "Bienvenido de vuelta",
+    "enterCredentials": "Ingresa tus credenciales para acceder a tu cuenta",
+    "createAnAccount": "Crear una cuenta",
+    "startFreeTrial": "Comienza tu prueba gratis de 14 días",
+    "forgotPasswordTitle": "¿Olvidaste tu contraseña?",
+    "forgotPasswordSubtitle": "No te preocupes, te enviaremos instrucciones para restablecerla",
+    "sendResetLink": "Enviar enlace de restablecimiento",
+    "checkYourEmail": "Revisa tu correo",
+    "weSentResetLink": "Enviamos un enlace de restablecimiento de contraseña a",
+    "backToLogin": "Volver al inicio de sesión",
+    "didntReceiveEmail": "¿No recibiste el correo?",
+    "clickToResend": "Haz clic para reenviar",
+    "sending": "Enviando...",
+    "setNewPassword": "Establecer nueva contraseña",
+    "mustBeAtLeast8": "Debe tener al menos 8 caracteres",
+    "newPasswordLabel": "Nueva contraseña",
+    "confirmNewPassword": "Confirmar nueva contraseña",
+    "passwordResetSuccess": "Contraseña restablecida exitosamente",
+    "passwordResetSuccessText": "Tu contraseña ha sido restablecida exitosamente.\nAhora puedes iniciar sesión con tu nueva contraseña.",
+    "continueToLogin": "Continuar al inicio de sesión",
+    "rememberYourPassword": "¿Recuerdas tu contraseña?",
+    "createPasswordPlaceholder": "Crea una contraseña segura",
+    "enterPasswordPlaceholder": "Ingresa tu contraseña",
+    "enterNewPasswordPlaceholder": "Ingresa tu nueva contraseña",
+    "confirmPasswordPlaceholder": "Confirma tu contraseña",
+    "confirmNewPasswordPlaceholder": "Confirma tu nueva contraseña",
+    "enterEmailPlaceholder": "Ingresa tu correo electrónico",
+    "namePlaceholder": "Juan Pérez",
+    "emailPlaceholder": "nombre@ejemplo.com",
+    "acceptTermsError": "Debes aceptar los términos y condiciones"
+  },
+  "validation": {
+    "required": "Este campo es requerido",
+    "email": "Ingresa un correo válido",
+    "minLength": "Mínimo {min} caracteres",
+    "maxLength": "Máximo {max} caracteres",
+    "passwordMatch": "Las contraseñas no coinciden",
+    "invalidCredentials": "Correo o contraseña inválidos"
+  },
+  "time": {
+    "now": "Ahora",
+    "justNow": "Justo ahora",
+    "minutesAgo": "hace {count} minuto(s)",
+    "hoursAgo": "hace {count} hora(s)",
+    "daysAgo": "hace {count} día(s)",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "tomorrow": "Mañana",
+    "thisWeek": "Esta semana",
+    "lastWeek": "Semana pasada",
+    "thisMonth": "Este mes",
+    "lastMonth": "Mes pasado"
+  },
+  "theme": {
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
+  "language": {
+    "language": "Idioma",
+    "selectLanguage": "Seleccionar idioma"
+  },
+  "header": {
+    "notifications": "Notificaciones",
+    "new": "nueva(s)",
+    "noNotifications": "Sin notificaciones",
+    "viewAllNotifications": "Ver todas las notificaciones",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "logOut": "Cerrar Sesión"
+  },
+  "landing": {
+    "hero": {
+      "badge": "Presentamos Pulse 2.0",
+      "title1": "El Dashboard Moderno",
+      "title2": "para Equipos en Crecimiento",
+      "subtitle": "Rastrea métricas, gestiona proyectos y escala tu negocio con el dashboard que da vida a tus datos.",
+      "cta": "Prueba Gratis",
+      "watchDemo": "Ver Demo",
+      "trustedBy": "Confiado por más de 10.000 equipos en el mundo"
+    },
+    "logos": {
+      "badge": "Stack de Vanguardia",
+      "title": "La tecnología que impulsa a quienes transforman el mundo",
+      "subtitle": "Construido con las mismas herramientas usadas por las mayores empresas de tecnología"
+    },
+    "features": {
+      "badge": "Características",
+      "title": "Todo lo que necesitas para escalar",
+      "subtitle": "Características poderosas que ayudan a los equipos a trabajar de forma más inteligente.",
+      "analytics": {
+        "title": "Análisis en Tiempo Real",
+        "description": "Dashboards en vivo que se actualizan al instante. Reportes personalizados en segundos. Insights con IA.",
+        "point1": "Dashboards que se actualizan en tiempo real",
+        "point2": "Reportes personalizados en segundos",
+        "point3": "Insights alimentados por IA"
+      },
+      "collaboration": {
+        "title": "Colaboración en Equipo",
+        "description": "Trabaja junto en tiempo real con tu equipo.",
+        "point1": "Herramientas de colaboración en tiempo real",
+        "point2": "Comentarios, menciones y reacciones",
+        "point3": "Feed de actividad y auditoría"
+      },
+      "integrations": {
+        "title": "Integraciones Poderosas",
+        "description": "Conecta con más de 150 herramientas que ya usas.",
+        "point1": "Más de 150 integraciones nativas",
+        "point2": "API personalizada con documentación completa",
+        "point3": "Webhooks y flujos de automatización"
+      },
+      "miniFeatures": {
+        "security": {
+          "title": "Seguridad Empresarial",
+          "description": "Compatible con SOC2 con cifrado de extremo a extremo"
+        },
+        "api": {
+          "title": "Acceso API Completo",
+          "description": "API REST y GraphQL con soporte de webhooks"
+        },
+        "support": {
+          "title": "Soporte 24/7",
+          "description": "Equipo de soporte dedicado siempre listo"
+        },
+        "mobile": {
+          "title": "Listo para Móvil",
+          "description": "Apps nativas para iOS y Android"
+        },
+        "export": {
+          "title": "Exportación de Datos",
+          "description": "Exporta a CSV, PDF o Excel cuando quieras"
+        },
+        "sso": {
+          "title": "SSO y SAML",
+          "description": "Inicio de sesión único con SAML y OAuth"
+        }
+      },
+      "andMore": "Y mucho más...",
+      "andMoreSubtitle": "Todo lo que tu equipo necesita, listo para usar"
+    },
+    "stats": {
+      "pages": "Páginas Listas",
+      "components": "Componentes",
+      "lighthouse": "Lighthouse Score",
+      "typescript": "TypeScript"
+    },
+    "testimonials": {
+      "badge": "Testimonios",
+      "title": "Amado por equipos en todo el mundo",
+      "subtitle": "Mira lo que nuestros clientes dicen sobre Pulse"
+    },
+    "pricing": {
+      "badge": "Precios",
+      "title": "Precios simples y transparentes",
+      "subtitle": "Sin tarifas ocultas. Sin sorpresas. Cancela cuando quieras.",
+      "monthly": "Mensual",
+      "yearly": "Anual",
+      "save": "Ahorra 20%",
+      "popular": "Más Popular",
+      "trial": "Todos los planes incluyen 14 días de prueba gratis",
+      "noCard": "No se requiere tarjeta de crédito"
+    },
+    "faq": {
+      "badge": "FAQ",
+      "title": "Preguntas frecuentes",
+      "subtitle": "¿No encontraste lo que buscas? Contacta a nuestro equipo de soporte."
+    },
+    "cta": {
+      "title": "¿Listo para transformar tus datos?",
+      "subtitle": "Únete a miles de equipos que ya usan Pulse para tomar decisiones más inteligentes.",
+      "placeholder": "Ingresa tu email de trabajo",
+      "button": "Prueba Gratis",
+      "trial": "14 días gratis",
+      "noCard": "Sin tarjeta de crédito",
+      "cancel": "Cancela cuando quieras"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "Sobre el Creador",
+      "title": "Hola, soy Andri Amaro",
+      "subtitle": "Desarrollador Full Stack apasionado por crear dashboards hermosos, de alto rendimiento y accesibles. Pulse es mi proyecto autoral, construido con las tecnologías más modernas del mercado."
+    },
+    "story": {
+      "title": "La Historia de Pulse",
+      "p1": "Pulse nació de mi frustración con las plantillas de dashboard existentes: muchas estaban desactualizadas, mal organizadas o simplemente feas. Sabía que podía crear algo mejor.",
+      "p2": "Decidí construir desde cero un tema que yo mismo quisiera usar — con arquitectura moderna (React 19, Next.js 16, TypeScript strict), componentes reutilizables con CVA, y un design system completo con dark mode premium.",
+      "p3": "El resultado es Pulse: 96 componentes, 16 dashboards temáticos, 126 páginas y soporte para 3 idiomas. Un tema que supera a competidores de $99 en calidad técnica y visual."
+    },
+    "timeline": {
+      "y1": {
+        "year": "2024",
+        "title": "Inicio del Proyecto",
+        "description": "Frustrado con las plantillas existentes, comencé a planificar una solución mejor."
+      },
+      "y2": {
+        "year": "2025 Q1",
+        "title": "Fundación",
+        "description": "Arquitectura definida: React 19, Next.js 16, TypeScript strict, Atomic Design."
+      },
+      "y3": {
+        "year": "2025 Q2",
+        "title": "Primeros Dashboards",
+        "description": "16 dashboards creados: Finance, CRM, SaaS, Crypto, Restaurant, Real Estate..."
+      },
+      "y4": {
+        "year": "2025 Q3",
+        "title": "Design System Completo",
+        "description": "96 componentes finalizados. Dark mode premium. Animaciones avanzadas."
+      },
+      "y5": {
+        "year": "2026",
+        "title": "Hoy",
+        "description": "i18n en 3 idiomas. 126 páginas. Listo para el mundo."
+      }
+    },
+    "tech": {
+      "title": "Tecnologías Utilizadas",
+      "subtitle": "Construido con las herramientas más modernas del ecosistema React",
+      "react": {
+        "title": "React 19",
+        "description": "La versión más reciente con concurrent features y mejor rendimiento."
+      },
+      "nextjs": {
+        "title": "Next.js 16",
+        "description": "App Router, Server Components y optimizaciones automáticas."
+      },
+      "typescript": {
+        "title": "TypeScript",
+        "description": "Strict mode, generics, zero any — código 100% tipado."
+      },
+      "tailwind": {
+        "title": "Tailwind CSS v4",
+        "description": "Design system personalizado con CSS variables nativas."
+      },
+      "cva": {
+        "title": "CVA",
+        "description": "Class Variance Authority para variantes de componentes type-safe."
+      },
+      "intl": {
+        "title": "next-intl",
+        "description": "Internacionalización completa con 3 idiomas (PT, EN, ES)."
+      }
+    },
+    "included": {
+      "title": "Qué Está Incluido",
+      "subtitle": "Todo lo que necesitas para crear dashboards increíbles",
+      "dashboards": {
+        "title": "16 Dashboards",
+        "description": "Finance, CRM, SaaS, Crypto, Restaurant, Real Estate, Education, Healthcare y más."
+      },
+      "components": {
+        "title": "96 Componentes",
+        "description": "Primitives, Patterns, Organisms — todos reutilizables y personalizables con CVA."
+      },
+      "darkMode": {
+        "title": "Dark Mode Premium",
+        "description": "Diseño propio con card glow, glassmorphism y gradientes animados."
+      },
+      "i18n": {
+        "title": "3 Idiomas",
+        "description": "Português, English, Español — i18n completo y fácil de expandir."
+      },
+      "responsive": {
+        "title": "100% Responsivo",
+        "description": "Diseño mobile-first, probado en todos los breakpoints."
+      },
+      "stack": {
+        "title": "Stack Moderna",
+        "description": "React 19, Next.js 16, TypeScript strict — lo mejor del ecosistema."
+      },
+      "apps": {
+        "title": "Apps Completas",
+        "description": "Calendar (3 vistas), Chat (auto-respuesta), Email (modal de composición)."
+      },
+      "production": {
+        "title": "Listo para Producción",
+        "description": "Build optimizado, 0 errores TypeScript, rendimiento verificado."
+      }
+    },
+    "stats": {
+      "title": "En Números",
+      "subtitle": "Métricas reales de este proyecto",
+      "components": "Componentes",
+      "pages": "Páginas",
+      "dashboards": "Dashboards",
+      "languages": "Idiomas"
+    },
+    "cta": {
+      "title": "¿Trabajemos Juntos?",
+      "subtitle": "Estoy disponible para freelance y oportunidades a tiempo completo.",
+      "github": "Ver en GitHub",
+      "contact": "Ponerse en Contacto"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Contacto",
+      "title": "Ponte en Contacto",
+      "subtitle": "¿Tienes un proyecto en mente o quieres saber más sobre Pulse? Envíame un mensaje y responderé lo antes posible."
+    },
+    "options": {
+      "sales": {
+        "title": "Proyectos & Freelance",
+        "description": "¿Interesado en trabajar juntos? Hablemos de tu proyecto.",
+        "cta": "Enviar Propuesta"
+      },
+      "support": {
+        "title": "Soporte del Tema",
+        "description": "¿Preguntas sobre el tema Pulse? Estoy aquí para ayudar.",
+        "cta": "Obtener Soporte"
+      }
+    },
+    "form": {
+      "title": "Envía un mensaje",
+      "name": "Nombre Completo",
+      "email": "Correo",
+      "company": "Empresa",
+      "subject": "Asunto",
+      "selectSubject": "Selecciona un asunto",
+      "subjectOptions": {
+        "general": "Consulta General",
+        "sales": "Proyecto / Freelance",
+        "support": "Soporte del Tema",
+        "partnership": "Asociación",
+        "other": "Otro"
+      },
+      "message": "Mensaje",
+      "messagePlaceholder": "Describe tu proyecto o pregunta...",
+      "privacy": "Acepto la",
+      "submit": "Enviar Mensaje",
+      "success": "¡Mensaje enviado!",
+      "successSubtitle": "Responderé en un máximo de 48 horas.",
+      "sendAnother": "Enviar otro mensaje",
+      "nameRequired": "El nombre es requerido",
+      "emailRequired": "El correo es requerido",
+      "emailInvalid": "Dirección de correo inválida",
+      "messageRequired": "El mensaje es requerido",
+      "privacyRequired": "Debes aceptar la Política de Privacidad",
+      "privacyPolicyLink": "Política de Privacidad"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Respuestas rápidas a preguntas comunes.",
+      "items": {
+        "q1": "¿Cuál es tu tiempo de respuesta?",
+        "a1": "Normalmente respondo en un máximo de 48 horas. Para proyectos urgentes, menciónalo en tu mensaje y priorizaré mi respuesta.",
+        "q2": "¿Estás disponible para freelance?",
+        "a2": "¡Sí! Estoy disponible para proyectos freelance y también abierto a oportunidades a tiempo completo. Hablemos de tu proyecto.",
+        "q3": "¿El tema Pulse está disponible para compra?",
+        "a3": "Pulse será lanzado en ThemeForest pronto. Contáctame para ser notificado cuando esté disponible."
+      }
+    },
+    "info": {
+      "title": "Información de Contacto",
+      "followUs": "Redes Sociales",
+      "location": "Brasil (Trabajo Remoto)",
+      "schedule": "Lun-Vie, 9am-6pm (BRT)",
+      "response": "Respuesta en máximo 48 horas"
+    }
+  },
+  "blog": {
+    "hero": {
+      "badge": "Blog",
+      "title": "Insights y Novedades",
+      "subtitle": "Las últimas noticias, tutoriales e insights del equipo Pulse"
+    },
+    "search": "Buscar artículos...",
+    "featured": "Destacado",
+    "categories": {
+      "all": "Todos",
+      "product": "Producto",
+      "engineering": "Ingeniería",
+      "design": "Diseño",
+      "company": "Empresa",
+      "tutorials": "Tutoriales"
+    },
+    "readMore": "Leer más",
+    "minRead": "min de lectura",
+    "writtenBy": "Escrito por",
+    "publishedOn": "Publicado el",
+    "relatedPosts": "También te puede interesar",
+    "onThisPage": "En esta página",
+    "share": "Compartir",
+    "shareArticle": "Compartir este artículo",
+    "copyLink": "Copiar enlace",
+    "newsletter": {
+      "title": "Suscríbete a nuestro newsletter",
+      "subtitle": "Recibe los últimos posts, tutoriales y novedades directo en tu correo. Sin spam, cancela cuando quieras.",
+      "placeholder": "Ingresa tu correo",
+      "subscribe": "Suscribirse"
+    }
+  },
+  "terms": {
+    "title": "Términos de Servicio",
+    "lastUpdated": "Última actualización",
+    "version": "Versión",
+    "toc": "Contenido"
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización",
+    "version": "Versión",
+    "toc": "Contenido"
+  },
+  "utility": {
+    "notFound": {
+      "title": "Página no encontrada",
+      "subtitle": "¡Ups! La página que buscas no existe o ha sido movida.",
+      "search": "Intenta buscar lo que necesitas...",
+      "goHome": "Ir al Inicio",
+      "goBack": "Volver",
+      "popularPages": "Páginas populares",
+      "contactSupport": "Contactar Soporte"
+    },
+    "serverError": {
+      "title": "Algo salió mal",
+      "subtitle": "Estamos experimentando dificultades técnicas. Nuestro equipo ha sido notificado y está trabajando en ello.",
+      "status": "Estado: Investigando",
+      "tryAgain": "Intentar de Nuevo",
+      "goHome": "Ir al Inicio",
+      "errorDetails": "Detalles del Error",
+      "reference": "ID de Referencia",
+      "dataSafe": "No te preocupes, tus datos están seguros",
+      "checkStatus": "Verificar Estado del Sistema"
+    },
+    "comingSoon": {
+      "badge": "Próximamente",
+      "title": "Algo increíble está en camino",
+      "subtitle": "Estamos trabajando duro para traerte una experiencia increíble. Sé el primero en saber cuando lancemos.",
+      "days": "Días",
+      "hours": "Horas",
+      "minutes": "Min",
+      "seconds": "Seg",
+      "notify": "Recibe notificación cuando lancemos",
+      "placeholder": "Ingresa tu correo",
+      "notifyButton": "Avísame",
+      "success": "¡Estás en la lista!",
+      "successSubtitle": "Te notificaremos tan pronto como lancemos.",
+      "featuresTitle": "Características que llegan con el lanzamiento",
+      "progress": "Progreso de Desarrollo",
+      "followUs": "Síguenos para novedades",
+      "backToSite": "← Volver al sitio principal"
+    },
+    "maintenance": {
+      "badge": "Mantenimiento Programado",
+      "title": "Volvemos pronto",
+      "subtitle": "Estamos realizando mantenimiento programado para mejorar tu experiencia. ¡Gracias por tu paciencia!",
+      "details": {
+        "title": "Detalles del Mantenimiento",
+        "started": "Iniciado",
+        "expected": "Estimado",
+        "duration": "Duración",
+        "progress": "Progreso",
+        "status": "Migración de base de datos en progreso"
+      },
+      "statusUpdates": "Actualizaciones de Estado",
+      "whileWait": "Mientras esperas",
+      "notify": "Recibe aviso cuando volvamos",
+      "notifySuccess": "¡Te notificaremos cuando volvamos!",
+      "questions": "¿Preguntas? Contacta"
+    }
+  },
+  "navbar": {
+    "features": "Características",
+    "pricing": "Precios",
+    "about": "Nosotros",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "dashboard": "Dashboard",
+    "signIn": "Iniciar Sesión",
+    "getStarted": "Comienza Gratis"
+  },
+  "footer": {
+    "tagline": "Datos que respiran. El dashboard moderno para equipos en crecimiento.",
+    "product": {
+      "title": "Producto",
+      "features": "Características",
+      "pricing": "Precios",
+      "integrations": "Integraciones",
+      "changelog": "Changelog",
+      "roadmap": "Roadmap"
+    },
+    "company": {
+      "title": "Empresa",
+      "about": "Nosotros",
+      "blog": "Blog",
+      "careers": "Empleos",
+      "press": "Prensa",
+      "contact": "Contacto"
+    },
+    "resources": {
+      "title": "Recursos",
+      "documentation": "Documentación",
+      "helpCenter": "Centro de Ayuda",
+      "community": "Comunidad",
+      "templates": "Plantillas",
+      "webinars": "Webinars"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "cookies": "Cookies",
+      "gdpr": "RGPD",
+      "security": "Seguridad"
+    },
+    "newsletter": {
+      "title": "Mantente al día",
+      "description": "Recibe las últimas noticias y actualizaciones.",
+      "placeholder": "Ingresa tu correo",
+      "subscribe": "Suscribirse"
+    },
+    "copyright": "© {year} Pulse. Todos los derechos reservados."
+  }
+}
