@@ -22,7 +22,7 @@ export {
 } from './Sidebar'
 export type {
   SidebarProps,
-  SidebarItemType,
+  SidebarItem as SidebarItemType,
   SidebarUser,
   SidebarContextValue,
 } from './Sidebar'

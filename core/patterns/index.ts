@@ -223,18 +223,11 @@ export type {
 // TestimonialCard
 export {
   TestimonialCard,
-  TestimonialCarousel,
   TestimonialGrid,
-  testimonialCardVariants,
-  quoteIconVariants,
-  carouselVariants,
 } from './TestimonialCard'
 export type {
-  TestimonialCardProps,
-  TestimonialCarouselProps,
   TestimonialGridProps,
   Testimonial,
-  TestimonialAuthor,
 } from './TestimonialCard'
 
 // OnboardingWizard
@@ -285,8 +278,8 @@ export { FAQAccordion, faqAccordionVariants, faqItemVariants } from './FAQAccord
 export type { FAQAccordionProps, FAQItem, FAQCategory } from './FAQAccordion'
 
 // FooterMarketing
-export { FooterMarketing, footerVariants as footerMarketingVariants } from './FooterMarketing'
-export type { FooterMarketingProps } from './FooterMarketing'
+export { FooterMarketing, footerMarketingVariants } from './FooterMarketing'
+export type { FooterMarketingProps, FooterColumn, FooterLink, SocialLink, SocialPlatform } from './FooterMarketing'
 
 // ============================================================================
 // DASHBOARD ADVANCED PATTERNS (BLOCO 2.8)
