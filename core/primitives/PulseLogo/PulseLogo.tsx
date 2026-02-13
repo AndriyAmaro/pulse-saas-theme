@@ -157,7 +157,7 @@ export const PulseLogo = React.forwardRef<HTMLDivElement, PulseLogoProps>(
             className={cn(
               textVariants({ size }),
               isPremium
-                ? 'bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent transition-all duration-300'
+                ? 'bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent transition-all duration-300'
                 : 'text-[var(--text-primary)]'
             )}
           >

@@ -146,7 +146,7 @@ const Navbar = () => {
 
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
+            <ThemeToggle className={isScrolled ? '' : 'text-white/80 hover:text-white hover:bg-white/10'} />
             <Link href="/login">
               <Button
                 variant="ghost"
@@ -182,7 +182,7 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
+            <ThemeToggle className={isScrolled ? '' : 'text-white/80 hover:text-white hover:bg-white/10'} />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
