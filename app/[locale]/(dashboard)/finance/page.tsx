@@ -1,0 +1,795 @@
+'use client'
+
+import * as React from 'react'
+import {
+  TrendingUp,
+  TrendingDown,
+  DollarSign,
+  Wallet,
+  PiggyBank,
+  LineChart,
+  Download,
+  Plus,
+  CreditCard,
+  Building2,
+  Smartphone,
+  FileText,
+  AlertTriangle,
+  CheckCircle2,
+  Clock,
+  MoreHorizontal,
+  ArrowUpRight,
+  ArrowDownRight,
+  Target,
+  Calendar,
+} from 'lucide-react'
+
+import { DashboardGrid } from '@core/layouts/DashboardGrid'
+import { Card } from '@core/organisms/Card'
+import { Button } from '@core/primitives/Button'
+import { Badge } from '@core/primitives/Badge'
+import { Avatar } from '@core/primitives/Avatar'
+import { Skeleton } from '@core/primitives/Skeleton'
+import { ChartWrapper } from '@core/organisms/ChartWrapper'
+import { DataTable, type ColumnDef } from '@core/organisms/DataTable'
+import { SparklineChart } from '@core/patterns/SparklineChart'
+import { GaugeChart } from '@core/patterns/GaugeChart'
+import { ProgressBar } from '@core/patterns/ProgressBar'
+
+// ============================================================================
+// MOCK DATA - Realistic Financial Data
+// ============================================================================
+
+// Current Balance & Overview
+const balanceData = {
+  current: 284592.0,
+  change: 12450,
+  changePercent: 4.6,
+  last30Days: [
+    265000, 268000, 271000, 269500, 273000, 275000, 272000, 278000, 280000, 276000,
+    279000, 282000, 280500, 283000, 281000, 284000, 282500, 285000, 283000, 286000,
+    284500, 287000, 285000, 288000, 286500, 289000, 287000, 284000, 286000, 284592,
+  ],
+}
+
+// KPI Cards Data
+const kpiData = {
+  income: {
+    value: 45240,
+    change: 12.3,
+    sparkline: [3200, 3800, 4100, 3900, 4500, 5200, 4800, 5400, 5100, 5800, 5500, 6200],
+  },
+  expenses: {
+    value: 32180,
+    change: -5.2,
+    sparkline: [2800, 2600, 3100, 2900, 3200, 2700, 3000, 2800, 3300, 2900, 3100, 2680],
+  },
+  savings: {
+    value: 13060,
+    change: 28.5,
+    sparkline: [800, 950, 1100, 1000, 1250, 1400, 1300, 1500, 1450, 1600, 1550, 1800],
+  },
+  investments: {
+    value: 52400,
+    change: 8.7,
+    sparkline: [45000, 46200, 45800, 47000, 48500, 47800, 49000, 50200, 49500, 51000, 50800, 52400],
+  },
+}
+
+// Cash Flow Data (6 months)
+const cashFlowData = [
+  { month: 'Aug', income: 38500, expenses: 28900 },
+  { month: 'Sep', income: 41200, expenses: 31400 },
+  { month: 'Oct', income: 39800, expenses: 29200 },
+  { month: 'Nov', income: 43500, expenses: 32800 },
+  { month: 'Dec', income: 47200, expenses: 35100 },
+  { month: 'Jan', income: 45240, expenses: 32180 },
+]
+
+// Budget Overview
+const budgetData = [
+  { category: 'Marketing', used: 75, budget: 8000, spent: 6000, color: '#3B82F6' },
+  { category: 'Operations', used: 45, budget: 12000, spent: 5400, color: '#10B981' },
+  { category: 'Salaries', used: 90, budget: 45000, spent: 40500, color: '#EF4444' },
+  { category: 'R&D', used: 30, budget: 15000, spent: 4500, color: '#8B5CF6' },
+]
+
+// Expense Breakdown (Donut)
+const expenseBreakdownData = [
+  { name: 'Salaries', value: 40500, color: '#EF4444' },
+  { name: 'Marketing', value: 6000, color: '#3B82F6' },
+  { name: 'Operations', value: 5400, color: '#10B981' },
+  { name: 'Software', value: 3200, color: '#8B5CF6' },
+  { name: 'Office', value: 2800, color: '#F59E0B' },
+  { name: 'Other', value: 1580, color: '#6B7280' },
+]
+
+// Income Sources (Horizontal Bar)
+const incomeSourcesData = [
+  { source: 'Product Sales', value: 18500 },
+  { source: 'Services', value: 12400 },
+  { source: 'Subscriptions', value: 8900 },
+  { source: 'Partnerships', value: 3800 },
+  { source: 'Other', value: 1640 },
+]
+
+// Recent Transactions
+interface Transaction {
+  id: string
+  date: string
+  description: string
+  category: string
+  type: 'income' | 'expense'
+  amount: number
+  icon: typeof DollarSign
+}
+
+const transactionsData: Transaction[] = [
+  { id: '1', date: '2026-02-05', description: 'Stripe Payment - Premium Plan', category: 'Subscriptions', type: 'income', amount: 2499, icon: CreditCard },
+  { id: '2', date: '2026-02-05', description: 'AWS Cloud Services', category: 'Software', type: 'expense', amount: 892.5, icon: Building2 },
+  { id: '3', date: '2026-02-04', description: 'Client Project - Acme Corp', category: 'Services', type: 'income', amount: 8500, icon: FileText },
+  { id: '4', date: '2026-02-04', description: 'Slack Annual Subscription', category: 'Software', type: 'expense', amount: 150, icon: Smartphone },
+  { id: '5', date: '2026-02-03', description: 'Product Sale - Enterprise License', category: 'Product Sales', type: 'income', amount: 4999, icon: DollarSign },
+  { id: '6', date: '2026-02-03', description: 'Office Supplies', category: 'Office', type: 'expense', amount: 245.8, icon: Building2 },
+  { id: '7', date: '2026-02-02', description: 'Consulting Fee - Tech Review', category: 'Services', type: 'income', amount: 3200, icon: FileText },
+  { id: '8', date: '2026-02-02', description: 'Google Ads Campaign', category: 'Marketing', type: 'expense', amount: 1500, icon: LineChart },
+  { id: '9', date: '2026-02-01', description: 'Partnership Bonus - Q4', category: 'Partnerships', type: 'income', amount: 5000, icon: DollarSign },
+  { id: '10', date: '2026-02-01', description: 'Payroll - Engineering Team', category: 'Salaries', type: 'expense', amount: 28500, icon: Wallet },
+]
+
+// Upcoming Bills
+interface Bill {
+  id: string
+  name: string
+  dueDate: string
+  amount: number
+  status: 'due-soon' | 'overdue' | 'upcoming'
+  icon: typeof DollarSign
+}
+
+const upcomingBillsData: Bill[] = [
+  { id: '1', name: 'Office Rent', dueDate: '2026-02-10', amount: 4500, status: 'due-soon', icon: Building2 },
+  { id: '2', name: 'Insurance Premium', dueDate: '2026-02-08', amount: 1200, status: 'due-soon', icon: FileText },
+  { id: '3', name: 'Utility Bills', dueDate: '2026-02-15', amount: 380, status: 'upcoming', icon: Smartphone },
+  { id: '4', name: 'SaaS Subscriptions', dueDate: '2026-02-20', amount: 890, status: 'upcoming', icon: CreditCard },
+  { id: '5', name: 'Equipment Lease', dueDate: '2026-02-05', amount: 650, status: 'overdue', icon: Building2 },
+]
+
+// Table Columns
+const transactionColumns: ColumnDef<Transaction>[] = [
+  {
+    id: 'date',
+    accessorKey: 'date',
+    header: 'Date',
+    sortable: true,
+    cell: ({ value }) => {
+      const date = new Date(value as string)
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    },
+  },
+  {
+    id: 'description',
+    accessorKey: 'description',
+    header: 'Description',
+    sortable: true,
+    cell: ({ row }) => {
+      const Icon = row.icon
+      return (
+        <div className="flex items-center gap-3">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary-100 dark:bg-secondary-800">
+            <Icon className="h-4 w-4 text-secondary-600 dark:text-secondary-400" />
+          </div>
+          <span className="font-medium text-[var(--text-primary)]">{row.description}</span>
+        </div>
+      )
+    },
+  },
+  {
+    id: 'category',
+    accessorKey: 'category',
+    header: 'Category',
+    sortable: true,
+    cell: ({ value }) => (
+      <Badge variant="default" size="sm">
+        {value as string}
+      </Badge>
+    ),
+  },
+  {
+    id: 'type',
+    accessorKey: 'type',
+    header: 'Type',
+    sortable: true,
+    cell: ({ value }) => (
+      <Badge variant={value === 'income' ? 'success' : 'error'} size="sm">
+        {value === 'income' ? 'Income' : 'Expense'}
+      </Badge>
+    ),
+  },
+  {
+    id: 'amount',
+    accessorKey: 'amount',
+    header: 'Amount',
+    sortable: true,
+    align: 'right',
+    cell: ({ row }) => {
+      const isIncome = row.type === 'income'
+      return (
+        <span className={isIncome ? 'font-semibold text-green-600 dark:text-green-400' : 'font-semibold text-red-600 dark:text-red-400'}>
+          {isIncome ? '+' : '-'}${row.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+        </span>
+      )
+    },
+  },
+]
+
+// Date Range Options
+const dateRangeOptions = [
+  { value: 'month', label: 'This Month' },
+  { value: 'quarter', label: 'This Quarter' },
+  { value: 'year', label: 'This Year' },
+  { value: 'custom', label: 'Custom' },
+]
+
+// ============================================================================
+// COMPONENT
+// ============================================================================
+
+export default function FinanceDashboard() {
+  const [dateRange, setDateRange] = React.useState('month')
+  const [isLoading, setIsLoading] = React.useState(true)
+
+  // Simulate loading
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value)
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* ====== HEADER ====== */}
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
+            Financial Overview
+          </h1>
+          <p className="mt-1 text-[var(--text-secondary)]">
+            Track your income, expenses, and financial health
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <select
+            value={dateRange}
+            onChange={(e) => setDateRange(e.target.value)}
+            className="h-9 rounded-lg border border-[var(--border-default)] bg-[var(--bg-base)] px-3 text-sm text-[var(--text-primary)] focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+          >
+            {dateRangeOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+          <Button variant="outline" size="sm" leftIcon={<Download className="h-4 w-4" />}>
+            Download Report
+          </Button>
+          <Button variant="primary" size="sm" leftIcon={<Plus className="h-4 w-4" />}>
+            Add Transaction
+          </Button>
+        </div>
+      </div>
+
+      {/* ====== ROW 1: MAIN BALANCE CARD ====== */}
+      {isLoading ? (
+        <Skeleton className="h-48 w-full rounded-xl" />
+      ) : (
+        <Card className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-green-950/20 dark:via-slate-900 dark:to-emerald-950/20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.1),transparent_50%)]" />
+          <Card.Content className="relative">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="space-y-2">
+                <p className="text-sm font-medium text-[var(--text-secondary)]">Current Balance</p>
+                <div className="flex items-baseline gap-3">
+                  <span className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+                    ${balanceData.current.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  </span>
+                  <Badge variant="success" size="sm" className="flex items-center gap-1">
+                    <TrendingUp className="h-3 w-3" />
+                    {balanceData.changePercent}%
+                  </Badge>
+                </div>
+                <p className="flex items-center gap-1 text-sm text-green-600 dark:text-green-400">
+                  <ArrowUpRight className="h-4 w-4" />
+                  ${balanceData.change.toLocaleString()} from last month
+                </p>
+              </div>
+
+              <div className="w-full lg:w-80">
+                <p className="mb-2 text-xs text-[var(--text-muted)]">Last 30 days trend</p>
+                <SparklineChart
+                  data={balanceData.last30Days}
+                  type="area"
+                  color="#22C55E"
+                  width={320}
+                  height={80}
+                  showDot
+                  gradient
+                  animated
+                />
+              </div>
+            </div>
+          </Card.Content>
+        </Card>
+      )}
+
+      {/* ====== ROW 2: KPI CARDS ====== */}
+      <DashboardGrid preset="4col" gap="lg">
+        {isLoading ? (
+          <>
+            {[1, 2, 3, 4].map((i) => (
+              <Skeleton key={i} className="h-36 rounded-xl" />
+            ))}
+          </>
+        ) : (
+          <>
+            {/* Income */}
+            <Card className="group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+              <Card.Content>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-sm text-[var(--text-secondary)]">Income</p>
+                    <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
+                      {formatCurrency(kpiData.income.value)}
+                    </p>
+                    <div className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
+                      <TrendingUp className="h-3 w-3" />
+                      +{kpiData.income.change}% vs last month
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-green-100 p-2 dark:bg-green-900/30">
+                    <TrendingUp className="h-5 w-5 text-green-600 dark:text-green-400" />
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <SparklineChart
+                    data={kpiData.income.sparkline}
+                    type="area"
+                    color="#22C55E"
+                    width={140}
+                    height={32}
+                    gradient
+                  />
+                </div>
+              </Card.Content>
+            </Card>
+
+            {/* Expenses */}
+            <Card className="group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+              <Card.Content>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-sm text-[var(--text-secondary)]">Expenses</p>
+                    <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
+                      {formatCurrency(kpiData.expenses.value)}
+                    </p>
+                    <div className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
+                      <TrendingDown className="h-3 w-3" />
+                      {kpiData.expenses.change}% vs last month
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-red-100 p-2 dark:bg-red-900/30">
+                    <TrendingDown className="h-5 w-5 text-red-600 dark:text-red-400" />
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <SparklineChart
+                    data={kpiData.expenses.sparkline}
+                    type="area"
+                    color="#EF4444"
+                    width={140}
+                    height={32}
+                    gradient
+                  />
+                </div>
+              </Card.Content>
+            </Card>
+
+            {/* Savings */}
+            <Card className="group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+              <Card.Content>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-sm text-[var(--text-secondary)]">Savings</p>
+                    <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
+                      {formatCurrency(kpiData.savings.value)}
+                    </p>
+                    <div className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
+                      <TrendingUp className="h-3 w-3" />
+                      +{kpiData.savings.change}% vs last month
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
+                    <PiggyBank className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <SparklineChart
+                    data={kpiData.savings.sparkline}
+                    type="area"
+                    color="#3B82F6"
+                    width={140}
+                    height={32}
+                    gradient
+                  />
+                </div>
+              </Card.Content>
+            </Card>
+
+            {/* Investments */}
+            <Card className="group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+              <Card.Content>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-sm text-[var(--text-secondary)]">Investments</p>
+                    <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
+                      {formatCurrency(kpiData.investments.value)}
+                    </p>
+                    <div className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
+                      <TrendingUp className="h-3 w-3" />
+                      +{kpiData.investments.change}% vs last month
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-purple-100 p-2 dark:bg-purple-900/30">
+                    <LineChart className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <SparklineChart
+                    data={kpiData.investments.sparkline}
+                    type="area"
+                    color="#8B5CF6"
+                    width={140}
+                    height={32}
+                    gradient
+                  />
+                </div>
+              </Card.Content>
+            </Card>
+          </>
+        )}
+      </DashboardGrid>
+
+      {/* ====== ROW 3: CASH FLOW + BUDGET OVERVIEW ====== */}
+      <div className="grid gap-6 lg:grid-cols-5">
+        {/* Cash Flow Chart - 60% */}
+        <Card className="lg:col-span-3">
+          <Card.Header>
+            <div className="flex items-center justify-between">
+              <div>
+                <Card.Title className="flex items-center gap-2">
+                  <LineChart className="h-5 w-5 text-primary-500" />
+                  Cash Flow
+                </Card.Title>
+                <Card.Description>Income vs Expenses over the last 6 months</Card.Description>
+              </div>
+              <Button variant="ghost" size="sm">
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </div>
+          </Card.Header>
+          <Card.Content>
+            {isLoading ? (
+              <Skeleton className="h-72 rounded-lg" />
+            ) : (
+              <ChartWrapper
+                type="area"
+                data={cashFlowData}
+                series={[
+                  { dataKey: 'income', name: 'Income', fillOpacity: 0.4, color: '#22C55E' },
+                  { dataKey: 'expenses', name: 'Expenses', fillOpacity: 0.4, color: '#EF4444' },
+                ]}
+                xAxisKey="month"
+                height={280}
+                showLegend
+                showTooltip
+                showGrid
+                tooltipFormatter={(value) => '$' + value.toLocaleString()}
+              />
+            )}
+          </Card.Content>
+        </Card>
+
+        {/* Budget Overview - 40% */}
+        <Card className="lg:col-span-2">
+          <Card.Header>
+            <div className="flex items-center justify-between">
+              <div>
+                <Card.Title className="flex items-center gap-2">
+                  <Target className="h-5 w-5 text-primary-500" />
+                  Budget Overview
+                </Card.Title>
+                <Card.Description>Monthly budget allocation</Card.Description>
+              </div>
+            </div>
+          </Card.Header>
+          <Card.Content>
+            {isLoading ? (
+              <div className="space-y-6">
+                {[1, 2, 3, 4].map((i) => (
+                  <Skeleton key={i} className="h-16 rounded-lg" />
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-5">
+                {budgetData.map((item) => (
+                  <div key={item.category} className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-[var(--text-primary)]">
+                        {item.category}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-[var(--text-muted)]">
+                          ${item.spent.toLocaleString()} / ${item.budget.toLocaleString()}
+                        </span>
+                        <Badge
+                          variant={item.used >= 90 ? 'error' : item.used >= 70 ? 'warning' : 'success'}
+                          size="sm"
+                        >
+                          {item.used}%
+                        </Badge>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <ProgressBar
+                          value={item.used}
+                          size="sm"
+                          variant={item.used >= 90 ? 'error' : item.used >= 70 ? 'warning' : 'success'}
+                        />
+                      </div>
+                      <GaugeChart
+                        value={item.used}
+                        variant="donut"
+                        size="sm"
+                        showValue={false}
+                        color={item.color}
+                        strokeWidth={6}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </Card.Content>
+        </Card>
+      </div>
+
+      {/* ====== ROW 4: EXPENSE BREAKDOWN + INCOME SOURCES ====== */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Expense Breakdown - Donut */}
+        <Card>
+          <Card.Header>
+            <Card.Title className="flex items-center gap-2">
+              <Wallet className="h-5 w-5 text-primary-500" />
+              Expense Breakdown
+            </Card.Title>
+            <Card.Description>Where your money goes</Card.Description>
+          </Card.Header>
+          <Card.Content>
+            {isLoading ? (
+              <Skeleton className="mx-auto h-64 w-64 rounded-full" />
+            ) : (
+              <div className="flex flex-col items-center gap-6 lg:flex-row">
+                <div className="w-64">
+                  <ChartWrapper
+                    type="donut"
+                    data={expenseBreakdownData}
+                    series={[{ dataKey: 'value', name: 'Amount' }]}
+                    xAxisKey="name"
+                    height={200}
+                    showTooltip
+                    tooltipFormatter={(value) => '$' + value.toLocaleString()}
+                  />
+                </div>
+                <div className="flex-1 space-y-2">
+                  {expenseBreakdownData.map((item) => (
+                    <div key={item.name} className="flex items-center justify-between py-1">
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="h-3 w-3 rounded-full"
+                          style={{ backgroundColor: item.color }}
+                        />
+                        <span className="text-sm text-[var(--text-secondary)]">{item.name}</span>
+                      </div>
+                      <span className="text-sm font-medium text-[var(--text-primary)]">
+                        ${item.value.toLocaleString()}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </Card.Content>
+        </Card>
+
+        {/* Income Sources - Horizontal Bar */}
+        <Card>
+          <Card.Header>
+            <Card.Title className="flex items-center gap-2">
+              <DollarSign className="h-5 w-5 text-primary-500" />
+              Income Sources
+            </Card.Title>
+            <Card.Description>Revenue breakdown by source</Card.Description>
+          </Card.Header>
+          <Card.Content>
+            {isLoading ? (
+              <div className="space-y-4">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Skeleton key={i} className="h-10 rounded-lg" />
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {incomeSourcesData.map((item, idx) => {
+                  const maxValue = Math.max(...incomeSourcesData.map((d) => d.value))
+                  const percentage = (item.value / maxValue) * 100
+                  const colors = ['#22C55E', '#3B82F6', '#8B5CF6', '#F59E0B', '#6B7280']
+                  return (
+                    <div key={item.source} className="space-y-1.5">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-[var(--text-secondary)]">{item.source}</span>
+                        <span className="font-medium text-[var(--text-primary)]">
+                          ${item.value.toLocaleString()}
+                        </span>
+                      </div>
+                      <div className="h-3 w-full overflow-hidden rounded-full bg-secondary-100 dark:bg-secondary-800">
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{
+                            width: `${percentage}%`,
+                            background: `linear-gradient(90deg, ${colors[idx]}, ${colors[idx]}cc)`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          </Card.Content>
+        </Card>
+      </div>
+
+      {/* ====== ROW 5: TRANSACTIONS TABLE + UPCOMING BILLS ====== */}
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* Transactions Table - 2/3 */}
+        <Card className="lg:col-span-2">
+          <Card.Header>
+            <div className="flex items-center justify-between">
+              <div>
+                <Card.Title className="flex items-center gap-2">
+                  <CreditCard className="h-5 w-5 text-primary-500" />
+                  Recent Transactions
+                </Card.Title>
+                <Card.Description>Your latest financial activities</Card.Description>
+              </div>
+              <Button variant="ghost" size="sm" rightIcon={<ArrowUpRight className="h-4 w-4" />}>
+                View All
+              </Button>
+            </div>
+          </Card.Header>
+          <Card.Content padding="none">
+            {isLoading ? (
+              <div className="space-y-3 p-4">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Skeleton key={i} className="h-14 rounded-lg" />
+                ))}
+              </div>
+            ) : (
+              <DataTable
+                data={transactionsData}
+                columns={transactionColumns}
+                sortable
+                pagination
+                pageSize={5}
+                hoverable
+              />
+            )}
+          </Card.Content>
+        </Card>
+
+        {/* Upcoming Bills - 1/3 */}
+        <Card>
+          <Card.Header>
+            <div className="flex items-center justify-between">
+              <div>
+                <Card.Title className="flex items-center gap-2">
+                  <Calendar className="h-5 w-5 text-primary-500" />
+                  Upcoming Bills
+                </Card.Title>
+                <Card.Description>Don't miss your payments</Card.Description>
+              </div>
+            </div>
+          </Card.Header>
+          <Card.Content>
+            {isLoading ? (
+              <div className="space-y-3">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Skeleton key={i} className="h-16 rounded-lg" />
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {upcomingBillsData.map((bill) => {
+                  const dueDate = new Date(bill.dueDate)
+                  const formattedDate = dueDate.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                  })
+
+                  return (
+                    <div
+                      key={bill.id}
+                      className="group flex items-center gap-3 rounded-lg border border-[var(--border-default)] bg-[var(--bg-subtle)] p-3 transition-all duration-200 hover:shadow-sm hover:border-[var(--border-muted)]"
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary-100 dark:bg-secondary-800">
+                        <bill.icon className="h-5 w-5 text-secondary-600 dark:text-secondary-400" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-medium text-[var(--text-primary)]">
+                          {bill.name}
+                        </p>
+                        <p className="text-xs text-[var(--text-muted)]">Due {formattedDate}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm font-semibold text-[var(--text-primary)]">
+                          ${bill.amount.toLocaleString()}
+                        </p>
+                        <Badge
+                          variant={
+                            bill.status === 'overdue'
+                              ? 'error'
+                              : bill.status === 'due-soon'
+                              ? 'warning'
+                              : 'default'
+                          }
+                          size="sm"
+                        >
+                          {bill.status === 'overdue' ? (
+                            <span className="flex items-center gap-1">
+                              <AlertTriangle className="h-3 w-3" />
+                              Overdue
+                            </span>
+                          ) : bill.status === 'due-soon' ? (
+                            <span className="flex items-center gap-1">
+                              <Clock className="h-3 w-3" />
+                              Due Soon
+                            </span>
+                          ) : (
+                            <span className="flex items-center gap-1">
+                              <CheckCircle2 className="h-3 w-3" />
+                              Upcoming
+                            </span>
+                          )}
+                        </Badge>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          </Card.Content>
+        </Card>
+      </div>
+    </div>
+  )
+}
