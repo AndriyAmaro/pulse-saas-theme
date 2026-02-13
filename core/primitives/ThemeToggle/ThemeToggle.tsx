@@ -19,7 +19,7 @@ const themeToggleVariants = cva(
   {
     variants: {
       size: {
-        sm: 'h-8 w-8',
+        sm: 'h-10 w-10 sm:h-8 sm:w-8',
         md: 'h-10 w-10',
         lg: 'h-12 w-12',
       },

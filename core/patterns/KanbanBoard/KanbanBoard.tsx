@@ -41,7 +41,7 @@ import {
 // CVA Variants
 // ============================================================================
 
-const kanbanBoardVariants = cva('flex gap-4 overflow-x-auto pb-4', {
+const kanbanBoardVariants = cva('flex gap-4 overflow-x-auto pb-4 -mx-1 px-1 snap-x snap-mandatory md:snap-none', {
   variants: {
     variant: {
       default: '',
@@ -54,12 +54,12 @@ const kanbanBoardVariants = cva('flex gap-4 overflow-x-auto pb-4', {
 })
 
 const kanbanColumnVariants = cva(
-  'flex shrink-0 flex-col rounded-xl bg-[var(--bg-subtle)] transition-colors',
+  'flex shrink-0 flex-col rounded-xl bg-[var(--bg-subtle)] transition-colors snap-start',
   {
     variants: {
       variant: {
-        default: 'w-80 p-4',
-        compact: 'w-72 p-3',
+        default: 'w-[85vw] sm:w-80 p-4',
+        compact: 'w-[80vw] sm:w-72 p-3',
       },
     },
     defaultVariants: {

@@ -190,13 +190,7 @@ function DashboardLayoutInner({ children }: { children: React.ReactNode }) {
         </MainContent>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
-          onClick={() => setMobileOpen(false)}
-        />
-      )}
+      {/* Mobile sidebar overlay is handled by the Drawer component inside Sidebar */}
     </div>
   )
 }

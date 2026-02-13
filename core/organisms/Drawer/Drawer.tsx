@@ -73,17 +73,17 @@ const drawerContentVariants = cva(
       },
     },
     compoundVariants: [
-      // Right side sizes
-      { side: 'right', size: 'sm', className: 'w-80' },
-      { side: 'right', size: 'md', className: 'w-96' },
-      { side: 'right', size: 'lg', className: 'w-[480px]' },
-      { side: 'right', size: 'xl', className: 'w-[640px]' },
+      // Right side sizes (max-w-[92vw] prevents mobile overflow)
+      { side: 'right', size: 'sm', className: 'w-80 max-w-[92vw]' },
+      { side: 'right', size: 'md', className: 'w-96 max-w-[92vw]' },
+      { side: 'right', size: 'lg', className: 'w-[480px] max-w-[92vw]' },
+      { side: 'right', size: 'xl', className: 'w-[640px] max-w-[92vw]' },
       { side: 'right', size: 'full', className: 'w-screen' },
       // Left side sizes
-      { side: 'left', size: 'sm', className: 'w-80' },
-      { side: 'left', size: 'md', className: 'w-96' },
-      { side: 'left', size: 'lg', className: 'w-[480px]' },
-      { side: 'left', size: 'xl', className: 'w-[640px]' },
+      { side: 'left', size: 'sm', className: 'w-80 max-w-[92vw]' },
+      { side: 'left', size: 'md', className: 'w-96 max-w-[92vw]' },
+      { side: 'left', size: 'lg', className: 'w-[480px] max-w-[92vw]' },
+      { side: 'left', size: 'xl', className: 'w-[640px] max-w-[92vw]' },
       { side: 'left', size: 'full', className: 'w-screen' },
       // Top side sizes
       { side: 'top', size: 'sm', className: 'h-40' },

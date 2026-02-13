@@ -282,7 +282,7 @@ const HeatmapCalendar = React.forwardRef<HTMLDivElement, HeatmapCalendarProps>(
     return (
       <div
         ref={ref}
-        className={cn(heatmapCalendarVariants({ size }), 'relative', className)}
+        className={cn(heatmapCalendarVariants({ size }), 'relative overflow-x-auto', className)}
         {...props}
       >
         <svg

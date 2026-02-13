@@ -659,6 +659,8 @@ function WeekView({ currentDate, events, filters, onEventClick, onDayClick }: {
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
+     <div className="flex-1 overflow-x-auto overflow-y-hidden">
+      <div className="min-w-[640px] flex flex-col h-full">
       {/* All-day events row */}
       <div className="grid grid-cols-[60px_repeat(7,1fr)] border-b border-[var(--border-default)]">
         <div className="border-r border-[var(--border-default)] p-1 text-[10px] text-[var(--text-muted)]">
@@ -795,6 +797,8 @@ function WeekView({ currentDate, events, filters, onEventClick, onDayClick }: {
           })}
         </div>
       </div>
+      </div>
+     </div>
     </div>
   )
 }

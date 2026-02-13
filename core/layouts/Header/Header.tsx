@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Menu, Bell, Settings, LogOut, User, ChevronDown } from 'lucide-react'
+import { Menu, Bell, Settings, LogOut, User, ChevronDown, Search, X } from 'lucide-react'
 import { cn } from '@shared/utils/cn'
 import { Avatar } from '@core/primitives/Avatar'
 import { Badge } from '@core/primitives/Badge'
@@ -149,6 +149,7 @@ const HeaderMobileMenuButton = React.forwardRef<
       onClick={onClick}
       className={cn(
         'lg:hidden flex items-center justify-center p-2 rounded-lg',
+        'min-h-[44px] min-w-[44px]',
         'text-[var(--text-muted)] hover:text-[var(--text-primary)]',
         'hover:bg-[var(--bg-muted)]',
         'transition-colors duration-150',
@@ -170,11 +171,62 @@ interface HeaderSearchProps extends SearchBarProps {}
 const HeaderSearch = React.forwardRef<HTMLInputElement, HeaderSearchProps>(
   ({ className, ...props }, ref) => {
     const { isMobile } = useHeader()
+    const [mobileSearchOpen, setMobileSearchOpen] = React.useState(false)
 
+    // Mobile: icon toggle that expands to full-width search overlay
+    if (isMobile) {
+      if (mobileSearchOpen) {
+        return (
+          <div className="absolute inset-x-0 top-0 z-10 flex items-center gap-2 h-full px-3 bg-[var(--bg-base)]">
+            <SearchBar
+              ref={ref}
+              size="sm"
+              variant="filled"
+              className="flex-1"
+              autoFocus
+              {...props}
+            />
+            <button
+              type="button"
+              onClick={() => setMobileSearchOpen(false)}
+              className={cn(
+                'flex items-center justify-center p-2 rounded-lg shrink-0',
+                'text-[var(--text-muted)] hover:text-[var(--text-primary)]',
+                'hover:bg-[var(--bg-muted)]',
+                'transition-colors duration-150',
+              )}
+              aria-label="Close search"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+        )
+      }
+
+      return (
+        <button
+          type="button"
+          onClick={() => setMobileSearchOpen(true)}
+          className={cn(
+            'flex items-center justify-center p-2 rounded-lg',
+            'text-[var(--text-muted)] hover:text-[var(--text-primary)]',
+            'hover:bg-[var(--bg-muted)]',
+            'transition-colors duration-150',
+            'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50',
+            className
+          )}
+          aria-label="Open search"
+        >
+          <Search className="h-5 w-5" />
+        </button>
+      )
+    }
+
+    // Desktop: normal search bar
     return (
       <SearchBar
         ref={ref}
-        size={isMobile ? 'sm' : 'md'}
+        size="md"
         variant="filled"
         className={cn('w-full max-w-md', className)}
         {...props}
@@ -200,14 +252,25 @@ const HeaderBreadcrumbs: React.FC<HeaderBreadcrumbsProps> = ({
   renderLink,
   className,
 }) => {
+  const lastItem = items[items.length - 1]
+
   return (
-    <Breadcrumbs
-      items={items}
-      size="sm"
-      maxItems={4}
-      renderLink={renderLink}
-      className={cn('hidden sm:flex', className)}
-    />
+    <>
+      {/* Full breadcrumbs on sm+ */}
+      <Breadcrumbs
+        items={items}
+        size="sm"
+        maxItems={4}
+        renderLink={renderLink}
+        className={cn('hidden sm:flex', className)}
+      />
+      {/* Current page title on mobile */}
+      {lastItem && (
+        <span className="sm:hidden text-sm font-medium text-[var(--text-primary)] truncate max-w-[140px]">
+          {lastItem.label}
+        </span>
+      )}
+    </>
   )
 }
 
@@ -235,6 +298,7 @@ const HeaderNotifications: React.FC<HeaderNotificationsProps> = ({
           type="button"
           className={cn(
             'relative flex items-center justify-center p-2 rounded-lg',
+            'min-h-[44px] min-w-[44px]',
             'text-[var(--text-muted)] hover:text-[var(--text-primary)]',
             'hover:bg-[var(--bg-muted)]',
             'transition-colors duration-150',
@@ -506,21 +570,31 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(
             )}
           </div>
 
-          {/* Center Section */}
-          <div className="flex-1 flex items-center justify-center px-4">
-            {centerSlot ? (
-              centerSlot
-            ) : showSearch ? (
-              <HeaderSearch {...searchProps} />
-            ) : null}
-          </div>
+          {/* Center Section — hidden on mobile, search moves to right */}
+          {!isMobile && (
+            <div className="flex-1 flex items-center justify-center px-4">
+              {centerSlot ? (
+                centerSlot
+              ) : showSearch ? (
+                <HeaderSearch {...searchProps} />
+              ) : null}
+            </div>
+          )}
+
+          {/* Spacer on mobile to push right section */}
+          {isMobile && <div className="flex-1" />}
 
           {/* Right Section */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             {rightSlot ? (
               rightSlot
             ) : (
               <>
+                {/* Mobile search toggle */}
+                {isMobile && showSearch && !centerSlot && (
+                  <HeaderSearch {...searchProps} />
+                )}
+
                 {/* Theme Toggle */}
                 <ThemeToggle size="sm" />
 
