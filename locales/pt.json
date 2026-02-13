@@ -178,7 +178,19 @@
     "viewAllNotifications": "Ver todas as notificações",
     "profile": "Perfil",
     "settings": "Configurações",
-    "logOut": "Sair"
+    "logOut": "Sair",
+    "search": "Buscar...",
+    "mockNotifications": {
+      "n1Title": "Novo usuário registrado",
+      "n1Desc": "Um novo usuário se cadastrou na plataforma.",
+      "n1Time": "5 min atrás",
+      "n2Title": "Relatório semanal pronto",
+      "n2Desc": "Seu relatório semanal de análises está disponível.",
+      "n2Time": "1 hora atrás",
+      "n3Title": "Atualização do sistema concluída",
+      "n3Desc": "Todos os sistemas foram atualizados com sucesso.",
+      "n3Time": "2 horas atrás"
+    }
   },
   "landing": {
     "hero": {
@@ -506,13 +518,38 @@
     "title": "Termos de Serviço",
     "lastUpdated": "Última atualização",
     "version": "Versão",
-    "toc": "Sumário"
+    "toc": "Sumário",
+    "s1": "1. Introdução",
+    "s2": "2. Aceitação dos Termos",
+    "s3": "3. Descrição do Serviço",
+    "s4": "4. Contas de Usuário",
+    "s5": "5. Conduta do Usuário",
+    "s6": "6. Propriedade Intelectual",
+    "s7": "7. Termos de Pagamento",
+    "s8": "8. Rescisão",
+    "s9": "9. Isenções de Responsabilidade",
+    "s10": "10. Limitação de Responsabilidade",
+    "s11": "11. Lei Aplicável",
+    "s12": "12. Alterações nos Termos",
+    "s13": "13. Informações de Contato"
   },
   "privacy": {
     "title": "Política de Privacidade",
     "lastUpdated": "Última atualização",
     "version": "Versão",
-    "toc": "Sumário"
+    "toc": "Sumário",
+    "s1": "1. Introdução",
+    "s2": "2. Informações que Coletamos",
+    "s3": "3. Como Usamos Suas Informações",
+    "s4": "4. Compartilhamento de Informações",
+    "s5": "5. Segurança dos Dados",
+    "s6": "6. Seus Direitos",
+    "s7": "7. Cookies e Rastreamento",
+    "s8": "8. Serviços de Terceiros",
+    "s9": "9. Privacidade de Menores",
+    "s10": "10. Transferências Internacionais",
+    "s11": "11. Alterações nesta Política",
+    "s12": "12. Fale Conosco"
   },
   "utility": {
     "notFound": {
@@ -522,7 +559,10 @@
       "goHome": "Ir para Início",
       "goBack": "Voltar",
       "popularPages": "Páginas populares",
-      "contactSupport": "Contatar Suporte"
+      "contactSupport": "Contatar Suporte",
+      "linkDashboard": "Dashboard",
+      "linkSettings": "Configurações",
+      "linkAnalytics": "Análises"
     },
     "serverError": {
       "title": "Algo deu errado",
@@ -551,7 +591,15 @@
       "featuresTitle": "Recursos que chegam com o lançamento",
       "progress": "Progresso do Desenvolvimento",
       "followUs": "Siga-nos para novidades",
-      "backToSite": "← Voltar ao site principal"
+      "backToSite": "← Voltar ao site principal",
+      "features": {
+        "aiAnalytics": "Análises com IA",
+        "aiAnalyticsDesc": "Insights inteligentes alimentados por IA",
+        "teamCollaboration": "Colaboração em Equipe",
+        "teamCollaborationDesc": "Trabalhe junto sem complicações",
+        "apiAccess": "Acesso via API",
+        "apiAccessDesc": "Crie integrações personalizadas"
+      }
     },
     "maintenance": {
       "badge": "Manutenção Programada",
@@ -569,7 +617,19 @@
       "whileWait": "Enquanto você espera",
       "notify": "Receber aviso quando voltarmos",
       "notifySuccess": "Notificaremos você quando voltarmos!",
-      "questions": "Dúvidas? Entre em contato"
+      "questions": "Dúvidas? Entre em contato",
+      "timeline": {
+        "t1": "Manutenção iniciada",
+        "t2": "Backup do banco de dados concluído",
+        "t3": "Migração em andamento",
+        "t4": "Testes e validação",
+        "t5": "Restauração do serviço"
+      },
+      "resources": {
+        "documentation": "Documentação",
+        "blog": "Blog",
+        "twitter": "Atualizações no Twitter"
+      }
     }
   },
   "navbar": {

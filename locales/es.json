@@ -178,7 +178,19 @@
     "viewAllNotifications": "Ver todas las notificaciones",
     "profile": "Perfil",
     "settings": "Configuración",
-    "logOut": "Cerrar Sesión"
+    "logOut": "Cerrar Sesión",
+    "search": "Buscar...",
+    "mockNotifications": {
+      "n1Title": "Nuevo usuario registrado",
+      "n1Desc": "Un nuevo usuario se ha registrado en la plataforma.",
+      "n1Time": "hace 5 min",
+      "n2Title": "Informe semanal listo",
+      "n2Desc": "Tu informe semanal de analíticas está disponible.",
+      "n2Time": "hace 1 hora",
+      "n3Title": "Actualización del sistema completada",
+      "n3Desc": "Todos los sistemas han sido actualizados exitosamente.",
+      "n3Time": "hace 2 horas"
+    }
   },
   "landing": {
     "hero": {
@@ -506,13 +518,38 @@
     "title": "Términos de Servicio",
     "lastUpdated": "Última actualización",
     "version": "Versión",
-    "toc": "Contenido"
+    "toc": "Contenido",
+    "s1": "1. Introducción",
+    "s2": "2. Aceptación de los Términos",
+    "s3": "3. Descripción del Servicio",
+    "s4": "4. Cuentas de Usuario",
+    "s5": "5. Conducta del Usuario",
+    "s6": "6. Propiedad Intelectual",
+    "s7": "7. Términos de Pago",
+    "s8": "8. Terminación",
+    "s9": "9. Descargos de Responsabilidad",
+    "s10": "10. Limitación de Responsabilidad",
+    "s11": "11. Ley Aplicable",
+    "s12": "12. Cambios en los Términos",
+    "s13": "13. Información de Contacto"
   },
   "privacy": {
     "title": "Política de Privacidad",
     "lastUpdated": "Última actualización",
     "version": "Versión",
-    "toc": "Contenido"
+    "toc": "Contenido",
+    "s1": "1. Introducción",
+    "s2": "2. Información que Recopilamos",
+    "s3": "3. Cómo Usamos su Información",
+    "s4": "4. Compartir Información",
+    "s5": "5. Seguridad de los Datos",
+    "s6": "6. Sus Derechos",
+    "s7": "7. Cookies y Rastreo",
+    "s8": "8. Servicios de Terceros",
+    "s9": "9. Privacidad de Menores",
+    "s10": "10. Transferencias Internacionales",
+    "s11": "11. Cambios en esta Política",
+    "s12": "12. Contáctenos"
   },
   "utility": {
     "notFound": {
@@ -522,7 +559,10 @@
       "goHome": "Ir al Inicio",
       "goBack": "Volver",
       "popularPages": "Páginas populares",
-      "contactSupport": "Contactar Soporte"
+      "contactSupport": "Contactar Soporte",
+      "linkDashboard": "Dashboard",
+      "linkSettings": "Configuración",
+      "linkAnalytics": "Analíticas"
     },
     "serverError": {
       "title": "Algo salió mal",
@@ -551,7 +591,15 @@
       "featuresTitle": "Características que llegan con el lanzamiento",
       "progress": "Progreso de Desarrollo",
       "followUs": "Síguenos para novedades",
-      "backToSite": "← Volver al sitio principal"
+      "backToSite": "← Volver al sitio principal",
+      "features": {
+        "aiAnalytics": "Analíticas con IA",
+        "aiAnalyticsDesc": "Insights inteligentes alimentados por IA",
+        "teamCollaboration": "Colaboración en Equipo",
+        "teamCollaborationDesc": "Trabaja en equipo sin complicaciones",
+        "apiAccess": "Acceso API",
+        "apiAccessDesc": "Crea integraciones personalizadas"
+      }
     },
     "maintenance": {
       "badge": "Mantenimiento Programado",
@@ -569,7 +617,19 @@
       "whileWait": "Mientras esperas",
       "notify": "Recibe aviso cuando volvamos",
       "notifySuccess": "¡Te notificaremos cuando volvamos!",
-      "questions": "¿Preguntas? Contacta"
+      "questions": "¿Preguntas? Contacta",
+      "timeline": {
+        "t1": "Mantenimiento iniciado",
+        "t2": "Copia de seguridad completada",
+        "t3": "Migración en progreso",
+        "t4": "Pruebas y validación",
+        "t5": "Restauración del servicio"
+      },
+      "resources": {
+        "documentation": "Documentación",
+        "blog": "Blog",
+        "twitter": "Actualizaciones en Twitter"
+      }
     }
   },
   "navbar": {

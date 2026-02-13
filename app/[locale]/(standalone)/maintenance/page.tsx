@@ -53,17 +53,17 @@ export default function MaintenancePage() {
   }
 
   const updates: MaintenanceUpdate[] = [
-    { time: '2:00 AM', message: 'Maintenance started', status: 'completed' },
-    { time: '2:30 AM', message: 'Database backup completed', status: 'completed' },
-    { time: '3:15 AM', message: 'Migration in progress', status: 'in-progress' },
-    { time: '~5:00 AM', message: 'Testing & validation', status: 'pending' },
-    { time: '~6:00 AM', message: 'Service restoration', status: 'pending' },
+    { time: '2:00 AM', message: t('maintenance.timeline.t1'), status: 'completed' },
+    { time: '2:30 AM', message: t('maintenance.timeline.t2'), status: 'completed' },
+    { time: '3:15 AM', message: t('maintenance.timeline.t3'), status: 'in-progress' },
+    { time: '~5:00 AM', message: t('maintenance.timeline.t4'), status: 'pending' },
+    { time: '~6:00 AM', message: t('maintenance.timeline.t5'), status: 'pending' },
   ]
 
   const resources = [
-    { icon: BookOpen, name: 'Documentation', href: '#' },
-    { icon: FileText, name: 'Blog', href: '#' },
-    { icon: Twitter, name: 'Twitter Updates', href: '#' },
+    { icon: BookOpen, name: t('maintenance.resources.documentation'), href: '#' },
+    { icon: FileText, name: t('maintenance.resources.blog'), href: '#' },
+    { icon: Twitter, name: t('maintenance.resources.twitter'), href: '#' },
   ]
 
   const handleNotifySubmit = async (email: string) => {

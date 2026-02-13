@@ -27,9 +27,9 @@ export default function NotFoundPage() {
   }
 
   const quickLinks = [
-    { name: 'Dashboard', href: '/overview' },
-    { name: 'Settings', href: '/settings' },
-    { name: 'Analytics', href: '/analytics' },
+    { name: t('notFound.linkDashboard'), href: '/overview' },
+    { name: t('notFound.linkSettings'), href: '/settings' },
+    { name: t('notFound.linkAnalytics'), href: '/analytics' },
   ]
 
   return (

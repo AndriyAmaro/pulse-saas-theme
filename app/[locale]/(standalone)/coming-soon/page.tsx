@@ -32,9 +32,9 @@ export default function ComingSoonPage() {
   }
 
   const features = [
-    { icon: BarChart3, name: 'AI Analytics', description: 'Intelligent insights powered by AI' },
-    { icon: Users, name: 'Team Collaboration', description: 'Work together seamlessly' },
-    { icon: Zap, name: 'API Access', description: 'Build custom integrations' },
+    { icon: BarChart3, name: t('comingSoon.features.aiAnalytics'), description: t('comingSoon.features.aiAnalyticsDesc') },
+    { icon: Users, name: t('comingSoon.features.teamCollaboration'), description: t('comingSoon.features.teamCollaborationDesc') },
+    { icon: Zap, name: t('comingSoon.features.apiAccess'), description: t('comingSoon.features.apiAccessDesc') },
   ]
 
   const socialLinks = [

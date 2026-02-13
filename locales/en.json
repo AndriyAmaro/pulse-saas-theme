@@ -178,7 +178,19 @@
     "viewAllNotifications": "View all notifications",
     "profile": "Profile",
     "settings": "Settings",
-    "logOut": "Log out"
+    "logOut": "Log out",
+    "search": "Search...",
+    "mockNotifications": {
+      "n1Title": "New user registered",
+      "n1Desc": "A new user has signed up for your platform.",
+      "n1Time": "5 min ago",
+      "n2Title": "Weekly report ready",
+      "n2Desc": "Your weekly analytics report is now available.",
+      "n2Time": "1 hour ago",
+      "n3Title": "System update completed",
+      "n3Desc": "All systems have been updated successfully.",
+      "n3Time": "2 hours ago"
+    }
   },
   "landing": {
     "hero": {
@@ -506,13 +518,38 @@
     "title": "Terms of Service",
     "lastUpdated": "Last updated",
     "version": "Version",
-    "toc": "Contents"
+    "toc": "Contents",
+    "s1": "1. Introduction",
+    "s2": "2. Acceptance of Terms",
+    "s3": "3. Description of Service",
+    "s4": "4. User Accounts",
+    "s5": "5. User Conduct",
+    "s6": "6. Intellectual Property",
+    "s7": "7. Payment Terms",
+    "s8": "8. Termination",
+    "s9": "9. Disclaimers",
+    "s10": "10. Limitation of Liability",
+    "s11": "11. Governing Law",
+    "s12": "12. Changes to Terms",
+    "s13": "13. Contact Information"
   },
   "privacy": {
     "title": "Privacy Policy",
     "lastUpdated": "Last updated",
     "version": "Version",
-    "toc": "Contents"
+    "toc": "Contents",
+    "s1": "1. Introduction",
+    "s2": "2. Information We Collect",
+    "s3": "3. How We Use Your Information",
+    "s4": "4. Information Sharing",
+    "s5": "5. Data Security",
+    "s6": "6. Your Rights",
+    "s7": "7. Cookies and Tracking",
+    "s8": "8. Third-Party Services",
+    "s9": "9. Children's Privacy",
+    "s10": "10. International Transfers",
+    "s11": "11. Changes to This Policy",
+    "s12": "12. Contact Us"
   },
   "utility": {
     "notFound": {
@@ -522,7 +559,10 @@
       "goHome": "Go Home",
       "goBack": "Go Back",
       "popularPages": "Popular pages",
-      "contactSupport": "Contact Support"
+      "contactSupport": "Contact Support",
+      "linkDashboard": "Dashboard",
+      "linkSettings": "Settings",
+      "linkAnalytics": "Analytics"
     },
     "serverError": {
       "title": "Something went wrong",
@@ -551,7 +591,15 @@
       "featuresTitle": "Features coming with launch",
       "progress": "Development Progress",
       "followUs": "Follow us for updates",
-      "backToSite": "← Back to main site"
+      "backToSite": "← Back to main site",
+      "features": {
+        "aiAnalytics": "AI Analytics",
+        "aiAnalyticsDesc": "Intelligent insights powered by AI",
+        "teamCollaboration": "Team Collaboration",
+        "teamCollaborationDesc": "Work together seamlessly",
+        "apiAccess": "API Access",
+        "apiAccessDesc": "Build custom integrations"
+      }
     },
     "maintenance": {
       "badge": "Scheduled Maintenance",
@@ -569,7 +617,19 @@
       "whileWait": "While you wait",
       "notify": "Get notified when we're back",
       "notifySuccess": "We'll notify you when we're back!",
-      "questions": "Questions? Contact"
+      "questions": "Questions? Contact",
+      "timeline": {
+        "t1": "Maintenance started",
+        "t2": "Database backup completed",
+        "t3": "Migration in progress",
+        "t4": "Testing & validation",
+        "t5": "Service restoration"
+      },
+      "resources": {
+        "documentation": "Documentation",
+        "blog": "Blog",
+        "twitter": "Twitter Updates"
+      }
     }
   },
   "navbar": {

@@ -20,30 +20,7 @@ const currentUser: HeaderUser = {
   role: 'Admin',
 }
 
-// Mock notifications
-const notifications: HeaderNotification[] = [
-  {
-    id: '1',
-    title: 'New user registered',
-    description: 'A new user has signed up for your platform.',
-    timestamp: '5 min ago',
-    read: false,
-  },
-  {
-    id: '2',
-    title: 'Weekly report ready',
-    description: 'Your weekly analytics report is now available.',
-    timestamp: '1 hour ago',
-    read: false,
-  },
-  {
-    id: '3',
-    title: 'System update completed',
-    description: 'All systems have been updated successfully.',
-    timestamp: '2 hours ago',
-    read: true,
-  },
-]
+// Notifications are created inside the component to use translations
 
 // Custom link renderer for Next.js navigation (locale-aware)
 function renderLink(
@@ -87,6 +64,32 @@ function DashboardLayoutInner({ children }: { children: React.ReactNode }) {
     }
   })
   const t = useTranslations('navigation')
+  const tHeader = useTranslations('header')
+
+  // Translated mock notifications
+  const notifications: HeaderNotification[] = React.useMemo(() => [
+    {
+      id: '1',
+      title: tHeader('mockNotifications.n1Title'),
+      description: tHeader('mockNotifications.n1Desc'),
+      timestamp: tHeader('mockNotifications.n1Time'),
+      read: false,
+    },
+    {
+      id: '2',
+      title: tHeader('mockNotifications.n2Title'),
+      description: tHeader('mockNotifications.n2Desc'),
+      timestamp: tHeader('mockNotifications.n2Time'),
+      read: false,
+    },
+    {
+      id: '3',
+      title: tHeader('mockNotifications.n3Title'),
+      description: tHeader('mockNotifications.n3Desc'),
+      timestamp: tHeader('mockNotifications.n3Time'),
+      read: true,
+    },
+  ], [tHeader])
 
   // Convert navigation config to sidebar items with translations
   const sidebarItems: SidebarItem[] = React.useMemo(
@@ -165,7 +168,7 @@ function DashboardLayoutInner({ children }: { children: React.ReactNode }) {
           }
           showSearch
           searchProps={{
-            placeholder: 'Search...',
+            placeholder: tHeader('search'),
             onSearch: (query) => console.log('Search:', query),
           }}
           notifications={notifications}

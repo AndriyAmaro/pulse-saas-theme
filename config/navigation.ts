@@ -237,7 +237,7 @@ export const mainNavigation: NavSection[] = [
 ]
 
 export const userNavigation = [
-  { title: 'Profile', href: '/profile' },
-  { title: 'Settings', href: '/settings' },
-  { title: 'Logout', href: '/logout' },
+  { title: 'Profile', i18nKey: 'profile', href: '/profile' },
+  { title: 'Settings', i18nKey: 'settings', href: '/settings' },
+  { title: 'Logout', i18nKey: 'logout', href: '/logout' },
 ] as const

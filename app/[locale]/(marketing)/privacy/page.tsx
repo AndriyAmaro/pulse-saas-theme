@@ -15,28 +15,19 @@ interface TocItem {
   title: string
 }
 
-const tocItems: TocItem[] = [
-  { id: 'introduction', title: '1. Introduction' },
-  { id: 'information-collected', title: '2. Information We Collect' },
-  { id: 'how-we-use', title: '3. How We Use Your Information' },
-  { id: 'information-sharing', title: '4. Information Sharing' },
-  { id: 'data-security', title: '5. Data Security' },
-  { id: 'your-rights', title: '6. Your Rights' },
-  { id: 'cookies', title: '7. Cookies and Tracking' },
-  { id: 'third-party', title: '8. Third-Party Services' },
-  { id: 'children', title: '9. Children\'s Privacy' },
-  { id: 'international', title: '10. International Transfers' },
-  { id: 'changes', title: '11. Changes to This Policy' },
-  { id: 'contact', title: '12. Contact Us' },
+const tocIds = [
+  'introduction', 'information-collected', 'how-we-use', 'information-sharing',
+  'data-security', 'your-rights', 'cookies', 'third-party',
+  'children', 'international', 'changes', 'contact',
 ]
 
-const TocSidebar = ({ tocTitle }: { tocTitle: string }) => {
+const TocSidebar = ({ tocTitle, items }: { tocTitle: string; items: TocItem[] }) => {
   const [activeId, setActiveId] = React.useState('')
 
   React.useEffect(() => {
     const observers: IntersectionObserver[] = []
 
-    tocItems.forEach((item) => {
+    items.forEach((item) => {
       const el = document.getElementById(item.id)
       if (!el) return
 
@@ -54,7 +45,7 @@ const TocSidebar = ({ tocTitle }: { tocTitle: string }) => {
     })
 
     return () => observers.forEach((o) => o.disconnect())
-  }, [])
+  }, [items])
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault()
@@ -72,7 +63,7 @@ const TocSidebar = ({ tocTitle }: { tocTitle: string }) => {
           <h4 className="text-sm font-semibold text-slate-900 dark:text-white">{tocTitle}</h4>
         </div>
         <ul className="space-y-0.5">
-          {tocItems.map((item) => (
+          {items.map((item) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
@@ -115,6 +106,11 @@ const Section = ({ id, title, children }: { id: string; title: string; children:
 export default function PrivacyPage() {
   const t = useTranslations('privacy')
 
+  const tocItems: TocItem[] = tocIds.map((id, i) => ({
+    id,
+    title: t(`s${i + 1}`),
+  }))
+
   return (
     <>
       {/* Header */}
@@ -145,10 +141,10 @@ export default function PrivacyPage() {
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex gap-10 lg:gap-16">
-            <TocSidebar tocTitle={t('toc')} />
+            <TocSidebar tocTitle={t('toc')} items={tocItems} />
 
             <div className="flex-1 min-w-0 max-w-3xl">
-              <Section id="introduction" title="1. Introduction">
+              <Section id="introduction" title={t('s1')}>
                 <p>
                   At Pulse, created by Andri Amaro (&ldquo;Creator,&rdquo; &ldquo;I,&rdquo; &ldquo;me&rdquo;), your privacy is taken seriously. This Privacy Policy explains how information is collected, used, and safeguarded when you use the Pulse dashboard theme and related services (the &ldquo;Product&rdquo;).
                 </p>
@@ -157,7 +153,7 @@ export default function PrivacyPage() {
                 </p>
               </Section>
 
-              <Section id="information-collected" title="2. Information We Collect">
+              <Section id="information-collected" title={t('s2')}>
                 <p>We collect information in several ways:</p>
 
                 <h3 className="text-base font-semibold text-slate-900 dark:text-white mt-4 mb-2">Personal Information</h3>
@@ -182,7 +178,7 @@ export default function PrivacyPage() {
                 </p>
               </Section>
 
-              <Section id="how-we-use" title="3. How We Use Your Information">
+              <Section id="how-we-use" title={t('s3')}>
                 <p>We use the information we collect to:</p>
                 <ul className="list-disc pl-5 space-y-1.5 mt-2">
                   <li>Provide, maintain, and improve the Service</li>
@@ -196,7 +192,7 @@ export default function PrivacyPage() {
                 </ul>
               </Section>
 
-              <Section id="information-sharing" title="4. Information Sharing">
+              <Section id="information-sharing" title={t('s4')}>
                 <p>
                   We do not sell, rent, or trade your personal information. We may share information in the following circumstances:
                 </p>
@@ -209,7 +205,7 @@ export default function PrivacyPage() {
                 </ul>
               </Section>
 
-              <Section id="data-security" title="5. Data Security">
+              <Section id="data-security" title={t('s5')}>
                 <p>
                   We implement industry-standard security measures to protect your data:
                 </p>
@@ -226,7 +222,7 @@ export default function PrivacyPage() {
                 </p>
               </Section>
 
-              <Section id="your-rights" title="6. Your Rights">
+              <Section id="your-rights" title={t('s6')}>
                 <p>
                   Depending on your location, you may have the following rights regarding your personal data:
                 </p>
@@ -244,7 +240,7 @@ export default function PrivacyPage() {
                 </p>
               </Section>
 
-              <Section id="cookies" title="7. Cookies and Tracking">
+              <Section id="cookies" title={t('s7')}>
                 <p>
                   We use cookies and similar tracking technologies to collect and track information and improve the Service. Types of cookies we use:
                 </p>
@@ -259,7 +255,7 @@ export default function PrivacyPage() {
                 </p>
               </Section>
 
-              <Section id="third-party" title="8. Third-Party Services">
+              <Section id="third-party" title={t('s8')}>
                 <p>
                   Our Service may contain links to or integrate with third-party services. We use the following categories of third-party services:
                 </p>
@@ -275,7 +271,7 @@ export default function PrivacyPage() {
                 </p>
               </Section>
 
-              <Section id="children" title="9. Children's Privacy">
+              <Section id="children" title={t('s9')}>
                 <p>
                   The Service is not intended for children under the age of 13 (or 16 in the European Economic Area). We do not knowingly collect personal information from children. If we become aware that we have collected personal data from a child without parental consent, we will take steps to delete that information.
                 </p>
@@ -284,7 +280,7 @@ export default function PrivacyPage() {
                 </p>
               </Section>
 
-              <Section id="international" title="10. International Transfers">
+              <Section id="international" title={t('s10')}>
                 <p>
                   Your information may be transferred to and processed in countries other than your country of residence, including the United States. These countries may have data protection laws that differ from your country.
                 </p>
@@ -298,7 +294,7 @@ export default function PrivacyPage() {
                 </ul>
               </Section>
 
-              <Section id="changes" title="11. Changes to This Policy">
+              <Section id="changes" title={t('s11')}>
                 <p>
                   We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &ldquo;Last updated&rdquo; date.
                 </p>
@@ -307,7 +303,7 @@ export default function PrivacyPage() {
                 </p>
               </Section>
 
-              <Section id="contact" title="12. Contact Us">
+              <Section id="contact" title={t('s12')}>
                 <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
                 <div className="mt-3 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
                   <p className="font-medium text-slate-900 dark:text-white">Andri Amaro</p>

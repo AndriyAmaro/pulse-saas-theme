@@ -15,29 +15,19 @@ interface TocItem {
   title: string
 }
 
-const tocItems: TocItem[] = [
-  { id: 'introduction', title: '1. Introduction' },
-  { id: 'acceptance', title: '2. Acceptance of Terms' },
-  { id: 'description', title: '3. Description of Service' },
-  { id: 'accounts', title: '4. User Accounts' },
-  { id: 'conduct', title: '5. User Conduct' },
-  { id: 'intellectual-property', title: '6. Intellectual Property' },
-  { id: 'payment', title: '7. Payment Terms' },
-  { id: 'termination', title: '8. Termination' },
-  { id: 'disclaimers', title: '9. Disclaimers' },
-  { id: 'liability', title: '10. Limitation of Liability' },
-  { id: 'governing-law', title: '11. Governing Law' },
-  { id: 'changes', title: '12. Changes to Terms' },
-  { id: 'contact', title: '13. Contact Information' },
+const tocIds = [
+  'introduction', 'acceptance', 'description', 'accounts', 'conduct',
+  'intellectual-property', 'payment', 'termination', 'disclaimers',
+  'liability', 'governing-law', 'changes', 'contact',
 ]
 
-const TocSidebar = ({ tocTitle }: { tocTitle: string }) => {
+const TocSidebar = ({ tocTitle, items }: { tocTitle: string; items: TocItem[] }) => {
   const [activeId, setActiveId] = React.useState('')
 
   React.useEffect(() => {
     const observers: IntersectionObserver[] = []
 
-    tocItems.forEach((item) => {
+    items.forEach((item) => {
       const el = document.getElementById(item.id)
       if (!el) return
 
@@ -55,7 +45,7 @@ const TocSidebar = ({ tocTitle }: { tocTitle: string }) => {
     })
 
     return () => observers.forEach((o) => o.disconnect())
-  }, [])
+  }, [items])
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault()
@@ -73,7 +63,7 @@ const TocSidebar = ({ tocTitle }: { tocTitle: string }) => {
           <h4 className="text-sm font-semibold text-slate-900 dark:text-white">{tocTitle}</h4>
         </div>
         <ul className="space-y-0.5">
-          {tocItems.map((item) => (
+          {items.map((item) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
@@ -116,6 +106,11 @@ const Section = ({ id, title, children }: { id: string; title: string; children:
 export default function TermsPage() {
   const t = useTranslations('terms')
 
+  const tocItems: TocItem[] = tocIds.map((id, i) => ({
+    id,
+    title: t(`s${i + 1}`),
+  }))
+
   return (
     <>
       {/* Header */}
@@ -146,10 +141,10 @@ export default function TermsPage() {
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex gap-10 lg:gap-16">
-            <TocSidebar tocTitle={t('toc')} />
+            <TocSidebar tocTitle={t('toc')} items={tocItems} />
 
             <div className="flex-1 min-w-0 max-w-3xl">
-              <Section id="introduction" title="1. Introduction">
+              <Section id="introduction" title={t('s1')}>
                 <p>
                   Welcome to Pulse (&ldquo;Theme,&rdquo; &ldquo;Product&rdquo;), created by Andri Amaro (&ldquo;Creator,&rdquo; &ldquo;I,&rdquo; &ldquo;me&rdquo;). These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the Pulse dashboard theme, including any related assets, components, and documentation (collectively, the &ldquo;Product&rdquo;).
                 </p>
@@ -158,7 +153,7 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="acceptance" title="2. Acceptance of Terms">
+              <Section id="acceptance" title={t('s2')}>
                 <p>
                   By creating an account, accessing, or using any part of the Service, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you are using the Service on behalf of an organization, you represent and warrant that you have authority to bind that organization to these Terms.
                 </p>
@@ -167,7 +162,7 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="description" title="3. Description of Service">
+              <Section id="description" title={t('s3')}>
                 <p>
                   Pulse is a premium dashboard theme for React/Next.js that provides a comprehensive set of components and templates. The Product includes, but is not limited to:
                 </p>
@@ -181,7 +176,7 @@ export default function TermsPage() {
                 </ul>
               </Section>
 
-              <Section id="accounts" title="4. User Accounts">
+              <Section id="accounts" title={t('s4')}>
                 <p>
                   To access certain features of the Service, you must register for an account. When you register, you agree to:
                 </p>
@@ -196,7 +191,7 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="conduct" title="5. User Conduct">
+              <Section id="conduct" title={t('s5')}>
                 <p>You agree not to use the Service to:</p>
                 <ul className="list-disc pl-5 space-y-1.5 mt-2">
                   <li>Violate any applicable laws, regulations, or third-party rights</li>
@@ -209,7 +204,7 @@ export default function TermsPage() {
                 </ul>
               </Section>
 
-              <Section id="intellectual-property" title="6. Intellectual Property">
+              <Section id="intellectual-property" title={t('s6')}>
                 <p>
                   The Product and its original content, design, components, and functionality are created by Andri Amaro and are protected by international copyright and other intellectual property laws.
                 </p>
@@ -218,7 +213,7 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="payment" title="7. Payment Terms">
+              <Section id="payment" title={t('s7')}>
                 <p>
                   Certain features of the Service require a paid subscription. By subscribing to a paid plan, you agree to:
                 </p>
@@ -232,7 +227,7 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="termination" title="8. Termination">
+              <Section id="termination" title={t('s8')}>
                 <p>
                   We may terminate or suspend your account immediately, without prior notice, for conduct that we determine violates these Terms or is harmful to other users, us, or third parties, or for any other reason at our sole discretion.
                 </p>
@@ -241,7 +236,7 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="disclaimers" title="9. Disclaimers">
+              <Section id="disclaimers" title={t('s9')}>
                 <p>
                   THE PRODUCT IS PROVIDED ON AN &ldquo;AS IS&rdquo; BASIS. THE CREATOR EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
                 </p>
@@ -250,7 +245,7 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="liability" title="10. Limitation of Liability">
+              <Section id="liability" title={t('s10')}>
                 <p>
                   IN NO EVENT SHALL THE CREATOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
                 </p>
@@ -259,13 +254,13 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="governing-law" title="11. Governing Law">
+              <Section id="governing-law" title={t('s11')}>
                 <p>
                   These Terms shall be governed and construed in accordance with the laws of Brazil. Any disputes arising under these Terms shall be subject to the jurisdiction of Brazilian courts.
                 </p>
               </Section>
 
-              <Section id="changes" title="12. Changes to Terms">
+              <Section id="changes" title={t('s12')}>
                 <p>
                   We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days&apos; notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
                 </p>
@@ -274,7 +269,7 @@ export default function TermsPage() {
                 </p>
               </Section>
 
-              <Section id="contact" title="13. Contact Information">
+              <Section id="contact" title={t('s13')}>
                 <p>If you have any questions about these Terms, please contact us:</p>
                 <div className="mt-3 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
                   <p className="font-medium text-slate-900 dark:text-white">Andri Amaro</p>
