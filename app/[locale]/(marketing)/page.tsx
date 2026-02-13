@@ -14,6 +14,7 @@ import { FAQAccordion, type FAQItem } from '@core/patterns/FAQAccordion'
 import { ParticleNetwork } from '@core/patterns/ParticleNetwork'
 import { TestimonialGrid, type Testimonial } from '@core/patterns/TestimonialCard'
 import { HeroBackground } from '@core/patterns/HeroBackground'
+import { AbstractBackground } from '@core/patterns/AbstractBackground'
 import {
   Play,
   ArrowRight,
@@ -288,37 +289,8 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background System */}
-      <div className="absolute inset-0 -z-10">
-        {/* Subtle grid */}
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-          }}
-        />
-
-        {/* Gradient overlays — premium diamond */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50/50 to-white dark:from-slate-950 dark:via-slate-900/80 dark:to-slate-950" />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50/70 via-transparent to-cyan-50/40 dark:from-primary-950/40 dark:via-transparent dark:to-cyan-950/20" />
-        {/* Centered teal radial glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] rounded-full"
-          style={{
-            background: 'radial-gradient(ellipse, rgba(20, 184, 154, 0.04) 0%, transparent 70%)',
-            filter: 'blur(40px)',
-          }}
-        />
-
-        {/* Noise overlay */}
-        <div className="noise-overlay absolute inset-0" />
-      </div>
-
-      {/* Glassmorphism glass circles — OWN layer above background, below content */}
-      <HeroBackground className="absolute inset-0 z-[1]" />
-
-      {/* Particle network — molecular decoration */}
-      <ParticleNetwork className="absolute inset-0 z-[2]" />
+      {/* Abstract Background — dark with blobs, arcs, sphere, waves */}
+      <AbstractBackground className="absolute inset-0 z-0" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-14 lg:py-20">
         <div className="flex flex-col items-center text-center">
@@ -327,39 +299,39 @@ const HeroSection = () => {
           <div className="relative inline-flex mb-8 animate-[fadeInUp_0.6s_ease-out_both]">
             <div className={cn(
               'relative flex items-center gap-2.5 px-5 py-2.5 rounded-full',
-              'bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm',
-              'border border-primary-200/60 dark:border-primary-700/40',
-              'shadow-lg shadow-primary-500/10 dark:shadow-primary-500/5',
+              'bg-white/10 backdrop-blur-md',
+              'border border-white/15',
+              'shadow-lg shadow-primary-500/10',
               'overflow-hidden cursor-pointer group',
-              'hover:border-primary-300 dark:hover:border-primary-600',
+              'hover:border-primary-400/40',
               'transition-all duration-300'
             )}>
               {/* Shimmer effect */}
-              <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/30 dark:via-white/10 to-transparent" />
+              <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent" />
               <span className="relative flex items-center gap-2 text-sm font-medium">
                 <PulseEcgIcon className="h-5 w-5 rounded-md" />
-                <span className="bg-gradient-to-r from-primary-700 to-primary-500 dark:from-primary-300 dark:to-cyan-300 bg-clip-text text-transparent font-semibold">
+                <span className="bg-gradient-to-r from-primary-300 to-cyan-300 bg-clip-text text-transparent font-semibold">
                   {t('hero.badge')}
                 </span>
-                <ArrowRight className="h-3.5 w-3.5 text-primary-500 transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight className="h-3.5 w-3.5 text-primary-400 transition-transform group-hover:translate-x-0.5" />
               </span>
             </div>
           </div>
 
           {/* Main Title */}
           <h1 className="animate-[fadeInUp_0.7s_ease-out_0.1s_both]">
-            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
               {t('hero.title1')}
             </span>
             <span className="block mt-2 sm:mt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
-              <span className="bg-gradient-to-r from-primary-600 via-primary-400 to-emerald-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary-400 via-emerald-300 to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
                 {t('hero.title2')}
               </span>
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed animate-[fadeInUp_0.7s_ease-out_0.2s_both]">
+          <p className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed animate-[fadeInUp_0.7s_ease-out_0.2s_both]">
             {t('hero.subtitle')}
           </p>
 
@@ -389,9 +361,9 @@ const HeroSection = () => {
               onClick={() => setIsDemoOpen(true)}
               className={cn(
                 'group gap-2.5 px-8 h-14 text-base font-semibold rounded-xl',
-                'border-slate-300 dark:border-slate-600',
-                'hover:bg-slate-50 dark:hover:bg-slate-800/50',
-                'hover:border-slate-400 dark:hover:border-slate-500',
+                'border-white/20 text-white',
+                'hover:bg-white/10',
+                'hover:border-white/30',
                 'hover:scale-[1.03] active:scale-[0.98]',
                 'transition-all duration-300'
               )}
@@ -414,10 +386,10 @@ const HeroSection = () => {
                     key={i}
                     fallback={initials}
                     size="sm"
-                    className="ring-[3px] ring-white dark:ring-slate-900 hover:z-10 hover:scale-110 transition-transform"
+                    className="ring-[3px] ring-slate-900 hover:z-10 hover:scale-110 transition-transform"
                   />
                 ))}
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary-500 to-primary-600 text-[10px] font-bold text-white ring-[3px] ring-white dark:ring-slate-900">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary-500 to-primary-600 text-[10px] font-bold text-white ring-[3px] ring-slate-900">
                   +5K
                 </div>
               </div>
@@ -428,11 +400,11 @@ const HeroSection = () => {
                     <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">4.9/5</span>
-                <span className="text-sm text-slate-500 dark:text-slate-400">from 2,000+ reviews</span>
+                <span className="text-sm font-semibold text-white">4.9/5</span>
+                <span className="text-sm text-slate-400">from 2,000+ reviews</span>
               </div>
             </div>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-slate-400">
               {t('hero.trustedBy')}
             </p>
           </div>
@@ -441,7 +413,7 @@ const HeroSection = () => {
           <div className="mt-14 sm:mt-16 lg:mt-20 w-[calc(100%+2rem)] sm:w-[calc(100%+4rem)] lg:w-[calc(100%+8rem)] -mx-4 sm:-mx-8 lg:-mx-16 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
             <div className="relative">
               {/* Glow behind */}
-              <div className="absolute -inset-6 sm:-inset-10 rounded-[2rem] bg-gradient-to-r from-primary-500/20 via-primary-400/10 to-emerald-500/15 blur-3xl opacity-60 animate-orb" />
+              <div className="absolute -inset-6 sm:-inset-10 rounded-[2rem] bg-gradient-to-r from-primary-500/30 via-primary-400/15 to-cyan-500/25 blur-3xl opacity-70 animate-orb" />
 
               {/* 3D container */}
               <div className="relative perspective-1200">

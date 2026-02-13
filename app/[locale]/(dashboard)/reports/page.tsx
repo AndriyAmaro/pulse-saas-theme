@@ -285,7 +285,7 @@ export default function ReportsPage() {
       </div>
 
       {/* ════════════════ PREMIUM STATS BAR ════════════════ */}
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {reportStats.map((stat) => (
           <div key={stat.title} className="group relative overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] px-4 py-3 shadow-sm hover:shadow-md transition-all hover:scale-[1.01]" style={{ '--hover-shadow': stat.shadow } as React.CSSProperties}>
             <div className={cn('absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r', stat.gradient)} />
@@ -313,7 +313,7 @@ export default function ReportsPage() {
       </div>
 
       {/* ════════════════ QUICK ACTIONS ════════════════ */}
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {quickActions.map((action) => (
           <button key={action.title} className="group relative overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] p-4 shadow-sm hover:shadow-md transition-all hover:scale-[1.01] text-left">
             <div className={cn('absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity', action.gradient)} />

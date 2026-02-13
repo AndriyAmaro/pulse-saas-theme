@@ -441,7 +441,7 @@ function CohortRetentionTable() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/15 dark:to-emerald-900/15 p-3 border border-green-200/50 dark:border-green-800/30">
           <p className="text-xs font-medium text-green-600 dark:text-green-400">Best Cohort</p>
           <p className="text-lg font-bold text-green-700 dark:text-green-300">{cohorts[bestCohortIdx]}</p>
@@ -1067,7 +1067,7 @@ export default function SaaSMetricsDashboard() {
           <Card.Content className="relative space-y-4">
             {isLoading ? (
               <div className="space-y-3">
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {Array.from({ length: 4 }).map((_, i) => (
                     <Skeleton key={i} className="h-20 rounded-lg" />
                   ))}

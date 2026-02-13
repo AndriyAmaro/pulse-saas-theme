@@ -441,7 +441,7 @@ export default function OverviewPage() {
           </div>
 
           {/* Quick stats row */}
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: 'Revenue today', value: '$2,847', icon: TrendingUp, color: 'text-emerald-500' },
               { label: 'Active users', value: '1,429', icon: Users, color: 'text-blue-500' },
@@ -731,7 +731,7 @@ export default function OverviewPage() {
             </div>
 
             {/* Legend */}
-            <div className="mt-4 grid grid-cols-3 gap-2">
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
               <div className="rounded-xl bg-emerald-50 dark:bg-emerald-900/20 p-3 text-center border border-emerald-100 dark:border-emerald-800/30">
                 <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{projectHealth.onTrack}</p>
                 <p className="text-[10px] font-medium text-emerald-500/80 dark:text-emerald-400/60 uppercase tracking-wider">On Track</p>
@@ -841,7 +841,7 @@ export default function OverviewPage() {
                   animated
                 />
               )}
-              <div className="mt-4 grid grid-cols-2 gap-3 w-full">
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
                 <div className="rounded-xl bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-900/20 dark:to-emerald-900/20 p-3 text-center border border-teal-100 dark:border-teal-800/30">
                   <p className="text-xl font-bold text-teal-700 dark:text-teal-400">156</p>
                   <p className="text-xs text-teal-600/70 dark:text-teal-400/60 font-medium">Completed</p>

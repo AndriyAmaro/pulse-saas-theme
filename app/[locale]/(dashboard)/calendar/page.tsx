@@ -1152,7 +1152,7 @@ export default function CalendarPage() {
       {/* ════════════════ MAIN AREA ════════════════ */}
       <div className="flex flex-1 flex-col overflow-hidden bg-[var(--bg-base)]">
         {/* Stats Bar */}
-        <div className="grid grid-cols-4 gap-3 border-b border-[var(--border-default)] px-4 py-3 lg:px-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-b border-[var(--border-default)] px-4 py-3 lg:px-6">
           {/* Today's Events */}
           <div className="flex items-center gap-3 rounded-xl border border-[var(--border-default)] bg-gradient-to-br from-indigo-50/50 to-indigo-100/30 dark:from-indigo-950/20 dark:to-indigo-900/10 px-4 py-3 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 to-indigo-400" />

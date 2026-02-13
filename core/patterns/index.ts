@@ -256,6 +256,10 @@ export type {
 export { HeroSection, heroVariants } from './HeroSection'
 export type { HeroSectionProps } from './HeroSection'
 
+// AbstractBackground
+export { AbstractBackground } from './AbstractBackground'
+export type { AbstractBackgroundProps } from './AbstractBackground'
+
 // FeatureGrid
 export {
   FeatureGrid,

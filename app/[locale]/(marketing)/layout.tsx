@@ -123,8 +123,10 @@ const Navbar = () => {
                     'transition-all duration-200',
                     'group',
                     isActive
-                      ? 'text-primary-600 dark:text-primary-400'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                      ? isScrolled ? 'text-primary-600 dark:text-primary-400' : 'text-primary-300'
+                      : isScrolled
+                        ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                        : 'text-white/80 hover:text-white'
                   )}
                 >
                   {link.label}
@@ -149,7 +151,11 @@ const Navbar = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                className={cn(
+                  isScrolled
+                    ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                )}
               >
                 {t('signIn')}
               </Button>
@@ -181,9 +187,10 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 'relative p-2 rounded-xl',
-                'text-slate-600 dark:text-slate-300',
-                'hover:bg-slate-100 dark:hover:bg-slate-800',
-                'transition-all duration-200'
+                'transition-all duration-200',
+                isScrolled
+                  ? 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  : 'text-white hover:bg-white/15'
               )}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -206,7 +213,7 @@ const Navbar = () => {
           className={cn(
             'md:hidden',
             'fixed inset-x-0 top-16 bottom-0',
-            'bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl',
+            'bg-white/98 dark:bg-slate-900/98 backdrop-blur-2xl',
             'transition-all duration-400 ease-out',
             isMobileMenuOpen
               ? 'opacity-100 translate-y-0 pointer-events-auto'

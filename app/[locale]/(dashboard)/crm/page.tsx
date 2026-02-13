@@ -412,7 +412,7 @@ export default function CRMDashboard() {
                   </Badge>
                 </div>
                 <div className="flex items-baseline gap-3">
-                  <span className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)]">
                     ${heroData.totalRevenue.toLocaleString()}
                   </span>
                 </div>
@@ -603,7 +603,7 @@ export default function CRMDashboard() {
                 return (
                   <React.Fragment key={stage.id}>
                     <div
-                      className="group relative min-w-[160px] flex-1 overflow-hidden rounded-xl border p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]"
+                      className="group relative min-w-[120px] sm:min-w-[160px] flex-1 overflow-hidden rounded-xl border p-3 sm:p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]"
                       style={{ borderColor: stage.color + '30' }}
                     >
                       <div

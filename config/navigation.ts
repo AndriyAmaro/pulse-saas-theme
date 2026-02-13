@@ -70,12 +70,16 @@ export const mainNavigation: NavSection[] = [
         i18nKey: 'ecommerce',
         href: '/ecommerce',
         icon: ShoppingCart,
+        badge: 'Soon',
+        disabled: true,
       },
       {
         title: 'Finance',
         i18nKey: 'finance',
         href: '/finance',
         icon: Wallet,
+        badge: 'Soon',
+        disabled: true,
       },
       {
         title: 'Projects',
@@ -100,6 +104,8 @@ export const mainNavigation: NavSection[] = [
         i18nKey: 'helpdesk',
         href: '/helpdesk',
         icon: HeadphonesIcon,
+        badge: 'Soon',
+        disabled: true,
       },
       {
         title: 'SaaS',
@@ -136,13 +142,16 @@ export const mainNavigation: NavSection[] = [
         i18nKey: 'education',
         href: '/education',
         icon: GraduationCap,
+        badge: 'Soon',
+        disabled: true,
       },
       {
         title: 'Crypto Trading',
         i18nKey: 'cryptoTrading',
         href: '/crypto',
         icon: Bitcoin,
-        badge: 'New',
+        badge: 'Soon',
+        disabled: true,
       },
       {
         title: 'Restaurant',

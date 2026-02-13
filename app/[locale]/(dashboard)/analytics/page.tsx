@@ -334,7 +334,7 @@ export default function AnalyticsPage() {
                   <p className="text-sm font-medium text-[var(--text-secondary)]">Total Page Views</p>
                 </div>
                 <div className="flex items-baseline gap-3">
-                  <span className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)]">
                     {heroData.pageViews.toLocaleString()}
                   </span>
                   <Badge variant="success" size="sm" className="flex items-center gap-1">

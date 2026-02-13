@@ -252,7 +252,7 @@ const HeaderNotifications: React.FC<HeaderNotificationsProps> = ({
         </button>
       </DropdownMenu.Trigger>
 
-      <DropdownMenu.Content align="end" className="w-80">
+      <DropdownMenu.Content align="end" className="w-80 max-w-[calc(100vw-2rem)]">
         <div className="px-3 py-2 border-b border-[var(--border-default)]">
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold text-[var(--text-primary)]">
@@ -387,7 +387,7 @@ const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
         </button>
       </DropdownMenu.Trigger>
 
-      <DropdownMenu.Content align="end" className="w-56">
+      <DropdownMenu.Content align="end" className="w-56 max-w-[calc(100vw-2rem)]">
         <div className="px-3 py-2 border-b border-[var(--border-default)]">
           <div className="text-sm font-medium text-[var(--text-primary)]">
             {user.name}
