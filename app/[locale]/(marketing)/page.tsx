@@ -299,18 +299,18 @@ const HeroSection = () => {
           <div className="relative inline-flex mb-8 animate-[fadeInUp_0.6s_ease-out_both]">
             <div className={cn(
               'relative flex items-center gap-2.5 px-5 py-2.5 rounded-full',
-              'bg-white/10 backdrop-blur-md',
-              'border border-white/15',
+              'bg-white/80 dark:bg-white/10 backdrop-blur-md',
+              'border border-primary-200/50 dark:border-white/15',
               'shadow-lg shadow-primary-500/10',
               'overflow-hidden cursor-pointer group',
               'hover:border-primary-400/40',
               'transition-all duration-300'
             )}>
               {/* Shimmer effect */}
-              <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-primary-200/20 dark:via-white/10 to-transparent" />
               <span className="relative flex items-center gap-2 text-sm font-medium">
                 <PulseEcgIcon className="h-5 w-5 rounded-md" />
-                <span className="bg-gradient-to-r from-primary-300 to-cyan-300 bg-clip-text text-transparent font-semibold">
+                <span className="bg-gradient-to-r from-primary-600 to-cyan-600 dark:from-primary-300 dark:to-cyan-300 bg-clip-text text-transparent font-semibold">
                   {t('hero.badge')}
                 </span>
                 <ArrowRight className="h-3.5 w-3.5 text-primary-400 transition-transform group-hover:translate-x-0.5" />
@@ -320,18 +320,18 @@ const HeroSection = () => {
 
           {/* Main Title */}
           <h1 className="animate-[fadeInUp_0.7s_ease-out_0.1s_both]">
-            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
               {t('hero.title1')}
             </span>
             <span className="block mt-2 sm:mt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
-              <span className="bg-gradient-to-r from-primary-400 via-emerald-300 to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 dark:from-primary-400 dark:via-emerald-300 dark:to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
                 {t('hero.title2')}
               </span>
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed animate-[fadeInUp_0.7s_ease-out_0.2s_both]">
+          <p className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed animate-[fadeInUp_0.7s_ease-out_0.2s_both]">
             {t('hero.subtitle')}
           </p>
 
@@ -361,9 +361,9 @@ const HeroSection = () => {
               onClick={() => setIsDemoOpen(true)}
               className={cn(
                 'group gap-2.5 px-8 h-14 text-base font-semibold rounded-xl',
-                'border-white/20 text-white',
-                'hover:bg-white/10',
-                'hover:border-white/30',
+                'border-slate-300 text-slate-700 dark:border-white/20 dark:text-white',
+                'hover:bg-slate-100 dark:hover:bg-white/10',
+                'hover:border-slate-400 dark:hover:border-white/30',
                 'hover:scale-[1.03] active:scale-[0.98]',
                 'transition-all duration-300'
               )}
@@ -386,10 +386,10 @@ const HeroSection = () => {
                     key={i}
                     fallback={initials}
                     size="sm"
-                    className="ring-[3px] ring-slate-900 hover:z-10 hover:scale-110 transition-transform"
+                    className="ring-[3px] ring-white dark:ring-slate-900 hover:z-10 hover:scale-110 transition-transform"
                   />
                 ))}
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary-500 to-primary-600 text-[10px] font-bold text-white ring-[3px] ring-slate-900">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary-500 to-primary-600 text-[10px] font-bold text-white ring-[3px] ring-white dark:ring-slate-900">
                   +5K
                 </div>
               </div>
@@ -400,11 +400,11 @@ const HeroSection = () => {
                     <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-white">4.9/5</span>
-                <span className="text-sm text-slate-400">from 2,000+ reviews</span>
+                <span className="text-sm font-semibold text-slate-900 dark:text-white">4.9/5</span>
+                <span className="text-sm text-slate-500 dark:text-slate-400">from 2,000+ reviews</span>
               </div>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-500 dark:text-slate-400">
               {t('hero.trustedBy')}
             </p>
           </div>
