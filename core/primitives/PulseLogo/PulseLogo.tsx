@@ -98,13 +98,15 @@ export interface PulseLogoProps
   extends VariantProps<typeof logoContainerVariants> {
   /** Display variant */
   variant?: 'icon-only' | 'full' | 'premium'
+  /** Override the premium text gradient classes (e.g. 'from-white to-slate-300' for dark backgrounds) */
+  textClassName?: string
   className?: string
 }
 
 // ============ COMPONENT ============
 
 export const PulseLogo = React.forwardRef<HTMLDivElement, PulseLogoProps>(
-  ({ variant = 'full', size = 'md', className }, ref) => {
+  ({ variant = 'full', size = 'md', textClassName, className }, ref) => {
     const showText = variant !== 'icon-only'
     const isPremium = variant === 'premium'
 
@@ -157,7 +159,10 @@ export const PulseLogo = React.forwardRef<HTMLDivElement, PulseLogoProps>(
             className={cn(
               textVariants({ size }),
               isPremium
-                ? 'bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent transition-all duration-300'
+                ? cn(
+                    'bg-gradient-to-r bg-clip-text text-transparent transition-all duration-300',
+                    textClassName || 'from-slate-900 to-slate-700 dark:from-white dark:to-slate-300'
+                  )
                 : 'text-[var(--text-primary)]'
             )}
           >

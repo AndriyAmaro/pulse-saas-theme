@@ -25,9 +25,9 @@ const socialLinks = [
 // Linked Logo (wraps PulseLogo primitive with navigation)
 // ============================================================================
 
-const LinkedPulseLogo = ({ className }: { className?: string }) => (
+const LinkedPulseLogo = ({ className, textClassName }: { className?: string; textClassName?: string }) => (
   <Link href="/" className={cn('group', className)}>
-    <PulseLogo variant="premium" size="lg" />
+    <PulseLogo variant="premium" size="lg" textClassName={textClassName} />
   </Link>
 )
 
@@ -92,186 +92,214 @@ const Navbar = () => {
     return () => { document.body.style.overflow = '' }
   }, [isMobileMenuOpen])
 
+  // Whether the navbar is on a solid (light) background
+  const onSolidBg = isScrolled || isMobileMenuOpen
+
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50',
-        'transition-all duration-500 ease-out',
-        isScrolled
-          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl border-b border-slate-200/50 dark:border-slate-700/30 shadow-[0_1px_3px_rgba(0,0,0,0.05)]'
-          : 'bg-transparent',
-        isHidden && !isMobileMenuOpen ? '-translate-y-full' : 'translate-y-0'
-      )}
-    >
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 md:h-[72px] items-center justify-between">
-          <LinkedPulseLogo />
+    <>
+      <header
+        className={cn(
+          'fixed top-0 left-0 right-0 z-50',
+          'transition-all duration-500 ease-out',
+          isMobileMenuOpen
+            ? 'bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700'
+            : isScrolled
+              ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl border-b border-slate-200/50 dark:border-slate-700/30 shadow-[0_1px_3px_rgba(0,0,0,0.05)]'
+              : 'bg-transparent',
+          // Only apply translate when hiding — avoids creating a CSS containing block
+          isHidden && !isMobileMenuOpen && '-translate-y-full'
+        )}
+      >
+        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 md:h-[72px] items-center justify-between">
+            {/* Logo: white gradient on dark hero, theme-aware on solid bg */}
+            <LinkedPulseLogo
+              textClassName={!onSolidBg ? 'from-white to-slate-300' : undefined}
+            />
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-0.5">
-            {navLinks.map((link) => {
-              const isHash = link.href.includes('#')
-              const sectionId = isHash ? link.href.replace('/#', '') : ''
-              const isActive = isHash && activeSection === sectionId
-              const LinkComp = isHash ? 'a' : Link
-              return (
-                <LinkComp
-                  key={link.label}
-                  href={link.href}
-                  className={cn(
-                    'relative px-4 py-2 text-sm font-medium rounded-lg',
-                    'transition-all duration-200',
-                    'group',
-                    isActive
-                      ? isScrolled ? 'text-primary-600 dark:text-primary-400' : 'text-primary-300'
-                      : isScrolled
-                        ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-                        : 'text-white/80 hover:text-white'
-                  )}
-                >
-                  {link.label}
-                  {/* Animated underline */}
-                  <span
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-0.5">
+              {navLinks.map((link) => {
+                const isHash = link.href.includes('#')
+                const sectionId = isHash ? link.href.replace('/#', '') : ''
+                const isActive = isHash && activeSection === sectionId
+                const LinkComp = isHash ? 'a' : Link
+                return (
+                  <LinkComp
+                    key={link.label}
+                    href={link.href}
                     className={cn(
-                      'absolute inset-x-2 -bottom-px h-0.5 rounded-full',
-                      'bg-gradient-to-r from-primary-500 to-accent-500',
-                      'transition-transform duration-300 origin-left',
-                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                      'relative px-4 py-2 text-sm font-medium rounded-lg',
+                      'transition-all duration-200',
+                      'group',
+                      isActive
+                        ? isScrolled ? 'text-primary-600 dark:text-primary-400' : 'text-primary-300'
+                        : isScrolled
+                          ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                          : 'text-white/80 hover:text-white'
                     )}
-                  />
-                </LinkComp>
-              )
-            })}
-          </div>
+                  >
+                    {link.label}
+                    {/* Animated underline */}
+                    <span
+                      className={cn(
+                        'absolute inset-x-2 -bottom-px h-0.5 rounded-full',
+                        'bg-gradient-to-r from-primary-500 to-accent-500',
+                        'transition-transform duration-300 origin-left',
+                        isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                      )}
+                    />
+                  </LinkComp>
+                )
+              })}
+            </div>
 
-          {/* Desktop CTAs */}
-          <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle className={isScrolled ? '' : 'text-white/80 hover:text-white hover:bg-white/10'} />
-            <Link href="/login">
-              <Button
-                variant="ghost"
-                size="sm"
-                className={cn(
-                  isScrolled
-                    ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
-                )}
-              >
-                {t('signIn')}
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button
-                size="sm"
-                className={cn(
-                  'group/btn gap-1.5 px-5',
-                  'bg-gradient-to-r from-primary-500 to-primary-600',
-                  'hover:from-primary-600 hover:to-primary-700',
-                  'shadow-lg shadow-primary-500/25',
-                  'hover:shadow-xl hover:shadow-primary-500/30',
-                  'transition-all duration-300',
-                  'hover:scale-[1.02]'
-                )}
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                {t('getStarted')}
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
-              </Button>
-            </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle className={isScrolled ? '' : 'text-white/80 hover:text-white hover:bg-white/10'} />
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={cn(
-                'relative p-2 rounded-xl',
-                'transition-all duration-200',
-                isScrolled
-                  ? 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-                  : 'text-white hover:bg-white/15'
-              )}
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            >
-              <div className="relative h-6 w-6">
-                <Menu className={cn(
-                  'absolute inset-0 h-6 w-6 transition-all duration-300',
-                  isMobileMenuOpen ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
-                )} />
-                <X className={cn(
-                  'absolute inset-0 h-6 w-6 transition-all duration-300',
-                  isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
-                )} />
-              </div>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div
-          className={cn(
-            'md:hidden',
-            'fixed inset-x-0 top-16 bottom-0',
-            'bg-white dark:bg-slate-900',
-            'transition-all duration-400 ease-out',
-            isMobileMenuOpen
-              ? 'opacity-100 translate-y-0 pointer-events-auto'
-              : 'opacity-0 -translate-y-4 pointer-events-none'
-          )}
-        >
-          <div className="px-4 py-6 space-y-1">
-            {navLinks.map((link, i) => {
-              const isHash = link.href.includes('#')
-              const LinkComp = isHash ? 'a' : Link
-              return (
-                <LinkComp
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+            {/* Desktop CTAs */}
+            <div className="hidden md:flex items-center gap-3">
+              <ThemeToggle className={isScrolled ? '' : 'text-white/80 hover:text-white hover:bg-white/10'} />
+              <Link href="/login">
+                <Button
+                  variant="ghost"
+                  size="sm"
                   className={cn(
-                    'flex items-center justify-between py-3.5 px-4 rounded-xl',
-                    'text-base font-medium',
-                    'text-slate-600 dark:text-slate-300',
-                    'hover:bg-slate-50 dark:hover:bg-slate-800/50',
-                    'hover:text-slate-900 dark:hover:text-white',
-                    'transition-all duration-200',
+                    isScrolled
+                      ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                      : 'text-white/80 hover:text-white hover:bg-white/10'
                   )}
-                  style={{
-                    transitionDelay: isMobileMenuOpen ? `${i * 50}ms` : '0ms',
-                    opacity: isMobileMenuOpen ? 1 : 0,
-                    transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
-                  }}
                 >
-                  {link.label}
-                  <ChevronRight className="h-4 w-4 opacity-40" />
-                </LinkComp>
-              )
-            })}
-
-            <div className="pt-6 space-y-3">
-              <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full justify-center rounded-xl h-12">
                   {t('signIn')}
                 </Button>
               </Link>
-              <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/register">
                 <Button
+                  size="sm"
                   className={cn(
-                    'w-full justify-center gap-2 rounded-xl h-12',
+                    'group/btn gap-1.5 px-5',
                     'bg-gradient-to-r from-primary-500 to-primary-600',
-                    'shadow-lg shadow-primary-500/25'
+                    'hover:from-primary-600 hover:to-primary-700',
+                    'shadow-lg shadow-primary-500/25',
+                    'hover:shadow-xl hover:shadow-primary-500/30',
+                    'transition-all duration-300',
+                    'hover:scale-[1.02]'
                   )}
                 >
-                  <Sparkles className="h-4 w-4" />
+                  <Sparkles className="h-3.5 w-3.5" />
                   {t('getStarted')}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
                 </Button>
               </Link>
             </div>
+
+            {/* Mobile menu button */}
+            <div className="flex md:hidden items-center gap-2">
+              <ThemeToggle className={onSolidBg ? '' : 'text-white/80 hover:text-white hover:bg-white/10'} />
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={cn(
+                  'relative p-2 rounded-xl',
+                  'transition-all duration-200',
+                  onSolidBg
+                    ? 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    : 'text-white hover:bg-white/15'
+                )}
+                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              >
+                <div className="relative h-6 w-6">
+                  <Menu className={cn(
+                    'absolute inset-0 h-6 w-6 transition-all duration-300',
+                    isMobileMenuOpen ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
+                  )} />
+                  <X className={cn(
+                    'absolute inset-0 h-6 w-6 transition-all duration-300',
+                    isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
+                  )} />
+                </div>
+              </button>
+            </div>
           </div>
+        </nav>
+      </header>
+
+      {/* ====== Mobile Menu (OUTSIDE header to avoid CSS containing block) ====== */}
+
+      {/* Backdrop overlay */}
+      <div
+        className={cn(
+          'md:hidden fixed inset-0 z-40 bg-black/60',
+          'transition-opacity duration-300',
+          isMobileMenuOpen
+            ? 'opacity-100 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
+        )}
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Navigation Panel */}
+      <div
+        className={cn(
+          'md:hidden',
+          'fixed inset-x-0 top-16 bottom-0 z-[45]',
+          'bg-white dark:bg-slate-900',
+          'transition-all duration-300 ease-out',
+          'flex flex-col',
+          isMobileMenuOpen
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 -translate-y-4 pointer-events-none'
+        )}
+      >
+        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
+          {navLinks.map((link, i) => {
+            const isHash = link.href.includes('#')
+            const LinkComp = isHash ? 'a' : Link
+            return (
+              <LinkComp
+                key={link.label}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={cn(
+                  'flex items-center justify-between py-3.5 px-4 rounded-xl',
+                  'text-base font-medium',
+                  'text-slate-700 dark:text-slate-200',
+                  'hover:bg-slate-100 dark:hover:bg-slate-800',
+                  'hover:text-slate-900 dark:hover:text-white',
+                  'transition-all duration-200',
+                )}
+                style={{
+                  transitionDelay: isMobileMenuOpen ? `${i * 50}ms` : '0ms',
+                  opacity: isMobileMenuOpen ? 1 : 0,
+                  transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
+                }}
+              >
+                {link.label}
+                <ChevronRight className="h-4 w-4 text-slate-400" />
+              </LinkComp>
+            )
+          })}
         </div>
-      </nav>
-    </header>
+
+        {/* CTAs pinned to bottom */}
+        <div className="px-4 py-4 space-y-3 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+          <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button variant="outline" className="w-full justify-center rounded-xl h-12">
+              {t('signIn')}
+            </Button>
+          </Link>
+          <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button
+              className={cn(
+                'w-full justify-center gap-2 rounded-xl h-12',
+                'bg-gradient-to-r from-primary-500 to-primary-600',
+                'shadow-lg shadow-primary-500/25'
+              )}
+            >
+              <Sparkles className="h-4 w-4" />
+              {t('getStarted')}
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </>
   )
 }
 
