@@ -397,7 +397,7 @@ function InfoSidebar({ conversation, onClose }: {
             <div className="h-4 w-0.5 rounded-full bg-gradient-to-b from-sky-500 to-cyan-500" />
             <h5 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">Shared Media</h5>
           </div>
-          <div className="grid grid-cols-3 gap-1.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
             {[1, 2, 3, 4, 5, 6].map(i => (
               <div key={i} className="group/media aspect-square rounded-lg bg-gradient-to-br from-[var(--bg-muted)] to-[var(--bg-subtle)] flex items-center justify-center cursor-pointer transition-all hover:shadow-sm hover:scale-[1.03]">
                 <ImageIcon size={16} className="text-[var(--text-muted)] transition-colors group-hover/media:text-sky-500" />
@@ -638,7 +638,7 @@ export default function ChatPage() {
           </div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <div className="rounded-lg bg-[var(--bg-base)]/80 backdrop-blur-sm border border-[var(--border-default)] px-2.5 py-2 text-center">
               <div className="text-base font-bold text-[var(--text-primary)]">{chatStats.totalConversations}</div>
               <div className="text-[10px] text-[var(--text-muted)] font-medium">Chats</div>

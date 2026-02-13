@@ -870,7 +870,7 @@ export default function EmailPage() {
       </div>
 
       {/* ════════════════ PREMIUM STATS BAR ════════════════ */}
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {/* Received */}
         <div className="group relative overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] px-4 py-3 shadow-sm hover:shadow-md hover:shadow-rose-500/5 transition-all hover:scale-[1.01]">
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-rose-500 to-pink-500" />

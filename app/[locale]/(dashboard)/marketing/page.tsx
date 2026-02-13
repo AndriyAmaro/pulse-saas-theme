@@ -1020,7 +1020,7 @@ export default function MarketingDashboardPage() {
                 ))}
 
                 {/* Summary */}
-                <div className="grid grid-cols-3 gap-2 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2">
                   <div className="rounded-xl bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/15 dark:to-purple-900/15 border border-violet-200/50 dark:border-violet-800/30 p-2.5 text-center">
                     <p className="text-xs text-[var(--text-muted)]">Top Age</p>
                     <p className="text-sm font-bold text-violet-600 dark:text-violet-400">25-34</p>

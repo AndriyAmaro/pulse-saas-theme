@@ -783,7 +783,7 @@ export default function HRDashboardPage() {
                 ) : (
                   <>
                     {/* Quick stats row */}
-                    <div className="mb-4 grid grid-cols-3 gap-2">
+                    <div className="mb-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
                       <div className="rounded-lg border border-blue-200/50 bg-blue-50/50 p-2 text-center dark:border-blue-800/30 dark:bg-blue-950/20">
                         <p className="text-lg font-bold text-blue-600 dark:text-blue-400">1,836</p>
                         <p className="text-[10px] text-[var(--text-muted)]">Total Apps</p>
@@ -1109,7 +1109,7 @@ export default function HRDashboardPage() {
                     ))}
 
                     {/* Interview Summary */}
-                    <div className="grid grid-cols-3 gap-2 pt-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2">
                       <div className="rounded-lg border border-green-200/50 bg-green-50/50 p-2 text-center dark:border-green-800/30 dark:bg-green-950/20">
                         <p className="text-lg font-bold text-green-600 dark:text-green-400">
                           {upcomingInterviews.filter(i => i.status === 'confirmed').length}

@@ -1116,7 +1116,7 @@ export default function RealEstatePage() {
                         </div>
 
                         {/* Stats row */}
-                        <div className="grid grid-cols-4 gap-2 mb-3">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
                           <div className="rounded-lg bg-[var(--bg-subtle)] px-2 py-1.5 text-center">
                             <p className="text-[10px] text-[var(--text-muted)]">Vendidos</p>
                             <p className="text-sm font-bold text-green-600 dark:text-green-400">{agent.sold}</p>
@@ -1161,7 +1161,7 @@ export default function RealEstatePage() {
                 </div>
 
                 {/* Team Summary */}
-                <div className="mt-4 grid grid-cols-4 gap-2.5">
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                   <div className="rounded-xl bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-900/15 dark:to-amber-900/15 p-2.5 border border-yellow-200/50 dark:border-yellow-800/30 text-center">
                     <p className="text-[10px] font-medium text-yellow-600 dark:text-yellow-400">Média Vendas</p>
                     <p className="text-sm font-bold text-yellow-700 dark:text-yellow-300">R$1.2M</p>

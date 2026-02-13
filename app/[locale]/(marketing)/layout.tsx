@@ -213,7 +213,7 @@ const Navbar = () => {
           className={cn(
             'md:hidden',
             'fixed inset-x-0 top-16 bottom-0',
-            'bg-white/98 dark:bg-slate-900/98 backdrop-blur-2xl',
+            'bg-white dark:bg-slate-900',
             'transition-all duration-400 ease-out',
             isMobileMenuOpen
               ? 'opacity-100 translate-y-0 pointer-events-auto'

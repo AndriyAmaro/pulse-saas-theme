@@ -1289,7 +1289,7 @@ export default function InventoryDashboard() {
                             style={{ width: `${percentage}%` }}
                           />
                         </div>
-                        <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+                        <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                           <div className="rounded-lg bg-[var(--bg-subtle)] p-2">
                             <p className="text-xl font-bold text-[var(--text-primary)]">{warehouse.items.toLocaleString()}</p>
                             <p className="text-xs text-[var(--text-muted)]">Current</p>

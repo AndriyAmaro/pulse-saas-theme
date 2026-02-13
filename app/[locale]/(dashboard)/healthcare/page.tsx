@@ -683,7 +683,7 @@ export default function HealthcareDashboardPage() {
           </Card.Header>
           <Card.Content className="relative">
             {/* Quick summary stats */}
-            <div className="mb-4 grid grid-cols-3 gap-3">
+            <div className="mb-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="rounded-lg border border-blue-200/50 bg-blue-50/50 p-2.5 text-center dark:border-blue-800/30 dark:bg-blue-950/20">
                 <p className="text-lg font-bold text-blue-600 dark:text-blue-400">94</p>
                 <p className="text-xs text-[var(--text-muted)]">Admissions</p>

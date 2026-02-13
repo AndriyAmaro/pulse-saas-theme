@@ -1105,7 +1105,7 @@ const FeatureVisual = ({ type }: { type: string }) => {
             <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">Real-time</span>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { label: 'Visitors', value: '12.4K', change: '+14%' },
             { label: 'Conversion', value: '3.2%', change: '+0.8%' },
@@ -1196,7 +1196,7 @@ const FeatureVisual = ({ type }: { type: string }) => {
           <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">All synced</span>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { name: 'Slack', color: 'bg-[#4A154B]', shadow: 'shadow-[#4A154B]/20', svg: (
             <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">

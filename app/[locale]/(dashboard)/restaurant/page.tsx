@@ -807,7 +807,7 @@ export default function RestaurantDashboard() {
             ) : (
               <>
                 {/* Summary Stats */}
-                <div className="grid grid-cols-3 gap-2 mb-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
                   <div className="rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/15 dark:to-indigo-900/15 p-2.5 border border-blue-200/50 dark:border-blue-800/30 text-center">
                     <p className="text-[10px] font-medium text-blue-600 dark:text-blue-400">Revenue</p>
                     <p className="text-sm font-bold text-blue-700 dark:text-blue-300">${recentOrdersSummary.totalRevenue.toLocaleString()}</p>
@@ -878,7 +878,7 @@ export default function RestaurantDashboard() {
                 </div>
 
                 {/* Order Type Distribution */}
-                <div className="grid grid-cols-3 gap-2 mb-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
                   {orderTypes.map((ot) => (
                     <div key={ot.type} className={`rounded-lg p-2 text-center border ${
                       ot.color === 'blue' ? 'bg-blue-50/50 border-blue-200/40 dark:bg-blue-900/10 dark:border-blue-800/30' :
