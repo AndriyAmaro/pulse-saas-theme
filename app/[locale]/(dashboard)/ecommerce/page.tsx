@@ -929,6 +929,27 @@ export default function EcommercePage() {
                       <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-0.5">2 PM</p>
                     </div>
                   </div>
+                  <div className="h-[2px] bg-gradient-to-r from-transparent via-primary-400 to-transparent" />
+                  <div className="flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-primary-50/60 via-transparent to-emerald-50/60 dark:from-primary-900/10 dark:via-transparent dark:to-emerald-900/10">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="h-3.5 w-3.5 text-primary-500" />
+                        <span className="text-xs text-[var(--text-muted)]">Updated <span className="font-medium text-[var(--text-primary)]">2 min ago</span></span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Zap className="h-3.5 w-3.5 text-amber-500" />
+                        <span className="text-xs text-[var(--text-muted)]">Velocity: <span className="font-semibold text-emerald-600 dark:text-emerald-400">+12 orders/hr</span></span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Package className="h-3.5 w-3.5 text-violet-500" />
+                        <span className="text-xs text-[var(--text-muted)]">Pending ship: <span className="font-semibold text-[var(--text-primary)]">23</span></span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-[10px] font-medium uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Live</span>
+                    </div>
+                  </div>
                 </div>
               </>
             )}
