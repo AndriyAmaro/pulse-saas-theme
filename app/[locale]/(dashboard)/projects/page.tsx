@@ -1239,6 +1239,24 @@ export default function ProjectsDashboard() {
                       <p className="text-sm font-bold text-rose-600 dark:text-rose-400 mt-0.5">5</p>
                     </div>
                   </div>
+                  <div className="grid grid-cols-4 gap-px mt-px border-t border-[var(--border-default)] bg-[var(--border-default)] rounded-b-lg overflow-hidden">
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center border-l border-[var(--border-default)]">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Deployments</p>
+                      <p className="text-sm font-bold text-green-600 dark:text-green-400 mt-0.5">4</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center border-l border-[var(--border-default)]">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Test Coverage</p>
+                      <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-0.5">87%</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center border-l border-[var(--border-default)]">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Build Time</p>
+                      <p className="text-sm font-bold text-orange-600 dark:text-orange-400 mt-0.5">2.3m</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center border-l border-[var(--border-default)]">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Uptime</p>
+                      <p className="text-sm font-bold text-purple-600 dark:text-purple-400 mt-0.5">99.9%</p>
+                    </div>
+                  </div>
                 </div>
               </>
             )}
