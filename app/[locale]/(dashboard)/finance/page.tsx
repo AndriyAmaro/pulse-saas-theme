@@ -582,6 +582,25 @@ export default function FinanceDashboard() {
                     <span className="text-[10px] font-medium uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Live</span>
                   </div>
                 </div>
+                <div className="hidden sm:block h-px bg-[var(--border-default)]" />
+                <div className="hidden sm:grid grid-cols-4 gap-px bg-[var(--border-default)] overflow-hidden">
+                  <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Avg Income</p>
+                    <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">$42.6K</p>
+                  </div>
+                  <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Avg Expense</p>
+                    <p className="text-sm font-bold text-red-500 dark:text-red-400 mt-0.5">$31.6K</p>
+                  </div>
+                  <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">MoM Growth</p>
+                    <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-0.5">+4.1%</p>
+                  </div>
+                  <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Profit Margin</p>
+                    <p className="text-sm font-bold text-[var(--text-primary)] mt-0.5">28.9%</p>
+                  </div>
+                </div>
               </>
             )}
           </Card.Content>
@@ -669,7 +688,7 @@ export default function FinanceDashboard() {
             {isLoading ? (
               <Skeleton className="mx-auto h-64 w-64 rounded-full" />
             ) : (
-              <div className="flex flex-col items-center gap-2 sm:gap-6 lg:flex-row">
+              <div className="flex flex-col items-center gap-0 sm:gap-6 lg:flex-row">
                 <div className="w-full sm:w-64">
                   <ChartWrapper
                     type="donut"
@@ -681,9 +700,9 @@ export default function FinanceDashboard() {
                     tooltipFormatter={(value) => '$' + value.toLocaleString()}
                   />
                 </div>
-                <div className="flex-1 space-y-0.5 sm:space-y-2">
+                <div className="flex-1 w-full space-y-0 sm:space-y-2">
                   {expenseBreakdownData.map((item) => (
-                    <div key={item.name} className="flex items-center justify-between py-0 sm:py-1">
+                    <div key={item.name} className="flex items-center justify-between gap-6 py-0 sm:py-1">
                       <div className="flex items-center gap-2">
                         <div
                           className="h-3 w-3 rounded-full"
