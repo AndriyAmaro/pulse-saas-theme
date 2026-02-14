@@ -296,7 +296,7 @@ export default function FinanceDashboard() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.1),transparent_50%)]" />
           <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 via-green-400 to-teal-500" />
           <Card.Content className="relative">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
               {/* Left: Balance + Change */}
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
@@ -344,7 +344,7 @@ export default function FinanceDashboard() {
               <div className="flex items-center gap-8 lg:gap-10">
                 {/* Portfolio allocation ring */}
                 <div className="hidden sm:flex flex-col items-center gap-2.5">
-                  <div className="relative h-[96px] w-[96px]">
+                  <div className="relative h-[110px] w-[110px]">
                     <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
                       <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" className="text-emerald-100 dark:text-emerald-900/40" strokeWidth="3" />
                       <circle cx="18" cy="18" r="14" fill="none" stroke="#22C55E" strokeWidth="3" strokeDasharray="40 60" strokeDashoffset="0" strokeLinecap="round" />
@@ -373,9 +373,9 @@ export default function FinanceDashboard() {
                 </div>
 
                 {/* Daily revenue bars */}
-                <div className="w-full lg:w-52">
+                <div className="w-full lg:w-56">
                   <p className="text-[9px] text-[var(--text-muted)] uppercase tracking-widest mb-2">Daily Revenue</p>
-                  <div className="flex items-end gap-1 h-20">
+                  <div className="flex items-end gap-1 h-24">
                     {[32, 45, 28, 52, 38, 61, 42, 55, 35, 68, 48, 72, 40, 58].map((h, i) => (
                       <div
                         key={i}
