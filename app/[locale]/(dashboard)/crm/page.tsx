@@ -563,15 +563,20 @@ export default function CRMDashboard() {
                     <Users className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-center gap-1 h-8 group cursor-pointer">
-                  {kpiData.totalLeads.sparkline.map((v, i) => (
-                    <div key={i} className="relative flex flex-col items-center justify-end">
-                      <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150 ${i === kpiData.totalLeads.sparkline.length - 1 ? 'bg-orange-500' : 'bg-orange-300 dark:bg-orange-600/50'}`} />
-                      {i > 0 && (
-                        <div className={`absolute bottom-0 w-px transition-all duration-300 ${i >= kpiData.totalLeads.sparkline.length - 3 ? 'bg-orange-400 dark:bg-orange-500/60' : 'bg-orange-200 dark:bg-orange-700/30'}`} style={{ height: `${Math.abs(v - (kpiData.totalLeads.sparkline[i-1] || 0)) / 847 * 60}%` }} />
-                      )}
+                <div className="mt-3 flex items-center gap-2 h-8">
+                  <div className="flex items-end gap-1 h-6">
+                    <div className="w-8 h-4 rounded-t-sm bg-orange-200 dark:bg-orange-700/50" />
+                    <div className="w-8 h-5 rounded-t-sm bg-orange-300 dark:bg-orange-600/50" />
+                    <div className="w-8 h-3 rounded-t-sm bg-orange-200 dark:bg-orange-700/50" />
+                    <div className="w-8 h-6 rounded-t-sm bg-orange-400 dark:bg-orange-500/70" />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 rounded-full bg-orange-500" />
+                      <span className="text-[9px] text-orange-600 dark:text-orange-400 font-medium">49.9%</span>
                     </div>
-                  ))}
+                    <span className="text-[8px] text-[var(--text-muted)]">MQL Rate</span>
+                  </div>
                 </div>
               </Card.Content>
             </Card>
@@ -595,15 +600,23 @@ export default function CRMDashboard() {
                     <Target className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-0.5 h-8 group cursor-pointer">
-                  {kpiData.qualified.sparkline.map((v, i) => (
-                    <div key={i} className="relative flex-1">
-                      <div className={`absolute bottom-0 w-full transition-all duration-300 group-hover:opacity-80 ${i >= kpiData.qualified.sparkline.length - 2 ? 'bg-blue-500/30' : 'bg-blue-200/20 dark:bg-blue-700/20'}`} style={{ height: `${(v / 312) * 100}%` }} />
-                      {i === kpiData.qualified.sparkline.length - 1 && (
-                        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full bg-blue-500 transition-all duration-300 group-hover:scale-150" />
-                      )}
+                <div className="mt-3 flex items-center gap-3 h-8">
+                  <div className="relative h-6 w-6">
+                    <svg viewBox="0 0 24 24" className="h-full w-full -rotate-90">
+                      <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" className="text-blue-100 dark:text-blue-900/40" strokeWidth="2" />
+                      <circle cx="12" cy="12" r="8" fill="none" stroke="#3B82F6" strokeWidth="2" strokeDasharray="25 13" strokeLinecap="round" />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-[8px] font-bold text-blue-600 dark:text-blue-400">65%</span>
                     </div>
-                  ))}
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                      <span className="text-[9px] text-blue-600 dark:text-blue-400 font-medium">SQL Rate</span>
+                    </div>
+                    <span className="text-[8px] text-[var(--text-muted)]">23.4%</span>
+                  </div>
                 </div>
               </Card.Content>
             </Card>
@@ -628,15 +641,21 @@ export default function CRMDashboard() {
                     <FileText className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-center gap-1 h-8 group cursor-pointer">
-                  {kpiData.proposalsSent.sparkline.map((v, i) => (
-                    <div key={i} className="relative flex-1">
-                      <div className={`absolute bottom-0 w-1 transition-all duration-300 group-hover:bg-violet-400 ${i === kpiData.proposalsSent.sparkline.length - 1 ? 'bg-violet-500' : 'bg-violet-300 dark:bg-violet-600/50'}`} style={{ height: `${(v / 89) * 100}%` }} />
-                      {i > 0 && v > (kpiData.proposalsSent.sparkline[i-1] || 0) && (
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-px h-1 bg-violet-400 transition-all duration-300" />
-                      )}
+                <div className="mt-3 flex items-center gap-2 h-8">
+                  <div className="flex items-center gap-1">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i <= 3 ? 'bg-violet-500' : 'bg-violet-200 dark:bg-violet-700/50'}`} />
+                    ))}
+                    <div className="w-px h-px bg-violet-300" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-violet-500" />
+                      <span className="text-[9px] text-violet-600 dark:text-violet-400 font-medium">Win Rate</span>
                     </div>
-                  ))}
+                    <span className="text-[8px] text-[var(--text-muted)]">38.2%</span>
+                  </div>
                 </div>
               </Card.Content>
             </Card>
@@ -660,20 +679,22 @@ export default function CRMDashboard() {
                     <Trophy className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-center gap-0.5 h-8 group cursor-pointer">
-                  {kpiData.dealsWon.sparkline.map((v, i) => (
-                    <div key={i} className="relative flex-1">
-                      <svg className="absolute bottom-0 w-full h-8" viewBox="0 0 12 32" preserveAspectRatio="none">
-                        <path
-                          d={`M ${i * 3} ${32 - (v / 34) * 28} L ${(i + 1) * 3} ${32 - ((kpiData.dealsWon.sparkline[i + 1] || v) / 34) * 28}`}
-                          className={`transition-all duration-300 ${i >= kpiData.dealsWon.sparkline.length - 2 ? 'stroke-emerald-500' : 'stroke-emerald-300 dark:stroke-emerald-600/50'}`}
-                          strokeWidth="2"
-                          fill="none"
-                        />
-                      </svg>
-                      <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150 ${i === kpiData.dealsWon.sparkline.length - 1 ? 'bg-emerald-500' : 'bg-emerald-300 dark:bg-emerald-600/50'}`} style={{ bottom: `${(v / 34) * 28}px` }} />
+                <div className="mt-3 flex items-center gap-3 h-8">
+                  <div className="flex items-center gap-1">
+                    <Trophy className="h-4 w-4 text-emerald-500" />
+                    <div className="flex -space-x-1">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <div key={i} className={`w-2 h-2 rounded-full border-2 border-white dark:border-slate-900 ${i <= 3 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`} />
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-medium">Avg Deal</span>
+                    </div>
+                    <span className="text-[8px] text-[var(--text-muted)]">$3.7K</span>
+                  </div>
                 </div>
               </Card.Content>
             </Card>
