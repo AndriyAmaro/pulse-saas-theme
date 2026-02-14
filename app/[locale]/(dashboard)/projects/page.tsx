@@ -708,9 +708,9 @@ export default function ProjectsDashboard() {
                     <FolderKanban className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-[3px] h-8">
+                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
                   {statsData.activeProjects.sparkline.map((v, i) => (
-                    <div key={i} className={`flex-1 rounded-t-sm ${i === statsData.activeProjects.sparkline.length - 1 ? 'bg-indigo-500' : 'bg-indigo-200 dark:bg-indigo-700/50'}`} style={{ height: `${(v / 14) * 100}%` }} />
+                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === statsData.activeProjects.sparkline.length - 1 ? 'bg-indigo-500' : 'bg-indigo-200 dark:bg-indigo-700/50'}`} style={{ height: `${(v / 14) * 100}%` }} />
                   ))}
                 </div>
               </Card.Content>
@@ -738,9 +738,9 @@ export default function ProjectsDashboard() {
                     <CheckSquare className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-[3px] h-8">
+                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
                   {statsData.tasksThisWeek.sparkline.map((v, i) => (
-                    <div key={i} className={`flex-1 rounded-t-sm ${i >= statsData.tasksThisWeek.sparkline.length - 2 ? 'bg-blue-500' : 'bg-blue-200 dark:bg-blue-700/50'}`} style={{ height: `${(v / 50) * 100}%` }} />
+                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i >= statsData.tasksThisWeek.sparkline.length - 2 ? 'bg-blue-500' : 'bg-blue-200 dark:bg-blue-700/50'}`} style={{ height: `${(v / 50) * 100}%` }} />
                   ))}
                 </div>
               </Card.Content>
@@ -766,9 +766,9 @@ export default function ProjectsDashboard() {
                     <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-[3px] h-8">
+                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
                   {statsData.completed.sparkline.map((v, i) => (
-                    <div key={i} className={`flex-1 rounded-t-sm ${i === statsData.completed.sparkline.length - 1 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`} style={{ height: `${(v / 25) * 100}%` }} />
+                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === statsData.completed.sparkline.length - 1 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`} style={{ height: `${(v / 25) * 100}%` }} />
                   ))}
                 </div>
               </Card.Content>
@@ -794,9 +794,9 @@ export default function ProjectsDashboard() {
                     <Clock className="h-5 w-5 text-red-600 dark:text-red-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-[3px] h-8">
+                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
                   {statsData.overdue.sparkline.map((v, i) => (
-                    <div key={i} className={`flex-1 rounded-t-sm ${i === statsData.overdue.sparkline.length - 1 ? 'bg-red-500' : 'bg-red-200 dark:bg-red-700/50'}`} style={{ height: `${(v / 10) * 100}%` }} />
+                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === statsData.overdue.sparkline.length - 1 ? 'bg-red-500' : 'bg-red-200 dark:bg-red-700/50'}`} style={{ height: `${(v / 10) * 100}%` }} />
                   ))}
                 </div>
               </Card.Content>
