@@ -889,6 +889,28 @@ export default function EcommercePage() {
                       <div className="bg-slate-400" style={{ width: '10%' }} />
                     </div>
                   </div>
+                  <div className="flex items-center justify-between px-4 py-2.5 border-t border-[var(--border-default)]">
+                    <div className="flex items-center gap-5">
+                      <div className="flex items-center gap-1.5">
+                        <Truck className="h-3.5 w-3.5 text-amber-500" />
+                        <span className="text-xs text-[var(--text-muted)]">Avg fulfillment: <span className="font-semibold text-[var(--text-primary)]">1.8 days</span></span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <XCircle className="h-3.5 w-3.5 text-red-400" />
+                        <span className="text-xs text-[var(--text-muted)]">Cancel rate: <span className="font-semibold text-[var(--text-primary)]">5.3%</span></span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Star className="h-3.5 w-3.5 text-amber-400" />
+                        <span className="text-xs text-[var(--text-muted)]">Top buyer: <span className="font-semibold text-[var(--text-primary)]">Sarah J.</span></span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="text-[10px] text-[var(--text-muted)] mr-1">7d trend</span>
+                      {[35, 52, 48, 61, 45, 58, 67].map((h, i) => (
+                        <div key={i} className="w-1.5 rounded-full bg-primary-400" style={{ height: `${h * 0.2}px` }} />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </>
             )}
