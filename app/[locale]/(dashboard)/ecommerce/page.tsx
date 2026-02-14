@@ -24,6 +24,7 @@ import {
   CheckCircle,
   XCircle,
   RotateCcw,
+  Coins,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -104,6 +105,7 @@ const paymentMethodsData = [
   { method: 'PayPal', count: 287, percentage: 15.5, icon: DollarSign },
   { method: 'Bank Transfer', count: 124, percentage: 6.7, icon: TrendingUp },
   { method: 'Apple Pay', count: 70, percentage: 3.8, icon: Star },
+  { method: 'USDT (Tether)', count: 48, percentage: 2.6, icon: Coins },
 ]
 
 // Order status with icons
@@ -570,7 +572,7 @@ export default function EcommercePage() {
                   const PaymentIcon = payment.icon
                   return (
                     <div key={payment.method} className="flex items-center gap-3 lg:py-3.5 lg:first:pt-0 lg:last:pb-0">
-                      <div className={`hidden lg:block w-1 self-stretch rounded-full ${['bg-blue-500', 'bg-emerald-500', 'bg-indigo-500', 'bg-amber-500', 'bg-slate-400'][index]}`} />
+                      <div className={`hidden lg:block w-1 self-stretch rounded-full ${['bg-blue-500', 'bg-emerald-500', 'bg-indigo-500', 'bg-amber-500', 'bg-slate-400', 'bg-teal-500'][index]}`} />
                       <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--bg-subtle)]">
                         <PaymentIcon className="h-4 w-4 text-[var(--text-muted)]" />
                       </div>
@@ -835,32 +837,57 @@ export default function EcommercePage() {
                   />
                 </div>
                 {/* Desktop: summary metrics */}
-                <div className="hidden sm:flex items-center justify-between px-4 py-3 border-t border-[var(--border-default)] bg-[var(--bg-subtle)]">
-                  <div className="flex items-center gap-6">
-                    <div>
-                      <span className="text-xs text-[var(--text-muted)]">Total Orders</span>
-                      <p className="text-sm font-bold text-[var(--text-primary)]">{recentOrdersData.length}</p>
+                <div className="hidden sm:block border-t border-[var(--border-default)] bg-[var(--bg-subtle)]">
+                  <div className="flex items-center justify-between px-4 py-3">
+                    <div className="flex items-center gap-6">
+                      <div>
+                        <span className="text-xs text-[var(--text-muted)]">Total Orders</span>
+                        <p className="text-sm font-bold text-[var(--text-primary)]">{recentOrdersData.length}</p>
+                      </div>
+                      <div>
+                        <span className="text-xs text-[var(--text-muted)]">Total Revenue</span>
+                        <p className="text-sm font-bold text-[var(--text-primary)]">${recentOrdersData.reduce((s, o) => s + o.total, 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                      </div>
+                      <div>
+                        <span className="text-xs text-[var(--text-muted)]">Avg Value</span>
+                        <p className="text-sm font-bold text-[var(--text-primary)]">${(recentOrdersData.reduce((s, o) => s + o.total, 0) / recentOrdersData.length).toFixed(2)}</p>
+                      </div>
                     </div>
-                    <div>
-                      <span className="text-xs text-[var(--text-muted)]">Total Revenue</span>
-                      <p className="text-sm font-bold text-[var(--text-primary)]">${recentOrdersData.reduce((s, o) => s + o.total, 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    </div>
-                    <div>
-                      <span className="text-xs text-[var(--text-muted)]">Avg Value</span>
-                      <p className="text-sm font-bold text-[var(--text-primary)]">${(recentOrdersData.reduce((s, o) => s + o.total, 0) / recentOrdersData.length).toFixed(2)}</p>
+                    <div className="flex items-center gap-3">
+                      {(['Completed', 'Processing', 'Shipped'] as const).map(status => {
+                        const count = recentOrdersData.filter(o => o.status === status).length
+                        const colors: Record<string, string> = { Completed: 'bg-emerald-500', Processing: 'bg-blue-500', Shipped: 'bg-violet-500' }
+                        return (
+                          <div key={status} className="flex items-center gap-1.5">
+                            <div className={`h-2 w-2 rounded-full ${colors[status]}`} />
+                            <span className="text-xs text-[var(--text-muted)]">{status}: {count}</span>
+                          </div>
+                        )
+                      })}
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    {(['Completed', 'Processing', 'Shipped'] as const).map(status => {
-                      const count = recentOrdersData.filter(o => o.status === status).length
-                      const colors: Record<string, string> = { Completed: 'bg-emerald-500', Processing: 'bg-blue-500', Shipped: 'bg-violet-500' }
-                      return (
-                        <div key={status} className="flex items-center gap-1.5">
-                          <div className={`h-2 w-2 rounded-full ${colors[status]}`} />
-                          <span className="text-xs text-[var(--text-muted)]">{status}: {count}</span>
-                        </div>
-                      )
-                    })}
+                  <div className="flex items-center justify-between px-4 py-2.5 border-t border-[var(--border-default)]">
+                    <div className="flex items-center gap-5">
+                      <div className="flex items-center gap-1.5">
+                        <TrendingUp className="h-3.5 w-3.5 text-emerald-500" />
+                        <span className="text-xs text-[var(--text-muted)]">Highest: <span className="font-semibold text-[var(--text-primary)]">$299.99</span></span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <ShoppingCart className="h-3.5 w-3.5 text-blue-500" />
+                        <span className="text-xs text-[var(--text-muted)]">Most ordered: <span className="font-semibold text-[var(--text-primary)]">Smart Watch</span></span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Users className="h-3.5 w-3.5 text-violet-500" />
+                        <span className="text-xs text-[var(--text-muted)]">Repeat rate: <span className="font-semibold text-[var(--text-primary)]">34%</span></span>
+                      </div>
+                    </div>
+                    <div className="flex h-1.5 w-32 rounded-full overflow-hidden">
+                      <div className="bg-emerald-500" style={{ width: '40%' }} />
+                      <div className="bg-blue-500" style={{ width: '20%' }} />
+                      <div className="bg-violet-500" style={{ width: '20%' }} />
+                      <div className="bg-red-400" style={{ width: '10%' }} />
+                      <div className="bg-slate-400" style={{ width: '10%' }} />
+                    </div>
                   </div>
                 </div>
               </>
