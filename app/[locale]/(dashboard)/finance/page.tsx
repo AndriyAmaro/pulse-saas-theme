@@ -690,19 +690,32 @@ export default function FinanceDashboard() {
             ) : (
               <div className="flex flex-col items-center gap-0 sm:gap-6 lg:flex-row">
                 <div className="w-full sm:w-64">
-                  <ChartWrapper
-                    type="donut"
-                    data={expenseBreakdownData}
-                    series={[{ dataKey: 'value', name: 'Amount' }]}
-                    xAxisKey="name"
-                    height={200}
-                    showTooltip
-                    tooltipFormatter={(value) => '$' + value.toLocaleString()}
-                  />
+                  <div className="sm:hidden">
+                    <ChartWrapper
+                      type="donut"
+                      data={expenseBreakdownData}
+                      series={[{ dataKey: 'value', name: 'Amount' }]}
+                      xAxisKey="name"
+                      height={250}
+                      showTooltip
+                      tooltipFormatter={(value) => '$' + value.toLocaleString()}
+                    />
+                  </div>
+                  <div className="hidden sm:block">
+                    <ChartWrapper
+                      type="donut"
+                      data={expenseBreakdownData}
+                      series={[{ dataKey: 'value', name: 'Amount' }]}
+                      xAxisKey="name"
+                      height={200}
+                      showTooltip
+                      tooltipFormatter={(value) => '$' + value.toLocaleString()}
+                    />
+                  </div>
                 </div>
-                <div className="flex-1 w-full space-y-0 sm:space-y-2">
+                <div className="flex-1 w-full divide-y divide-[var(--border-default)] sm:divide-y-0 sm:space-y-2">
                   {expenseBreakdownData.map((item) => (
-                    <div key={item.name} className="flex items-center justify-between gap-6 py-0 sm:py-1">
+                    <div key={item.name} className="flex items-center justify-between gap-6 py-2 sm:py-1">
                       <div className="flex items-center gap-2">
                         <div
                           className="h-3 w-3 rounded-full"
