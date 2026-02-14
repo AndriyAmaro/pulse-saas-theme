@@ -635,7 +635,11 @@ export default function AnalyticsPage() {
                   const DeviceIcon = device.icon
                   const percentage = ((device.users / totalDeviceUsers) * 100).toFixed(1)
                   return (
-                    <div key={device.device} className="flex items-center gap-3 lg:gap-4">
+                    <div key={device.device} className="flex items-center gap-3 lg:gap-4 lg:rounded-lg lg:border lg:border-[var(--border-default)] lg:p-3 lg:relative lg:overflow-hidden">
+                      <div
+                        className="hidden lg:block absolute left-0 top-0 h-full w-1 rounded-l-lg"
+                        style={{ backgroundColor: device.color }}
+                      />
                       <div
                         className="flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg"
                         style={{ backgroundColor: `${device.color}20` }}
@@ -647,14 +651,14 @@ export default function AnalyticsPage() {
                           <span className="font-medium text-[var(--text-primary)]">
                             {device.device}
                           </span>
-                          <span className="text-sm text-[var(--text-muted)]">
+                          <span className="text-sm lg:text-base lg:font-semibold text-[var(--text-muted)]">
                             {percentage}%
                           </span>
                         </div>
                         <ProgressBar
                           value={Number(percentage)}
                           size="sm"
-                          className="h-1.5"
+                          className="h-1.5 lg:h-2"
                         />
                       </div>
                     </div>
