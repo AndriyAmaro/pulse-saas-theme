@@ -604,6 +604,36 @@ export default function ProjectsDashboard() {
                 </div>
               </div>
 
+              {/* Center: Premium Sprint Progress Circle (desktop only) */}
+              <div className="hidden lg:flex items-center justify-center">
+                <div className="relative">
+                  <div className="relative h-32 w-32">
+                    <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" className="text-indigo-100 dark:text-indigo-900/40" strokeWidth="3" />
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="url(#sprintGradient)" strokeWidth="3" strokeDasharray={`${(sprintData.tasksCompleted / sprintData.tasksTotal) * 88} 88`} strokeLinecap="round" />
+                      <defs>
+                        <linearGradient id="sprintGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#6366F1" />
+                          <stop offset="100%" stopColor="#8B5CF6" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-[10px] text-[var(--text-muted)]">Progress</span>
+                      <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{Math.round((sprintData.tasksCompleted / sprintData.tasksTotal) * 100)}%</span>
+                    </div>
+                  </div>
+                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 flex items-center gap-3 rounded-full bg-white/90 dark:bg-slate-900/90 px-3 py-1 shadow-lg border border-indigo-200/50 dark:border-indigo-800/30">
+                    <div className="flex items-center gap-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
+                      <span className="text-[9px] font-medium text-indigo-600 dark:text-indigo-400">On Track</span>
+                    </div>
+                    <div className="h-3 w-px bg-indigo-200 dark:bg-indigo-800" />
+                    <span className="text-[9px] text-[var(--text-muted)]">{sprintData.daysRemaining}d left</span>
+                  </div>
+                </div>
+              </div>
+
               {/* Right: Velocity bars + Sprint metrics */}
               <div className="flex items-center gap-6 lg:gap-8">
                 {/* Sprint velocity bars */}
