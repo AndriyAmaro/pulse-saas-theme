@@ -534,7 +534,7 @@ export default function AnalyticsPage() {
           {isLoading ? (
             <Skeleton className="h-[350px] rounded-lg" />
           ) : (
-            <div className="-mx-3 sm:mx-0">
+            <div className="-mx-5 sm:mx-0">
               <ChartWrapper
                 type="area"
                 data={trafficData}

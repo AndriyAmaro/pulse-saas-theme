@@ -226,6 +226,8 @@ const SparklineChart = React.forwardRef<HTMLDivElement, SparklineChartProps>(
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor={color} stopOpacity={fillOpacity} />
+              <stop offset="60%" stopColor={color} stopOpacity={fillOpacity * 0.15} />
+              <stop offset="85%" stopColor={color} stopOpacity={0} />
               <stop offset="100%" stopColor={color} stopOpacity={0} />
             </linearGradient>
           </defs>
