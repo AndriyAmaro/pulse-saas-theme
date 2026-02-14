@@ -453,6 +453,40 @@ export default function CRMDashboard() {
                   </div>
                 </div>
 
+                {/* Center: Premium Revenue Breakdown Circle */}
+                <div className="relative">
+                  <div className="relative h-28 w-28">
+                    <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" className="text-orange-100 dark:text-orange-900/40" strokeWidth="3" />
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="url(#revenueGradient)" strokeWidth="3" strokeDasharray="88 22" strokeLinecap="round" />
+                      <circle cx="18" cy="18" r="10" fill="none" stroke="currentColor" className="text-amber-100 dark:text-amber-900/40" strokeWidth="2" />
+                      <circle cx="18" cy="18" r="10" fill="none" stroke="url(#dealGradient)" strokeWidth="2" strokeDasharray="56 8" strokeLinecap="round" />
+                      <defs>
+                        <linearGradient id="revenueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#F97316" />
+                          <stop offset="100%" stopColor="#F59E0B" />
+                        </linearGradient>
+                        <linearGradient id="dealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#F59E0B" />
+                          <stop offset="100%" stopColor="#FBBF24" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-[10px] text-[var(--text-muted)]">Target</span>
+                      <span className="text-lg font-bold text-orange-600 dark:text-orange-400">80%</span>
+                    </div>
+                  </div>
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex items-center gap-3 rounded-full bg-white/90 dark:bg-slate-900/90 px-3 py-1 shadow-lg border border-orange-200/50 dark:border-orange-800/30">
+                    <div className="flex items-center gap-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-orange-500" />
+                      <span className="text-[9px] font-medium text-orange-600 dark:text-orange-400">$127K</span>
+                    </div>
+                    <div className="h-3 w-px bg-orange-200 dark:bg-orange-800" />
+                    <span className="text-[9px] text-[var(--text-muted)]">On Track</span>
+                  </div>
+                </div>
+
                 {/* CRM metrics panel - centered below */}
                 <div className="flex items-center gap-8">
                   {[
