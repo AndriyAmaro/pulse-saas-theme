@@ -911,6 +911,24 @@ export default function EcommercePage() {
                       ))}
                     </div>
                   </div>
+                  <div className="grid grid-cols-4 gap-px border-t border-[var(--border-default)] bg-[var(--border-default)]">
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Conversion</p>
+                      <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">3.2%</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Refunds</p>
+                      <p className="text-sm font-bold text-red-500 dark:text-red-400 mt-0.5">$174.97</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Items/Order</p>
+                      <p className="text-sm font-bold text-[var(--text-primary)] mt-0.5">1.7</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Peak Hour</p>
+                      <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-0.5">2 PM</p>
+                    </div>
+                  </div>
                 </div>
               </>
             )}
