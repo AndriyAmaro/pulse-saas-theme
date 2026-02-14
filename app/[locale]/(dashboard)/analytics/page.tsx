@@ -512,7 +512,8 @@ export default function AnalyticsPage() {
       </DashboardGrid>
 
       {/* ====== MAIN CHART ====== */}
-      <Card>
+      <Card className="relative overflow-hidden">
+        <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-indigo-500" />
         <Card.Header>
           <div className="flex items-center justify-between">
             <div>
@@ -554,7 +555,8 @@ export default function AnalyticsPage() {
       {/* ====== ROW 2: Traffic Sources + Browsers + Devices ====== */}
       <DashboardGrid preset="3col" gap="lg">
         {/* Traffic Sources */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Globe className="h-5 w-5 text-primary-500" />
@@ -589,7 +591,8 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Top Browsers */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-cyan-500 to-blue-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Monitor className="h-5 w-5 text-primary-500" />
@@ -615,7 +618,8 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Device Breakdown */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-violet-500 to-purple-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Smartphone className="h-5 w-5 text-primary-500" />
@@ -665,7 +669,8 @@ export default function AnalyticsPage() {
       {/* ====== ROW 3: Geographic + Real-time ====== */}
       <DashboardGrid preset="content-sidebar" gap="lg">
         {/* Geographic Distribution */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-rose-500 to-pink-400" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -755,7 +760,8 @@ export default function AnalyticsPage() {
       {/* ====== ROW 4: Top Pages + Conversion Funnel ====== */}
       <DashboardGrid preset="content-sidebar" gap="lg">
         {/* Top Pages Table */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-indigo-500 to-blue-400" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -837,7 +843,8 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Conversion Funnel */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-amber-500 to-orange-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-primary-500" />
