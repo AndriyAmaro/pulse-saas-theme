@@ -534,7 +534,7 @@ export default function CRMDashboard() {
       )}
 
       {/* ====== ROW 1: KPI CARDS ====== */}
-      <DashboardGrid preset="4col" gap="lg">
+      <DashboardGrid preset="4col" gap="lg" className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-3 pb-3 sm:grid sm:overflow-visible sm:snap-none sm:pb-0 sm:px-0 sm:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {isLoading ? (
           <>
             {[1, 2, 3, 4].map((i) => (
@@ -544,7 +544,7 @@ export default function CRMDashboard() {
         ) : (
           <>
             {/* Total Leads */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-orange-500 to-amber-400" />
               <Card.Content className="relative">
@@ -563,14 +563,16 @@ export default function CRMDashboard() {
                     <Users className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <SparklineChart data={kpiData.totalLeads.sparkline} type="area" color="#F97316" width={140} height={32} gradient />
+                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
+                  {kpiData.totalLeads.sparkline.map((v, i) => (
+                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === kpiData.totalLeads.sparkline.length - 1 ? 'bg-orange-500' : 'bg-orange-200 dark:bg-orange-700/50'}`} style={{ height: `${(v / 847) * 100}%` }} />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* Qualified */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-cyan-400" />
               <Card.Content className="relative">
@@ -588,14 +590,16 @@ export default function CRMDashboard() {
                     <Target className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <SparklineChart data={kpiData.qualified.sparkline} type="area" color="#3B82F6" width={140} height={32} gradient />
+                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
+                  {kpiData.qualified.sparkline.map((v, i) => (
+                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i >= kpiData.qualified.sparkline.length - 2 ? 'bg-blue-500' : 'bg-blue-200 dark:bg-blue-700/50'}`} style={{ height: `${(v / 312) * 100}%` }} />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* Proposals Sent */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-violet-500 to-purple-400" />
               <Card.Content className="relative">
@@ -614,14 +618,16 @@ export default function CRMDashboard() {
                     <FileText className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <SparklineChart data={kpiData.proposalsSent.sparkline} type="area" color="#8B5CF6" width={140} height={32} gradient />
+                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
+                  {kpiData.proposalsSent.sparkline.map((v, i) => (
+                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === kpiData.proposalsSent.sparkline.length - 1 ? 'bg-violet-500' : 'bg-violet-200 dark:bg-violet-700/50'}`} style={{ height: `${(v / 89) * 100}%` }} />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* Deals Won */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 to-green-400" />
               <Card.Content className="relative">
@@ -639,8 +645,10 @@ export default function CRMDashboard() {
                     <Trophy className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <SparklineChart data={kpiData.dealsWon.sparkline} type="area" color="#10B981" width={140} height={32} gradient />
+                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
+                  {kpiData.dealsWon.sparkline.map((v, i) => (
+                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === kpiData.dealsWon.sparkline.length - 1 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`} style={{ height: `${(v / 34) * 100}%` }} />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
