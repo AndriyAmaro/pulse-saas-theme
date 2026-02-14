@@ -640,6 +640,49 @@ export default function AnalyticsPage() {
                 tooltipFormatter={(value) => value.toLocaleString()}
               />
             )}
+
+            {/* Desktop only: browser metrics */}
+            {!isLoading && (
+              <div className="hidden lg:block pt-4 mt-2 border-t border-[var(--border-default)]">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <p className="text-xs text-[var(--text-muted)]">Total Users</p>
+                    <p className="text-2xl font-bold text-[var(--text-primary)]">
+                      {browsersData.reduce((s, b) => s + b.users, 0).toLocaleString()}
+                    </p>
+                  </div>
+                  <Badge variant="success" size="sm" className="flex items-center gap-1">
+                    <TrendingUp className="h-3 w-3" />
+                    +5.8% vs last period
+                  </Badge>
+                </div>
+
+                <div className="flex gap-1 h-2 rounded-full overflow-hidden mb-3">
+                  {browsersData.map((b, i) => {
+                    const colors = ['#3B82F6', '#14B8A6', '#F59E0B', '#8B5CF6', '#94A3B8']
+                    return (
+                      <div
+                        key={b.browser}
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{ width: `${b.percentage}%`, backgroundColor: colors[i] }}
+                      />
+                    )
+                  })}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[var(--text-muted)]">
+                  {browsersData.map((b, i) => {
+                    const colors = ['#3B82F6', '#14B8A6', '#F59E0B', '#8B5CF6', '#94A3B8']
+                    return (
+                      <div key={b.browser} className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full" style={{ backgroundColor: colors[i] }} />
+                        {b.browser}: {b.percentage}%
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
           </Card.Content>
         </Card>
 
