@@ -187,7 +187,7 @@ function DashboardLayoutInner({ children }: { children: React.ReactNode }) {
         </Header>
 
         {/* Main Content */}
-        <MainContent padding="lg" className="flex-1 overflow-y-auto px-2 py-3">
+        <MainContent padding="lg" className="flex-1 overflow-y-auto px-0 py-2">
           {children}
         </MainContent>
       </div>
