@@ -367,7 +367,7 @@ export default function AnalyticsPage() {
       )}
 
       {/* ====== KPI CARDS ====== */}
-      <DashboardGrid preset="4col" gap="lg">
+      <DashboardGrid preset="4col" gap="lg" className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-3 pb-3 sm:grid sm:overflow-visible sm:snap-none sm:pb-0 sm:px-0 sm:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {isLoading ? (
           <>
             {[1, 2, 3, 4].map((i) => (
@@ -377,8 +377,8 @@ export default function AnalyticsPage() {
         ) : (
           <>
             {/* Total Visitors */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent" />
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-blue-400/5 to-transparent sm:from-blue-500/5 sm:via-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-blue-400" />
               <Card.Content className="relative">
                 <div className="flex items-start justify-between">
@@ -410,8 +410,8 @@ export default function AnalyticsPage() {
             </Card>
 
             {/* Unique Sessions */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-transparent" />
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 via-teal-400/5 to-transparent sm:from-teal-500/5 sm:via-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-teal-500 to-emerald-400" />
               <Card.Content className="relative">
                 <div className="flex items-start justify-between">
@@ -443,8 +443,8 @@ export default function AnalyticsPage() {
             </Card>
 
             {/* Bounce Rate */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-transparent" />
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-transparent sm:from-amber-500/5 sm:via-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-amber-500 to-orange-400" />
               <Card.Content className="relative">
                 <div className="flex items-start justify-between">
@@ -476,8 +476,8 @@ export default function AnalyticsPage() {
             </Card>
 
             {/* Avg Session Duration */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-transparent" />
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 via-violet-400/5 to-transparent sm:from-violet-500/5 sm:via-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-violet-500 to-purple-400" />
               <Card.Content className="relative">
                 <div className="flex items-start justify-between">
@@ -778,14 +778,60 @@ export default function AnalyticsPage() {
                 ))}
               </div>
             ) : (
-              <DataTable
-                data={topPagesData}
-                columns={topPagesColumns}
-                sortable
-                pagination
-                pageSize={5}
-                hoverable
-              />
+              <>
+                {/* Mobile: premium horizontal scroll cards */}
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 p-4 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  {topPagesData.map((page, idx) => (
+                    <div
+                      key={page.id}
+                      className="snap-start shrink-0 w-[260px] rounded-xl border border-[var(--border-default)] bg-gradient-to-br from-[var(--bg-base)] to-[var(--bg-subtle)] p-4 space-y-3 shadow-sm"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-md bg-primary-500/10 text-xs font-bold text-primary-500">
+                          {idx + 1}
+                        </span>
+                        <span className="text-sm font-semibold text-[var(--text-primary)] truncate">
+                          {page.page}
+                        </span>
+                      </div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-bold text-[var(--text-primary)]">
+                          {page.views.toLocaleString()}
+                        </span>
+                        <span className="text-xs text-[var(--text-muted)]">views</span>
+                      </div>
+                      <div className="h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent" />
+                      <div className="grid grid-cols-3 gap-2 text-center">
+                        <div>
+                          <p className="text-[10px] text-[var(--text-muted)]">Unique</p>
+                          <p className="text-sm font-semibold text-[var(--text-primary)]">{(page.uniques / 1000).toFixed(1)}k</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-[var(--text-muted)]">Bounce</p>
+                          <Badge variant={page.bounceRate > 40 ? 'error' : page.bounceRate > 30 ? 'warning' : 'success'} size="sm">
+                            {page.bounceRate}%
+                          </Badge>
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-[var(--text-muted)]">Time</p>
+                          <p className="text-sm font-semibold text-[var(--text-primary)]">{page.avgTime}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* Desktop: full data table */}
+                <div className="hidden sm:block">
+                  <DataTable
+                    data={topPagesData}
+                    columns={topPagesColumns}
+                    sortable
+                    pagination
+                    pageSize={5}
+                    hoverable
+                  />
+                </div>
+              </>
             )}
           </Card.Content>
         </Card>
