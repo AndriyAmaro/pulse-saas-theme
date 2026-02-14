@@ -351,9 +351,9 @@ export default function EcommercePage() {
   return (
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)]">
+      <div className="flex flex-col items-center gap-4">
+        <div className="text-center">
+          <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary-500 via-emerald-400 to-teal-500 bg-clip-text text-transparent">
             E-commerce
           </h1>
           <p className="mt-1 text-[var(--text-secondary)]">
@@ -565,11 +565,12 @@ export default function EcommercePage() {
                 ))}
               </div>
             ) : (
-              <div className="space-y-3">
-                {paymentMethodsData.map((payment) => {
+              <div className="space-y-3 lg:space-y-0 lg:divide-y lg:divide-[var(--border-default)]">
+                {paymentMethodsData.map((payment, index) => {
                   const PaymentIcon = payment.icon
                   return (
-                    <div key={payment.method} className="flex items-center gap-3">
+                    <div key={payment.method} className="flex items-center gap-3 lg:py-3.5 lg:first:pt-0 lg:last:pb-0">
+                      <div className={`hidden lg:block w-1 self-stretch rounded-full ${['bg-blue-500', 'bg-emerald-500', 'bg-indigo-500', 'bg-amber-500', 'bg-slate-400'][index]}`} />
                       <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--bg-subtle)]">
                         <PaymentIcon className="h-4 w-4 text-[var(--text-muted)]" />
                       </div>
@@ -668,12 +669,43 @@ export default function EcommercePage() {
                 ))}
               </div>
             ) : (
-              <RegionStats
-                items={salesByRegionData}
-                maxVisible={5}
-                formatValue={(v) => `$${v.toLocaleString()}`}
-                sortable={false}
-              />
+              <>
+                <RegionStats
+                  items={salesByRegionData}
+                  maxVisible={5}
+                  formatValue={(v) => `$${v.toLocaleString()}`}
+                  sortable={false}
+                />
+                {/* Desktop: additional summary */}
+                <div className="hidden lg:block mt-4 pt-4 border-t border-[var(--border-default)] space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-[var(--text-muted)]">Total Revenue</span>
+                    <span className="text-sm font-bold text-[var(--text-primary)]">$99,030</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-[var(--text-muted)]">Top Region</span>
+                    <span className="text-sm font-semibold text-primary-600 dark:text-primary-400">California (28.7%)</span>
+                  </div>
+                  <div className="flex h-2 rounded-full overflow-hidden">
+                    <div className="bg-blue-500" style={{ width: '28.7%' }} />
+                    <div className="bg-emerald-500" style={{ width: '22.4%' }} />
+                    <div className="bg-violet-500" style={{ width: '20.1%' }} />
+                    <div className="bg-amber-500" style={{ width: '15.8%' }} />
+                    <div className="bg-rose-500" style={{ width: '13%' }} />
+                  </div>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1">
+                    {salesByRegionData.map((region, i) => {
+                      const colors = ['bg-blue-500', 'bg-emerald-500', 'bg-violet-500', 'bg-amber-500', 'bg-rose-500']
+                      return (
+                        <div key={region.id} className="flex items-center gap-1.5">
+                          <div className={`h-2 w-2 rounded-full ${colors[i]}`} />
+                          <span className="text-xs text-[var(--text-muted)]">{region.name}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </>
             )}
           </Card.Content>
         </Card>
@@ -801,6 +833,35 @@ export default function EcommercePage() {
                       },
                     ]}
                   />
+                </div>
+                {/* Desktop: summary metrics */}
+                <div className="hidden sm:flex items-center justify-between px-4 py-3 border-t border-[var(--border-default)] bg-[var(--bg-subtle)]">
+                  <div className="flex items-center gap-6">
+                    <div>
+                      <span className="text-xs text-[var(--text-muted)]">Total Orders</span>
+                      <p className="text-sm font-bold text-[var(--text-primary)]">{recentOrdersData.length}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-[var(--text-muted)]">Total Revenue</span>
+                      <p className="text-sm font-bold text-[var(--text-primary)]">${recentOrdersData.reduce((s, o) => s + o.total, 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-[var(--text-muted)]">Avg Value</span>
+                      <p className="text-sm font-bold text-[var(--text-primary)]">${(recentOrdersData.reduce((s, o) => s + o.total, 0) / recentOrdersData.length).toFixed(2)}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {(['Completed', 'Processing', 'Shipped'] as const).map(status => {
+                      const count = recentOrdersData.filter(o => o.status === status).length
+                      const colors: Record<string, string> = { Completed: 'bg-emerald-500', Processing: 'bg-blue-500', Shipped: 'bg-violet-500' }
+                      return (
+                        <div key={status} className="flex items-center gap-1.5">
+                          <div className={`h-2 w-2 rounded-full ${colors[status]}`} />
+                          <span className="text-xs text-[var(--text-muted)]">{status}: {count}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </>
             )}
