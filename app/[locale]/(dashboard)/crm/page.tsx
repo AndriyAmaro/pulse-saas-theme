@@ -433,10 +433,49 @@ export default function CRMDashboard() {
                 </div>
               </div>
 
-              {/* Right: Premium Revenue Visualization */}
-              <div className="flex items-center gap-6 lg:gap-8">
-                {/* Revenue bars */}
-                <div className="w-full lg:w-48">
+              {/* Center: Premium Revenue Visualization (desktop) */}
+              <div className="hidden lg:flex flex-col items-center gap-4">
+                {/* Revenue bars - larger and horizontal */}
+                <div className="w-full max-w-lg">
+                  <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest mb-3 text-center">Revenue Trend (30 days)</p>
+                  <div className="flex items-end gap-1 h-24 group cursor-pointer">
+                    {heroData.last30Days.slice(-21).map((v, i) => (
+                      <div
+                        key={i}
+                        className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === 20 ? 'bg-orange-500' : i >= 18 ? 'bg-orange-400 dark:bg-orange-500/80' : 'bg-orange-200 dark:bg-orange-700/50'}`}
+                        style={{ height: `${((v - 68000) / (127450 - 68000)) * 100}%` }}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="text-[9px] text-[var(--text-muted)]">3w ago</span>
+                    <span className="text-[9px] font-semibold text-orange-600 dark:text-orange-400">Today</span>
+                  </div>
+                </div>
+
+                {/* CRM metrics panel - centered below */}
+                <div className="flex items-center gap-8">
+                  {[
+                    { icon: Target, label: 'Conversion Rate', value: '4.0%', color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-100 dark:bg-orange-900/30' },
+                    { icon: Trophy, label: 'Avg Deal Size', value: '$3.7K', color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-100 dark:bg-amber-900/30' },
+                    { icon: Rocket, label: 'Sales Velocity', value: '18d', color: 'text-orange-500 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-950/30' },
+                  ].map((metric) => (
+                    <div key={metric.label} className="flex flex-col items-center gap-2">
+                      <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${metric.bg}`}>
+                        <metric.icon className={`h-5 w-5 ${metric.color}`} />
+                      </div>
+                      <div className="text-center">
+                        <p className="text-[9px] uppercase tracking-widest text-[var(--text-muted)]">{metric.label}</p>
+                        <p className={`text-sm font-bold ${metric.color}`}>{metric.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mobile: compact version */}
+              <div className="lg:hidden flex flex-col gap-4">
+                <div className="w-full">
                   <p className="text-[9px] text-[var(--text-muted)] uppercase tracking-widest mb-2">Revenue (30d)</p>
                   <div className="flex items-end gap-1 h-16 group cursor-pointer">
                     {heroData.last30Days.slice(-14).map((v, i) => (
@@ -451,25 +490,6 @@ export default function CRMDashboard() {
                     <span className="text-[8px] text-[var(--text-muted)]">2w ago</span>
                     <span className="text-[8px] font-semibold text-orange-600 dark:text-orange-400">Today</span>
                   </div>
-                </div>
-
-                {/* CRM metrics panel */}
-                <div className="hidden lg:flex flex-col gap-3 pl-8 border-l border-orange-200/50 dark:border-orange-800/30">
-                  {[
-                    { icon: Target, label: 'Conversion Rate', value: '4.0%', color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-100 dark:bg-orange-900/30' },
-                    { icon: Trophy, label: 'Avg Deal Size', value: '$3.7K', color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-100 dark:bg-amber-900/30' },
-                    { icon: Rocket, label: 'Sales Velocity', value: '18d', color: 'text-orange-500 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-950/30' },
-                  ].map((metric) => (
-                    <div key={metric.label} className="flex items-center gap-3">
-                      <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${metric.bg}`}>
-                        <metric.icon className={`h-4 w-4 ${metric.color}`} />
-                      </div>
-                      <div>
-                        <p className="text-[9px] uppercase tracking-widest text-[var(--text-muted)]">{metric.label}</p>
-                        <p className={`text-sm font-bold ${metric.color}`}>{metric.value}</p>
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>
