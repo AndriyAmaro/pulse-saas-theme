@@ -669,7 +669,7 @@ export default function FinanceDashboard() {
             {isLoading ? (
               <Skeleton className="mx-auto h-64 w-64 rounded-full" />
             ) : (
-              <div className="flex flex-col items-center gap-0 sm:gap-6 lg:flex-row">
+              <div className="flex flex-col items-center gap-2 sm:gap-6 lg:flex-row">
                 <div className="w-full sm:w-64">
                   <ChartWrapper
                     type="donut"
@@ -681,9 +681,9 @@ export default function FinanceDashboard() {
                     tooltipFormatter={(value) => '$' + value.toLocaleString()}
                   />
                 </div>
-                <div className="flex-1 space-y-2">
+                <div className="flex-1 space-y-0.5 sm:space-y-2">
                   {expenseBreakdownData.map((item) => (
-                    <div key={item.name} className="flex items-center justify-between py-1">
+                    <div key={item.name} className="flex items-center justify-between py-0 sm:py-1">
                       <div className="flex items-center gap-2">
                         <div
                           className="h-3 w-3 rounded-full"
