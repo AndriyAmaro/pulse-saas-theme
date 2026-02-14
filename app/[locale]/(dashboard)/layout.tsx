@@ -149,6 +149,8 @@ function DashboardLayoutInner({ children }: { children: React.ReactNode }) {
         renderLink={renderLink}
         expanded={sidebarExpanded}
         onExpandedChange={setSidebarExpanded}
+        mobileOpen={mobileOpen}
+        onMobileOpenChange={setMobileOpen}
         persistState
       />
 

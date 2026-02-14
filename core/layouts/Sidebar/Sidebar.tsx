@@ -85,6 +85,10 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   storageKey?: string
   /** Mobile breakpoint in pixels */
   mobileBreakpoint?: number
+  /** Controlled mobile open state */
+  mobileOpen?: boolean
+  /** Callback when mobile open state changes */
+  onMobileOpenChange?: (open: boolean) => void
   /** Custom render for menu items */
   renderLink?: (item: SidebarItem, children: React.ReactNode) => React.ReactNode
   /** Footer content (below user info) */
@@ -545,6 +549,8 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       persistState = true,
       storageKey = STORAGE_KEY_DEFAULT,
       mobileBreakpoint = 1024,
+      mobileOpen: controlledMobileOpen,
+      onMobileOpenChange,
       renderLink,
       footer,
       header,
@@ -555,7 +561,19 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   ) => {
     // Mobile detection
     const isMobile = useIsMobile(mobileBreakpoint)
-    const [mobileOpen, setMobileOpen] = React.useState(false)
+    const [internalMobileOpen, setInternalMobileOpen] = React.useState(false)
+
+    // Use controlled or internal mobile state
+    const mobileOpen = controlledMobileOpen ?? internalMobileOpen
+    const setMobileOpen = React.useCallback(
+      (open: boolean) => {
+        if (controlledMobileOpen === undefined) {
+          setInternalMobileOpen(open)
+        }
+        onMobileOpenChange?.(open)
+      },
+      [controlledMobileOpen, onMobileOpenChange]
+    )
 
     // Expanded state with persistence
     const [internalExpanded, setInternalExpanded] = React.useState(() => {
