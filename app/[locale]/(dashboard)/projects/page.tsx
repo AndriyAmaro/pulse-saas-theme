@@ -515,16 +515,16 @@ export default function ProjectsDashboard() {
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold md:text-3xl text-center md:text-left bg-gradient-to-r from-indigo-600 via-violet-500 to-purple-500 bg-clip-text text-transparent">
+        <div className="text-center md:flex-1">
+          <h1 className="text-2xl font-bold md:text-3xl text-center bg-gradient-to-r from-indigo-600 via-violet-500 to-purple-500 bg-clip-text text-transparent">
             Project Management
           </h1>
-          <p className="mt-1 text-[var(--text-secondary)] text-center md:text-left">
+          <p className="mt-1 text-[var(--text-secondary)] text-center">
             Track progress, manage tasks, and collaborate with your team
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-2 md:justify-end">
           {/* View Toggle */}
           <div className="flex rounded-lg border border-[var(--border-default)] bg-[var(--bg-subtle)] p-1">
             {viewOptions.map((option) => {
