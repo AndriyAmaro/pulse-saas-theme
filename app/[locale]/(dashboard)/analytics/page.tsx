@@ -602,13 +602,38 @@ export default function AnalyticsPage() {
                       +12.3% growth
                     </Badge>
                   </div>
-                  <div className="rounded-lg bg-[var(--bg-subtle)] p-3">
+                  <div className="rounded-lg bg-[var(--bg-subtle)] p-3 mb-4">
                     <div className="flex items-center gap-2 text-xs">
                       <Globe className="h-3.5 w-3.5 text-primary-500" />
                       <span className="text-[var(--text-secondary)]">
                         <span className="font-semibold text-[var(--text-primary)]">Organic Search</span> is your top source at 40.7%
                       </span>
                     </div>
+                  </div>
+
+                  <div className="flex gap-1 h-2 rounded-full overflow-hidden mb-3">
+                    {trafficSourcesData.map((source, i) => {
+                      const colors = ['#10B981', '#3B82F6', '#F59E0B', '#8B5CF6', '#EF4444']
+                      return (
+                        <div
+                          key={source.source}
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{ width: `${source.percentage}%`, backgroundColor: colors[i] }}
+                        />
+                      )
+                    })}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[var(--text-muted)]">
+                    {trafficSourcesData.map((source, i) => {
+                      const colors = ['#10B981', '#3B82F6', '#F59E0B', '#8B5CF6', '#EF4444']
+                      return (
+                        <div key={source.source} className="flex items-center gap-1.5">
+                          <span className="h-2 w-2 rounded-full" style={{ backgroundColor: colors[i] }} />
+                          {source.source}: {source.percentage}%
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
