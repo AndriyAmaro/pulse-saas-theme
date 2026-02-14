@@ -288,71 +288,100 @@ export default function FinanceDashboard() {
         </div>
       </div>
 
-      {/* ====== ROW 1: MAIN BALANCE CARD ====== */}
+      {/* ====== ROW 1: MAIN BALANCE HERO ====== */}
       {isLoading ? (
         <Skeleton className="h-48 w-full rounded-xl" />
       ) : (
-        <Card className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-green-950/20 dark:via-slate-900 dark:to-emerald-950/20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.1),transparent_50%)]" />
+        <Card className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(34,197,94,0.15),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(16,185,129,0.08),transparent_60%)]" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent" />
           <Card.Content className="relative">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="space-y-2">
-                <p className="text-sm font-medium text-[var(--text-secondary)]">Current Balance</p>
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              {/* Left: Balance + Change */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <p className="text-xs font-medium text-emerald-400/80 uppercase tracking-widest">Portfolio Value</p>
+                  <div className="flex items-center gap-1">
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest">Live</span>
+                  </div>
+                </div>
                 <div className="flex items-baseline gap-3">
-                  <span className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+                  <span className="text-4xl font-bold tracking-tight md:text-5xl bg-gradient-to-r from-white via-emerald-100 to-white bg-clip-text text-transparent">
                     ${balanceData.current.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                   </span>
-                  <Badge variant="success" size="sm" className="flex items-center gap-1">
-                    <TrendingUp className="h-3 w-3" />
-                    {balanceData.changePercent}%
-                  </Badge>
                 </div>
-                <p className="flex items-center gap-1 text-sm text-green-600 dark:text-green-400">
-                  <ArrowUpRight className="h-4 w-4" />
-                  ${balanceData.change.toLocaleString()} from last month
-                </p>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1">
+                    <ArrowUpRight className="h-3.5 w-3.5 text-emerald-400" />
+                    <span className="text-xs font-semibold text-emerald-400">+{balanceData.changePercent}%</span>
+                  </div>
+                  <span className="text-xs text-slate-400">+${balanceData.change.toLocaleString()} this month</span>
+                </div>
+                {/* Mini metrics row */}
+                <div className="flex items-center gap-4 pt-1">
+                  {[
+                    { label: 'Daily Avg', value: '$9.5K', color: 'text-emerald-400' },
+                    { label: '30d High', value: '$289K', color: 'text-white' },
+                    { label: '30d Low', value: '$265K', color: 'text-slate-400' },
+                  ].map((m, i) => (
+                    <React.Fragment key={m.label}>
+                      {i > 0 && <div className="h-3 w-px bg-slate-700" />}
+                      <div>
+                        <p className="text-[9px] uppercase tracking-widest text-slate-500">{m.label}</p>
+                        <p className={`text-xs font-bold ${m.color}`}>{m.value}</p>
+                      </div>
+                    </React.Fragment>
+                  ))}
+                </div>
               </div>
 
-              <div className="w-full lg:w-[340px]">
-                <div className="rounded-xl border border-emerald-200/40 dark:border-emerald-800/20 bg-white/60 dark:bg-white/5 backdrop-blur-sm shadow-sm p-2.5">
-                  <div className="flex items-center justify-between mb-1.5 px-1">
-                    <p className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-widest">30d Performance</p>
-                    <div className="flex items-center gap-1">
-                      <div className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-[9px] font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Live</span>
+              {/* Right: Allocation + Sparkline */}
+              <div className="flex items-center gap-6 lg:gap-8">
+                {/* Portfolio allocation */}
+                <div className="hidden sm:flex flex-col items-center gap-2">
+                  <div className="relative h-[88px] w-[88px]">
+                    <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" className="text-slate-700/50" strokeWidth="3" />
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="#22C55E" strokeWidth="3" strokeDasharray="40 60" strokeDashoffset="0" strokeLinecap="round" />
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="#3B82F6" strokeWidth="3" strokeDasharray="25 75" strokeDashoffset="-40" strokeLinecap="round" />
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="#8B5CF6" strokeWidth="3" strokeDasharray="20 80" strokeDashoffset="-65" strokeLinecap="round" />
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="#F59E0B" strokeWidth="3" strokeDasharray="15 85" strokeDashoffset="-85" strokeLinecap="round" />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-[10px] text-slate-400">ROI</span>
+                      <span className="text-sm font-bold text-white">18.3%</span>
                     </div>
                   </div>
-                  <ChartWrapper
+                  <div className="flex items-center gap-2">
+                    {[
+                      { color: 'bg-emerald-500', label: 'Stocks' },
+                      { color: 'bg-blue-500', label: 'Bonds' },
+                      { color: 'bg-violet-500', label: 'Crypto' },
+                      { color: 'bg-amber-500', label: 'Cash' },
+                    ].map((a) => (
+                      <div key={a.label} className="flex items-center gap-1">
+                        <div className={`h-1.5 w-1.5 rounded-full ${a.color}`} />
+                        <span className="text-[8px] text-slate-500 uppercase tracking-wider">{a.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Sparkline area */}
+                <div className="w-full lg:w-48">
+                  <p className="text-[9px] text-slate-500 uppercase tracking-widest mb-1">30d Trend</p>
+                  <SparklineChart
+                    data={balanceData.last30Days}
                     type="area"
-                    data={balanceData.last30Days.map((val, i) => ({ day: i + 1, balance: val }))}
-                    series={[{ dataKey: 'balance', name: 'Balance', fillOpacity: 0.25, color: '#22C55E' }]}
-                    xAxisKey="day"
-                    height={64}
-                    showTooltip
-                    tooltipFormatter={(value) => '$' + Number(value).toLocaleString()}
+                    color="#22C55E"
+                    width={192}
+                    height={56}
+                    showDot
+                    gradient
+                    animated
                   />
-                  <div className="flex items-center justify-between px-1 mt-1.5 pt-1.5 border-t border-emerald-200/30 dark:border-emerald-800/15">
-                    <div className="flex items-center gap-3">
-                      <div className="text-center">
-                        <p className="text-[8px] uppercase tracking-widest text-[var(--text-muted)]">High</p>
-                        <p className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">$289K</p>
-                      </div>
-                      <div className="h-4 w-px bg-emerald-200/50 dark:bg-emerald-800/30" />
-                      <div className="text-center">
-                        <p className="text-[8px] uppercase tracking-widest text-[var(--text-muted)]">Low</p>
-                        <p className="text-[11px] font-bold text-red-500 dark:text-red-400">$265K</p>
-                      </div>
-                      <div className="h-4 w-px bg-emerald-200/50 dark:bg-emerald-800/30" />
-                      <div className="text-center">
-                        <p className="text-[8px] uppercase tracking-widest text-[var(--text-muted)]">Avg</p>
-                        <p className="text-[11px] font-bold text-[var(--text-primary)]">$280K</p>
-                      </div>
-                    </div>
-                    <div className="flex h-1 w-16 rounded-full overflow-hidden">
-                      <div className="bg-emerald-500" style={{ width: '70%' }} />
-                      <div className="bg-emerald-200 dark:bg-emerald-800" style={{ width: '30%' }} />
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
