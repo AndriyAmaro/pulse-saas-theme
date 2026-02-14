@@ -1221,6 +1221,24 @@ export default function ProjectsDashboard() {
                       <p className="text-sm font-bold text-[var(--text-primary)] mt-0.5">18min</p>
                     </div>
                   </div>
+                  <div className="grid grid-cols-4 gap-px mt-px border-t border-[var(--border-default)] bg-[var(--border-default)] rounded-b-lg overflow-hidden">
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center border-l border-[var(--border-default)]">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Tasks Created</p>
+                      <p className="text-sm font-bold text-amber-600 dark:text-amber-400 mt-0.5">12</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center border-l border-[var(--border-default)]">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Code Reviews</p>
+                      <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-0.5">8</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center border-l border-[var(--border-default)]">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Meetings</p>
+                      <p className="text-sm font-bold text-teal-600 dark:text-teal-400 mt-0.5">3</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center border-l border-[var(--border-default)]">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Issues Closed</p>
+                      <p className="text-sm font-bold text-rose-600 dark:text-rose-400 mt-0.5">5</p>
+                    </div>
+                  </div>
                 </div>
               </>
             )}
