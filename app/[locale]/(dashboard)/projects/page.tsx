@@ -580,22 +580,22 @@ export default function ProjectsDashboard() {
                   </Badge>
                 </div>
                 <div className="flex items-baseline gap-3">
-                  <span className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+                  <span className="text-5xl font-bold text-[var(--text-primary)] md:text-6xl">
                     {sprintData.tasksCompleted}
-                    <span className="text-2xl text-[var(--text-muted)] md:text-3xl">/{sprintData.tasksTotal}</span>
+                    <span className="text-3xl text-[var(--text-muted)] md:text-4xl">/{sprintData.tasksTotal}</span>
                   </span>
                 </div>
-                <p className="text-sm text-[var(--text-secondary)]">tasks completed this sprint</p>
+                <p className="text-base text-[var(--text-secondary)]">tasks completed this sprint</p>
 
                 {/* Sprint Progress Bar */}
-                <div className="max-w-sm">
-                  <div className="mb-1 flex items-center justify-between text-xs">
+                <div className="max-w-md">
+                  <div className="mb-1 flex items-center justify-between text-sm">
                     <span className="text-[var(--text-muted)]">Sprint progress</span>
                     <span className="font-medium text-indigo-600 dark:text-indigo-400">
                       {Math.round((sprintData.tasksCompleted / sprintData.tasksTotal) * 100)}%
                     </span>
                   </div>
-                  <div className="h-2.5 w-full overflow-hidden rounded-full bg-indigo-100 dark:bg-indigo-900/30">
+                  <div className="h-3.5 w-full overflow-hidden rounded-full bg-indigo-100 dark:bg-indigo-900/30">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 transition-all duration-500"
                       style={{ width: `${(sprintData.tasksCompleted / sprintData.tasksTotal) * 100}%` }}
@@ -607,7 +607,7 @@ export default function ProjectsDashboard() {
               {/* Center: Premium Sprint Progress Circle (desktop only) */}
               <div className="hidden lg:flex items-center justify-center">
                 <div className="relative">
-                  <div className="relative h-32 w-32">
+                  <div className="relative h-40 w-40">
                     <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
                       <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" className="text-indigo-100 dark:text-indigo-900/40" strokeWidth="3" />
                       <circle cx="18" cy="18" r="14" fill="none" stroke="url(#sprintGradient)" strokeWidth="3" strokeDasharray={`${(sprintData.tasksCompleted / sprintData.tasksTotal) * 88} 88`} strokeLinecap="round" />
@@ -619,8 +619,8 @@ export default function ProjectsDashboard() {
                       </defs>
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-[10px] text-[var(--text-muted)]">Progress</span>
-                      <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{Math.round((sprintData.tasksCompleted / sprintData.tasksTotal) * 100)}%</span>
+                      <span className="text-xs text-[var(--text-muted)]">Progress</span>
+                      <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400">{Math.round((sprintData.tasksCompleted / sprintData.tasksTotal) * 100)}%</span>
                     </div>
                   </div>
                   <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 flex items-center gap-3 rounded-full bg-white/90 dark:bg-slate-900/90 px-3 py-1 shadow-lg border border-indigo-200/50 dark:border-indigo-800/30">
@@ -637,20 +637,20 @@ export default function ProjectsDashboard() {
               {/* Right: Velocity bars + Sprint metrics */}
               <div className="flex items-center gap-6 lg:gap-8">
                 {/* Sprint velocity bars */}
-                <div className="w-full lg:w-48">
-                  <p className="text-[9px] text-[var(--text-muted)] uppercase tracking-widest mb-2">Velocity (tasks/sprint)</p>
-                  <div className="flex items-end gap-1 h-16">
+                <div className="w-full lg:w-56">
+                  <p className="text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">Velocity (tasks/sprint)</p>
+                  <div className="flex items-end gap-1 h-20 group cursor-pointer">
                     {sprintData.velocity.map((v, i) => (
                       <div
                         key={i}
-                        className={`flex-1 rounded-t-sm transition-all ${i === sprintData.velocity.length - 1 ? 'bg-indigo-500' : i >= sprintData.velocity.length - 3 ? 'bg-indigo-400 dark:bg-indigo-500/80' : 'bg-indigo-200 dark:bg-indigo-700/50'}`}
+                        className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === sprintData.velocity.length - 1 ? 'bg-indigo-500' : i >= sprintData.velocity.length - 3 ? 'bg-indigo-400 dark:bg-indigo-500/80' : 'bg-indigo-200 dark:bg-indigo-700/50'}`}
                         style={{ height: `${(v / 100) * 100}%` }}
                       />
                     ))}
                   </div>
                   <div className="flex items-center justify-between mt-1">
-                    <span className="text-[8px] text-[var(--text-muted)]">S16</span>
-                    <span className="text-[8px] font-semibold text-indigo-600 dark:text-indigo-400">S23</span>
+                    <span className="text-[9px] text-[var(--text-muted)]">S16</span>
+                    <span className="text-[9px] font-semibold text-indigo-600 dark:text-indigo-400">S23</span>
                   </div>
                 </div>
 
