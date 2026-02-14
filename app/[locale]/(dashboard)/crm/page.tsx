@@ -452,10 +452,35 @@ export default function CRMDashboard() {
                     <span className="text-[9px] font-semibold text-orange-600 dark:text-orange-400">Today</span>
                   </div>
                 </div>
+              </div>
 
-                {/* Center: Premium Revenue Breakdown Circle */}
+              {/* Mobile: compact version */}
+              <div className="lg:hidden flex flex-col gap-4">
+                <div className="w-full">
+                  <p className="text-[9px] text-[var(--text-muted)] uppercase tracking-widest mb-2">Revenue (30d)</p>
+                  <div className="flex items-end gap-1 h-16 group cursor-pointer">
+                    {heroData.last30Days.slice(-14).map((v, i) => (
+                      <div
+                        key={i}
+                        className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === 13 ? 'bg-orange-500' : i >= 11 ? 'bg-orange-400 dark:bg-orange-500/80' : 'bg-orange-200 dark:bg-orange-700/50'}`}
+                        style={{ height: `${((v - 68000) / (127450 - 68000)) * 100}%` }}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between mt-1">
+                    <span className="text-[8px] text-[var(--text-muted)]">2w ago</span>
+                    <span className="text-[8px] font-semibold text-orange-600 dark:text-orange-400">Today</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Center: Premium Revenue Breakdown Circle + Metrics (desktop only) */}
+            <div className="hidden lg:flex items-center justify-center mt-6">
+              <div className="flex items-center gap-12">
+                {/* Premium Revenue Breakdown Circle */}
                 <div className="relative">
-                  <div className="relative h-28 w-28">
+                  <div className="relative h-32 w-32">
                     <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
                       <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" className="text-orange-100 dark:text-orange-900/40" strokeWidth="3" />
                       <circle cx="18" cy="18" r="14" fill="none" stroke="url(#revenueGradient)" strokeWidth="3" strokeDasharray="88 22" strokeLinecap="round" />
@@ -487,7 +512,7 @@ export default function CRMDashboard() {
                   </div>
                 </div>
 
-                {/* CRM metrics panel - centered below */}
+                {/* CRM metrics panel */}
                 <div className="flex items-center gap-8">
                   {[
                     { icon: Target, label: 'Conversion Rate', value: '4.0%', color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-100 dark:bg-orange-900/30' },
@@ -504,26 +529,6 @@ export default function CRMDashboard() {
                       </div>
                     </div>
                   ))}
-                </div>
-              </div>
-
-              {/* Mobile: compact version */}
-              <div className="lg:hidden flex flex-col gap-4">
-                <div className="w-full">
-                  <p className="text-[9px] text-[var(--text-muted)] uppercase tracking-widest mb-2">Revenue (30d)</p>
-                  <div className="flex items-end gap-1 h-16 group cursor-pointer">
-                    {heroData.last30Days.slice(-14).map((v, i) => (
-                      <div
-                        key={i}
-                        className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === 13 ? 'bg-orange-500' : i >= 11 ? 'bg-orange-400 dark:bg-orange-500/80' : 'bg-orange-200 dark:bg-orange-700/50'}`}
-                        style={{ height: `${((v - 68000) / (127450 - 68000)) * 100}%` }}
-                      />
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between mt-1">
-                    <span className="text-[8px] text-[var(--text-muted)]">2w ago</span>
-                    <span className="text-[8px] font-semibold text-orange-600 dark:text-orange-400">Today</span>
-                  </div>
                 </div>
               </div>
             </div>
