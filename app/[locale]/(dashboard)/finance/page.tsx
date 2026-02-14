@@ -539,6 +539,49 @@ export default function FinanceDashboard() {
                     <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-0.5">8.8 mo</p>
                   </div>
                 </div>
+                <div className="hidden sm:flex items-center justify-between px-4 py-2.5 border-t border-[var(--border-default)] bg-[var(--bg-subtle)]">
+                  <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-1.5">
+                      <TrendingUp className="h-3.5 w-3.5 text-emerald-500" />
+                      <span className="text-xs text-[var(--text-muted)]">Best month: <span className="font-semibold text-[var(--text-primary)]">Dec ($47.2K)</span></span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <TrendingDown className="h-3.5 w-3.5 text-red-400" />
+                      <span className="text-xs text-[var(--text-muted)]">Highest expense: <span className="font-semibold text-[var(--text-primary)]">Dec ($35.1K)</span></span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Target className="h-3.5 w-3.5 text-blue-500" />
+                      <span className="text-xs text-[var(--text-muted)]">Avg margin: <span className="font-semibold text-emerald-600 dark:text-emerald-400">27.4%</span></span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[10px] text-[var(--text-muted)] mr-1">6mo</span>
+                    {[38, 41, 39, 43, 47, 45].map((h, i) => (
+                      <div key={i} className="w-1.5 rounded-full bg-emerald-400" style={{ height: `${h * 0.28}px` }} />
+                    ))}
+                  </div>
+                </div>
+                <div className="hidden sm:block h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent" />
+                <div className="hidden sm:flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-emerald-50/60 via-transparent to-green-50/60 dark:from-emerald-900/10 dark:via-transparent dark:to-green-900/10">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-1.5">
+                      <Clock className="h-3.5 w-3.5 text-primary-500" />
+                      <span className="text-xs text-[var(--text-muted)]">Updated <span className="font-medium text-[var(--text-primary)]">just now</span></span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <ArrowUpRight className="h-3.5 w-3.5 text-emerald-500" />
+                      <span className="text-xs text-[var(--text-muted)]">YoY growth: <span className="font-semibold text-emerald-600 dark:text-emerald-400">+18.3%</span></span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Wallet className="h-3.5 w-3.5 text-violet-500" />
+                      <span className="text-xs text-[var(--text-muted)]">Projected Q1: <span className="font-semibold text-[var(--text-primary)]">$138K</span></span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[10px] font-medium uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Live</span>
+                  </div>
+                </div>
               </>
             )}
           </Card.Content>
@@ -626,7 +669,7 @@ export default function FinanceDashboard() {
             {isLoading ? (
               <Skeleton className="mx-auto h-64 w-64 rounded-full" />
             ) : (
-              <div className="flex flex-col items-center gap-2 sm:gap-6 lg:flex-row">
+              <div className="flex flex-col items-center gap-0 sm:gap-6 lg:flex-row">
                 <div className="w-full sm:w-64">
                   <ChartWrapper
                     type="donut"
