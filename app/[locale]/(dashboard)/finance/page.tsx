@@ -257,9 +257,9 @@ export default function FinanceDashboard() {
   return (
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
+      <div className="flex flex-col items-center gap-4">
+        <div className="text-center">
+          <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-600 via-green-500 to-teal-500 bg-clip-text text-transparent">
             Financial Overview
           </h1>
           <p className="mt-1 text-[var(--text-secondary)]">
@@ -332,7 +332,7 @@ export default function FinanceDashboard() {
       )}
 
       {/* ====== ROW 2: KPI CARDS ====== */}
-      <DashboardGrid preset="4col" gap="lg">
+      <DashboardGrid preset="4col" gap="lg" className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-3 pb-3 sm:grid sm:overflow-visible sm:snap-none sm:pb-0 sm:px-0 sm:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {isLoading ? (
           <>
             {[1, 2, 3, 4].map((i) => (
@@ -342,7 +342,9 @@ export default function FinanceDashboard() {
         ) : (
           <>
             {/* Income */}
-            <Card className="group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <div className="snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
+            <Card className="relative overflow-hidden group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-green-500 to-emerald-400" />
               <Card.Content>
                 <div className="flex items-start justify-between">
                   <div>
@@ -371,9 +373,12 @@ export default function FinanceDashboard() {
                 </div>
               </Card.Content>
             </Card>
+            </div>
 
             {/* Expenses */}
-            <Card className="group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <div className="snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
+            <Card className="relative overflow-hidden group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-red-500 to-rose-400" />
               <Card.Content>
                 <div className="flex items-start justify-between">
                   <div>
@@ -402,9 +407,12 @@ export default function FinanceDashboard() {
                 </div>
               </Card.Content>
             </Card>
+            </div>
 
             {/* Savings */}
-            <Card className="group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <div className="snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
+            <Card className="relative overflow-hidden group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-cyan-400" />
               <Card.Content>
                 <div className="flex items-start justify-between">
                   <div>
@@ -433,9 +441,12 @@ export default function FinanceDashboard() {
                 </div>
               </Card.Content>
             </Card>
+            </div>
 
             {/* Investments */}
-            <Card className="group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <div className="snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
+            <Card className="relative overflow-hidden group transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-purple-500 to-violet-400" />
               <Card.Content>
                 <div className="flex items-start justify-between">
                   <div>
@@ -464,6 +475,7 @@ export default function FinanceDashboard() {
                 </div>
               </Card.Content>
             </Card>
+            </div>
           </>
         )}
       </DashboardGrid>
@@ -471,7 +483,8 @@ export default function FinanceDashboard() {
       {/* ====== ROW 3: CASH FLOW + BUDGET OVERVIEW ====== */}
       <div className="grid gap-6 lg:grid-cols-5">
         {/* Cash Flow Chart - 60% */}
-        <Card className="lg:col-span-3">
+        <Card className="relative overflow-hidden lg:col-span-3">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 via-green-400 to-teal-500" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -490,26 +503,50 @@ export default function FinanceDashboard() {
             {isLoading ? (
               <Skeleton className="h-72 rounded-lg" />
             ) : (
-              <ChartWrapper
-                type="area"
-                data={cashFlowData}
-                series={[
-                  { dataKey: 'income', name: 'Income', fillOpacity: 0.4, color: '#22C55E' },
-                  { dataKey: 'expenses', name: 'Expenses', fillOpacity: 0.4, color: '#EF4444' },
-                ]}
-                xAxisKey="month"
-                height={280}
-                showLegend
-                showTooltip
-                showGrid
-                tooltipFormatter={(value) => '$' + value.toLocaleString()}
-              />
+              <>
+                <div className="-ml-7 -mr-5 sm:ml-0 sm:mr-0">
+                  <ChartWrapper
+                    type="area"
+                    data={cashFlowData}
+                    series={[
+                      { dataKey: 'income', name: 'Income', fillOpacity: 0.4, color: '#22C55E' },
+                      { dataKey: 'expenses', name: 'Expenses', fillOpacity: 0.4, color: '#EF4444' },
+                    ]}
+                    xAxisKey="month"
+                    height={280}
+                    showLegend
+                    showTooltip
+                    showGrid
+                    tooltipFormatter={(value) => '$' + value.toLocaleString()}
+                  />
+                </div>
+                {/* Desktop: extra metrics */}
+                <div className="hidden sm:grid grid-cols-4 gap-px mt-4 border-t border-[var(--border-default)] bg-[var(--border-default)] rounded-b-lg overflow-hidden">
+                  <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Net Cash Flow</p>
+                    <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">+$13,060</p>
+                  </div>
+                  <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Savings Rate</p>
+                    <p className="text-sm font-bold text-[var(--text-primary)] mt-0.5">28.9%</p>
+                  </div>
+                  <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Burn Rate</p>
+                    <p className="text-sm font-bold text-red-500 dark:text-red-400 mt-0.5">$32.2K/mo</p>
+                  </div>
+                  <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Runway</p>
+                    <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-0.5">8.8 mo</p>
+                  </div>
+                </div>
+              </>
             )}
           </Card.Content>
         </Card>
 
         {/* Budget Overview - 40% */}
-        <Card className="lg:col-span-2">
+        <Card className="relative overflow-hidden lg:col-span-2">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-amber-500 to-orange-400" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -576,7 +613,8 @@ export default function FinanceDashboard() {
       {/* ====== ROW 4: EXPENSE BREAKDOWN + INCOME SOURCES ====== */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Expense Breakdown - Donut */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-rose-500 to-pink-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Wallet className="h-5 w-5 text-primary-500" />
@@ -588,8 +626,8 @@ export default function FinanceDashboard() {
             {isLoading ? (
               <Skeleton className="mx-auto h-64 w-64 rounded-full" />
             ) : (
-              <div className="flex flex-col items-center gap-6 lg:flex-row">
-                <div className="w-64">
+              <div className="flex flex-col items-center gap-2 sm:gap-6 lg:flex-row">
+                <div className="w-full sm:w-64">
                   <ChartWrapper
                     type="donut"
                     data={expenseBreakdownData}
@@ -622,7 +660,8 @@ export default function FinanceDashboard() {
         </Card>
 
         {/* Income Sources - Horizontal Bar */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-green-500 to-emerald-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-primary-500" />
@@ -672,7 +711,8 @@ export default function FinanceDashboard() {
       {/* ====== ROW 5: TRANSACTIONS TABLE + UPCOMING BILLS ====== */}
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Transactions Table - 2/3 */}
-        <Card className="lg:col-span-2">
+        <Card className="relative overflow-hidden lg:col-span-2">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-cyan-500 to-blue-400" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -695,20 +735,50 @@ export default function FinanceDashboard() {
                 ))}
               </div>
             ) : (
-              <DataTable
-                data={transactionsData}
-                columns={transactionColumns}
-                sortable
-                pagination
-                pageSize={5}
-                hoverable
-              />
+              <>
+                {/* Mobile: carousel */}
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 px-4 pb-3 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  {transactionsData.slice(0, 8).map((tx) => {
+                    const TxIcon = tx.icon
+                    const isIncome = tx.type === 'income'
+                    return (
+                      <div key={tx.id} className="snap-start shrink-0 w-[72vw] rounded-xl border border-[var(--border-default)] bg-[var(--bg-subtle)] p-3 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary-100 dark:bg-secondary-800">
+                              <TxIcon className="h-4 w-4 text-secondary-600 dark:text-secondary-400" />
+                            </div>
+                            <Badge variant={isIncome ? 'success' : 'error'} size="sm">{isIncome ? 'Income' : 'Expense'}</Badge>
+                          </div>
+                          <span className={`text-sm font-bold ${isIncome ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                            {isIncome ? '+' : '-'}${tx.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                          </span>
+                        </div>
+                        <p className="text-sm font-medium text-[var(--text-primary)] truncate">{tx.description}</p>
+                        <p className="text-xs text-[var(--text-muted)]">{new Date(tx.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                      </div>
+                    )
+                  })}
+                </div>
+                {/* Desktop: full table */}
+                <div className="hidden sm:block">
+                  <DataTable
+                    data={transactionsData}
+                    columns={transactionColumns}
+                    sortable
+                    pagination
+                    pageSize={5}
+                    hoverable
+                  />
+                </div>
+              </>
             )}
           </Card.Content>
         </Card>
 
         {/* Upcoming Bills - 1/3 */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-amber-500 to-yellow-400" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -739,8 +809,9 @@ export default function FinanceDashboard() {
                   return (
                     <div
                       key={bill.id}
-                      className="group flex items-center gap-3 rounded-lg border border-[var(--border-default)] bg-[var(--bg-subtle)] p-3 transition-all duration-200 hover:shadow-sm hover:border-[var(--border-muted)]"
+                      className="group flex items-center gap-3 rounded-lg border border-[var(--border-default)] bg-[var(--bg-subtle)] p-3 transition-all duration-200 hover:shadow-sm hover:border-[var(--border-muted)] overflow-hidden"
                     >
+                      <div className={`w-1 self-stretch rounded-full ${bill.status === 'overdue' ? 'bg-red-500' : bill.status === 'due-soon' ? 'bg-amber-500' : 'bg-emerald-500'}`} />
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary-100 dark:bg-secondary-800">
                         <bill.icon className="h-5 w-5 text-secondary-600 dark:text-secondary-400" />
                       </div>
