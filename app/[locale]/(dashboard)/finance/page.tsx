@@ -707,15 +707,15 @@ export default function FinanceDashboard() {
                       data={expenseBreakdownData}
                       series={[{ dataKey: 'value', name: 'Amount' }]}
                       xAxisKey="name"
-                      height={200}
+                      height={280}
                       showTooltip
                       tooltipFormatter={(value) => '$' + value.toLocaleString()}
                     />
                   </div>
                 </div>
-                <div className="flex-1 w-full divide-y divide-[var(--border-default)] sm:divide-y-0 sm:space-y-2">
+                <div className="flex-1 w-full divide-y divide-[var(--border-default)]">
                   {expenseBreakdownData.map((item) => (
-                    <div key={item.name} className="flex items-center justify-between gap-6 py-2 sm:py-1">
+                    <div key={item.name} className="flex items-center justify-between gap-6 py-2 sm:py-2.5">
                       <div className="flex items-center gap-2">
                         <div
                           className="h-3 w-3 rounded-full"
