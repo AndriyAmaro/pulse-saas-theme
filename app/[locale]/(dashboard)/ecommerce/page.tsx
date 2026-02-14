@@ -408,7 +408,7 @@ export default function EcommercePage() {
       </div>
 
       {/* ====== KPI CARDS ====== */}
-      <DashboardGrid preset="4col" gap="lg">
+      <DashboardGrid preset="4col" gap="lg" className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-3 pb-3 sm:grid sm:overflow-visible sm:snap-none sm:pb-0 sm:px-0 sm:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {isLoading ? (
           <>
             {[1, 2, 3, 4].map((i) => (
@@ -417,6 +417,7 @@ export default function EcommercePage() {
           </>
         ) : (
           <>
+            <div className="snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
             <MetricCardAdvanced
               title="Total Sales"
               value={kpiData.totalSales.value}
@@ -428,6 +429,8 @@ export default function EcommercePage() {
               iconBgColor="bg-emerald-100 dark:bg-emerald-900/30"
               variant="elevated"
             />
+            </div>
+            <div className="snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
             <MetricCardAdvanced
               title="Orders"
               value={kpiData.orders.value}
@@ -439,6 +442,8 @@ export default function EcommercePage() {
               iconBgColor="bg-blue-100 dark:bg-blue-900/30"
               variant="elevated"
             />
+            </div>
+            <div className="snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
             <MetricCardAdvanced
               title="Customers"
               value={kpiData.customers.value}
@@ -449,6 +454,8 @@ export default function EcommercePage() {
               iconBgColor="bg-violet-100 dark:bg-violet-900/30"
               variant="elevated"
             />
+            </div>
+            <div className="snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
             <MetricCardAdvanced
               title="Avg Order Value"
               value={kpiData.avgOrderValue.value}
@@ -461,13 +468,15 @@ export default function EcommercePage() {
               iconBgColor="bg-amber-100 dark:bg-amber-900/30"
               variant="elevated"
             />
+            </div>
           </>
         )}
       </DashboardGrid>
 
       {/* ====== ROW 2: Sales Overview + Category ====== */}
       <DashboardGrid preset="content-sidebar" gap="lg">
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-400" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -487,27 +496,30 @@ export default function EcommercePage() {
             {isLoading ? (
               <Skeleton className="h-[320px] rounded-lg" />
             ) : (
-              <ChartWrapper
-                type="area"
-                data={salesOverTimeData}
-                series={[
-                  { dataKey: 'revenue', name: 'Revenue', fillOpacity: 0.4 },
-                  { dataKey: 'orders', name: 'Orders', fillOpacity: 0.2 },
-                ]}
-                xAxisKey="date"
-                height={320}
-                showLegend
-                showTooltip
-                showGrid
-                tooltipFormatter={(value, name) =>
-                  name === 'Revenue' ? `$${value.toLocaleString()}` : value.toString()
-                }
-              />
+              <div className="-ml-7 -mr-5 sm:ml-0 sm:mr-0">
+                <ChartWrapper
+                  type="area"
+                  data={salesOverTimeData}
+                  series={[
+                    { dataKey: 'revenue', name: 'Revenue', fillOpacity: 0.4 },
+                    { dataKey: 'orders', name: 'Orders', fillOpacity: 0.2 },
+                  ]}
+                  xAxisKey="date"
+                  height={320}
+                  showLegend
+                  showTooltip
+                  showGrid
+                  tooltipFormatter={(value, name) =>
+                    name === 'Revenue' ? `$${value.toLocaleString()}` : value.toString()
+                  }
+                />
+              </div>
             )}
           </Card.Content>
         </Card>
 
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-violet-500 to-purple-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Tag className="h-5 w-5 text-primary-500" />
@@ -537,7 +549,8 @@ export default function EcommercePage() {
       {/* ====== ROW 3: Payment Methods + Order Status + Region ====== */}
       <DashboardGrid preset="3col" gap="lg">
         {/* Payment Methods */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-indigo-500" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <CreditCard className="h-5 w-5 text-primary-500" />
@@ -580,7 +593,8 @@ export default function EcommercePage() {
         </Card>
 
         {/* Order Status - Pipeline Style */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary-500 to-primary-400" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <Card.Title className="flex items-center gap-2">
@@ -638,7 +652,8 @@ export default function EcommercePage() {
         </Card>
 
         {/* Sales by Region */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-rose-500 to-pink-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Truck className="h-5 w-5 text-primary-500" />
@@ -665,7 +680,8 @@ export default function EcommercePage() {
       </DashboardGrid>
 
       {/* ====== ROW 4: Top Products Grid ====== */}
-      <Card>
+      <Card className="relative overflow-hidden">
+        <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-amber-500 to-orange-400" />
         <Card.Header>
           <div className="flex items-center justify-between">
             <div>
@@ -688,10 +704,10 @@ export default function EcommercePage() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-3 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 sm:overflow-visible sm:snap-none sm:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {topProductsData.map((product) => (
+                <div key={product.id} className="snap-start shrink-0 w-[70vw] sm:w-auto sm:shrink">
                 <ProductCard
-                  key={product.id}
                   name={product.name}
                   price={product.price}
                   originalPrice={product.originalPrice}
@@ -702,6 +718,7 @@ export default function EcommercePage() {
                   onAddToCart={() => console.log('Add to cart:', product.name)}
                   onWishlist={() => console.log('Wishlist:', product.name)}
                 />
+                </div>
               ))}
             </div>
           )}
@@ -711,7 +728,8 @@ export default function EcommercePage() {
       {/* ====== ROW 5: Orders Table + Sidebar ====== */}
       <DashboardGrid preset="content-sidebar" gap="lg">
         {/* Recent Orders */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-cyan-500 to-blue-400" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -734,23 +752,57 @@ export default function EcommercePage() {
                 ))}
               </div>
             ) : (
-              <DataTable
-                data={recentOrdersData}
-                columns={orderColumns}
-                sortable
-                filterable
-                filterPlaceholder="Search orders..."
-                pagination
-                pageSize={5}
-                hoverable
-                rowActions={[
-                  {
-                    label: 'View',
-                    icon: <Eye className="h-4 w-4" />,
-                    onClick: (row) => console.log('View:', row),
-                  },
-                ]}
-              />
+              <>
+                {/* Mobile: horizontal scroll cards */}
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 p-4 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  {recentOrdersData.slice(0, 6).map((order) => {
+                    const statusColors: Record<string, string> = {
+                      Completed: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+                      Processing: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                      Shipped: 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400',
+                      Cancelled: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+                      Refunded: 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300',
+                    }
+                    return (
+                      <div key={order.id} className="snap-start shrink-0 w-[72vw] rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] p-4 space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-bold text-[var(--text-primary)]">{order.orderId}</span>
+                          <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusColors[order.status] || ''}`}>{order.status}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Avatar size="xs" initials={order.customer} />
+                          <span className="text-sm text-[var(--text-primary)]">{order.customer}</span>
+                        </div>
+                        <p className="text-xs text-[var(--text-muted)] truncate">{order.products}</p>
+                        <div className="flex items-center justify-between pt-2 border-t border-[var(--border-default)]">
+                          <span className="text-lg font-bold text-[var(--text-primary)]">${order.total.toFixed(2)}</span>
+                          <span className="text-xs text-[var(--text-muted)]">{new Date(order.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                {/* Desktop: full data table */}
+                <div className="hidden sm:block">
+                  <DataTable
+                    data={recentOrdersData}
+                    columns={orderColumns}
+                    sortable
+                    filterable
+                    filterPlaceholder="Search orders..."
+                    pagination
+                    pageSize={5}
+                    hoverable
+                    rowActions={[
+                      {
+                        label: 'View',
+                        icon: <Eye className="h-4 w-4" />,
+                        onClick: (row) => console.log('View:', row),
+                      },
+                    ]}
+                  />
+                </div>
+              </>
             )}
           </Card.Content>
         </Card>
@@ -758,7 +810,8 @@ export default function EcommercePage() {
         {/* Sidebar: Top Customers + Low Stock */}
         <div className="space-y-6">
           {/* Top Customers */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-indigo-500 to-violet-400" />
             <Card.Header>
               <Card.Title className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-primary-500" />
@@ -790,7 +843,8 @@ export default function EcommercePage() {
           </Card>
 
           {/* Low Stock Alert */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-red-500 to-rose-400" />
             <Card.Header>
               <Card.Title className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-warning-base" />
@@ -838,7 +892,8 @@ export default function EcommercePage() {
       </DashboardGrid>
 
       {/* ====== ROW 6: Inventory Overview ====== */}
-      <Card>
+      <Card className="relative overflow-hidden">
+        <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary-500 to-emerald-400" />
         <Card.Header>
           <Card.Title className="flex items-center gap-2">
             <Package className="h-5 w-5 text-primary-500" />
