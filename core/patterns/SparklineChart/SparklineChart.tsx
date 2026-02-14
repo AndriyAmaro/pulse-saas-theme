@@ -133,7 +133,7 @@ function generateAreaPath(
   const stepX = width / (values.length - 1)
   const lastX = (values.length - 1) * stepX
 
-  return `${linePath} L ${lastX} ${height} L 0 ${height} Z`
+  return `${linePath} L ${lastX} ${height + 10} L 0 ${height + 10} Z`
 }
 
 // ============================================================================
@@ -226,8 +226,8 @@ const SparklineChart = React.forwardRef<HTMLDivElement, SparklineChartProps>(
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor={color} stopOpacity={fillOpacity} />
-              <stop offset="60%" stopColor={color} stopOpacity={fillOpacity * 0.15} />
-              <stop offset="85%" stopColor={color} stopOpacity={0} />
+              <stop offset="40%" stopColor={color} stopOpacity={fillOpacity * 0.12} />
+              <stop offset="70%" stopColor={color} stopOpacity={0} />
               <stop offset="100%" stopColor={color} stopOpacity={0} />
             </linearGradient>
           </defs>
