@@ -592,7 +592,7 @@ export default function AnalyticsPage() {
 
         {/* Top Browsers */}
         <Card className="relative overflow-hidden">
-          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-cyan-500 to-blue-400" />
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary-500 to-primary-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Monitor className="h-5 w-5 text-primary-500" />
@@ -608,7 +608,7 @@ export default function AnalyticsPage() {
                 data={browsersData}
                 series={[{ dataKey: 'users', name: 'Users' }]}
                 xAxisKey="browser"
-                height={200}
+                height={300}
                 showLegend={false}
                 showTooltip
                 tooltipFormatter={(value) => value.toLocaleString()}
