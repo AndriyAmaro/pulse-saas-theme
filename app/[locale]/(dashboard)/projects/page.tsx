@@ -516,10 +516,10 @@ export default function ProjectsDashboard() {
       {/* ====== HEADER ====== */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
+          <h1 className="text-2xl font-bold md:text-3xl text-center md:text-left bg-gradient-to-r from-indigo-600 via-violet-500 to-purple-500 bg-clip-text text-transparent">
             Project Management
           </h1>
-          <p className="mt-1 text-[var(--text-secondary)]">
+          <p className="mt-1 text-[var(--text-secondary)] text-center md:text-left">
             Track progress, manage tasks, and collaborate with your team
           </p>
         </div>
@@ -604,19 +604,44 @@ export default function ProjectsDashboard() {
                 </div>
               </div>
 
-              {/* Right: Velocity Sparkline */}
-              <div className="w-full lg:w-80">
-                <p className="mb-2 text-xs text-[var(--text-muted)]">Team velocity (tasks/sprint)</p>
-                <SparklineChart
-                  data={sprintData.velocity}
-                  type="area"
-                  color="#6366F1"
-                  width={320}
-                  height={80}
-                  showDot
-                  gradient
-                  animated
-                />
+              {/* Right: Velocity bars + Sprint metrics */}
+              <div className="flex items-center gap-6 lg:gap-8">
+                {/* Sprint velocity bars */}
+                <div className="w-full lg:w-48">
+                  <p className="text-[9px] text-[var(--text-muted)] uppercase tracking-widest mb-2">Velocity (tasks/sprint)</p>
+                  <div className="flex items-end gap-1 h-16">
+                    {sprintData.velocity.map((v, i) => (
+                      <div
+                        key={i}
+                        className={`flex-1 rounded-t-sm transition-all ${i === sprintData.velocity.length - 1 ? 'bg-indigo-500' : i >= sprintData.velocity.length - 3 ? 'bg-indigo-400 dark:bg-indigo-500/80' : 'bg-indigo-200 dark:bg-indigo-700/50'}`}
+                        style={{ height: `${(v / 100) * 100}%` }}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between mt-1">
+                    <span className="text-[8px] text-[var(--text-muted)]">S16</span>
+                    <span className="text-[8px] font-semibold text-indigo-600 dark:text-indigo-400">S23</span>
+                  </div>
+                </div>
+
+                {/* Sprint metrics panel */}
+                <div className="hidden lg:flex flex-col gap-3 pl-8 border-l border-indigo-200/50 dark:border-indigo-800/30">
+                  {[
+                    { icon: Zap, label: 'Avg Velocity', value: '72 pts', color: 'text-indigo-600 dark:text-indigo-400', bg: 'bg-indigo-100 dark:bg-indigo-900/30' },
+                    { icon: Target, label: 'Sprint Goal', value: '89%', color: 'text-violet-600 dark:text-violet-400', bg: 'bg-violet-100 dark:bg-violet-900/30' },
+                    { icon: TrendingUp, label: 'Velocity Trend', value: '+12%', color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-100 dark:bg-emerald-900/30' },
+                  ].map((metric) => (
+                    <div key={metric.label} className="flex items-center gap-3">
+                      <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${metric.bg}`}>
+                        <metric.icon className={`h-4 w-4 ${metric.color}`} />
+                      </div>
+                      <div>
+                        <p className="text-[9px] uppercase tracking-widest text-[var(--text-muted)]">{metric.label}</p>
+                        <p className={`text-sm font-bold ${metric.color}`}>{metric.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </Card.Content>
@@ -624,7 +649,7 @@ export default function ProjectsDashboard() {
       )}
 
       {/* ====== ROW 1: STATS OVERVIEW ====== */}
-      <DashboardGrid preset="4col" gap="lg">
+      <DashboardGrid preset="4col" gap="lg" className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-3 pb-3 sm:grid sm:overflow-visible sm:snap-none sm:pb-0 sm:px-0 sm:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {isLoading ? (
           <>
             {[1, 2, 3, 4].map((i) => (
@@ -634,7 +659,7 @@ export default function ProjectsDashboard() {
         ) : (
           <>
             {/* Active Projects */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-indigo-500 to-indigo-400" />
               <Card.Content className="relative">
@@ -653,21 +678,16 @@ export default function ProjectsDashboard() {
                     <FolderKanban className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <SparklineChart
-                    data={statsData.activeProjects.sparkline}
-                    type="area"
-                    color="#6366F1"
-                    width={140}
-                    height={32}
-                    gradient
-                  />
+                <div className="mt-3 flex items-end gap-[3px] h-8">
+                  {statsData.activeProjects.sparkline.map((v, i) => (
+                    <div key={i} className={`flex-1 rounded-t-sm ${i === statsData.activeProjects.sparkline.length - 1 ? 'bg-indigo-500' : 'bg-indigo-200 dark:bg-indigo-700/50'}`} style={{ height: `${(v / 14) * 100}%` }} />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* Tasks This Week */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-cyan-400" />
               <Card.Content className="relative">
@@ -688,21 +708,16 @@ export default function ProjectsDashboard() {
                     <CheckSquare className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <SparklineChart
-                    data={statsData.tasksThisWeek.sparkline}
-                    type="area"
-                    color="#3B82F6"
-                    width={140}
-                    height={32}
-                    gradient
-                  />
+                <div className="mt-3 flex items-end gap-[3px] h-8">
+                  {statsData.tasksThisWeek.sparkline.map((v, i) => (
+                    <div key={i} className={`flex-1 rounded-t-sm ${i >= statsData.tasksThisWeek.sparkline.length - 2 ? 'bg-blue-500' : 'bg-blue-200 dark:bg-blue-700/50'}`} style={{ height: `${(v / 50) * 100}%` }} />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* Completed */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 to-green-400" />
               <Card.Content className="relative">
@@ -721,21 +736,16 @@ export default function ProjectsDashboard() {
                     <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <SparklineChart
-                    data={statsData.completed.sparkline}
-                    type="area"
-                    color="#10B981"
-                    width={140}
-                    height={32}
-                    gradient
-                  />
+                <div className="mt-3 flex items-end gap-[3px] h-8">
+                  {statsData.completed.sparkline.map((v, i) => (
+                    <div key={i} className={`flex-1 rounded-t-sm ${i === statsData.completed.sparkline.length - 1 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`} style={{ height: `${(v / 25) * 100}%` }} />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* Overdue */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-red-500 to-rose-400" />
               <Card.Content className="relative">
@@ -754,15 +764,10 @@ export default function ProjectsDashboard() {
                     <Clock className="h-5 w-5 text-red-600 dark:text-red-400" />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <SparklineChart
-                    data={statsData.overdue.sparkline}
-                    type="area"
-                    color="#EF4444"
-                    width={140}
-                    height={32}
-                    gradient
-                  />
+                <div className="mt-3 flex items-end gap-[3px] h-8">
+                  {statsData.overdue.sparkline.map((v, i) => (
+                    <div key={i} className={`flex-1 rounded-t-sm ${i === statsData.overdue.sparkline.length - 1 ? 'bg-red-500' : 'bg-red-200 dark:bg-red-700/50'}`} style={{ height: `${(v / 10) * 100}%` }} />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
@@ -1179,9 +1184,45 @@ export default function ProjectsDashboard() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-xl border border-emerald-100/50 bg-gradient-to-b from-white/50 to-emerald-50/20 p-4 dark:border-emerald-900/20 dark:from-[var(--bg-elevated)]/50 dark:to-emerald-950/10">
-                <ActivityTimeline items={teamActivityData} variant="compact" />
-              </div>
+              <>
+                {/* Mobile: carousel */}
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-2 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  {teamActivityData.slice(0, 8).map((item) => {
+                    const typeColors: Record<string, string> = { success: 'border-l-emerald-500', info: 'border-l-blue-500', warning: 'border-l-amber-500', error: 'border-l-red-500', default: 'border-l-slate-400' }
+                    return (
+                      <div key={item.id} className={`snap-start shrink-0 w-[72vw] rounded-xl border border-[var(--border-default)] border-l-[3px] ${typeColors[item.type ?? 'default']} bg-[var(--bg-subtle)] p-3 space-y-1.5`}>
+                        <p className="text-sm font-medium text-[var(--text-primary)] line-clamp-2">{item.title}</p>
+                        <p className="text-xs text-[var(--text-muted)]">{item.description}</p>
+                        <p className="text-[10px] text-[var(--text-muted)]">{new Date(item.timestamp).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</p>
+                      </div>
+                    )
+                  })}
+                </div>
+                {/* Desktop: full timeline + metrics */}
+                <div className="hidden sm:block">
+                  <div className="rounded-xl border border-emerald-100/50 bg-gradient-to-b from-white/50 to-emerald-50/20 p-4 dark:border-emerald-900/20 dark:from-[var(--bg-elevated)]/50 dark:to-emerald-950/10">
+                    <ActivityTimeline items={teamActivityData} variant="compact" />
+                  </div>
+                  <div className="grid grid-cols-4 gap-px mt-4 border-t border-[var(--border-default)] bg-[var(--border-default)] rounded-b-lg overflow-hidden">
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Commits Today</p>
+                      <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">24</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">PRs Merged</p>
+                      <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-0.5">7</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Active Now</p>
+                      <p className="text-sm font-bold text-violet-600 dark:text-violet-400 mt-0.5">4/6</p>
+                    </div>
+                    <div className="bg-[var(--bg-subtle)] px-3 py-2.5 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Avg Response</p>
+                      <p className="text-sm font-bold text-[var(--text-primary)] mt-0.5">18min</p>
+                    </div>
+                  </div>
+                </div>
+              </>
             )}
           </Card.Content>
         </Card>
@@ -1216,16 +1257,46 @@ export default function ProjectsDashboard() {
               ))}
             </div>
           ) : (
-            <DataTable
-              data={tasksData}
-              columns={tasksColumns}
-              sortable
-              filterable
-              filterPlaceholder="Search tasks..."
-              pagination
-              pageSize={5}
-              hoverable
-            />
+            <>
+              {/* Mobile: carousel */}
+              <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 px-4 pb-3 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                {tasksData.slice(0, 8).map((task) => {
+                  const statusColors: Record<string, string> = { 'todo': 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400', 'in-progress': 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400', 'review': 'bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400', 'done': 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' }
+                  const priorityColors: Record<string, string> = { low: 'text-slate-500', medium: 'text-amber-500', high: 'text-red-500', urgent: 'text-red-600' }
+                  return (
+                    <div key={task.id} className="snap-start shrink-0 w-[72vw] rounded-xl border border-[var(--border-default)] bg-[var(--bg-subtle)] p-3 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full ${statusColors[task.status]}`}>{task.status.replace('-', ' ')}</span>
+                        <span className={`text-xs font-medium ${priorityColors[task.priority]}`}>{task.priority}</span>
+                      </div>
+                      <p className="text-sm font-medium text-[var(--text-primary)] line-clamp-2">{task.task}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-[var(--text-muted)]">{task.project}</span>
+                        <div className="flex items-center gap-1">
+                          <div className="h-1.5 w-10 rounded-full bg-secondary-200 dark:bg-secondary-700 overflow-hidden">
+                            <div className="h-full rounded-full bg-primary-500" style={{ width: `${task.progress}%` }} />
+                          </div>
+                          <span className="text-[10px] text-[var(--text-muted)]">{task.progress}%</span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+              {/* Desktop: full table */}
+              <div className="hidden sm:block">
+                <DataTable
+                  data={tasksData}
+                  columns={tasksColumns}
+                  sortable
+                  filterable
+                  filterPlaceholder="Search tasks..."
+                  pagination
+                  pageSize={5}
+                  hoverable
+                />
+              </div>
+            </>
           )}
         </Card.Content>
       </Card>
