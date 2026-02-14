@@ -389,6 +389,25 @@ export default function FinanceDashboard() {
                     <span className="text-[8px] font-semibold text-emerald-600 dark:text-emerald-400">Today</span>
                   </div>
                 </div>
+
+                {/* Right-side premium metrics */}
+                <div className="hidden lg:flex flex-col gap-3 pl-10 border-l border-emerald-200/50 dark:border-emerald-800/30">
+                  {[
+                    { icon: TrendingUp, label: 'Monthly Return', value: '+4.2%', color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-100 dark:bg-emerald-900/30' },
+                    { icon: Wallet, label: 'Total Assets', value: '$1.2M', color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-100 dark:bg-blue-900/30' },
+                    { icon: Target, label: 'Goal Progress', value: '78%', color: 'text-violet-600 dark:text-violet-400', bg: 'bg-violet-100 dark:bg-violet-900/30' },
+                  ].map((metric) => (
+                    <div key={metric.label} className="flex items-center gap-3">
+                      <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${metric.bg}`}>
+                        <metric.icon className={`h-4 w-4 ${metric.color}`} />
+                      </div>
+                      <div>
+                        <p className="text-[9px] uppercase tracking-widest text-[var(--text-muted)]">{metric.label}</p>
+                        <p className={`text-sm font-bold ${metric.color}`}>{metric.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </Card.Content>
