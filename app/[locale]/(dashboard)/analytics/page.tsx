@@ -871,8 +871,9 @@ export default function AnalyticsPage() {
                       <p className="text-sm font-bold mt-0.5">3m 42s</p>
                     </div>
                     <div className="rounded-lg bg-white/10 p-2.5 text-center">
-                      <p className="text-xs text-white/50">Pages/Session</p>
+                      <p className="text-xs text-white/50">Pages</p>
                       <p className="text-sm font-bold mt-0.5">4.2</p>
+                      <p className="text-xs text-white/50 mt-0.5">Session</p>
                     </div>
                     <div className="rounded-lg bg-white/10 p-2.5 text-center">
                       <p className="text-xs text-white/50">Bounce Rate</p>
