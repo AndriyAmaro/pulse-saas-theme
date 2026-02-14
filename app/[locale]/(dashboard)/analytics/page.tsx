@@ -619,7 +619,7 @@ export default function AnalyticsPage() {
 
         {/* Device Breakdown */}
         <Card className="relative overflow-hidden">
-          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-violet-500 to-purple-400" />
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary-500 to-primary-400" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Smartphone className="h-5 w-5 text-primary-500" />
@@ -630,14 +630,14 @@ export default function AnalyticsPage() {
             {isLoading ? (
               <Skeleton className="h-[200px] rounded-lg" />
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-4 lg:space-y-6">
                 {deviceData.map((device) => {
                   const DeviceIcon = device.icon
                   const percentage = ((device.users / totalDeviceUsers) * 100).toFixed(1)
                   return (
-                    <div key={device.device} className="flex items-center gap-3">
+                    <div key={device.device} className="flex items-center gap-3 lg:gap-4">
                       <div
-                        className="flex h-10 w-10 items-center justify-center rounded-lg"
+                        className="flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg"
                         style={{ backgroundColor: `${device.color}20` }}
                       >
                         <DeviceIcon className="h-5 w-5" style={{ color: device.color }} />
