@@ -341,10 +341,10 @@ export default function FinanceDashboard() {
               </div>
 
               {/* Right: Allocation ring + Revenue bars */}
-              <div className="flex items-center gap-6 lg:gap-8">
+              <div className="flex items-center gap-8 lg:gap-10">
                 {/* Portfolio allocation ring */}
-                <div className="hidden sm:flex flex-col items-center gap-2">
-                  <div className="relative h-[88px] w-[88px]">
+                <div className="hidden sm:flex flex-col items-center gap-2.5">
+                  <div className="relative h-[96px] w-[96px]">
                     <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
                       <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" className="text-emerald-100 dark:text-emerald-900/40" strokeWidth="3" />
                       <circle cx="18" cy="18" r="14" fill="none" stroke="#22C55E" strokeWidth="3" strokeDasharray="40 60" strokeDashoffset="0" strokeLinecap="round" />
@@ -373,9 +373,9 @@ export default function FinanceDashboard() {
                 </div>
 
                 {/* Daily revenue bars */}
-                <div className="w-full lg:w-44">
+                <div className="w-full lg:w-52">
                   <p className="text-[9px] text-[var(--text-muted)] uppercase tracking-widest mb-2">Daily Revenue</p>
-                  <div className="flex items-end gap-[3px] h-14">
+                  <div className="flex items-end gap-1 h-20">
                     {[32, 45, 28, 52, 38, 61, 42, 55, 35, 68, 48, 72, 40, 58].map((h, i) => (
                       <div
                         key={i}
