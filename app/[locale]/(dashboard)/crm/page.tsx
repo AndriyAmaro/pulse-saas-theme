@@ -563,9 +563,14 @@ export default function CRMDashboard() {
                     <Users className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
+                <div className="mt-3 flex items-center gap-1 h-8 group cursor-pointer">
                   {kpiData.totalLeads.sparkline.map((v, i) => (
-                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === kpiData.totalLeads.sparkline.length - 1 ? 'bg-orange-500' : 'bg-orange-200 dark:bg-orange-700/50'}`} style={{ height: `${(v / 847) * 100}%` }} />
+                    <div key={i} className="relative flex flex-col items-center justify-end">
+                      <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150 ${i === kpiData.totalLeads.sparkline.length - 1 ? 'bg-orange-500' : 'bg-orange-300 dark:bg-orange-600/50'}`} />
+                      {i > 0 && (
+                        <div className={`absolute bottom-0 w-px transition-all duration-300 ${i >= kpiData.totalLeads.sparkline.length - 3 ? 'bg-orange-400 dark:bg-orange-500/60' : 'bg-orange-200 dark:bg-orange-700/30'}`} style={{ height: `${Math.abs(v - (kpiData.totalLeads.sparkline[i-1] || 0)) / 847 * 60}%` }} />
+                      )}
+                    </div>
                   ))}
                 </div>
               </Card.Content>
@@ -590,9 +595,14 @@ export default function CRMDashboard() {
                     <Target className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
+                <div className="mt-3 flex items-end gap-0.5 h-8 group cursor-pointer">
                   {kpiData.qualified.sparkline.map((v, i) => (
-                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i >= kpiData.qualified.sparkline.length - 2 ? 'bg-blue-500' : 'bg-blue-200 dark:bg-blue-700/50'}`} style={{ height: `${(v / 312) * 100}%` }} />
+                    <div key={i} className="relative flex-1">
+                      <div className={`absolute bottom-0 w-full transition-all duration-300 group-hover:opacity-80 ${i >= kpiData.qualified.sparkline.length - 2 ? 'bg-blue-500/30' : 'bg-blue-200/20 dark:bg-blue-700/20'}`} style={{ height: `${(v / 312) * 100}%` }} />
+                      {i === kpiData.qualified.sparkline.length - 1 && (
+                        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full bg-blue-500 transition-all duration-300 group-hover:scale-150" />
+                      )}
+                    </div>
                   ))}
                 </div>
               </Card.Content>
@@ -618,9 +628,14 @@ export default function CRMDashboard() {
                     <FileText className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
+                <div className="mt-3 flex items-center gap-1 h-8 group cursor-pointer">
                   {kpiData.proposalsSent.sparkline.map((v, i) => (
-                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === kpiData.proposalsSent.sparkline.length - 1 ? 'bg-violet-500' : 'bg-violet-200 dark:bg-violet-700/50'}`} style={{ height: `${(v / 89) * 100}%` }} />
+                    <div key={i} className="relative flex-1">
+                      <div className={`absolute bottom-0 w-1 transition-all duration-300 group-hover:bg-violet-400 ${i === kpiData.proposalsSent.sparkline.length - 1 ? 'bg-violet-500' : 'bg-violet-300 dark:bg-violet-600/50'}`} style={{ height: `${(v / 89) * 100}%` }} />
+                      {i > 0 && v > (kpiData.proposalsSent.sparkline[i-1] || 0) && (
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-px h-1 bg-violet-400 transition-all duration-300" />
+                      )}
+                    </div>
                   ))}
                 </div>
               </Card.Content>
@@ -645,9 +660,19 @@ export default function CRMDashboard() {
                     <Trophy className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-end gap-[3px] h-8 group cursor-pointer">
+                <div className="mt-3 flex items-center gap-0.5 h-8 group cursor-pointer">
                   {kpiData.dealsWon.sparkline.map((v, i) => (
-                    <div key={i} className={`flex-1 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === kpiData.dealsWon.sparkline.length - 1 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`} style={{ height: `${(v / 34) * 100}%` }} />
+                    <div key={i} className="relative flex-1">
+                      <svg className="absolute bottom-0 w-full h-8" viewBox="0 0 12 32" preserveAspectRatio="none">
+                        <path
+                          d={`M ${i * 3} ${32 - (v / 34) * 28} L ${(i + 1) * 3} ${32 - ((kpiData.dealsWon.sparkline[i + 1] || v) / 34) * 28}`}
+                          className={`transition-all duration-300 ${i >= kpiData.dealsWon.sparkline.length - 2 ? 'stroke-emerald-500' : 'stroke-emerald-300 dark:stroke-emerald-600/50'}`}
+                          strokeWidth="2"
+                          fill="none"
+                        />
+                      </svg>
+                      <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150 ${i === kpiData.dealsWon.sparkline.length - 1 ? 'bg-emerald-500' : 'bg-emerald-300 dark:bg-emerald-600/50'}`} style={{ bottom: `${(v / 34) * 28}px` }} />
+                    </div>
                   ))}
                 </div>
               </Card.Content>
