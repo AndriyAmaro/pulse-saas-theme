@@ -819,6 +819,28 @@ export default function AnalyticsPage() {
                     <p className="font-semibold">{realTimeData.peakTime}</p>
                   </div>
                 </div>
+
+                {/* Desktop only: extra metrics */}
+                <div className="hidden lg:block mt-5 pt-4 border-t border-white/15">
+                  <div className="grid grid-cols-3 gap-3 mb-4">
+                    <div className="rounded-lg bg-white/10 p-2.5 text-center">
+                      <p className="text-xs text-white/50">Avg Duration</p>
+                      <p className="text-sm font-bold mt-0.5">3m 42s</p>
+                    </div>
+                    <div className="rounded-lg bg-white/10 p-2.5 text-center">
+                      <p className="text-xs text-white/50">Pages/Session</p>
+                      <p className="text-sm font-bold mt-0.5">4.2</p>
+                    </div>
+                    <div className="rounded-lg bg-white/10 p-2.5 text-center">
+                      <p className="text-xs text-white/50">Bounce Rate</p>
+                      <p className="text-sm font-bold mt-0.5">24.1%</p>
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-white/10 px-3 py-2.5 flex items-center gap-2">
+                    <Globe className="h-3.5 w-3.5 text-white/60 shrink-0" />
+                    <span className="text-xs text-white/70">Top page: <span className="font-semibold text-white">/dashboard</span> — 34 active</span>
+                  </div>
+                </div>
               </div>
             )}
           </Card.Content>
