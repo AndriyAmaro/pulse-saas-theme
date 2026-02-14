@@ -271,9 +271,9 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)]">
+      <div className="flex flex-col items-center gap-4">
+        <div className="text-center">
+          <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary-500 via-blue-500 to-indigo-500 bg-clip-text text-transparent">
             Analytics
           </h1>
           <p className="mt-1 text-[var(--text-secondary)]">
@@ -281,7 +281,7 @@ export default function AnalyticsPage() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-2">
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
@@ -396,13 +396,13 @@ export default function AnalyticsPage() {
                     <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                 </div>
-                <div className="mt-3">
+                <div className="mt-4 overflow-hidden rounded-lg">
                   <SparklineChart
                     data={kpiData.totalVisitors.sparkline}
                     type="area"
                     color="#3B82F6"
-                    width={140}
-                    height={32}
+                    width={180}
+                    height={40}
                     gradient
                   />
                 </div>
@@ -429,13 +429,13 @@ export default function AnalyticsPage() {
                     <Eye className="h-5 w-5 text-teal-600 dark:text-teal-400" />
                   </div>
                 </div>
-                <div className="mt-3">
+                <div className="mt-4 overflow-hidden rounded-lg">
                   <SparklineChart
                     data={kpiData.uniqueSessions.sparkline}
                     type="area"
                     color="#14B8A6"
-                    width={140}
-                    height={32}
+                    width={180}
+                    height={40}
                     gradient
                   />
                 </div>
@@ -444,8 +444,8 @@ export default function AnalyticsPage() {
 
             {/* Bounce Rate */}
             <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto sm:shrink">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-transparent sm:from-amber-500/5 sm:via-transparent" />
-              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-amber-500 to-orange-400" />
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-emerald-400/5 to-transparent sm:from-emerald-500/5 sm:via-transparent" />
+              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 to-green-400" />
               <Card.Content className="relative">
                 <div className="flex items-start justify-between">
                   <div>
@@ -458,17 +458,17 @@ export default function AnalyticsPage() {
                       {kpiData.bounceRate.change}% vs last period
                     </div>
                   </div>
-                  <div className="rounded-lg bg-amber-100 p-2 dark:bg-amber-900/30">
-                    <MousePointerClick className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                  <div className="rounded-lg bg-emerald-100 p-2 dark:bg-emerald-900/30">
+                    <MousePointerClick className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                 </div>
-                <div className="mt-3">
+                <div className="mt-4 overflow-hidden rounded-lg">
                   <SparklineChart
                     data={kpiData.bounceRate.sparkline}
                     type="area"
-                    color="#F59E0B"
-                    width={140}
-                    height={32}
+                    color="#10B981"
+                    width={180}
+                    height={40}
                     gradient
                   />
                 </div>
@@ -495,13 +495,13 @@ export default function AnalyticsPage() {
                     <Clock className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                   </div>
                 </div>
-                <div className="mt-3">
+                <div className="mt-4 overflow-hidden rounded-lg">
                   <SparklineChart
                     data={kpiData.avgDuration.sparkline}
                     type="area"
                     color="#8B5CF6"
-                    width={140}
-                    height={32}
+                    width={180}
+                    height={40}
                     gradient
                   />
                 </div>
@@ -534,20 +534,22 @@ export default function AnalyticsPage() {
           {isLoading ? (
             <Skeleton className="h-[350px] rounded-lg" />
           ) : (
-            <ChartWrapper
-              type="area"
-              data={trafficData}
-              series={[
-                { dataKey: 'visitors', name: 'Visitors', fillOpacity: 0.4 },
-                { dataKey: 'pageViews', name: 'Page Views', fillOpacity: 0.2 },
-              ]}
-              xAxisKey="date"
-              height={350}
-              showLegend
-              showTooltip
-              showGrid
-              tooltipFormatter={(value) => value.toLocaleString()}
-            />
+            <div className="-mx-3 sm:mx-0">
+              <ChartWrapper
+                type="area"
+                data={trafficData}
+                series={[
+                  { dataKey: 'visitors', name: 'Visitors', fillOpacity: 0.4 },
+                  { dataKey: 'pageViews', name: 'Page Views', fillOpacity: 0.2 },
+                ]}
+                xAxisKey="date"
+                height={350}
+                showLegend
+                showTooltip
+                showGrid
+                tooltipFormatter={(value) => value.toLocaleString()}
+              />
+            </div>
           )}
         </Card.Content>
       </Card>
@@ -585,6 +587,30 @@ export default function AnalyticsPage() {
                     <ProgressBar value={source.percentage} size="sm" variant="default" />
                   </div>
                 ))}
+
+                {/* Desktop only: summary */}
+                <div className="hidden lg:block pt-4 mt-2 border-t border-[var(--border-default)]">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <p className="text-xs text-[var(--text-muted)]">Total Traffic</p>
+                      <p className="text-2xl font-bold text-[var(--text-primary)]">
+                        {trafficSourcesData.reduce((sum, s) => sum + s.value, 0).toLocaleString()}
+                      </p>
+                    </div>
+                    <Badge variant="success" size="sm" className="flex items-center gap-1">
+                      <TrendingUp className="h-3 w-3" />
+                      +12.3% growth
+                    </Badge>
+                  </div>
+                  <div className="rounded-lg bg-[var(--bg-subtle)] p-3">
+                    <div className="flex items-center gap-2 text-xs">
+                      <Globe className="h-3.5 w-3.5 text-primary-500" />
+                      <span className="text-[var(--text-secondary)]">
+                        <span className="font-semibold text-[var(--text-primary)]">Organic Search</span> is your top source at 40.7%
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </Card.Content>
@@ -875,9 +901,20 @@ export default function AnalyticsPage() {
                     columns={topPagesColumns}
                     sortable
                     pagination
-                    pageSize={5}
+                    pageSize={8}
                     hoverable
                   />
+                  {/* Desktop summary footer */}
+                  <div className="hidden lg:flex items-center justify-between border-t border-[var(--border-default)] px-4 py-3">
+                    <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
+                      <span>Total: <span className="font-semibold text-[var(--text-primary)]">{topPagesData.reduce((s, p) => s + p.views, 0).toLocaleString()}</span> views</span>
+                      <span>Avg Bounce: <span className="font-semibold text-[var(--text-primary)]">{(topPagesData.reduce((s, p) => s + p.bounceRate, 0) / topPagesData.length).toFixed(1)}%</span></span>
+                    </div>
+                    <Badge variant="info" size="sm" className="flex items-center gap-1">
+                      <Eye className="h-3 w-3" />
+                      {topPagesData.length} pages tracked
+                    </Badge>
+                  </div>
                 </div>
               </>
             )}
