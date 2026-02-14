@@ -664,6 +664,44 @@ export default function AnalyticsPage() {
                     </div>
                   )
                 })}
+
+                {/* Desktop only: summary section */}
+                <div className="hidden lg:block pt-4 mt-2 border-t border-[var(--border-default)]">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className="text-xs text-[var(--text-muted)]">Total Users</p>
+                      <p className="text-2xl font-bold text-[var(--text-primary)]">
+                        {totalDeviceUsers.toLocaleString()}
+                      </p>
+                    </div>
+                    <Badge variant="success" size="sm" className="flex items-center gap-1">
+                      <TrendingUp className="h-3 w-3" />
+                      +8.4% vs last period
+                    </Badge>
+                  </div>
+
+                  <div className="flex gap-1 h-2 rounded-full overflow-hidden mb-3">
+                    {deviceData.map((device) => {
+                      const pct = (device.users / totalDeviceUsers) * 100
+                      return (
+                        <div
+                          key={device.device}
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{ width: `${pct}%`, backgroundColor: device.color }}
+                        />
+                      )
+                    })}
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
+                    {deviceData.map((device) => (
+                      <div key={device.device} className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full" style={{ backgroundColor: device.color }} />
+                        {device.device}: {device.users.toLocaleString()}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
           </Card.Content>
