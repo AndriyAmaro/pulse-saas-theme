@@ -313,18 +313,43 @@ export default function FinanceDashboard() {
                 </p>
               </div>
 
-              <div className="w-full lg:w-80">
-                <p className="mb-2 text-xs text-[var(--text-muted)]">Last 30 days trend</p>
-                <SparklineChart
-                  data={balanceData.last30Days}
-                  type="area"
-                  color="#22C55E"
-                  width={320}
-                  height={80}
-                  showDot
-                  gradient
-                  animated
-                />
+              <div className="w-full lg:w-[420px]">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">Last 30 days trend</p>
+                  <div className="flex items-center gap-1.5">
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Live</span>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-emerald-200/50 dark:border-emerald-800/30 bg-gradient-to-b from-emerald-50/50 to-transparent dark:from-emerald-900/10 dark:to-transparent p-3">
+                  <ChartWrapper
+                    type="area"
+                    data={balanceData.last30Days.map((val, i) => ({ day: i + 1, balance: val }))}
+                    series={[{ dataKey: 'balance', name: 'Balance', fillOpacity: 0.3, color: '#22C55E' }]}
+                    xAxisKey="day"
+                    height={90}
+                    showTooltip
+                    tooltipFormatter={(value) => '$' + Number(value).toLocaleString()}
+                  />
+                  <div className="flex items-center justify-between mt-2 pt-2 border-t border-emerald-200/40 dark:border-emerald-800/20">
+                    <div className="text-center">
+                      <p className="text-[9px] uppercase tracking-wider text-[var(--text-muted)]">High</p>
+                      <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400">$289K</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-[9px] uppercase tracking-wider text-[var(--text-muted)]">Low</p>
+                      <p className="text-xs font-bold text-red-500 dark:text-red-400">$265K</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-[9px] uppercase tracking-wider text-[var(--text-muted)]">Avg</p>
+                      <p className="text-xs font-bold text-[var(--text-primary)]">$280K</p>
+                    </div>
+                    <div className="flex h-1.5 w-20 rounded-full overflow-hidden">
+                      <div className="bg-emerald-500" style={{ width: '70%' }} />
+                      <div className="bg-emerald-300 dark:bg-emerald-700" style={{ width: '30%' }} />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </Card.Content>
