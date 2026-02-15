@@ -600,22 +600,22 @@ export default function CRMDashboard() {
                     <Target className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-center justify-end gap-4 h-12">
-                  <div className="relative h-10 w-10">
+                <div className="mt-3 flex items-center justify-center gap-4 h-8">
+                  <div className="relative h-8 w-8">
                     <svg viewBox="0 0 24 24" className="h-full w-full -rotate-90">
-                      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" className="text-blue-100 dark:text-blue-900/40" strokeWidth="3" />
-                      <circle cx="12" cy="12" r="10" fill="none" stroke="#3B82F6" strokeWidth="3" strokeDasharray="31 16" strokeLinecap="round" />
+                      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" className="text-blue-100 dark:text-blue-900/40" strokeWidth="2.5" />
+                      <circle cx="12" cy="12" r="9" fill="none" stroke="#3B82F6" strokeWidth="2.5" strokeDasharray="28 14" strokeLinecap="round" />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400">65%</span>
+                      <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400">65%</span>
                     </div>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-blue-500" />
-                      <span className="text-[11px] text-blue-600 dark:text-blue-400 font-semibold">SQL Rate</span>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-blue-500" />
+                      <span className="text-[10px] text-blue-600 dark:text-blue-400 font-semibold">SQL Rate</span>
                     </div>
-                    <span className="text-[10px] text-[var(--text-muted)]">23.4%</span>
+                    <span className="text-[9px] text-[var(--text-muted)]">23.4%</span>
                   </div>
                 </div>
               </Card.Content>
@@ -641,20 +641,20 @@ export default function CRMDashboard() {
                     <FileText className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-center justify-end gap-4 h-12">
-                  <div className="flex items-center gap-2">
+                <div className="mt-3 flex items-center justify-center gap-3 h-8">
+                  <div className="flex items-center gap-1.5">
                     {[1, 2, 3, 4, 5].map((i) => (
-                      <div key={i} className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i <= 3 ? 'bg-violet-500' : 'bg-violet-200 dark:bg-violet-700/50'}`} />
+                      <div key={i} className={`w-2 h-2 rounded-full transition-all duration-300 ${i <= 3 ? 'bg-violet-500' : 'bg-violet-200 dark:bg-violet-700/50'}`} />
                     ))}
-                    <div className="w-1 h-1 bg-violet-300" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-violet-400 animate-pulse" />
+                    <div className="w-0.5 h-0.5 bg-violet-300" />
+                    <div className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-violet-500" />
-                      <span className="text-[11px] text-violet-600 dark:text-violet-400 font-semibold">Win Rate</span>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-violet-500" />
+                      <span className="text-[10px] text-violet-600 dark:text-violet-400 font-semibold">Win Rate</span>
                     </div>
-                    <span className="text-[10px] text-[var(--text-muted)]">38.2%</span>
+                    <span className="text-[9px] text-[var(--text-muted)]">38.2%</span>
                   </div>
                 </div>
               </Card.Content>
@@ -679,21 +679,21 @@ export default function CRMDashboard() {
                     <Trophy className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                 </div>
-                <div className="mt-3 flex items-center justify-end gap-4 h-12">
-                  <div className="flex items-center gap-2">
-                    <Trophy className="h-6 w-6 text-emerald-500" />
+                <div className="mt-3 flex items-center justify-center gap-3 h-8">
+                  <div className="flex items-center gap-1.5">
+                    <Trophy className="h-5 w-5 text-emerald-500" />
                     <div className="flex -space-x-1">
                       {[1, 2, 3, 4, 5].map((i) => (
-                        <div key={i} className={`w-3 h-3 rounded-full border-2 border-white dark:border-slate-900 ${i <= 3 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`} />
+                        <div key={i} className={`w-2.5 h-2.5 rounded-full border-2 border-white dark:border-slate-900 ${i <= 3 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`} />
                       ))}
                     </div>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                      <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">Avg Deal</span>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                      <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">Avg Deal</span>
                     </div>
-                    <span className="text-[10px] text-[var(--text-muted)]">$3.7K</span>
+                    <span className="text-[9px] text-[var(--text-muted)]">$3.7K</span>
                   </div>
                 </div>
               </Card.Content>
