@@ -1056,6 +1056,83 @@ export default function CRMDashboard() {
                   ))}
                 </div>
                 
+                {/* Desktop-Only Revenue Insights */}
+                <div className="hidden lg:block">
+                  <div className="mt-6 pt-6 border-t border-slate-200/50 dark:border-slate-700/50">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                      <span className="text-sm font-semibold text-[var(--text-primary)]">Revenue Insights</span>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-50/50 to-emerald-100/20 dark:from-emerald-950/20 dark:to-emerald-900/10 border border-emerald-200/30 dark:border-emerald-800/20">
+                        <div className="flex items-center gap-3">
+                          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center">
+                            <TrendingUp className="h-4 w-4 text-white" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Top Performer</p>
+                            <p className="text-sm font-bold text-[var(--text-primary)]">Inbound Marketing</p>
+                            <p className="text-xs text-[var(--text-muted)]">+23.5% growth rate</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="p-4 rounded-xl bg-gradient-to-br from-blue-50/50 to-blue-100/20 dark:from-blue-950/20 dark:to-blue-900/10 border border-blue-200/30 dark:border-blue-800/20">
+                        <div className="flex items-center gap-3">
+                          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center">
+                            <Target className="h-4 w-4 text-white" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-medium text-blue-600 dark:text-blue-400">Conversion Focus</p>
+                            <p className="text-sm font-bold text-[var(--text-primary)]">Referral Programs</p>
+                            <p className="text-xs text-[var(--text-muted)]">Highest ROI at 4.2x</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-4 p-4 rounded-xl bg-gradient-to-br from-slate-50/50 to-slate-100/20 dark:from-slate-800/20 dark:to-slate-700/10 border border-slate-200/30 dark:border-slate-700/20">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
+                            <PieChart className="h-4 w-4 text-white" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-medium text-violet-600 dark:text-violet-400">Revenue Distribution</p>
+                            <p className="text-sm font-bold text-[var(--text-primary)]">Diversified Portfolio</p>
+                            <p className="text-xs text-[var(--text-muted)]">5 sources, balanced growth</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xs text-[var(--text-muted)]">Health Score</p>
+                          <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">92/100</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-4 grid grid-cols-3 gap-3">
+                      <div className="text-center p-3 rounded-lg bg-gradient-to-br from-amber-50/50 to-amber-100/20 dark:from-amber-950/20 dark:to-amber-900/10 border border-amber-200/30 dark:border-amber-800/20">
+                        <p className="text-xs font-medium text-amber-600 dark:text-amber-400">Avg Deal Size</p>
+                        <p className="text-lg font-bold text-[var(--text-primary]">$3,847</p>
+                        <p className="text-xs text-[var(--text-muted)]">+8.2% vs Q1</p>
+                      </div>
+                      
+                      <div className="text-center p-3 rounded-lg bg-gradient-to-br from-rose-50/50 to-rose-100/20 dark:from-rose-950/20 dark:to-rose-900/10 border border-rose-200/30 dark:border-rose-800/20">
+                        <p className="text-xs font-medium text-rose-600 dark:text-rose-400">Sales Cycle</p>
+                        <p className="text-lg font-bold text-[var(--text-primary]">28 days</p>
+                        <p className="text-xs text-[var(--text-muted)]">-5 days improvement</p>
+                      </div>
+                      
+                      <div className="text-center p-3 rounded-lg bg-gradient-to-br from-cyan-50/50 to-cyan-100/20 dark:from-cyan-950/20 dark:to-cyan-900/10 border border-cyan-200/30 dark:border-cyan-800/20">
+                        <p className="text-xs font-medium text-cyan-600 dark:text-cyan-400">Win Rate</p>
+                        <p className="text-lg font-bold text-[var(--text-primary]">34.2%</p>
+                        <p className="text-xs text-[var(--text-muted)]">+2.1% increase</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
               </div>
             )}
           </Card.Content>
