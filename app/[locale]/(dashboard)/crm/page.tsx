@@ -1256,10 +1256,18 @@ export default function CRMDashboard() {
                 {/* Desktop Premium Insights */}
                 <div className="hidden lg:block px-4 pb-4">
                   <div className="mt-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50">
-                    <div className="grid grid-cols-4 gap-4">
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-red-50/80 to-orange-50/50 dark:from-red-950/30 dark:to-orange-950/20 border border-red-200/40 dark:border-red-800/30">
+                    {/* Header */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-red-500 to-orange-500 animate-pulse" />
+                      <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">Lead Intelligence</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-slate-200 via-slate-100 to-transparent dark:from-slate-700 dark:via-slate-800" />
+                    </div>
+
+                    {/* First Row */}
+                    <div className="grid grid-cols-4 gap-3">
+                      <div className="group p-3 rounded-xl bg-gradient-to-br from-red-50/80 to-orange-50/50 dark:from-red-950/30 dark:to-orange-950/20 border border-red-200/40 dark:border-red-800/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                             <Flame className="h-3.5 w-3.5 text-white" />
                           </div>
                           <span className="text-xs font-medium text-red-600 dark:text-red-400">Hot Pipeline</span>
@@ -1268,9 +1276,9 @@ export default function CRMDashboard() {
                         <p className="text-[10px] text-[var(--text-muted)] mt-1">{hotLeadsData.length} high-priority leads</p>
                       </div>
 
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-emerald-50/80 to-green-50/50 dark:from-emerald-950/30 dark:to-green-950/20 border border-emerald-200/40 dark:border-emerald-800/30">
+                      <div className="group p-3 rounded-xl bg-gradient-to-br from-emerald-50/80 to-green-50/50 dark:from-emerald-950/30 dark:to-green-950/20 border border-emerald-200/40 dark:border-emerald-800/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                             <Target className="h-3.5 w-3.5 text-white" />
                           </div>
                           <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Avg Score</span>
@@ -1279,9 +1287,9 @@ export default function CRMDashboard() {
                         <p className="text-[10px] text-[var(--text-muted)] mt-1">Lead quality index</p>
                       </div>
 
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-violet-50/80 to-purple-50/50 dark:from-violet-950/30 dark:to-purple-950/20 border border-violet-200/40 dark:border-violet-800/30">
+                      <div className="group p-3 rounded-xl bg-gradient-to-br from-violet-50/80 to-purple-50/50 dark:from-violet-950/30 dark:to-purple-950/20 border border-violet-200/40 dark:border-violet-800/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                             <Trophy className="h-3.5 w-3.5 text-white" />
                           </div>
                           <span className="text-xs font-medium text-violet-600 dark:text-violet-400">Top Deal</span>
@@ -1290,15 +1298,62 @@ export default function CRMDashboard() {
                         <p className="text-[10px] text-[var(--text-muted)] mt-1">Highest opportunity</p>
                       </div>
 
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-amber-50/80 to-yellow-50/50 dark:from-amber-950/30 dark:to-yellow-950/20 border border-amber-200/40 dark:border-amber-800/30">
+                      <div className="group p-3 rounded-xl bg-gradient-to-br from-amber-50/80 to-yellow-50/50 dark:from-amber-950/30 dark:to-yellow-950/20 border border-amber-200/40 dark:border-amber-800/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                             <Zap className="h-3.5 w-3.5 text-white" />
                           </div>
                           <span className="text-xs font-medium text-amber-600 dark:text-amber-400">Negotiation</span>
                         </div>
                         <p className="text-xl font-bold text-[var(--text-primary)]">{hotLeadsData.filter(l => l.stage === 'Negotiation').length}</p>
                         <p className="text-[10px] text-[var(--text-muted)] mt-1">Ready to close</p>
+                      </div>
+                    </div>
+
+                    {/* Second Row */}
+                    <div className="grid grid-cols-4 gap-3 mt-3">
+                      <div className="group p-3 rounded-xl bg-gradient-to-br from-blue-50/80 to-cyan-50/50 dark:from-blue-950/30 dark:to-cyan-950/20 border border-blue-200/40 dark:border-blue-800/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                            <Clock className="h-3.5 w-3.5 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-blue-600 dark:text-blue-400">Avg Response</span>
+                        </div>
+                        <p className="text-xl font-bold text-[var(--text-primary)]">2.4h</p>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1">Lead response time</p>
+                      </div>
+
+                      <div className="group p-3 rounded-xl bg-gradient-to-br from-pink-50/80 to-rose-50/50 dark:from-pink-950/30 dark:to-rose-950/20 border border-pink-200/40 dark:border-pink-800/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                            <Handshake className="h-3.5 w-3.5 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-pink-600 dark:text-pink-400">Close Rate</span>
+                        </div>
+                        <p className="text-xl font-bold text-[var(--text-primary)]">68%</p>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1">Hot lead conversion</p>
+                      </div>
+
+                      <div className="group p-3 rounded-xl bg-gradient-to-br from-teal-50/80 to-emerald-50/50 dark:from-teal-950/30 dark:to-emerald-950/20 border border-teal-200/40 dark:border-teal-800/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                            <Activity className="h-3.5 w-3.5 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-teal-600 dark:text-teal-400">Engagement</span>
+                        </div>
+                        <p className="text-xl font-bold text-[var(--text-primary)]">94%</p>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1">Active interactions</p>
+                      </div>
+
+                      <div className="group p-3 rounded-xl bg-gradient-to-br from-indigo-50/80 to-blue-50/50 dark:from-indigo-950/30 dark:to-blue-950/20 border border-indigo-200/40 dark:border-indigo-800/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                            <Rocket className="h-3.5 w-3.5 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-indigo-600 dark:text-indigo-400">Velocity</span>
+                        </div>
+                        <p className="text-xl font-bold text-[var(--text-primary)]">12d</p>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1">Avg deal cycle</p>
                       </div>
                     </div>
                   </div>
