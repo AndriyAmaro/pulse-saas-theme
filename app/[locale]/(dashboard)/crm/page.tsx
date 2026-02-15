@@ -939,7 +939,7 @@ export default function CRMDashboard() {
                     data={revenueBySourceData}
                     series={[{ dataKey: 'value', name: 'Revenue' }]}
                     xAxisKey="name"
-                    height={240}
+                    height={280}
                     showLegend
                     showTooltip
                     tooltipFormatter={(value) => '$' + value.toLocaleString()}
@@ -952,17 +952,22 @@ export default function CRMDashboard() {
                 </div>
                 
                 {/* Source Breakdown */}
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {revenueBySourceData.map((source, idx) => (
-                    <div key={source.name} className="flex items-center justify-between p-2 rounded-lg bg-gradient-to-r from-slate-50/50 to-transparent dark:from-slate-800/30 hover:from-emerald-50/30 dark:hover:from-emerald-950/20 transition-all duration-200">
-                      <div className="flex items-center gap-3">
-                        <div className={`h-3 w-3 rounded-full ${idx === 0 ? 'bg-emerald-500' : idx === 1 ? 'bg-blue-500' : 'bg-violet-500'}`} />
-                        <span className="text-sm font-medium text-[var(--text-primary)]">{source.name}</span>
+                    <div key={source.name}>
+                      <div className="flex items-center justify-between p-2 rounded-lg bg-gradient-to-r from-slate-50/50 to-transparent dark:from-slate-800/30 hover:from-emerald-50/30 dark:hover:from-emerald-950/20 transition-all duration-200">
+                        <div className="flex items-center gap-3">
+                          <div className={`h-3 w-3 rounded-full ${idx === 0 ? 'bg-emerald-500' : idx === 1 ? 'bg-blue-500' : idx === 2 ? 'bg-violet-500' : idx === 3 ? 'bg-amber-500' : 'bg-slate-500'}`} />
+                          <span className="text-sm font-medium text-[var(--text-primary)]">{source.name}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold text-[var(--text-primary)]">${source.value.toLocaleString()}</span>
+                          <span className="text-xs text-[var(--text-muted)]">{((source.value / revenueBySourceData.reduce((s, item) => s + item.value, 0)) * 100).toFixed(1)}%</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-[var(--text-primary)]">${source.value.toLocaleString()}</span>
-                        <span className="text-xs text-[var(--text-muted)]">{((source.value / revenueBySourceData.reduce((s, item) => s + item.value, 0)) * 100).toFixed(1)}%</span>
-                      </div>
+                      {idx < revenueBySourceData.length - 1 && (
+                        <div className="ml-8 mr-4 h-px bg-gradient-to-r from-transparent via-slate-200/50 to-transparent dark:via-slate-700/50" />
+                      )}
                     </div>
                   ))}
                 </div>
