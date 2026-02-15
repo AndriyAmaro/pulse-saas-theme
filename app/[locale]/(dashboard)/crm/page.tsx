@@ -1252,6 +1252,57 @@ export default function CRMDashboard() {
                     hoverable
                   />
                 </div>
+
+                {/* Desktop Premium Insights */}
+                <div className="hidden lg:block px-4 pb-4">
+                  <div className="mt-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50">
+                    <div className="grid grid-cols-4 gap-4">
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-red-50/80 to-orange-50/50 dark:from-red-950/30 dark:to-orange-950/20 border border-red-200/40 dark:border-red-800/30">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                            <Flame className="h-3.5 w-3.5 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-red-600 dark:text-red-400">Hot Pipeline</span>
+                        </div>
+                        <p className="text-xl font-bold text-[var(--text-primary)]">${hotLeadsData.reduce((s, l) => s + l.value, 0).toLocaleString()}</p>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1">{hotLeadsData.length} high-priority leads</p>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-emerald-50/80 to-green-50/50 dark:from-emerald-950/30 dark:to-green-950/20 border border-emerald-200/40 dark:border-emerald-800/30">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center">
+                            <Target className="h-3.5 w-3.5 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Avg Score</span>
+                        </div>
+                        <p className="text-xl font-bold text-[var(--text-primary)]">{Math.round(hotLeadsData.reduce((s, l) => s + l.score, 0) / hotLeadsData.length)}</p>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1">Lead quality index</p>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-violet-50/80 to-purple-50/50 dark:from-violet-950/30 dark:to-purple-950/20 border border-violet-200/40 dark:border-violet-800/30">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
+                            <Trophy className="h-3.5 w-3.5 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-violet-600 dark:text-violet-400">Top Deal</span>
+                        </div>
+                        <p className="text-xl font-bold text-[var(--text-primary)]">${Math.max(...hotLeadsData.map(l => l.value)).toLocaleString()}</p>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1">Highest opportunity</p>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-amber-50/80 to-yellow-50/50 dark:from-amber-950/30 dark:to-yellow-950/20 border border-amber-200/40 dark:border-amber-800/30">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center">
+                            <Zap className="h-3.5 w-3.5 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-amber-600 dark:text-amber-400">Negotiation</span>
+                        </div>
+                        <p className="text-xl font-bold text-[var(--text-primary)]">{hotLeadsData.filter(l => l.stage === 'Negotiation').length}</p>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1">Ready to close</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </>
             )}
           </Card.Content>
