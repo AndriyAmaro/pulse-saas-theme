@@ -1093,20 +1093,22 @@ export default function CRMDashboard() {
             {isLoading ? (
               <Skeleton className="h-64 rounded-lg" />
             ) : (
-              <ChartWrapper
-                type="bar"
-                data={salesPerformanceData}
-                series={[
-                  { dataKey: 'target', name: 'Target', color: '#CBD5E1' },
-                  { dataKey: 'actual', name: 'Actual', color: '#22C55E' },
-                ]}
-                xAxisKey="name"
-                height={260}
-                showLegend
-                showTooltip
-                showGrid
-                tooltipFormatter={(value) => '$' + value.toLocaleString()}
-              />
+              <div className="-ml-7 -mr-5 sm:ml-0 sm:mr-0">
+                <ChartWrapper
+                  type="bar"
+                  data={salesPerformanceData}
+                  series={[
+                    { dataKey: 'target', name: 'Target', color: '#CBD5E1' },
+                    { dataKey: 'actual', name: 'Actual', color: '#22C55E' },
+                  ]}
+                  xAxisKey="name"
+                  height={300}
+                  showLegend
+                  showTooltip
+                  showGrid
+                  tooltipFormatter={(value) => '$' + value.toLocaleString()}
+                />
+              </div>
             )}
           </Card.Content>
         </Card>
@@ -1128,20 +1130,22 @@ export default function CRMDashboard() {
             {isLoading ? (
               <Skeleton className="h-64 rounded-lg" />
             ) : (
-              <ChartWrapper
-                type="area"
-                data={winRateTrendData}
-                series={[
-                  { dataKey: 'rate', name: 'Win Rate', fillOpacity: 0.4, color: '#22C55E' },
-                  { dataKey: 'target', name: 'Target', color: '#94A3B8' },
-                ]}
-                xAxisKey="month"
-                height={260}
-                showLegend
-                showTooltip
-                showGrid
-                tooltipFormatter={(value) => value + '%'}
-              />
+              <div className="-ml-7 -mr-5 sm:ml-0 sm:mr-0">
+                <ChartWrapper
+                  type="area"
+                  data={winRateTrendData}
+                  series={[
+                    { dataKey: 'rate', name: 'Win Rate', fillOpacity: 0.4, color: '#22C55E' },
+                    { dataKey: 'target', name: 'Target', color: '#94A3B8' },
+                  ]}
+                  xAxisKey="month"
+                  height={300}
+                  showLegend
+                  showTooltip
+                  showGrid
+                  tooltipFormatter={(value) => value + '%'}
+                />
+              </div>
             )}
           </Card.Content>
         </Card>
@@ -1185,14 +1189,70 @@ export default function CRMDashboard() {
                 ))}
               </div>
             ) : (
-              <DataTable
-                data={hotLeadsData}
-                columns={hotLeadsColumns}
-                sortable
-                pagination
-                pageSize={5}
-                hoverable
-              />
+              <>
+                {/* Mobile Carousel */}
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 py-4 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  {hotLeadsData.map((lead) => (
+                    <div
+                      key={lead.id}
+                      className="snap-start shrink-0 w-[280px] p-4 rounded-xl border border-[var(--border-default)] bg-gradient-to-br from-slate-50/50 to-white dark:from-slate-800/50 dark:to-slate-900"
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <Avatar
+                          src={lead.avatar}
+                          fallback={lead.name.charAt(0)}
+                          size="md"
+                          alt={lead.name}
+                        />
+                        <div className="min-w-0 flex-1">
+                          <p className="font-semibold text-[var(--text-primary)] truncate">{lead.name}</p>
+                          <p className="text-xs text-[var(--text-muted)] truncate">{lead.company}</p>
+                        </div>
+                        {lead.score >= 80 && <Flame className="h-4 w-4 text-orange-500 flex-shrink-0" />}
+                      </div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-lg font-bold text-[var(--text-primary)]">${lead.value.toLocaleString()}</span>
+                        <Badge
+                          variant="default"
+                          size="sm"
+                          style={{ backgroundColor: `${lead.stageColor}20`, color: lead.stageColor }}
+                        >
+                          {lead.stage}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="h-1.5 w-16 overflow-hidden rounded-full bg-secondary-200 dark:bg-secondary-700">
+                            <div
+                              className="h-full rounded-full"
+                              style={{ width: `${lead.score}%`, backgroundColor: lead.score >= 80 ? '#22C55E' : lead.score >= 60 ? '#F59E0B' : '#EF4444' }}
+                            />
+                          </div>
+                          <span className="text-xs font-medium" style={{ color: lead.score >= 80 ? '#22C55E' : lead.score >= 60 ? '#F59E0B' : '#EF4444' }}>
+                            {lead.score}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Avatar fallback={lead.owner.name.charAt(0)} size="xs" alt={lead.owner.name} />
+                          <span className="text-xs text-[var(--text-muted)]">{lead.lastContact}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop Table */}
+                <div className="hidden sm:block">
+                  <DataTable
+                    data={hotLeadsData}
+                    columns={hotLeadsColumns}
+                    sortable
+                    pagination
+                    pageSize={5}
+                    hoverable
+                  />
+                </div>
+              </>
             )}
           </Card.Content>
         </Card>
