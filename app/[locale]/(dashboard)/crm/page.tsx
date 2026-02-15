@@ -808,19 +808,25 @@ export default function CRMDashboard() {
       {/* ====== ROW 3: FUNNEL + REVENUE BY SOURCE ====== */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Conversion Funnel */}
-        <Card className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-indigo-500/5 dark:from-blue-500/10 dark:to-indigo-500/10 pointer-events-none" />
-          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-indigo-500" />
+        <Card className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-indigo-950/20">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-indigo-500/8 dark:from-blue-500/12 dark:to-indigo-500/12 pointer-events-none" />
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(59,130,246,0.05),transparent,transparent)]" />
           <Card.Header className="relative">
-            <Card.Title className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 shadow-sm">
-                <BarChart3 className="h-4 w-4 text-white" />
+            <Card.Title className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 shadow-lg ring-2 ring-blue-500/20">
+                <BarChart3 className="h-5 w-5 text-white" />
               </div>
-              Conversion Funnel
+              <div>
+                <span className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Conversion Funnel</span>
+                <div className="flex items-center gap-2 mt-1">
+                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                  <span className="text-xs text-[var(--text-muted)]">Lead to Customer Journey</span>
+                </div>
+              </div>
             </Card.Title>
-            <Card.Description className="mt-1">Lead to customer journey</Card.Description>
           </Card.Header>
-          <Card.Content>
+          <Card.Content className="relative">
             {isLoading ? (
               <div className="space-y-4">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -828,53 +834,123 @@ export default function CRMDashboard() {
                 ))}
               </div>
             ) : (
-              <div className="space-y-3">
-                {funnelData.map((step, idx) => {
-                  const prevStep = funnelData[idx - 1]
-                  const conversionFromPrev = prevStep
-                    ? ((step.count / prevStep.count) * 100).toFixed(1)
-                    : null
+              <div className="space-y-4">
+                {/* Premium Metrics Row */}
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100/50 p-3 dark:from-blue-950/30 dark:to-blue-900/20 border border-blue-200/50 dark:border-blue-800/30">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-blue-500" />
+                      <span className="text-[10px] text-blue-600 dark:text-blue-400 font-medium">Total Leads</span>
+                    </div>
+                    <p className="mt-1 text-lg font-bold text-blue-700 dark:text-blue-300">{funnelData[0]?.count?.toLocaleString() || 0}</p>
+                    <p className="text-[9px] text-blue-600/70 dark:text-blue-400/70">100% starting point</p>
+                  </div>
+                  <div className="rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100/50 p-3 dark:from-emerald-950/30 dark:to-emerald-900/20 border border-emerald-200/50 dark:border-emerald-800/30">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                      <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">Conversion Rate</span>
+                    </div>
+                    <p className="mt-1 text-lg font-bold text-emerald-700 dark:text-emerald-300">4.0%</p>
+                    <p className="text-[9px] text-emerald-600/70 dark:text-emerald-400/70">Lead to Customer</p>
+                  </div>
+                  <div className="rounded-xl bg-gradient-to-br from-violet-50 to-violet-100/50 p-3 dark:from-violet-950/30 dark:to-violet-900/20 border border-violet-200/50 dark:border-violet-800/30">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-violet-500" />
+                      <span className="text-[10px] text-violet-600 dark:text-violet-400 font-medium">Avg. Time</span>
+                    </div>
+                    <p className="mt-1 text-lg font-bold text-violet-700 dark:text-violet-300">42 days</p>
+                    <p className="text-[9px] text-violet-600/70 dark:text-violet-400/70">Journey duration</p>
+                  </div>
+                </div>
+                
+                {/* Enhanced Funnel */}
+                <div className="space-y-3">
+                  {funnelData.map((step, idx) => {
+                    const prevStep = funnelData[idx - 1]
+                    const conversionFromPrev = prevStep
+                      ? ((step.count / prevStep.count) * 100).toFixed(1)
+                      : null
 
-                  return (
-                    <div key={step.stage} className="flex items-center gap-4">
-                      {/* Barra com largura proporcional */}
-                      <div
-                        className="relative flex-shrink-0 overflow-hidden rounded-lg transition-all duration-300 hover:scale-[1.02]"
-                        style={{
-                          width: `${Math.max(step.percentage, 25)}%`,
-                          backgroundColor: step.color + '20',
-                        }}
-                      >
-                        <div
-                          className="absolute inset-y-0 left-0"
-                          style={{
-                            width: '4px',
-                            backgroundColor: step.color,
-                          }}
-                        />
-                        <div className="p-3 pl-4">
-                          <p className="text-sm font-medium text-[var(--text-primary)]">
-                            {step.stage}
-                          </p>
-                          <p className="text-lg font-bold text-[var(--text-primary)]">
-                            {step.count.toLocaleString()}
-                          </p>
+                    return (
+                      <div key={step.stage} className="group relative">
+                        <div className="flex items-center gap-4">
+                          {/* Enhanced Bar */}
+                          <div
+                            className="relative flex-shrink-0 overflow-hidden rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                            style={{
+                              width: `${Math.max(step.percentage, 25)}%`,
+                              backgroundColor: step.color + '15',
+                              borderLeft: `4px solid ${step.color}`,
+                            }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10 dark:to-white/5" />
+                            <div className="p-3 pl-4">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="text-sm font-semibold text-[var(--text-primary)]">
+                                    {step.stage}
+                                  </p>
+                                  <p className="text-lg font-bold text-[var(--text-primary)]">
+                                    {step.count.toLocaleString()}
+                                  </p>
+                                </div>
+                                <div className="text-right">
+                                  <p className="text-sm font-bold" style={{ color: step.color }}>
+                                    {step.percentage}%
+                                  </p>
+                                  {conversionFromPrev && (
+                                    <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                                      {conversionFromPrev}% conv.
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      {/* Informações FORA da barra - sempre visíveis */}
-                      <div className="flex-shrink-0 text-right min-w-[80px]">
-                        <p className="text-sm font-semibold" style={{ color: step.color }}>
-                          {step.percentage}%
-                        </p>
-                        {conversionFromPrev && (
-                          <p className="text-xs text-[var(--text-muted)]">
-                            {conversionFromPrev}% conv.
-                          </p>
+                        
+                        {/* Drop Rate Indicator */}
+                        {idx < funnelData.length - 1 && (
+                          <div className="flex items-center gap-2 ml-2 mt-2">
+                            <div className="h-px bg-gradient-to-r from-red-500/50 to-transparent flex-1" />
+                            <span className="text-xs text-red-600 dark:text-red-400 font-medium">
+                              -{((1 - (funnelData[idx + 1]?.count || 0) / step.count) * 100).toFixed(1)}% drop
+                            </span>
+                            <div className="h-px bg-gradient-to-l from-red-500/50 to-transparent flex-1" />
+                          </div>
                         )}
                       </div>
+                    )
+                  })}
+                </div>
+                
+                {/* Funnel Insights */}
+                <div className="mt-4 p-4 rounded-xl bg-gradient-to-br from-slate-50/50 to-slate-50/20 dark:from-slate-800/30 dark:to-slate-800/20 border border-slate-200/30 dark:border-slate-700/30">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-full bg-blue-500" />
+                    <span className="text-sm font-semibold text-[var(--text-primary)]">Funnel Insights</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <div className="h-6 w-6 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                        <TrendingUp className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-medium text-[var(--text-primary)]">Best Stage</p>
+                        <p className="text-xs text-[var(--text-muted)]">MQL → SQL (46.8%)</p>
+                      </div>
                     </div>
-                  )
-                })}
+                    <div className="flex items-center gap-2">
+                      <div className="h-6 w-6 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                        <TrendingDown className="h-3 w-3 text-red-600 dark:text-red-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-medium text-[var(--text-primary)]">Critical Drop</p>
+                        <p className="text-xs text-[var(--text-muted)]">SQL → Opp (55.1%)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </Card.Content>
@@ -972,51 +1048,6 @@ export default function CRMDashboard() {
                   ))}
                 </div>
                 
-                {/* Revenue Conversion Journey */}
-                <div className="mt-6 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-emerald-500" />
-                    <span className="text-sm font-semibold text-[var(--text-primary)]">Revenue Conversion Journey</span>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    {[
-                      { name: 'Lead Generation', value: 847, percentage: 100, color: 'emerald', conv: null },
-                      { name: 'Qualified Leads', value: 423, percentage: 49.9, color: 'blue', conv: '49.9% conv.' },
-                      { name: 'Sales Qualified', value: 198, percentage: 23.4, color: 'violet', conv: '46.8% conv.' },
-                      { name: 'Opportunity Created', value: 89, percentage: 10.5, color: 'amber', conv: '44.9% conv.' },
-                      { name: 'Closed Deals', value: 34, percentage: 4.0, color: 'green', conv: '38.2% conv.' }
-                    ].map((stage, idx) => (
-                      <div key={stage.name} className="group relative">
-                        <div className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-slate-50/60 to-slate-50/20 dark:from-slate-800/40 dark:to-slate-800/20 border border-slate-200/30 dark:border-slate-700/30 hover:border-emerald-300/50 dark:hover:border-emerald-700/50 transition-all duration-300 hover:shadow-sm">
-                          <div className="flex items-center gap-3">
-                            <div className={`h-8 w-8 rounded-lg bg-gradient-to-br from-${stage.color}-500 to-${stage.color}-600 flex items-center justify-center shadow-sm`}>
-                              <span className="text-xs font-bold text-white">{idx + 1}</span>
-                            </div>
-                            <div>
-                              <p className="text-sm font-semibold text-[var(--text-primary)]">{stage.name}</p>
-                              <p className="text-xs text-[var(--text-muted)]">{stage.percentage}% of total</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-4">
-                            <div className="text-right">
-                              <p className="text-lg font-bold text-[var(--text-primary)]">{stage.value}</p>
-                              {stage.conv && (
-                                <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{stage.conv}</p>
-                              )}
-                            </div>
-                            <div className="w-16 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                              <div 
-                                className={`h-full bg-gradient-to-r from-${stage.color}-500 to-${stage.color}-600 rounded-full transition-all duration-500 group-hover:scale-105`}
-                                style={{ width: `${stage.percentage}%` }}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
             )}
           </Card.Content>
