@@ -971,6 +971,52 @@ export default function CRMDashboard() {
                     </div>
                   ))}
                 </div>
+                
+                {/* Revenue Conversion Journey */}
+                <div className="mt-6 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                    <span className="text-sm font-semibold text-[var(--text-primary)]">Revenue Conversion Journey</span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    {[
+                      { name: 'Lead Generation', value: 847, percentage: 100, color: 'emerald', conv: null },
+                      { name: 'Qualified Leads', value: 423, percentage: 49.9, color: 'blue', conv: '49.9% conv.' },
+                      { name: 'Sales Qualified', value: 198, percentage: 23.4, color: 'violet', conv: '46.8% conv.' },
+                      { name: 'Opportunity Created', value: 89, percentage: 10.5, color: 'amber', conv: '44.9% conv.' },
+                      { name: 'Closed Deals', value: 34, percentage: 4.0, color: 'green', conv: '38.2% conv.' }
+                    ].map((stage, idx) => (
+                      <div key={stage.name} className="group relative">
+                        <div className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-slate-50/60 to-slate-50/20 dark:from-slate-800/40 dark:to-slate-800/20 border border-slate-200/30 dark:border-slate-700/30 hover:border-emerald-300/50 dark:hover:border-emerald-700/50 transition-all duration-300 hover:shadow-sm">
+                          <div className="flex items-center gap-3">
+                            <div className={`h-8 w-8 rounded-lg bg-gradient-to-br from-${stage.color}-500 to-${stage.color}-600 flex items-center justify-center shadow-sm`}>
+                              <span className="text-xs font-bold text-white">{idx + 1}</span>
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-[var(--text-primary)]">{stage.name}</p>
+                              <p className="text-xs text-[var(--text-muted)]">{stage.percentage}% of total</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-4">
+                            <div className="text-right">
+                              <p className="text-lg font-bold text-[var(--text-primary)]">{stage.value}</p>
+                              {stage.conv && (
+                                <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{stage.conv}</p>
+                              )}
+                            </div>
+                            <div className="w-16 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                              <div 
+                                className={`h-full bg-gradient-to-r from-${stage.color}-500 to-${stage.color}-600 rounded-full transition-all duration-500 group-hover:scale-105`}
+                                style={{ width: `${stage.percentage}%` }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
           </Card.Content>
