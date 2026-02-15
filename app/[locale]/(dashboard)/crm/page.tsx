@@ -1052,6 +1052,21 @@ export default function CRMDashboard() {
                       )}
                     </div>
                   ))}
+
+                  {/* Total Row */}
+                  <div className="flex items-center justify-between gap-3 p-3 mt-2 rounded-xl bg-gradient-to-r from-emerald-50/80 to-emerald-100/40 dark:from-emerald-950/40 dark:to-emerald-900/20 border border-emerald-200/50 dark:border-emerald-800/30">
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className="h-3 w-3 flex-shrink-0 rounded-full bg-gradient-to-r from-emerald-500 to-green-500" />
+                      <span className="text-sm font-bold text-emerald-700 dark:text-emerald-300">Total Revenue</span>
+                    </div>
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                      <span className="text-sm font-bold text-emerald-700 dark:text-emerald-300">${revenueBySourceData.reduce((s, item) => s + item.value, 0).toLocaleString()}</span>
+                      <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 w-12 text-right">100%</span>
+                      <div className="w-12 h-2 bg-emerald-200 dark:bg-emerald-800 rounded-full overflow-hidden">
+                        <div className="h-full w-full rounded-full bg-gradient-to-r from-emerald-500 to-green-500" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
