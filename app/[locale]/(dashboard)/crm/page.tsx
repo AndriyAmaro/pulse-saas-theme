@@ -979,31 +979,31 @@ export default function CRMDashboard() {
             {isLoading ? (
               <Skeleton className="mx-auto h-64 w-64 rounded-full" />
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {/* Premium Metrics Row */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100/50 p-4 dark:from-emerald-950/30 dark:to-emerald-900/20 border border-emerald-200/50 dark:border-emerald-800/30">
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100/50 p-3 dark:from-emerald-950/30 dark:to-emerald-900/20 border border-emerald-200/50 dark:border-emerald-800/30">
                     <div className="flex items-center gap-2">
                       <div className="h-2 w-2 rounded-full bg-emerald-500" />
                       <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">Total Revenue</span>
                     </div>
-                    <p className="mt-1 text-xl font-bold text-emerald-700 dark:text-emerald-300">${revenueBySourceData.reduce((s, item) => s + item.value, 0).toLocaleString()}</p>
+                    <p className="mt-1 text-lg font-bold text-emerald-700 dark:text-emerald-300">${revenueBySourceData.reduce((s, item) => s + item.value, 0).toLocaleString()}</p>
                     <p className="text-[9px] text-emerald-600/70 dark:text-emerald-400/70">+12.5% vs last quarter</p>
                   </div>
-                  <div className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100/50 p-4 dark:from-blue-950/30 dark:to-blue-900/20 border border-blue-200/50 dark:border-blue-800/30">
+                  <div className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100/50 p-3 dark:from-blue-950/30 dark:to-blue-900/20 border border-blue-200/50 dark:border-blue-800/30">
                     <div className="flex items-center gap-2">
                       <div className="h-2 w-2 rounded-full bg-blue-500" />
                       <span className="text-[10px] text-blue-600 dark:text-blue-400 font-medium">Top Source</span>
                     </div>
-                    <p className="mt-1 text-xl font-bold text-blue-700 dark:text-blue-300">Inbound</p>
+                    <p className="mt-1 text-lg font-bold text-blue-700 dark:text-blue-300">Inbound</p>
                     <p className="text-[9px] text-blue-600/70 dark:text-blue-400/70">48.5% of total</p>
                   </div>
-                  <div className="rounded-xl bg-gradient-to-br from-violet-50 to-violet-100/50 p-4 dark:from-violet-950/30 dark:to-violet-900/20 border border-violet-200/50 dark:border-violet-800/30">
+                  <div className="rounded-xl bg-gradient-to-br from-violet-50 to-violet-100/50 p-3 dark:from-violet-950/30 dark:to-violet-900/20 border border-violet-200/50 dark:border-violet-800/30">
                     <div className="flex items-center gap-2">
                       <div className="h-2 w-2 rounded-full bg-violet-500" />
                       <span className="text-[10px] text-violet-600 dark:text-violet-400 font-medium">Growth Rate</span>
                     </div>
-                    <p className="mt-1 text-xl font-bold text-violet-700 dark:text-violet-300">+18.2%</p>
+                    <p className="mt-1 text-lg font-bold text-violet-700 dark:text-violet-300">+18.2%</p>
                     <p className="text-[9px] text-violet-600/70 dark:text-violet-400/70">YoY performance</p>
                   </div>
                 </div>
@@ -1015,7 +1015,7 @@ export default function CRMDashboard() {
                     data={revenueBySourceData}
                     series={[{ dataKey: 'value', name: 'Revenue' }]}
                     xAxisKey="name"
-                    height={320}
+                    height={260}
                     showLegend
                     showTooltip
                     tooltipFormatter={(value) => '$' + value.toLocaleString()}
@@ -1028,12 +1028,12 @@ export default function CRMDashboard() {
                 </div>
                 
                 {/* Source Breakdown */}
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {revenueBySourceData.map((source, idx) => (
                     <div key={source.name}>
-                      <div className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-slate-50/60 to-slate-50/20 dark:from-slate-800/40 dark:to-slate-800/20 border border-slate-200/30 dark:border-slate-700/30 hover:from-emerald-50/30 dark:hover:from-emerald-950/20 transition-all duration-200 hover:shadow-sm">
-                        <div className="flex items-center gap-4">
-                          <div className={`h-4 w-4 rounded-full ${idx === 0 ? 'bg-emerald-500' : idx === 1 ? 'bg-blue-500' : idx === 2 ? 'bg-violet-500' : idx === 3 ? 'bg-amber-500' : 'bg-slate-500'}`} />
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-slate-50/60 to-slate-50/20 dark:from-slate-800/40 dark:to-slate-800/20 border border-slate-200/30 dark:border-slate-700/30">
+                        <div className="flex items-center gap-3">
+                          <div className={`h-3 w-3 rounded-full ${idx === 0 ? 'bg-emerald-500' : idx === 1 ? 'bg-blue-500' : idx === 2 ? 'bg-violet-500' : idx === 3 ? 'bg-amber-500' : 'bg-slate-500'}`} />
                           <div>
                             <span className="text-base font-semibold text-[var(--text-primary)]">{source.name}</span>
                             <div className="flex items-center gap-2 mt-1">
@@ -1042,7 +1042,7 @@ export default function CRMDashboard() {
                             </div>
                           </div>
                         </div>
-                        <div className="w-20 h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div className="w-16 h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                           <div 
                             className={`h-full rounded-full transition-all duration-500 ${idx === 0 ? 'bg-gradient-to-r from-emerald-500 to-emerald-600' : idx === 1 ? 'bg-gradient-to-r from-blue-500 to-blue-600' : idx === 2 ? 'bg-gradient-to-r from-violet-500 to-violet-600' : idx === 3 ? 'bg-gradient-to-r from-amber-500 to-amber-600' : 'bg-gradient-to-r from-slate-500 to-slate-600'}`}
                             style={{ width: `${(source.value / revenueBySourceData.reduce((s, item) => s + item.value, 0)) * 100}%` }}
@@ -1055,65 +1055,6 @@ export default function CRMDashboard() {
                     </div>
                   ))}
                 </div>
-                
-                {/* Desktop-Only Revenue Insights */}
-                <div className="hidden lg:block">
-                  <div className="mt-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="h-2 w-2 rounded-full bg-emerald-500" />
-                      <span className="text-xs font-semibold text-[var(--text-primary)]">Revenue Insights</span>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="p-3 rounded-lg bg-gradient-to-br from-emerald-50/50 to-emerald-100/20 dark:from-emerald-950/20 dark:to-emerald-900/10 border border-emerald-200/30 dark:border-emerald-800/20">
-                        <div className="flex items-center gap-2">
-                          <div className="h-6 w-6 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center">
-                            <TrendingUp className="h-3 w-3 text-white" />
-                          </div>
-                          <div>
-                            <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Top Performer</p>
-                            <p className="text-xs font-bold text-[var(--text-primary)]">Inbound Marketing</p>
-                            <p className="text-[9px] text-[var(--text-muted)]">+23.5% growth</p>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="p-3 rounded-lg bg-gradient-to-br from-blue-50/50 to-blue-100/20 dark:from-blue-950/20 dark:to-blue-900/10 border border-blue-200/30 dark:border-blue-800/20">
-                        <div className="flex items-center gap-2">
-                          <div className="h-6 w-6 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center">
-                            <Target className="h-3 w-3 text-white" />
-                          </div>
-                          <div>
-                            <p className="text-xs font-medium text-blue-600 dark:text-blue-400">Conversion Focus</p>
-                            <p className="text-xs font-bold text-[var(--text-primary)]">Referral Programs</p>
-                            <p className="text-[9px] text-[var(--text-muted)]">4.2x ROI</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-3 grid grid-cols-3 gap-2">
-                      <div className="text-center p-2 rounded-lg bg-gradient-to-br from-amber-50/50 to-amber-100/20 dark:from-amber-950/20 dark:to-amber-900/10 border border-amber-200/30 dark:border-amber-800/20">
-                        <p className="text-[9px] font-medium text-amber-600 dark:text-amber-400">Avg Deal</p>
-                        <p className="text-sm font-bold text-[var(--text-primary]">$3,847</p>
-                        <p className="text-[8px] text-[var(--text-muted)]">+8.2%</p>
-                      </div>
-                      
-                      <div className="text-center p-2 rounded-lg bg-gradient-to-br from-rose-50/50 to-rose-100/20 dark:from-rose-950/20 dark:to-rose-900/10 border border-rose-200/30 dark:border-rose-800/20">
-                        <p className="text-[9px] font-medium text-rose-600 dark:text-rose-400">Sales Cycle</p>
-                        <p className="text-sm font-bold text-[var(--text-primary]">28 days</p>
-                        <p className="text-[8px] text-[var(--text-muted)]">-5 days</p>
-                      </div>
-                      
-                      <div className="text-center p-2 rounded-lg bg-gradient-to-br from-cyan-50/50 to-cyan-100/20 dark:from-cyan-950/20 dark:to-cyan-900/10 border border-cyan-200/30 dark:border-cyan-800/20">
-                        <p className="text-[9px] font-medium text-cyan-600 dark:text-cyan-400">Win Rate</p>
-                        <p className="text-sm font-bold text-[var(--text-primary]">34.2%</p>
-                        <p className="text-[8px] text-[var(--text-muted)]">+2.1%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
               </div>
             )}
           </Card.Content>
