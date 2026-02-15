@@ -1028,25 +1028,23 @@ export default function CRMDashboard() {
                 </div>
                 
                 {/* Source Breakdown */}
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   {revenueBySourceData.map((source, idx) => (
                     <div key={source.name}>
-                      <div className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-slate-50/60 to-slate-50/20 dark:from-slate-800/40 dark:to-slate-800/20 border border-slate-200/30 dark:border-slate-700/30">
-                        <div className="flex items-center gap-3">
-                          <div className={`h-3 w-3 rounded-full ${idx === 0 ? 'bg-emerald-500' : idx === 1 ? 'bg-blue-500' : idx === 2 ? 'bg-violet-500' : idx === 3 ? 'bg-amber-500' : 'bg-slate-500'}`} />
-                          <div>
-                            <span className="text-base font-semibold text-[var(--text-primary)]">{source.name}</span>
-                            <div className="flex items-center gap-2 mt-1">
-                              <span className="text-lg font-bold text-[var(--text-primary)]">${source.value.toLocaleString()}</span>
-                              <span className="text-sm text-[var(--text-muted)]">{((source.value / revenueBySourceData.reduce((s, item) => s + item.value, 0)) * 100).toFixed(1)}%</span>
-                            </div>
-                          </div>
+                      <div className="flex items-center justify-between gap-3 p-3 rounded-xl bg-gradient-to-r from-slate-50/60 to-slate-50/20 dark:from-slate-800/40 dark:to-slate-800/20 border border-slate-200/30 dark:border-slate-700/30">
+                        <div className="flex items-center gap-3 min-w-0 flex-1">
+                          <div className={`h-3 w-3 flex-shrink-0 rounded-full ${idx === 0 ? 'bg-emerald-500' : idx === 1 ? 'bg-blue-500' : idx === 2 ? 'bg-violet-500' : idx === 3 ? 'bg-amber-500' : 'bg-slate-500'}`} />
+                          <span className="text-sm font-semibold text-[var(--text-primary)] truncate">{source.name}</span>
                         </div>
-                        <div className="w-16 h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                          <div 
-                            className={`h-full rounded-full transition-all duration-500 ${idx === 0 ? 'bg-gradient-to-r from-emerald-500 to-emerald-600' : idx === 1 ? 'bg-gradient-to-r from-blue-500 to-blue-600' : idx === 2 ? 'bg-gradient-to-r from-violet-500 to-violet-600' : idx === 3 ? 'bg-gradient-to-r from-amber-500 to-amber-600' : 'bg-gradient-to-r from-slate-500 to-slate-600'}`}
-                            style={{ width: `${(source.value / revenueBySourceData.reduce((s, item) => s + item.value, 0)) * 100}%` }}
-                          />
+                        <div className="flex items-center gap-3 flex-shrink-0">
+                          <span className="text-sm font-bold text-[var(--text-primary)]">${source.value.toLocaleString()}</span>
+                          <span className="text-xs text-[var(--text-muted)] w-12 text-right">{((source.value / revenueBySourceData.reduce((s, item) => s + item.value, 0)) * 100).toFixed(1)}%</span>
+                          <div className="w-12 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div
+                              className={`h-full rounded-full transition-all duration-500 ${idx === 0 ? 'bg-gradient-to-r from-emerald-500 to-emerald-600' : idx === 1 ? 'bg-gradient-to-r from-blue-500 to-blue-600' : idx === 2 ? 'bg-gradient-to-r from-violet-500 to-violet-600' : idx === 3 ? 'bg-gradient-to-r from-amber-500 to-amber-600' : 'bg-gradient-to-r from-slate-500 to-slate-600'}`}
+                              style={{ width: `${(source.value / revenueBySourceData.reduce((s, item) => s + item.value, 0)) * 100}%` }}
+                            />
+                          </div>
                         </div>
                       </div>
                       {idx < revenueBySourceData.length - 1 && (
