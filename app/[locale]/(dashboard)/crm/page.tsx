@@ -583,7 +583,7 @@ export default function CRMDashboard() {
 
             {/* Qualified */}
             <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-cyan-400" />
               <Card.Content className="relative">
                 <div className="flex items-start justify-between">
@@ -623,7 +623,7 @@ export default function CRMDashboard() {
 
             {/* Proposals Sent */}
             <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/8 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-violet-500 to-purple-400" />
               <Card.Content className="relative">
                 <div className="flex items-start justify-between">
@@ -662,7 +662,7 @@ export default function CRMDashboard() {
 
             {/* Deals Won */}
             <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 to-green-400" />
               <Card.Content className="relative">
                 <div className="flex items-start justify-between">
