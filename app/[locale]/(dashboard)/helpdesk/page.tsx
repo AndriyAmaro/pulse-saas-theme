@@ -395,9 +395,9 @@ export default function HelpDeskDashboard() {
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="flex items-center gap-2 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
-            <Headphones className="h-8 w-8 text-primary-500" />
+        <div className="hidden md:block md:w-48" />
+        <div className="text-center">
+          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-blue-600 via-indigo-500 to-violet-500 bg-clip-text text-transparent">
             Help Desk
           </h1>
           <p className="mt-1 text-[var(--text-secondary)]">
@@ -405,7 +405,7 @@ export default function HelpDeskDashboard() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center md:justify-end gap-2">
           <Button variant="outline" size="sm" leftIcon={<Filter className="h-4 w-4" />}>
             Filters
           </Button>
@@ -418,31 +418,69 @@ export default function HelpDeskDashboard() {
         </div>
       </div>
 
-      {/* ====== INCIDENT ALERT BANNER ====== */}
+      {/* ====== PREMIUM HERO BANNER ====== */}
       {showIncidentBanner && (
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-red-500 via-orange-500 to-amber-500 p-4 text-white shadow-lg">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_50%)]" />
-          <div className="relative flex items-start justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-                <AlertTriangle className="h-5 w-5 animate-pulse" />
+        <div className="relative overflow-hidden rounded-2xl border border-red-200/30 dark:border-red-800/30 bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-red-950/40 dark:via-slate-900 dark:to-orange-950/30 shadow-lg shadow-red-500/5">
+          {/* Top gradient accent bar */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 to-amber-500" />
+          {/* Decorative radial glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(239,68,68,0.08),transparent_60%)] dark:bg-[radial-gradient(ellipse_at_top_right,rgba(239,68,68,0.15),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(249,115,22,0.06),transparent_60%)] dark:bg-[radial-gradient(ellipse_at_bottom_left,rgba(249,115,22,0.1),transparent_60%)]" />
+
+          <div className="relative px-5 py-5 md:px-6 md:py-5">
+            {/* Close button */}
+            <button
+              onClick={() => setShowIncidentBanner(false)}
+              className="absolute top-3 right-3 rounded-lg p-1.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-red-100/50 dark:hover:bg-red-900/30 transition-colors z-10"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+              {/* Icon + Badge */}
+              <div className="flex items-center gap-3 md:flex-col md:items-center md:gap-2">
+                <div className="relative flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg shadow-red-500/25">
+                  <AlertTriangle className="h-6 w-6 md:h-7 md:w-7 text-white" />
+                  <span className="absolute -top-1 -right-1 flex h-4 w-4">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                    <span className="relative inline-flex h-4 w-4 rounded-full bg-red-500 border-2 border-white dark:border-slate-900" />
+                  </span>
+                </div>
+                <Badge variant="error" size="sm" className="md:mt-0 whitespace-nowrap">
+                  Critical
+                </Badge>
               </div>
-              <div>
-                <h3 className="font-semibold">Critical Incident: {activeIncident.title}</h3>
-                <p className="mt-0.5 text-sm text-white/90">{activeIncident.description}</p>
-                <p className="mt-1 text-xs text-white/70">Started {activeIncident.startedAt}</p>
+
+              {/* Content */}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-bold text-[var(--text-primary)] leading-tight pr-8 md:pr-0">
+                  {activeIncident.title}
+                </h3>
+                <p className="mt-1.5 text-sm text-[var(--text-secondary)] leading-relaxed">
+                  {activeIncident.description}
+                </p>
+                <div className="mt-3 flex flex-wrap items-center gap-3">
+                  <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+                    <Clock className="h-3.5 w-3.5" />
+                    Started {activeIncident.startedAt}
+                  </div>
+                  <div className="h-3 w-px bg-[var(--border-default)]" />
+                  <div className="flex items-center gap-1.5 text-xs text-red-600 dark:text-red-400">
+                    <Activity className="h-3.5 w-3.5" />
+                    Investigating
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="text-white hover:bg-white/20">
-                View Incident
-              </Button>
-              <button
-                onClick={() => setShowIncidentBanner(false)}
-                className="rounded-lg p-1 hover:bg-white/20 transition-colors"
-              >
-                <X className="h-5 w-5" />
-              </button>
+
+              {/* Actions */}
+              <div className="flex items-center gap-2 md:flex-col md:gap-2">
+                <Button variant="primary" size="sm" className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 border-0 shadow-sm shadow-red-500/20 text-white">
+                  View Incident
+                </Button>
+                <Button variant="outline" size="sm">
+                  Dismiss
+                </Button>
+              </div>
             </div>
           </div>
         </div>
