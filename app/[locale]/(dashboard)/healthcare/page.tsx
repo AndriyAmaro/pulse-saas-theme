@@ -174,6 +174,8 @@ const vitalAlerts = [
   { id: '3', patient: 'Ward A-15 (Mike Wilson)', alert: 'Temperature high', value: '39.2°C', severity: 'warning', time: '10 min ago', icon: Thermometer },
   { id: '4', patient: 'ICU-03 (Sarah Lee)', alert: 'Oxygen saturation', value: '91%', severity: 'warning', time: '8 min ago', icon: Droplets },
   { id: '5', patient: 'ICU-05 (Tom Harris)', alert: 'Respiratory rate', value: '28/min', severity: 'warning', time: '12 min ago', icon: Activity },
+  { id: '6', patient: 'Ward B-07 (Ana Costa)', alert: 'Glucose spike', value: '310 mg/dL', severity: 'critical', time: '3 min ago', icon: Droplets },
+  { id: '7', patient: 'Ward C-11 (David Park)', alert: 'ECG irregular rhythm', value: 'AFib', severity: 'warning', time: '15 min ago', icon: HeartPulse },
 ]
 
 // Patient Flow Chart Data (deterministic - no Math.random!)
@@ -330,22 +332,18 @@ export default function HealthcareDashboardPage() {
         <div className="relative p-6 lg:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             {/* Left: Title + description */}
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg shadow-rose-500/25">
-                <Stethoscope className="h-7 w-7 text-white" />
+            <div className="hidden lg:block lg:w-48" />
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-3">
+                <h1 className="text-2xl font-bold lg:text-3xl bg-gradient-to-r from-rose-600 via-pink-500 to-red-500 bg-clip-text text-transparent">Healthcare Dashboard</h1>
+                <Badge variant="default" className="border-rose-200 bg-gradient-to-r from-rose-500/10 to-pink-500/10 text-rose-700 dark:border-rose-800 dark:text-rose-300">
+                  <Sparkles className="mr-1 h-3 w-3" />
+                  Live
+                </Badge>
               </div>
-              <div>
-                <div className="flex items-center gap-3">
-                  <h1 className="text-2xl font-bold text-[var(--text-primary)] lg:text-3xl">Healthcare Dashboard</h1>
-                  <Badge variant="default" className="border-rose-200 bg-gradient-to-r from-rose-500/10 to-pink-500/10 text-rose-700 dark:border-rose-800 dark:text-rose-300">
-                    <Sparkles className="mr-1 h-3 w-3" />
-                    Live
-                  </Badge>
-                </div>
-                <p className="mt-1 text-[var(--text-muted)]">
-                  Real-time hospital monitoring — patients, appointments & operations
-                </p>
-              </div>
+              <p className="mt-1 text-[var(--text-muted)]">
+                Real-time hospital monitoring — patients, appointments & operations
+              </p>
             </div>
 
             {/* Right: Quick stats + sparkline */}
@@ -634,6 +632,7 @@ export default function HealthcareDashboardPage() {
                   max={100}
                   size="lg"
                   variant="semicircle"
+                  className="lg:-mt-3"
                   colorRanges={[
                     { color: '#22C55E', from: 0, to: 60 },
                     { color: '#FBBF24', from: 60, to: 85 },
@@ -902,7 +901,7 @@ export default function HealthcareDashboardPage() {
             </div>
           </Card.Header>
           <Card.Content className="relative">
-            <div className="space-y-2.5">
+            <div className="space-y-1.5">
               {vitalAlerts.map((alert) => {
                 const AlertIcon = alert.icon
                 const isCritical = alert.severity === 'critical'
@@ -910,35 +909,35 @@ export default function HealthcareDashboardPage() {
                 return (
                   <div
                     key={alert.id}
-                    className={`rounded-xl border p-3 transition-all ${
+                    className={`rounded-lg border px-3 py-2 transition-all ${
                       isCritical
                         ? 'border-red-200 bg-gradient-to-r from-red-50 to-rose-50 dark:border-red-900 dark:from-red-950/30 dark:to-rose-950/20'
                         : 'border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 dark:border-amber-900 dark:from-amber-950/30 dark:to-yellow-950/20'
                     }`}
                   >
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start gap-3">
-                        <div className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${
                           isCritical
                             ? 'bg-red-100 dark:bg-red-900/40'
                             : 'bg-amber-100 dark:bg-amber-900/40'
                         }`}>
                           {isCritical ? (
-                            <AlertTriangle className="h-4 w-4 animate-pulse text-red-500" />
+                            <AlertTriangle className="h-3.5 w-3.5 animate-pulse text-red-500" />
                           ) : (
-                            <AlertIcon className="h-4 w-4 text-amber-500" />
+                            <AlertIcon className="h-3.5 w-3.5 text-amber-500" />
                           )}
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-[var(--text-primary)]">{alert.alert}</p>
-                          <p className="mt-0.5 text-xs text-[var(--text-muted)]">{alert.patient}</p>
+                          <p className="text-sm font-medium text-[var(--text-primary)] leading-tight">{alert.alert}</p>
+                          <p className="text-[11px] text-[var(--text-muted)] leading-tight">{alert.patient}</p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className={`text-sm font-bold ${isCritical ? 'text-red-600 dark:text-red-400' : 'text-amber-600 dark:text-amber-400'}`}>
+                      <div className="text-right shrink-0 ml-2">
+                        <p className={`text-sm font-bold leading-tight ${isCritical ? 'text-red-600 dark:text-red-400' : 'text-amber-600 dark:text-amber-400'}`}>
                           {alert.value}
                         </p>
-                        <p className="text-xs text-[var(--text-muted)]">{alert.time}</p>
+                        <p className="text-[11px] text-[var(--text-muted)] leading-tight">{alert.time}</p>
                       </div>
                     </div>
                   </div>
