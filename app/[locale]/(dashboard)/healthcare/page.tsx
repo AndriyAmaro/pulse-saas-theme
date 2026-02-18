@@ -176,6 +176,8 @@ const vitalAlerts = [
   { id: '5', patient: 'ICU-05 (Tom Harris)', alert: 'Respiratory rate', value: '28/min', severity: 'warning', time: '12 min ago', icon: Activity },
   { id: '6', patient: 'Ward B-07 (Ana Costa)', alert: 'Glucose spike', value: '310 mg/dL', severity: 'critical', time: '3 min ago', icon: Droplets },
   { id: '7', patient: 'Ward C-11 (David Park)', alert: 'ECG irregular rhythm', value: 'AFib', severity: 'warning', time: '15 min ago', icon: HeartPulse },
+  { id: '8', patient: 'ICU-10 (Lisa Chen)', alert: 'Low platelet count', value: '42K/μL', severity: 'critical', time: '6 min ago', icon: TestTube },
+  { id: '9', patient: 'Ward A-03 (James Reed)', alert: 'Pain score elevated', value: '8/10', severity: 'warning', time: '18 min ago', icon: Activity },
 ]
 
 // Patient Flow Chart Data (deterministic - no Math.random!)
@@ -901,7 +903,7 @@ export default function HealthcareDashboardPage() {
             </div>
           </Card.Header>
           <Card.Content className="relative">
-            <div className="space-y-1.5">
+            <div className="space-y-1">
               {vitalAlerts.map((alert) => {
                 const AlertIcon = alert.icon
                 const isCritical = alert.severity === 'critical'
@@ -909,35 +911,35 @@ export default function HealthcareDashboardPage() {
                 return (
                   <div
                     key={alert.id}
-                    className={`rounded-lg border px-3 py-2 transition-all ${
+                    className={`rounded-lg border px-2.5 py-1.5 transition-all ${
                       isCritical
                         ? 'border-red-200 bg-gradient-to-r from-red-50 to-rose-50 dark:border-red-900 dark:from-red-950/30 dark:to-rose-950/20'
                         : 'border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 dark:border-amber-900 dark:from-amber-950/30 dark:to-yellow-950/20'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${
+                      <div className="flex items-center gap-2">
+                        <div className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
                           isCritical
                             ? 'bg-red-100 dark:bg-red-900/40'
                             : 'bg-amber-100 dark:bg-amber-900/40'
                         }`}>
                           {isCritical ? (
-                            <AlertTriangle className="h-3.5 w-3.5 animate-pulse text-red-500" />
+                            <AlertTriangle className="h-3 w-3 animate-pulse text-red-500" />
                           ) : (
-                            <AlertIcon className="h-3.5 w-3.5 text-amber-500" />
+                            <AlertIcon className="h-3 w-3 text-amber-500" />
                           )}
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-[var(--text-primary)] leading-tight">{alert.alert}</p>
-                          <p className="text-[11px] text-[var(--text-muted)] leading-tight">{alert.patient}</p>
+                          <p className="text-xs font-medium text-[var(--text-primary)] leading-tight">{alert.alert}</p>
+                          <p className="text-[10px] text-[var(--text-muted)] leading-tight">{alert.patient}</p>
                         </div>
                       </div>
                       <div className="text-right shrink-0 ml-2">
-                        <p className={`text-sm font-bold leading-tight ${isCritical ? 'text-red-600 dark:text-red-400' : 'text-amber-600 dark:text-amber-400'}`}>
+                        <p className={`text-xs font-bold leading-tight ${isCritical ? 'text-red-600 dark:text-red-400' : 'text-amber-600 dark:text-amber-400'}`}>
                           {alert.value}
                         </p>
-                        <p className="text-[11px] text-[var(--text-muted)] leading-tight">{alert.time}</p>
+                        <p className="text-[10px] text-[var(--text-muted)] leading-tight">{alert.time}</p>
                       </div>
                     </div>
                   </div>
