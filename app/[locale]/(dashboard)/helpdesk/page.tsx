@@ -739,17 +739,18 @@ export default function HelpDeskDashboard() {
                   {/* Mobile Carousel */}
                   <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 py-4 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {recentTickets.map((ticket) => {
-                      const priorityColors: Record<string, { bg: string; text: string; border: string }> = {
+                      const defaultColors = { bg: 'from-blue-50 to-sky-50/50 dark:from-blue-950/30 dark:to-sky-900/20', text: 'text-blue-700 dark:text-blue-300', border: 'border-blue-200/60 dark:border-blue-800/40' }
+                      const priorityColors = {
                         critical: { bg: 'from-red-50 to-red-100/50 dark:from-red-950/30 dark:to-red-900/20', text: 'text-red-700 dark:text-red-300', border: 'border-red-200/60 dark:border-red-800/40' },
                         high: { bg: 'from-orange-50 to-amber-50/50 dark:from-orange-950/30 dark:to-amber-900/20', text: 'text-orange-700 dark:text-orange-300', border: 'border-orange-200/60 dark:border-orange-800/40' },
-                        medium: { bg: 'from-blue-50 to-sky-50/50 dark:from-blue-950/30 dark:to-sky-900/20', text: 'text-blue-700 dark:text-blue-300', border: 'border-blue-200/60 dark:border-blue-800/40' },
+                        medium: defaultColors,
                         low: { bg: 'from-green-50 to-emerald-50/50 dark:from-green-950/30 dark:to-green-900/20', text: 'text-green-700 dark:text-green-300', border: 'border-green-200/60 dark:border-green-800/40' },
-                      }
+                      } as const
                       const statusLabels: Record<string, string> = { open: 'Open', 'in-progress': 'In Progress', waiting: 'Waiting', resolved: 'Resolved' }
                       const statusVariants: Record<string, 'default' | 'info' | 'warning' | 'success'> = { open: 'default', 'in-progress': 'info', waiting: 'warning', resolved: 'success' }
                       const typeIcons: Record<string, typeof Bug> = { bug: Bug, question: HelpCircle, feature: Zap, billing: CreditCard }
                       const TypeIcon = typeIcons[ticket.type] || HelpCircle
-                      const colors = priorityColors[ticket.priority]
+                      const colors = priorityColors[ticket.priority] ?? defaultColors
 
                       return (
                         <div
