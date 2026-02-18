@@ -631,9 +631,9 @@ export default function HealthcareDashboardPage() {
                 <GaugeChart
                   value={78}
                   max={100}
-                  size="lg"
+                  size="md"
                   variant="semicircle"
-                  className="-mt-14 lg:-mt-14"
+                  className="-mt-10 lg:!w-40 lg:!h-40 lg:-mt-14"
                   colorRanges={[
                     { color: '#22C55E', from: 0, to: 60 },
                     { color: '#FBBF24', from: 60, to: 85 },
