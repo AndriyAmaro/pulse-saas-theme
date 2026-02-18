@@ -397,7 +397,7 @@ export default function HelpDeskDashboard() {
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="hidden md:block md:w-48" />
         <div className="text-center">
-          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-blue-600 via-indigo-500 to-violet-500 bg-clip-text text-transparent">
+          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-red-500 via-orange-500 to-amber-500 bg-clip-text text-transparent">
             Help Desk
           </h1>
           <p className="mt-1 text-[var(--text-secondary)]">
