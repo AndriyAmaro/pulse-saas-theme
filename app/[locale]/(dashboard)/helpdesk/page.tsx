@@ -652,20 +652,22 @@ export default function HelpDeskDashboard() {
               {isLoading ? (
                 <Skeleton className="h-64 rounded-lg" />
               ) : (
-                <ChartWrapper
-                  type="area"
-                  data={ticketVolumeData}
-                  series={[
-                    { dataKey: 'new', name: 'New', color: '#3B82F6', fillOpacity: 0.3 },
-                    { dataKey: 'inProgress', name: 'In Progress', color: '#F59E0B', fillOpacity: 0.3 },
-                    { dataKey: 'resolved', name: 'Resolved', color: '#22C55E', fillOpacity: 0.3 },
-                  ]}
-                  xAxisKey="hour"
-                  height={240}
-                  showLegend
-                  showTooltip
-                  showGrid
-                />
+                <div className="w-full [&_.recharts-responsive-container]:!h-[320px] sm:[&_.recharts-responsive-container]:!h-[240px]">
+                  <ChartWrapper
+                    type="area"
+                    data={ticketVolumeData}
+                    series={[
+                      { dataKey: 'new', name: 'New', color: '#3B82F6', fillOpacity: 0.3 },
+                      { dataKey: 'inProgress', name: 'In Progress', color: '#F59E0B', fillOpacity: 0.3 },
+                      { dataKey: 'resolved', name: 'Resolved', color: '#22C55E', fillOpacity: 0.3 },
+                    ]}
+                    xAxisKey="hour"
+                    height={320}
+                    showLegend
+                    showTooltip
+                    showGrid
+                  />
+                </div>
               )}
             </Card.Content>
           </Card>
@@ -695,14 +697,80 @@ export default function HelpDeskDashboard() {
                   ))}
                 </div>
               ) : (
-                <DataTable
-                  data={recentTickets}
-                  columns={ticketColumns}
-                  sortable
-                  pagination
-                  pageSize={5}
-                  hoverable
-                />
+                <>
+                  {/* Mobile Carousel */}
+                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 py-4 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {recentTickets.map((ticket) => {
+                      const priorityColors: Record<string, { bg: string; text: string; border: string }> = {
+                        critical: { bg: 'from-red-50 to-red-100/50 dark:from-red-950/30 dark:to-red-900/20', text: 'text-red-700 dark:text-red-300', border: 'border-red-200/60 dark:border-red-800/40' },
+                        high: { bg: 'from-orange-50 to-amber-50/50 dark:from-orange-950/30 dark:to-amber-900/20', text: 'text-orange-700 dark:text-orange-300', border: 'border-orange-200/60 dark:border-orange-800/40' },
+                        medium: { bg: 'from-blue-50 to-sky-50/50 dark:from-blue-950/30 dark:to-sky-900/20', text: 'text-blue-700 dark:text-blue-300', border: 'border-blue-200/60 dark:border-blue-800/40' },
+                        low: { bg: 'from-green-50 to-emerald-50/50 dark:from-green-950/30 dark:to-green-900/20', text: 'text-green-700 dark:text-green-300', border: 'border-green-200/60 dark:border-green-800/40' },
+                      }
+                      const statusLabels: Record<string, string> = { open: 'Open', 'in-progress': 'In Progress', waiting: 'Waiting', resolved: 'Resolved' }
+                      const statusVariants: Record<string, 'default' | 'info' | 'warning' | 'success'> = { open: 'default', 'in-progress': 'info', waiting: 'warning', resolved: 'success' }
+                      const typeIcons: Record<string, typeof Bug> = { bug: Bug, question: HelpCircle, feature: Zap, billing: CreditCard }
+                      const TypeIcon = typeIcons[ticket.type] || HelpCircle
+                      const colors = priorityColors[ticket.priority]
+
+                      return (
+                        <div
+                          key={ticket.id}
+                          className={`snap-start shrink-0 w-[280px] p-4 rounded-xl border bg-gradient-to-br ${colors.bg} ${colors.border}`}
+                        >
+                          {/* Header: ID + Priority */}
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <TypeIcon className="h-4 w-4 text-[var(--text-muted)]" />
+                              <span className="font-mono text-sm font-semibold text-primary-600 dark:text-primary-400">{ticket.id}</span>
+                            </div>
+                            <Badge variant={ticket.priority === 'critical' ? 'error' : ticket.priority === 'high' ? 'warning' : ticket.priority === 'medium' ? 'info' : 'success'} size="sm">
+                              {ticket.priority}
+                            </Badge>
+                          </div>
+
+                          {/* Subject */}
+                          <p className="text-sm font-medium text-[var(--text-primary)] line-clamp-2 mb-3">{ticket.subject}</p>
+
+                          {/* Customer + Status */}
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="text-xs text-[var(--text-secondary)] truncate max-w-[140px]">{ticket.customer}</span>
+                            <Badge variant={statusVariants[ticket.status]} size="sm">{statusLabels[ticket.status]}</Badge>
+                          </div>
+
+                          {/* Footer: Agent + SLA */}
+                          <div className="flex items-center justify-between pt-2 border-t border-[var(--border-default)]">
+                            {ticket.agent ? (
+                              <div className="flex items-center gap-1.5">
+                                <Avatar size="xs" fallback={ticket.agent.split(' ').map(n => n[0]).join('')} />
+                                <span className="text-xs text-[var(--text-muted)] truncate max-w-[100px]">{ticket.agent}</span>
+                              </div>
+                            ) : (
+                              <span className="text-xs text-[var(--text-muted)] italic">Unassigned</span>
+                            )}
+                            {ticket.status === 'resolved' ? (
+                              <Badge variant="success" size="sm">Completed</Badge>
+                            ) : (
+                              <SLACountdown deadline={ticket.slaDeadline} />
+                            )}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  {/* Desktop Table */}
+                  <div className="hidden sm:block">
+                    <DataTable
+                      data={recentTickets}
+                      columns={ticketColumns}
+                      sortable
+                      pagination
+                      pageSize={5}
+                      hoverable
+                    />
+                  </div>
+                </>
               )}
             </Card.Content>
           </Card>
