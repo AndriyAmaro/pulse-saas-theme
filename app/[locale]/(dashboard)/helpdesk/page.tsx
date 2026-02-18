@@ -392,7 +392,7 @@ export default function HelpDeskDashboard() {
   }, [])
 
   return (
-    <div className="space-y-6 overflow-x-hidden">
+    <div className="space-y-6">
       {/* ====== HEADER ====== */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="hidden md:block md:w-48" />
@@ -552,7 +552,7 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* SLA Health */}
-          <Card className="relative overflow-hidden">
+          <Card className="relative overflow-clip">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500" />
             <Card.Header className="pb-2">
               <Card.Title className="flex items-center gap-2 text-sm">
@@ -690,7 +690,7 @@ export default function HelpDeskDashboard() {
               {isLoading ? (
                 <Skeleton className="h-64 rounded-lg" />
               ) : (
-                <div className="-ml-7 -mr-5 sm:ml-0 sm:mr-0">
+                <div className="-mx-6 sm:mx-0">
                   <ChartWrapper
                     type="area"
                     data={ticketVolumeData}
@@ -711,7 +711,7 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* Recent Tickets Table */}
-          <Card className="relative overflow-hidden">
+          <Card className="relative overflow-clip">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500" />
             <Card.Header>
               <div className="flex items-center justify-between">
