@@ -818,7 +818,8 @@ export default function HelpDeskDashboard() {
         {/* ===== RIGHT COLUMN (25%) - METRICS & ACTIVITY ===== */}
         <div className="min-w-0 space-y-4 lg:col-span-1">
           {/* Response Time Trend */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-emerald-500 to-green-500" />
             <Card.Header className="pb-2">
               <Card.Title className="flex items-center gap-2 text-sm">
                 <Clock className="h-4 w-4 text-primary-500" />
@@ -860,7 +861,8 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* Customer Satisfaction */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500" />
             <Card.Header className="pb-2">
               <Card.Title className="flex items-center gap-2 text-sm">
                 <Star className="h-4 w-4 text-primary-500" />
