@@ -641,7 +641,7 @@ export default function SaaSMetricsDashboard() {
             {isLoading ? (
               <Skeleton className="h-72 rounded-lg" />
             ) : (
-              <div className="relative">
+              <div className="relative -mx-6 sm:mx-0">
                 <ChartWrapper
                   type="area"
                   data={revenueGrowthData}
@@ -649,17 +649,17 @@ export default function SaaSMetricsDashboard() {
                     { dataKey: 'mrr', name: 'MRR', color: '#8B5CF6', fillOpacity: 0.4 },
                   ]}
                   xAxisKey="month"
-                  height={280}
+                  height={320}
                   showLegend
                   showTooltip
                   showGrid
                   tooltipFormatter={(value) => '$' + (value as number).toLocaleString()}
                 />
                 {/* Annotations */}
-                <div className="absolute top-4 left-[30%] text-xs bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full shadow-sm font-medium">
+                <div className="absolute top-4 left-[30%] text-xs bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full shadow-sm font-medium hidden sm:block">
                   Launched Pro Plan
                 </div>
-                <div className="absolute top-4 left-[55%] text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full shadow-sm font-medium">
+                <div className="absolute top-4 left-[55%] text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full shadow-sm font-medium hidden sm:block">
                   Price Increase
                 </div>
               </div>
@@ -1167,8 +1167,61 @@ export default function SaaSMetricsDashboard() {
                   />
                 </div>
 
-                {/* Data Table */}
-                <div className="-mx-5 -mb-1">
+                {/* Mobile Carousel */}
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-6 px-6 py-1 sm:hidden scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  {recentCustomers.slice(0, 8).map((customer) => {
+                    const planColors: Record<string, string> = {
+                      Enterprise: 'from-violet-500 to-purple-600',
+                      Pro: 'from-blue-500 to-indigo-600',
+                      Free: 'from-gray-400 to-gray-500',
+                    }
+                    const statusColors: Record<string, string> = {
+                      active: 'bg-green-400/20 text-green-600 dark:text-green-400',
+                      trial: 'bg-amber-400/20 text-amber-600 dark:text-amber-400',
+                      churned: 'bg-red-400/20 text-red-600 dark:text-red-400',
+                    }
+                    return (
+                      <div
+                        key={customer.id}
+                        className="w-[72vw] max-w-[260px] flex-shrink-0 snap-center rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)] p-4 shadow-sm"
+                      >
+                        <div className="flex items-center gap-3 mb-3">
+                          <Avatar size="md" fallback={customer.name.split(' ').map((n: string) => n[0]).join('')} />
+                          <div className="min-w-0 flex-1">
+                            <p className="font-semibold text-sm text-[var(--text-primary)] truncate">{customer.name}</p>
+                            <p className="text-xs text-[var(--text-muted)] truncate">{customer.email}</p>
+                          </div>
+                        </div>
+                        {customer.isUpgrade && (
+                          <div className="mb-2">
+                            <Badge variant="success" size="sm">
+                              <ArrowUpRight className="h-3 w-3 mr-0.5" />
+                              Upgrade
+                            </Badge>
+                          </div>
+                        )}
+                        <div className="flex items-center justify-between gap-2">
+                          <Badge variant={customer.plan === 'Enterprise' ? 'primary' : customer.plan === 'Pro' ? 'info' : 'default'} size="sm">
+                            {customer.plan === 'Enterprise' ? <Crown className="h-3 w-3 mr-1" /> : customer.plan === 'Pro' ? <Zap className="h-3 w-3 mr-1" /> : <Users className="h-3 w-3 mr-1" />}
+                            {customer.plan}
+                          </Badge>
+                          <span className="text-sm font-bold text-[var(--text-primary)]">${customer.mrr}</span>
+                        </div>
+                        <div className="flex items-center justify-between mt-2 pt-2 border-t border-[var(--border-default)]">
+                          <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusColors[customer.status]}`}>
+                            {customer.status}
+                          </span>
+                          <span className="text-xs text-[var(--text-muted)]">
+                            {new Date(customer.signupDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                          </span>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                {/* Data Table (desktop) */}
+                <div className="-mx-5 -mb-1 hidden sm:block">
                   <DataTable
                     data={recentCustomers}
                     columns={customerColumns}
