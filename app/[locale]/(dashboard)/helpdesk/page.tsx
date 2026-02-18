@@ -690,7 +690,7 @@ export default function HelpDeskDashboard() {
               {isLoading ? (
                 <Skeleton className="h-64 rounded-lg" />
               ) : (
-                <div className="w-full [&_.recharts-responsive-container]:!h-[320px] sm:[&_.recharts-responsive-container]:!h-[240px]">
+                <div className="-ml-7 -mr-5 sm:ml-0 sm:mr-0">
                   <ChartWrapper
                     type="area"
                     data={ticketVolumeData}
@@ -700,7 +700,7 @@ export default function HelpDeskDashboard() {
                       { dataKey: 'resolved', name: 'Resolved', color: '#22C55E', fillOpacity: 0.3 },
                     ]}
                     xAxisKey="hour"
-                    height={320}
+                    height={240}
                     showLegend
                     showTooltip
                     showGrid
