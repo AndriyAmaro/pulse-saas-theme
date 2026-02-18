@@ -165,6 +165,7 @@ const pendingTests = [
   { id: '5', patient: 'Sarah Williams', test: 'CT Scan', priority: 'high', requestedBy: 'Dr. Wilson', time: '1h ago', icon: EyeIcon },
   { id: '6', patient: 'Ana Torres', test: 'Urinalysis', priority: 'normal', requestedBy: 'Dr. Anderson', time: '30 min ago', icon: Microscope },
   { id: '7', patient: 'Carlos Mendez', test: 'Lipid Panel', priority: 'urgent', requestedBy: 'Dr. Wilson', time: '45 min ago', icon: TestTube },
+  { id: '8', patient: 'Kevin Park', test: 'Thyroid Panel', priority: 'high', requestedBy: 'Dr. Chen', time: '1.5h ago', icon: Syringe },
 ]
 
 // Vital Signs Alerts
