@@ -700,7 +700,7 @@ export default function HelpDeskDashboard() {
                       { dataKey: 'resolved', name: 'Resolved', color: '#22C55E', fillOpacity: 0.3 },
                     ]}
                     xAxisKey="hour"
-                    height={240}
+                    height={280}
                     showLegend
                     showTooltip
                     showGrid
