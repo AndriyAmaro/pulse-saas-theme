@@ -461,9 +461,9 @@ export default function InventoryDashboard() {
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="flex items-center gap-2 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
-            <Package className="h-8 w-8 text-cyan-500" />
+        <div className="hidden md:block md:w-32" />
+        <div className="text-center">
+          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-cyan-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent">
             Inventory Management
           </h1>
           <p className="mt-1 text-[var(--text-secondary)]">
@@ -471,7 +471,7 @@ export default function InventoryDashboard() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center md:justify-end gap-2">
           <Button variant="outline" size="sm" leftIcon={<Download className="h-4 w-4" />}>
             Export
           </Button>
@@ -570,32 +570,106 @@ export default function InventoryDashboard() {
                 </span>
               </div>
             </div>
-            <div className="flex-shrink-0">
-              <SparklineChart
-                data={heroData.last30Days}
-                type="area"
-                color="#06B6D4"
-                width={320}
-                height={80}
-                showDot
-                gradient
-                animated
-              />
+            {/* Premium Visual - Desktop */}
+            <div className="hidden lg:flex items-center gap-8">
+              {/* Circular Progress */}
+              <div className="relative">
+                <div className="relative h-28 w-28">
+                  <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
+                    <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" className="text-cyan-100 dark:text-cyan-900/40" strokeWidth="3" />
+                    <circle cx="18" cy="18" r="14" fill="none" stroke="url(#inventoryGradient)" strokeWidth="3" strokeDasharray="88 22" strokeLinecap="round" />
+                    <circle cx="18" cy="18" r="10" fill="none" stroke="currentColor" className="text-teal-100 dark:text-teal-900/40" strokeWidth="2" />
+                    <circle cx="18" cy="18" r="10" fill="none" stroke="url(#stockGradient)" strokeWidth="2" strokeDasharray="56 8" strokeLinecap="round" />
+                    <defs>
+                      <linearGradient id="inventoryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#06B6D4" />
+                        <stop offset="100%" stopColor="#14B8A6" />
+                      </linearGradient>
+                      <linearGradient id="stockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#14B8A6" />
+                        <stop offset="100%" stopColor="#10B981" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-[10px] text-[var(--text-muted)]">Health</span>
+                    <span className="text-lg font-bold text-cyan-600 dark:text-cyan-400">92%</span>
+                  </div>
+                </div>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex items-center gap-3 rounded-full bg-white/90 dark:bg-slate-900/90 px-3 py-1 shadow-lg border border-cyan-200/50 dark:border-cyan-800/30">
+                  <div className="flex items-center gap-1">
+                    <div className="h-1.5 w-1.5 rounded-full bg-cyan-500" />
+                    <span className="text-[9px] font-medium text-cyan-600 dark:text-cyan-400">$284K</span>
+                  </div>
+                  <div className="h-3 w-px bg-cyan-200 dark:bg-cyan-800" />
+                  <span className="text-[9px] text-[var(--text-muted)]">Optimal</span>
+                </div>
+              </div>
+
+              {/* Mini Stats */}
+              <div className="flex flex-col gap-3">
+                {[
+                  { icon: CheckCircle2, label: 'In Stock', value: '1,847', color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-100 dark:bg-emerald-900/30' },
+                  { icon: AlertTriangle, label: 'Low Stock', value: '23', color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-100 dark:bg-amber-900/30' },
+                  { icon: XCircle, label: 'Out of Stock', value: '8', color: 'text-red-600 dark:text-red-400', bg: 'bg-red-100 dark:bg-red-900/30' },
+                ].map((stat) => (
+                  <div key={stat.label} className="flex items-center gap-3">
+                    <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${stat.bg}`}>
+                      <stat.icon className={`h-4 w-4 ${stat.color}`} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-[var(--text-muted)]">{stat.label}</p>
+                      <p className={`text-sm font-bold ${stat.color}`}>{stat.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Trend Bars */}
+              <div className="flex flex-col items-center">
+                <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest mb-3">30 Day Trend</p>
+                <div className="flex items-end gap-1 h-16 group cursor-pointer">
+                  {heroData.last30Days.slice(-12).map((v, i) => (
+                    <div
+                      key={i}
+                      className={`w-4 rounded-t-sm transition-all duration-300 group-hover:scale-110 ${i === 11 ? 'bg-cyan-500' : i >= 9 ? 'bg-cyan-400 dark:bg-cyan-500/80' : 'bg-cyan-200 dark:bg-cyan-700/50'}`}
+                      style={{ height: `${((v - 240) / (285 - 240)) * 100}%` }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile: compact version */}
+            <div className="lg:hidden flex flex-col gap-3 w-full">
+              <div className="flex items-end gap-1 h-14 group cursor-pointer">
+                {heroData.last30Days.slice(-12).map((v, i) => (
+                  <div
+                    key={i}
+                    className={`flex-1 rounded-t-sm transition-all duration-300 ${i === 11 ? 'bg-cyan-500' : i >= 9 ? 'bg-cyan-400 dark:bg-cyan-500/80' : 'bg-cyan-200 dark:bg-cyan-700/50'}`}
+                    style={{ height: `${((v - 240) / (285 - 240)) * 100}%` }}
+                  />
+                ))}
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] text-[var(--text-muted)]">30 days ago</span>
+                <span className="text-[9px] font-semibold text-cyan-600 dark:text-cyan-400">Today</span>
+              </div>
             </div>
           </div>
         </Card.Content>
       </Card>
 
       {/* ====== STATS ROW (PREMIUM!) ====== */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-1 pb-2 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:snap-none sm:pb-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, i) => (
-            <Skeleton key={i} className="h-32 rounded-xl" />
+            <Skeleton key={i} className="h-32 rounded-xl snap-start shrink-0 w-[75vw] sm:w-auto" />
           ))
         ) : (
           <>
             {/* Total Products */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5" />
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-teal-500" />
               <Card.Content>
@@ -613,21 +687,23 @@ export default function InventoryDashboard() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-teal-500 shadow-sm">
                       <Package className="h-5 w-5 text-white" />
                     </div>
-                    <SparklineChart
-                      data={kpiSparklines.totalProducts}
-                      type="line"
-                      color="#06B6D4"
-                      width={80}
-                      height={24}
-                      gradient
-                    />
                   </div>
+                </div>
+                {/* Premium Mini Bars */}
+                <div className="mt-3 flex items-end gap-1 h-6">
+                  {kpiSparklines.totalProducts.map((v, i) => (
+                    <div
+                      key={i}
+                      className={`flex-1 rounded-t-sm transition-all duration-300 ${i === kpiSparklines.totalProducts.length - 1 ? 'bg-cyan-500' : 'bg-cyan-200 dark:bg-cyan-700/50'}`}
+                      style={{ height: `${((v - 1700) / (1850 - 1700)) * 100}%` }}
+                    />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* In Stock Value */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-green-500/5" />
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-green-500" />
               <Card.Content>
@@ -645,21 +721,23 @@ export default function InventoryDashboard() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-green-500 shadow-sm">
                       <DollarSign className="h-5 w-5 text-white" />
                     </div>
-                    <SparklineChart
-                      data={kpiSparklines.inStockValue}
-                      type="line"
-                      color="#10B981"
-                      width={80}
-                      height={24}
-                      gradient
-                    />
                   </div>
+                </div>
+                {/* Premium Mini Bars */}
+                <div className="mt-3 flex items-end gap-1 h-6">
+                  {kpiSparklines.inStockValue.map((v, i) => (
+                    <div
+                      key={i}
+                      className={`flex-1 rounded-t-sm transition-all duration-300 ${i === kpiSparklines.inStockValue.length - 1 ? 'bg-emerald-500' : 'bg-emerald-200 dark:bg-emerald-700/50'}`}
+                      style={{ height: `${((v - 240) / (285 - 240)) * 100}%` }}
+                    />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* Low Stock Items */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-yellow-500/5" />
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-yellow-500" />
               <Card.Content>
@@ -679,21 +757,23 @@ export default function InventoryDashboard() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-yellow-500 shadow-sm">
                       <AlertTriangle className="h-5 w-5 text-white" />
                     </div>
-                    <SparklineChart
-                      data={kpiSparklines.lowStock}
-                      type="line"
-                      color="#F59E0B"
-                      width={80}
-                      height={24}
-                      gradient
-                    />
                   </div>
+                </div>
+                {/* Premium Mini Bars (downward trend is good) */}
+                <div className="mt-3 flex items-end gap-1 h-6">
+                  {kpiSparklines.lowStock.map((v, i) => (
+                    <div
+                      key={i}
+                      className={`flex-1 rounded-t-sm transition-all duration-300 ${i === kpiSparklines.lowStock.length - 1 ? 'bg-amber-500' : 'bg-amber-200 dark:bg-amber-700/50'}`}
+                      style={{ height: `${((v - 20) / (35 - 20)) * 100}%` }}
+                    />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
 
             {/* Out of Stock */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] snap-start shrink-0 w-[75vw] sm:w-auto">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-rose-500/5" />
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 to-rose-500" />
               <Card.Content>
@@ -713,15 +793,17 @@ export default function InventoryDashboard() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-rose-500 shadow-sm">
                       <XCircle className="h-5 w-5 text-white" />
                     </div>
-                    <SparklineChart
-                      data={kpiSparklines.outOfStock}
-                      type="line"
-                      color="#EF4444"
-                      width={80}
-                      height={24}
-                      gradient
-                    />
                   </div>
+                </div>
+                {/* Premium Mini Bars (downward trend is good) */}
+                <div className="mt-3 flex items-end gap-1 h-6">
+                  {kpiSparklines.outOfStock.map((v, i) => (
+                    <div
+                      key={i}
+                      className={`flex-1 rounded-t-sm transition-all duration-300 ${i === kpiSparklines.outOfStock.length - 1 ? 'bg-red-500' : 'bg-red-200 dark:bg-red-700/50'}`}
+                      style={{ height: `${((v - 7) / (13 - 7)) * 100}%` }}
+                    />
+                  ))}
                 </div>
               </Card.Content>
             </Card>
@@ -758,15 +840,18 @@ export default function InventoryDashboard() {
             <Card className="relative overflow-hidden">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5" />
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-teal-500" />
+              {/* Decorative circles */}
+              <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-gradient-to-br from-cyan-200/20 to-teal-200/20 blur-2xl dark:from-cyan-800/10 dark:to-teal-800/10" />
+              <div className="pointer-events-none absolute -bottom-12 -left-12 h-32 w-32 rounded-full bg-gradient-to-tr from-emerald-200/20 to-cyan-200/20 blur-2xl dark:from-emerald-800/10 dark:to-cyan-800/10" />
               <Card.Header>
                 <div className="relative z-10 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-teal-500 shadow-sm">
-                      <PieChart className="h-4 w-4 text-white" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-teal-500 shadow-lg shadow-cyan-500/25">
+                      <PieChart className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <Card.Title>Stock Level Distribution</Card.Title>
-                      <Card.Description className="mt-1">Products by stock health</Card.Description>
+                      <Card.Title className="text-lg">Stock Level Distribution</Card.Title>
+                      <Card.Description className="mt-0.5">Products by stock health</Card.Description>
                     </div>
                   </div>
                   <Badge variant="default" size="sm" className="bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800">
@@ -776,47 +861,142 @@ export default function InventoryDashboard() {
               </Card.Header>
               <Card.Content>
                 {isLoading ? (
-                  <Skeleton className="h-48 rounded-lg" />
+                  <Skeleton className="h-64 rounded-lg" />
                 ) : (
-                  <div className="flex flex-col items-center">
-                    <div className="-mt-2 -mb-6 overflow-hidden rounded-xl">
-                      <GaugeChart
-                        value={stockDistribution.healthy}
-                        variant="semicircle"
-                        size="xl"
-                        color="#22C55E"
-                        label="Healthy Stock"
-                        strokeWidth={16}
-                        showTicks
-                        tickCount={5}
-                        colorRanges={[
-                          { color: '#EF4444', from: 0, to: 30 },
-                          { color: '#F59E0B', from: 30, to: 60 },
-                          { color: '#22C55E', from: 60, to: 100 },
-                        ]}
-                      />
+                  <div className="flex flex-col lg:flex-row items-center gap-6">
+                    {/* Premium Donut Chart */}
+                    <div className="relative flex-shrink-0">
+                      <div className="relative h-48 w-48">
+                        <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
+                          {/* Background ring */}
+                          <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" className="text-secondary-100 dark:text-secondary-800" strokeWidth="12" />
+                          {/* Healthy segment (72%) */}
+                          <circle
+                            cx="50" cy="50" r="40" fill="none"
+                            stroke="url(#healthyGradient)"
+                            strokeWidth="12"
+                            strokeDasharray={`${stockDistribution.healthy * 2.51} 251.2`}
+                            strokeDashoffset="0"
+                            strokeLinecap="round"
+                            className="transition-all duration-1000"
+                          />
+                          {/* Warning segment (18%) */}
+                          <circle
+                            cx="50" cy="50" r="40" fill="none"
+                            stroke="url(#warningGradient)"
+                            strokeWidth="12"
+                            strokeDasharray={`${stockDistribution.warning * 2.51} 251.2`}
+                            strokeDashoffset={`${-stockDistribution.healthy * 2.51}`}
+                            strokeLinecap="round"
+                            className="transition-all duration-1000"
+                          />
+                          {/* Critical segment (10%) */}
+                          <circle
+                            cx="50" cy="50" r="40" fill="none"
+                            stroke="url(#criticalGradient)"
+                            strokeWidth="12"
+                            strokeDasharray={`${stockDistribution.critical * 2.51} 251.2`}
+                            strokeDashoffset={`${-(stockDistribution.healthy + stockDistribution.warning) * 2.51}`}
+                            strokeLinecap="round"
+                            className="transition-all duration-1000"
+                          />
+                          <defs>
+                            <linearGradient id="healthyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#22C55E" />
+                              <stop offset="100%" stopColor="#10B981" />
+                            </linearGradient>
+                            <linearGradient id="warningGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#F59E0B" />
+                              <stop offset="100%" stopColor="#EAB308" />
+                            </linearGradient>
+                            <linearGradient id="criticalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#EF4444" />
+                              <stop offset="100%" stopColor="#F43F5E" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                        {/* Center content */}
+                        <div className="absolute inset-0 flex flex-col items-center justify-center">
+                          <span className="text-3xl font-bold text-green-600 dark:text-green-400">{stockDistribution.healthy}%</span>
+                          <span className="text-xs text-[var(--text-muted)] mt-0.5">Healthy</span>
+                        </div>
+                      </div>
+                      {/* Floating badge */}
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full bg-white dark:bg-slate-900 px-3 py-1.5 shadow-lg border border-green-200 dark:border-green-800">
+                        <CheckCircle2 className="h-4 w-4 text-green-500" />
+                        <span className="text-xs font-semibold text-green-600 dark:text-green-400">Stock Optimal</span>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-center gap-6 mt-8">
-                      <div className="text-center rounded-lg bg-green-50 dark:bg-green-900/20 px-3 py-2">
-                        <div className="flex items-center gap-1">
-                          <div className="h-3 w-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500" />
-                          <span className="text-xs text-[var(--text-secondary)]">Healthy (&gt;50%)</span>
+
+                    {/* Premium Stats */}
+                    <div className="flex-1 w-full space-y-3">
+                      {/* Healthy */}
+                      <div className="group relative overflow-hidden rounded-xl border border-green-200 dark:border-green-800 p-3 transition-all duration-200 hover:shadow-md hover:scale-[1.01]">
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-green-50 to-emerald-50/50 dark:from-green-950/30 dark:to-emerald-950/20" />
+                        <div className="relative flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 shadow-sm">
+                              <CheckCircle2 className="h-5 w-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-[var(--text-primary)]">Healthy Stock</p>
+                              <p className="text-xs text-[var(--text-muted)]">&gt;50% of reorder point</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-green-600 dark:text-green-400">{stockDistribution.healthy}%</p>
+                            <p className="text-xs text-[var(--text-muted)]">1,330 items</p>
+                          </div>
                         </div>
-                        <span className="text-lg font-bold text-green-600 dark:text-green-400">{stockDistribution.healthy}%</span>
+                        <div className="relative mt-2 h-1.5 w-full rounded-full bg-green-100 dark:bg-green-900/40 overflow-hidden">
+                          <div className="h-full rounded-full bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-700" style={{ width: `${stockDistribution.healthy}%` }} />
+                        </div>
                       </div>
-                      <div className="text-center rounded-lg bg-amber-50 dark:bg-amber-900/20 px-3 py-2">
-                        <div className="flex items-center gap-1">
-                          <div className="h-3 w-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500" />
-                          <span className="text-xs text-[var(--text-secondary)]">Warning (10-50%)</span>
+
+                      {/* Warning */}
+                      <div className="group relative overflow-hidden rounded-xl border border-amber-200 dark:border-amber-800 p-3 transition-all duration-200 hover:shadow-md hover:scale-[1.01]">
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-amber-50 to-yellow-50/50 dark:from-amber-950/30 dark:to-yellow-950/20" />
+                        <div className="relative flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-yellow-500 shadow-sm">
+                              <AlertTriangle className="h-5 w-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-[var(--text-primary)]">Warning Level</p>
+                              <p className="text-xs text-[var(--text-muted)]">10-50% of reorder point</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-amber-600 dark:text-amber-400">{stockDistribution.warning}%</p>
+                            <p className="text-xs text-[var(--text-muted)]">332 items</p>
+                          </div>
                         </div>
-                        <span className="text-lg font-bold text-amber-600 dark:text-amber-400">{stockDistribution.warning}%</span>
+                        <div className="relative mt-2 h-1.5 w-full rounded-full bg-amber-100 dark:bg-amber-900/40 overflow-hidden">
+                          <div className="h-full rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 transition-all duration-700" style={{ width: `${stockDistribution.warning}%` }} />
+                        </div>
                       </div>
-                      <div className="text-center rounded-lg bg-red-50 dark:bg-red-900/20 px-3 py-2">
-                        <div className="flex items-center gap-1">
-                          <div className="h-3 w-3 rounded-full bg-gradient-to-r from-red-500 to-rose-500" />
-                          <span className="text-xs text-[var(--text-secondary)]">Critical (&lt;10%)</span>
+
+                      {/* Critical */}
+                      <div className="group relative overflow-hidden rounded-xl border border-red-200 dark:border-red-800 p-3 transition-all duration-200 hover:shadow-md hover:scale-[1.01]">
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-red-50 to-rose-50/50 dark:from-red-950/30 dark:to-rose-950/20" />
+                        <div className="relative flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-rose-500 shadow-sm">
+                              <XCircle className="h-5 w-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-[var(--text-primary)]">Critical Level</p>
+                              <p className="text-xs text-[var(--text-muted)]">&lt;10% of reorder point</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-red-600 dark:text-red-400">{stockDistribution.critical}%</p>
+                            <p className="text-xs text-[var(--text-muted)]">185 items</p>
+                          </div>
                         </div>
-                        <span className="text-lg font-bold text-red-600 dark:text-red-400">{stockDistribution.critical}%</span>
+                        <div className="relative mt-2 h-1.5 w-full rounded-full bg-red-100 dark:bg-red-900/40 overflow-hidden">
+                          <div className="h-full rounded-full bg-gradient-to-r from-red-500 to-rose-500 transition-all duration-700" style={{ width: `${stockDistribution.critical}%` }} />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -849,16 +1029,18 @@ export default function InventoryDashboard() {
                 {isLoading ? (
                   <Skeleton className="h-48 rounded-lg" />
                 ) : (
-                  <ChartWrapper
-                    type="area"
-                    data={inventoryValueTrend}
-                    series={[{ dataKey: 'value', name: 'Value', color: '#3B82F6', fillOpacity: 0.3 }]}
-                    xAxisKey="month"
-                    height={280}
-                    showTooltip
-                    showGrid
-                    tooltipFormatter={(value) => '$' + (value as number).toLocaleString()}
-                  />
+                  <div className="-mx-4 sm:mx-0">
+                    <ChartWrapper
+                      type="area"
+                      data={inventoryValueTrend}
+                      series={[{ dataKey: 'value', name: 'Value', color: '#3B82F6', fillOpacity: 0.3 }]}
+                      xAxisKey="month"
+                      height={280}
+                      showTooltip
+                      showGrid
+                      tooltipFormatter={(value) => '$' + (value as number).toLocaleString()}
+                    />
+                  </div>
                 )}
               </Card.Content>
             </Card>
@@ -897,11 +1079,31 @@ export default function InventoryDashboard() {
                   ))}
                 </div>
               ) : (
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {stockAlertProducts.map((product) => (
-                    <StockAlertCard key={product.id} product={product} />
-                  ))}
-                </div>
+                <>
+                  {/* Mobile: 2-column horizontal carousel */}
+                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-3 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {/* Group products in pairs for 2-column layout */}
+                    {Array.from({ length: Math.ceil(stockAlertProducts.length / 2) }).map((_, groupIdx) => (
+                      <div key={groupIdx} className="flex-shrink-0 snap-start w-[85vw] flex flex-col gap-3">
+                        {stockAlertProducts.slice(groupIdx * 2, groupIdx * 2 + 2).map((product) => (
+                          <StockAlertCard key={product.id} product={product} />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Mobile scroll indicator */}
+                  <div className="flex justify-center gap-1.5 mt-2 sm:hidden">
+                    {Array.from({ length: Math.ceil(stockAlertProducts.length / 2) }).map((_, i) => (
+                      <div key={i} className={`h-1.5 rounded-full transition-all ${i === 0 ? 'w-4 bg-red-500' : 'w-1.5 bg-secondary-300 dark:bg-secondary-600'}`} />
+                    ))}
+                  </div>
+                  {/* Desktop: Grid layout */}
+                  <div className="hidden sm:grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {stockAlertProducts.map((product) => (
+                      <StockAlertCard key={product.id} product={product} />
+                    ))}
+                  </div>
+                </>
               )}
             </Card.Content>
           </Card>
