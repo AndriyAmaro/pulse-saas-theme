@@ -392,7 +392,7 @@ export default function HelpDeskDashboard() {
   }, [])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-x-hidden">
       {/* ====== HEADER ====== */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="hidden md:block md:w-48" />
@@ -737,7 +737,7 @@ export default function HelpDeskDashboard() {
               ) : (
                 <>
                   {/* Mobile Carousel */}
-                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 py-4 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 px-4 py-4 sm:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {recentTickets.map((ticket) => {
                       const defaultColors = { bg: 'from-blue-50 to-sky-50/50 dark:from-blue-950/30 dark:to-sky-900/20', text: 'text-blue-700 dark:text-blue-300', border: 'border-blue-200/60 dark:border-blue-800/40' }
                       const priorityColors = {
@@ -755,7 +755,7 @@ export default function HelpDeskDashboard() {
                       return (
                         <div
                           key={ticket.id}
-                          className={`snap-start shrink-0 w-[280px] p-4 rounded-xl border bg-gradient-to-br ${colors.bg} ${colors.border}`}
+                          className={`snap-start shrink-0 w-[75vw] max-w-[280px] p-4 rounded-xl border bg-gradient-to-br ${colors.bg} ${colors.border}`}
                         >
                           {/* Header: ID + Priority */}
                           <div className="flex items-center justify-between mb-2">
