@@ -475,7 +475,8 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* Queue Summary */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500" />
             <Card.Header className="pb-2">
               <Card.Title className="flex items-center gap-2 text-sm">
                 <Users className="h-4 w-4 text-primary-500" />
@@ -513,7 +514,8 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* SLA Health */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500" />
             <Card.Header className="pb-2">
               <Card.Title className="flex items-center gap-2 text-sm">
                 <Target className="h-4 w-4 text-primary-500" />
@@ -571,7 +573,8 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* Top Agents Online */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500" />
             <Card.Header className="pb-2">
               <Card.Title className="flex items-center gap-2 text-sm">
                 <Headphones className="h-4 w-4 text-primary-500" />
@@ -626,7 +629,8 @@ export default function HelpDeskDashboard() {
           )}
 
           {/* Ticket Volume Chart */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500" />
             <Card.Header>
               <div className="flex items-center justify-between">
                 <div>
@@ -667,7 +671,8 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* Recent Tickets Table */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500" />
             <Card.Header>
               <div className="flex items-center justify-between">
                 <div>
@@ -790,7 +795,8 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* Categories Breakdown */}
-          <Card>
+          <Card className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-500 via-pink-500 to-red-500" />
             <Card.Header className="pb-2">
               <Card.Title className="flex items-center gap-2 text-sm">
                 <Settings className="h-4 w-4 text-primary-500" />
@@ -825,7 +831,8 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* Live Feed */}
-          <Card className="max-h-[400px] overflow-hidden">
+          <Card className="relative max-h-[400px] overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 z-10" />
             <Card.Header className="pb-2">
               <div className="flex items-center justify-between">
                 <Card.Title className="flex items-center gap-2 text-sm">
