@@ -552,7 +552,7 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* SLA Health */}
-          <Card className="relative overflow-clip">
+          <Card className="relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500" />
             <Card.Header className="pb-2">
               <Card.Title className="flex items-center gap-2 text-sm">
@@ -711,7 +711,7 @@ export default function HelpDeskDashboard() {
           </Card>
 
           {/* Recent Tickets Table */}
-          <Card className="relative overflow-clip">
+          <Card className="relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500" />
             <Card.Header>
               <div className="flex items-center justify-between">
