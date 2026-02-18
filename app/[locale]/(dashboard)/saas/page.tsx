@@ -55,6 +55,7 @@ const heroMetrics = {
   activeUsers: { value: 8234, change: 8.7, sparkline: [7200, 7400, 7650, 7800, 7950, 8100, 8234] },
   churnRate: { value: 2.1, change: -0.4, sparkline: [2.8, 2.6, 2.5, 2.4, 2.3, 2.2, 2.1] },
   ltv: { value: 2340, change: 5.2, sparkline: [2100, 2150, 2200, 2250, 2280, 2310, 2340] },
+  nrr: { value: 112, change: 3.1, sparkline: [105, 107, 108, 109, 110, 111, 112] },
 }
 
 // Revenue Growth (12 months with annotations)
@@ -598,6 +599,14 @@ export default function SaaSMetricsDashboard() {
               change={heroMetrics.ltv.change}
               prefix="$"
               sparkline={heroMetrics.ltv.sparkline}
+            />
+            <div className="hidden lg:block w-px h-20 bg-white/20 self-center" />
+            <HeroMetric
+              label="NRR"
+              value={heroMetrics.nrr.value}
+              change={heroMetrics.nrr.change}
+              suffix="%"
+              sparkline={heroMetrics.nrr.sparkline}
             />
           </div>
         </div>
