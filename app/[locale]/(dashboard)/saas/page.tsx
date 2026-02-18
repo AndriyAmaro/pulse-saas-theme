@@ -320,17 +320,27 @@ function HeroMetric({
         </span>
       </div>
       {sparkline && (
-        <div className="mt-2">
-          <SparklineChart
-            data={sparkline}
-            type="area"
-            color="rgba(255,255,255,0.8)"
-            width={120}
-            height={28}
-            showDot
-            gradient
-            animated
-          />
+        <div className="mt-2 flex items-end gap-[3px] h-7">
+          {sparkline.slice(-8).map((val, i, arr) => {
+            const maxVal = Math.max(...arr)
+            const minVal = Math.min(...arr)
+            const range = maxVal - minVal || 1
+            const height = 20 + ((val - minVal) / range) * 80
+            const isLast = i === arr.length - 1
+            return (
+              <div
+                key={i}
+                className="flex-1 rounded-sm transition-all duration-300"
+                style={{
+                  height: `${height}%`,
+                  background: isLast
+                    ? 'rgba(255,255,255,0.9)'
+                    : `rgba(255,255,255,${0.2 + (i / arr.length) * 0.35})`,
+                  boxShadow: isLast ? '0 0 8px rgba(255,255,255,0.4)' : 'none',
+                }}
+              />
+            )
+          })}
         </div>
       )}
     </div>
@@ -512,11 +522,9 @@ export default function SaaSMetricsDashboard() {
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="flex items-center gap-2 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/25">
-              <BarChart3 className="h-5 w-5 text-white" />
-            </div>
+        <div className="hidden md:block md:w-48" />
+        <div className="text-center">
+          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-violet-600 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
             SaaS Metrics
           </h1>
           <p className="mt-1 text-[var(--text-secondary)]">
