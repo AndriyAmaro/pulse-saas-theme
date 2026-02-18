@@ -304,23 +304,23 @@ function HeroMetric({
   const isPositive = inverse ? change < 0 : change > 0
 
   return (
-    <div className="flex-1 min-w-[160px]">
-      <p className="text-xs font-medium text-white/60 uppercase tracking-wider">{label}</p>
-      <div className="flex items-baseline gap-2 mt-1">
-        <span className="text-2xl font-bold text-white">
+    <div className="min-w-0 lg:flex-1 lg:min-w-[140px]">
+      <p className="text-[10px] sm:text-xs font-medium text-white/60 uppercase tracking-wider">{label}</p>
+      <div className="flex items-baseline gap-1.5 sm:gap-2 mt-0.5 sm:mt-1">
+        <span className="text-lg sm:text-2xl font-bold text-white">
           {prefix}{typeof value === 'number' && value >= 1000
             ? value >= 1000000
               ? `${(value / 1000000).toFixed(2)}M`
               : `${(value / 1000).toFixed(value >= 10000 ? 0 : 1)}K`
             : value.toLocaleString()}{suffix}
         </span>
-        <span className={`flex items-center text-xs font-semibold px-1.5 py-0.5 rounded-full ${isPositive ? 'bg-green-400/20 text-green-200' : 'bg-red-400/20 text-red-200'}`}>
-          {isPositive ? <TrendingUp className="h-3 w-3 mr-0.5" /> : <TrendingDown className="h-3 w-3 mr-0.5" />}
+        <span className={`flex items-center text-[10px] sm:text-xs font-semibold px-1 sm:px-1.5 py-0.5 rounded-full ${isPositive ? 'bg-green-400/20 text-green-200' : 'bg-red-400/20 text-red-200'}`}>
+          {isPositive ? <TrendingUp className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5" /> : <TrendingDown className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5" />}
           {Math.abs(change)}%
         </span>
       </div>
       {sparkline && (
-        <div className="mt-2 flex items-end gap-[3px] h-7">
+        <div className="mt-1.5 sm:mt-2 hidden sm:flex items-end gap-[3px] h-7">
           {sparkline.slice(-8).map((val, i, arr) => {
             const maxVal = Math.max(...arr)
             const minVal = Math.min(...arr)
@@ -549,7 +549,7 @@ export default function SaaSMetricsDashboard() {
       {isLoading ? (
         <Skeleton className="h-36 rounded-2xl" />
       ) : (
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 p-6 shadow-xl shadow-violet-500/20">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 p-4 sm:p-6 shadow-xl shadow-violet-500/20">
           {/* Premium overlays */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.15),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.15),transparent_50%)]" />
@@ -559,7 +559,7 @@ export default function SaaSMetricsDashboard() {
           <div className="absolute top-4 right-8 opacity-20">
             <Sparkles className="h-6 w-6 text-white" />
           </div>
-          <div className="relative flex flex-wrap items-start justify-between gap-6">
+          <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:flex lg:items-start lg:justify-between lg:gap-6">
             <HeroMetric
               label="MRR"
               value={heroMetrics.mrr.value}
