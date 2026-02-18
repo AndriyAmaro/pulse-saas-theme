@@ -470,6 +470,31 @@ function CohortRetentionTable() {
         </div>
       </div>
 
+      {/* Retention Insights */}
+      <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-subtle)] divide-y divide-[var(--border-default)]">
+        {[
+          { label: 'Net Revenue Retention', value: '112%', trend: '+3.1%', icon: <DollarSign className="h-3.5 w-3.5 text-emerald-500" />, positive: true },
+          { label: 'Logo Retention Rate', value: '94%', trend: '+1.2%', icon: <Shield className="h-3.5 w-3.5 text-blue-500" />, positive: true },
+          { label: 'Avg. Time to Churn', value: '4.2 mo', trend: '+0.8 mo', icon: <Clock className="h-3.5 w-3.5 text-violet-500" />, positive: true },
+          { label: 'Expansion Revenue', value: '$18.4K', trend: '+22%', icon: <TrendingUp className="h-3.5 w-3.5 text-teal-500" />, positive: true },
+        ].map((item) => (
+          <div key={item.label} className="flex items-center justify-between px-4 py-2.5">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--bg-primary)]">
+                {item.icon}
+              </div>
+              <span className="text-sm text-[var(--text-secondary)]">{item.label}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-bold text-[var(--text-primary)]">{item.value}</span>
+              <span className={`text-xs font-medium ${item.positive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                {item.trend}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Legend */}
       <div className="flex items-center justify-between pt-3 border-t border-[var(--border-default)]">
         <div className="flex items-center gap-1 text-xs text-[var(--text-muted)]">
