@@ -392,7 +392,7 @@ export default function HelpDeskDashboard() {
   }, [])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-x-hidden">
       {/* ====== HEADER ====== */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="hidden md:block md:w-48" />
@@ -489,7 +489,7 @@ export default function HelpDeskDashboard() {
       {/* ====== MAIN 3-COLUMN LAYOUT (UNIQUE!) ====== */}
       <div className="grid gap-6 lg:grid-cols-4">
         {/* ===== LEFT COLUMN (25%) - STATUS PANEL ===== */}
-        <div className="space-y-4 lg:col-span-1">
+        <div className="min-w-0 space-y-4 lg:col-span-1">
           {/* Live Status */}
           <Card className="border-l-4 border-l-green-500">
             <Card.Content>
@@ -643,7 +643,7 @@ export default function HelpDeskDashboard() {
         </div>
 
         {/* ===== CENTER COLUMN (50%) - MAIN CONTENT ===== */}
-        <div className="space-y-4 lg:col-span-2">
+        <div className="min-w-0 space-y-4 lg:col-span-2">
           {/* Tickets by Priority */}
           {isLoading ? (
             <Skeleton className="h-24 rounded-xl" />
@@ -656,7 +656,7 @@ export default function HelpDeskDashboard() {
                     <MoreHorizontal className="h-4 w-4" />
                   </Button>
                 </div>
-                <div className="flex gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   <PriorityBox label="Critical" count={ticketsByPriority.critical} color="red" pulse={ticketsByPriority.critical > 0} />
                   <PriorityBox label="High" count={ticketsByPriority.high} color="orange" />
                   <PriorityBox label="Medium" count={ticketsByPriority.medium} color="yellow" />
@@ -816,7 +816,7 @@ export default function HelpDeskDashboard() {
         </div>
 
         {/* ===== RIGHT COLUMN (25%) - METRICS & ACTIVITY ===== */}
-        <div className="space-y-4 lg:col-span-1">
+        <div className="min-w-0 space-y-4 lg:col-span-1">
           {/* Response Time Trend */}
           <Card>
             <Card.Header className="pb-2">
