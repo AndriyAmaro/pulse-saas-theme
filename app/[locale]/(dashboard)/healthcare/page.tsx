@@ -633,7 +633,7 @@ export default function HealthcareDashboardPage() {
                   max={100}
                   size="lg"
                   variant="semicircle"
-                  className="-mt-7 lg:-mt-9"
+                  className="-mt-10 lg:-mt-14"
                   colorRanges={[
                     { color: '#22C55E', from: 0, to: 60 },
                     { color: '#FBBF24', from: 60, to: 85 },
