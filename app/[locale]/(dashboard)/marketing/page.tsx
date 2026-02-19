@@ -522,18 +522,12 @@ export default function MarketingDashboardPage() {
       {/* HEADER */}
       {/* ================================================================ */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 shadow-lg shadow-pink-500/25">
-              <Megaphone className="h-5 w-5 text-white" />
-            </div>
-            <h1 className="text-2xl font-bold text-[var(--text-primary)]">Marketing Hub</h1>
-            <Badge variant="primary" size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 text-white border-0 shadow-sm">
-              <Sparkles className="mr-1 h-3 w-3" />
-              Pro
-            </Badge>
-          </div>
-          <p className="mt-1 text-[var(--text-muted)]">
+        <div className="hidden sm:block sm:w-48" />
+        <div className="text-center">
+          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-pink-600 via-purple-500 to-fuchsia-500 bg-clip-text text-transparent">
+            Marketing Hub
+          </h1>
+          <p className="mt-1 text-[var(--text-secondary)]">
             Track campaigns, social media performance, and ROI
           </p>
         </div>
@@ -598,19 +592,24 @@ export default function MarketingDashboardPage() {
                   </div>
                 </div>
 
-                {/* Mini sparkline */}
-                <div className="mt-4 max-w-xs">
-                  <p className="mb-1 text-xs text-white/60">Daily conversions trend</p>
-                  <SparklineChart
-                    data={heroCampaign.sparkline}
-                    type="area"
-                    color="rgba(255,255,255,0.8)"
-                    width={280}
-                    height={48}
-                    showDot
-                    gradient
-                    animated
-                  />
+                {/* Performance Bars */}
+                <div className="mt-4 space-y-2.5 max-w-sm">
+                  {[
+                    { label: 'CTR', value: 5.17, max: 10, suffix: '%', color: 'from-white/90 to-white/60' },
+                    { label: 'Conv. Rate', value: 3.1, max: 8, suffix: '%', color: 'from-white/80 to-white/50' },
+                    { label: 'ROI', value: 450, max: 600, suffix: '%', color: 'from-white/70 to-white/40' },
+                  ].map((bar) => (
+                    <div key={bar.label} className="flex items-center gap-3">
+                      <span className="w-20 text-xs font-medium text-white/70 text-right shrink-0">{bar.label}</span>
+                      <div className="flex-1 h-2 rounded-full bg-white/15 overflow-hidden">
+                        <div
+                          className={`h-full rounded-full bg-gradient-to-r ${bar.color}`}
+                          style={{ width: `${Math.min((bar.value / bar.max) * 100, 100)}%`, boxShadow: '0 0 8px rgba(255,255,255,0.3)' }}
+                        />
+                      </div>
+                      <span className="w-12 text-xs font-bold text-white shrink-0">{bar.value}{bar.suffix}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
