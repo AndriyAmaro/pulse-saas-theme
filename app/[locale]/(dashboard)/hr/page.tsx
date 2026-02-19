@@ -536,6 +536,28 @@ export default function HRDashboardPage() {
                     </div>
                   </div>
 
+                  {/* Center Stats */}
+                  <div className="hidden lg:flex lg:flex-col lg:gap-0 rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)]/60 divide-y divide-[var(--border-default)]">
+                    {[
+                      { label: 'Departments', value: '12', icon: <BarChart3 className="h-3.5 w-3.5 text-violet-500" />, trend: '+1' },
+                      { label: 'Avg Tenure', value: '2.4y', icon: <Clock className="h-3.5 w-3.5 text-purple-500" />, trend: '+0.3' },
+                      { label: 'Offer Rate', value: '68%', icon: <CheckCircle2 className="h-3.5 w-3.5 text-fuchsia-500" />, trend: '+5%' },
+                    ].map((stat) => (
+                      <div key={stat.label} className="flex items-center gap-3 px-4 py-2.5">
+                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--bg-subtle)]">
+                          {stat.icon}
+                        </div>
+                        <div>
+                          <p className="text-xs text-[var(--text-muted)]">{stat.label}</p>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-sm font-bold text-[var(--text-primary)]">{stat.value}</span>
+                            <span className="text-[10px] font-medium text-green-600 dark:text-green-400">{stat.trend}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
                   <div className="flex items-center justify-center gap-5 sm:gap-6 lg:gap-8">
                     {[
                       { label: 'Retention', value: 94, color: '#8B5CF6', trail: '#8B5CF620' },
