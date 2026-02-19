@@ -1077,7 +1077,49 @@ export default function RealEstatePage() {
                 ))}
               </div>
             ) : (
-              <ActivityTimeline items={recentActivity} />
+              <div className="relative overflow-hidden" style={{ maxHeight: '340px' }}>
+                <div className="animate-marquee-vertical space-y-0">
+                  {[...recentActivity, ...recentActivity].map((item, i) => {
+                    const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
+                      success: { bg: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800/40', icon: 'text-green-600 dark:text-green-400' },
+                      info: { bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800/40', icon: 'text-blue-600 dark:text-blue-400' },
+                      warning: { bg: 'bg-amber-50 dark:bg-amber-900/20', border: 'border-amber-200 dark:border-amber-800/40', icon: 'text-amber-600 dark:text-amber-400' },
+                      default: { bg: 'bg-gray-50 dark:bg-gray-900/20', border: 'border-gray-200 dark:border-gray-800/40', icon: 'text-gray-600 dark:text-gray-400' },
+                    }
+                    const style = typeStyles[item.type] ?? typeStyles.default!
+                    return (
+                      <div key={`${item.id}-${i}`} className={`flex items-start gap-3 rounded-xl border ${style.border} ${style.bg} p-3 mb-3`}>
+                        <div className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${style.bg}`}>
+                          {item.type === 'success' && <CheckCircle2 className={`h-4 w-4 ${style.icon}`} />}
+                          {item.type === 'info' && <ArrowUpRight className={`h-4 w-4 ${style.icon}`} />}
+                          {item.type === 'warning' && <Clock className={`h-4 w-4 ${style.icon}`} />}
+                          {item.type === 'default' && <Eye className={`h-4 w-4 ${style.icon}`} />}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-semibold text-[var(--text-primary)]">{item.title}</p>
+                          <p className="text-xs text-[var(--text-muted)] truncate">{item.description}</p>
+                        </div>
+                        <span className="shrink-0 text-[10px] text-[var(--text-muted)]">{item.timestamp}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+                {/* Fade overlays */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-[var(--bg-primary)] to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[var(--bg-primary)] to-transparent" />
+                <style>{`
+                  @keyframes marquee-vertical {
+                    0% { transform: translateY(0); }
+                    100% { transform: translateY(-50%); }
+                  }
+                  .animate-marquee-vertical {
+                    animation: marquee-vertical 30s linear infinite;
+                  }
+                  .animate-marquee-vertical:hover {
+                    animation-play-state: paused;
+                  }
+                `}</style>
+              </div>
             )}
           </Card.Content>
         </Card>
@@ -1275,18 +1317,70 @@ export default function RealEstatePage() {
               ))}
             </div>
           ) : (
-            <div className="-mx-5 -mb-1">
-              <DataTable
-                data={allListings}
-                columns={listingsColumns}
-                sortable
-                filterable
-                filterPlaceholder="Buscar imóveis..."
-                pagination
-                pageSize={10}
-                hoverable
-              />
-            </div>
+            <>
+              {/* Mobile: 2-column carousel */}
+              <div className="sm:hidden">
+                <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-5 px-5 py-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  {(() => {
+                    const pages: (typeof allListings)[] = []
+                    for (let i = 0; i < allListings.length; i += 2) {
+                      pages.push(allListings.slice(i, i + 2))
+                    }
+                    return pages.map((page, pi) => (
+                      <div key={pi} className="flex w-[85vw] max-w-[320px] shrink-0 snap-start flex-col gap-3">
+                        {page.map((listing) => (
+                          <div key={listing.id} className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)] p-3 space-y-2">
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="min-w-0">
+                                <p className="text-sm font-semibold text-[var(--text-primary)] truncate">{listing.address}</p>
+                                <p className="text-[11px] text-[var(--text-muted)]">{listing.city} · {listing.type}</p>
+                              </div>
+                              {getStatusBadge(listing.status)}
+                            </div>
+                            <p className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400">
+                              {formatCurrency(listing.price)}
+                            </p>
+                            <div className="flex items-center gap-3 text-[11px] text-[var(--text-muted)]">
+                              {listing.beds > 0 && (
+                                <span className="flex items-center gap-1">
+                                  <Bed className="h-3 w-3" /> {listing.beds}
+                                </span>
+                              )}
+                              {listing.baths > 0 && (
+                                <span className="flex items-center gap-1">
+                                  <Bath className="h-3 w-3" /> {listing.baths}
+                                </span>
+                              )}
+                              <span className="flex items-center gap-1">
+                                <Maximize className="h-3 w-3" /> {listing.sqft}m²
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Clock className="h-3 w-3" /> {listing.daysListed}d
+                              </span>
+                            </div>
+                            <p className="text-[10px] text-[var(--text-muted)]">Corretor: {listing.agent}</p>
+                          </div>
+                        ))}
+                      </div>
+                    ))
+                  })()}
+                </div>
+              </div>
+
+              {/* Desktop: Data Table */}
+              <div className="hidden sm:block -mx-5 -mb-1">
+                <DataTable
+                  data={allListings}
+                  columns={listingsColumns}
+                  sortable
+                  filterable
+                  filterPlaceholder="Buscar imóveis..."
+                  pagination
+                  pageSize={10}
+                  hoverable
+                />
+              </div>
+            </>
           )}
         </Card.Content>
       </Card>
