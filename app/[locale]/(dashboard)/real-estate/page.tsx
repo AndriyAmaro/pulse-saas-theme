@@ -540,89 +540,123 @@ export default function RealEstatePage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <PageHeader
-        title="Real Estate Dashboard"
-        description="Gerencie seus imóveis, acompanhe vendas e monitore performance dos corretores"
-        actions={
-          <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" leftIcon={<Download className="h-4 w-4" />}>
-              Exportar
-            </Button>
-            <Button variant="outline" size="sm" leftIcon={<Map className="h-4 w-4" />}>
-              Ver Mapa
-            </Button>
-            <Button variant="primary" size="sm" leftIcon={<Plus className="h-4 w-4" />}>
-              Novo Imóvel
-            </Button>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:block sm:w-48" />
+          <div className="text-center sm:flex-1">
+            <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">Real Estate Dashboard</h1>
+            <p className="mt-1 text-sm text-[var(--text-secondary)]">Gerencie seus imóveis, acompanhe vendas e monitore performance</p>
           </div>
-        }
-      />
+        </div>
+        <div className="flex items-center justify-center gap-2 sm:justify-end">
+          <Button variant="outline" size="sm" leftIcon={<Download className="h-4 w-4" />}>
+            Exportar
+          </Button>
+          <Button variant="outline" size="sm" leftIcon={<Map className="h-4 w-4" />}>
+            Ver Mapa
+          </Button>
+          <Button variant="primary" size="sm" leftIcon={<Plus className="h-4 w-4" />}>
+            Novo Imóvel
+          </Button>
+        </div>
+      </div>
 
       {/* ====== HERO CARD ====== */}
       {isLoading ? (
         <Skeleton className="h-52 w-full rounded-2xl" />
       ) : (
-        <Card className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-amber-950/30 dark:via-[var(--bg-base)] dark:to-orange-950/20">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.12),transparent_50%)]" />
-          <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 bg-[radial-gradient(circle_at_bottom_right,rgba(249,115,22,0.08),transparent_60%)]" />
-          <Card.Content className="relative">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg shadow-amber-500/25">
-                    <Building2 className="h-4.5 w-4.5 text-white" />
-                  </div>
-                  <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">Receita do Mês</p>
-                  <Badge variant="success" size="sm" className="flex items-center gap-1">
-                    <Flame className="h-3 w-3" />
+        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-amber-500 via-orange-500 to-yellow-500 p-0">
+          {/* Background overlays */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_50%)]" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.1),transparent_60%)]" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.3),transparent_50%)]" />
+
+          <div className="relative p-4 sm:p-6">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+              {/* Left: Revenue + Badges */}
+              <div className="space-y-3 text-center lg:text-left">
+                <div className="flex items-center justify-center gap-2 lg:justify-start">
+                  <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm text-xs">
+                    <Building2 className="mr-1 h-3 w-3" />
+                    Receita do Mês
+                  </Badge>
+                  <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm text-xs">
+                    <Flame className="mr-1 h-3 w-3" />
                     +22.8%
                   </Badge>
                 </div>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+                <div>
+                  <span className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
                     {formatCurrency(heroData.totalRevenue)}
                   </span>
                 </div>
-                <p className="flex items-center gap-1 text-sm text-amber-600 dark:text-amber-400">
+                <p className="flex items-center justify-center gap-1 text-sm text-white/80 lg:justify-start">
                   <TrendingUp className="h-4 w-4" />
                   +R$880K comparado ao mês anterior
                 </p>
-                <div className="flex items-center gap-4 pt-1">
-                  <div className="rounded-xl bg-white/60 px-3 py-1.5 backdrop-blur-sm dark:bg-white/5">
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-                      <div className="h-2 w-2 rounded-full bg-green-500" />
-                      <span><strong className="text-green-600 dark:text-green-400">{heroData.propertiesSold}</strong> vendidos</span>
-                    </div>
-                  </div>
-                  <div className="rounded-xl bg-white/60 px-3 py-1.5 backdrop-blur-sm dark:bg-white/5">
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-                      <div className="h-2 w-2 rounded-full bg-blue-500" />
-                      <span><strong className="text-blue-600 dark:text-blue-400">{heroData.avgDaysOnMarket}d</strong> média no mercado</span>
-                    </div>
-                  </div>
-                  <div className="rounded-xl bg-white/60 px-3 py-1.5 backdrop-blur-sm dark:bg-white/5">
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-                      <div className="h-2 w-2 rounded-full bg-amber-500" />
-                      <span><strong className="text-amber-600 dark:text-amber-400">{heroData.conversionRate}%</strong> conversão</span>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div className="w-full lg:w-80">
-                <p className="mb-2 text-xs text-[var(--text-muted)]">Tendência de receita (15 dias)</p>
-                <SparklineChart
-                  data={heroData.revenueSparkline}
-                  type="area"
-                  color="#F59E0B"
-                  width={320}
-                  height={80}
-                  showDot
-                  gradient
-                  animated
-                />
+
+              {/* Center: Vertical metrics with circular progress */}
+              <div className="flex items-center justify-center gap-4 sm:gap-6 lg:gap-8">
+                {[
+                  { label: 'Vendidos', value: heroData.propertiesSold, max: 20, suffix: '', color: '#FFFFFF', icon: CheckCircle2 },
+                  { label: 'Dias Mercado', value: heroData.avgDaysOnMarket, max: 60, suffix: 'd', color: '#FEF3C7', icon: Timer },
+                  { label: 'Conversão', value: heroData.conversionRate, max: 100, suffix: '%', color: '#FDE68A', icon: Target },
+                ].map((metric) => {
+                  const r = 26
+                  const circ = 2 * Math.PI * r
+                  const progress = circ - (Math.min(metric.value / metric.max, 1)) * circ
+                  const Icon = metric.icon
+                  return (
+                    <div key={metric.label} className="flex flex-col items-center gap-1">
+                      <div className="relative">
+                        <svg width="68" height="68" className="-rotate-90">
+                          <circle cx="34" cy="34" r={r} fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="5" />
+                          <circle
+                            cx="34" cy="34" r={r} fill="none"
+                            stroke={metric.color} strokeWidth="5" strokeLinecap="round"
+                            strokeDasharray={circ} strokeDashoffset={progress}
+                            style={{ filter: `drop-shadow(0 0 6px ${metric.color}80)`, transition: 'stroke-dashoffset 1s ease-out' }}
+                          />
+                        </svg>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Icon className="h-4 w-4 text-white/80" />
+                        </div>
+                      </div>
+                      <span className="text-sm font-bold text-white">{metric.value}{metric.suffix}</span>
+                      <span className="text-[10px] text-white/60">{metric.label}</span>
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* Right: Quick stats panel */}
+              <div className="flex flex-col gap-3 rounded-2xl bg-white/10 p-4 backdrop-blur-sm lg:min-w-[260px]">
+                {[
+                  { label: 'Ticket Médio', value: 'R$404K', change: '+12%', icon: DollarSign, positive: true },
+                  { label: 'Visitas Agendadas', value: '47', change: '+8', icon: CalendarDays, positive: true },
+                  { label: 'Leads Ativos', value: '186', change: '+23%', icon: Users, positive: true },
+                  { label: 'Taxa Ocupação', value: '91.3%', change: '+2.1%', icon: Home, positive: true },
+                ].map((stat) => {
+                  const SIcon = stat.icon
+                  return (
+                    <div key={stat.label} className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/15">
+                          <SIcon className="h-3.5 w-3.5 text-white" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-white/60">{stat.label}</p>
+                          <p className="text-sm font-bold text-white">{stat.value}</p>
+                        </div>
+                      </div>
+                      <span className="text-xs font-semibold text-emerald-200">{stat.change}</span>
+                    </div>
+                  )
+                })}
               </div>
             </div>
-          </Card.Content>
+          </div>
         </Card>
       )}
 
