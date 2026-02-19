@@ -1246,16 +1246,52 @@ export default function HRDashboardPage() {
                   {[1, 2, 3, 4, 5].map((i) => <Skeleton key={i} className="h-14 rounded-lg" />)}
                 </div>
               ) : (
-                <DataTable
-                  data={openPositions}
-                  columns={jobColumns}
-                  sortable
-                  filterable
-                  filterPlaceholder="Search positions..."
-                  pagination
-                  pageSize={6}
-                  hoverable
-                />
+                <>
+                  {/* Mobile Carousel (2 columns) */}
+                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-6 px-6 py-1 sm:hidden scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    {Array.from({ length: Math.ceil(openPositions.length / 2) }).map((_, pageIdx) => {
+                      const pair = openPositions.slice(pageIdx * 2, pageIdx * 2 + 2)
+                      return (
+                        <div key={pageIdx} className="w-[85vw] max-w-[320px] flex-shrink-0 snap-center flex flex-col gap-3">
+                          {pair.map((job) => {
+                            const statusColor = job.status === 'urgent' ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' : job.status === 'on-hold' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                            return (
+                              <div key={job.id} className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)] p-3.5 shadow-sm">
+                                <div className="flex items-start justify-between gap-2 mb-2">
+                                  <p className="text-sm font-semibold text-[var(--text-primary)] leading-tight">{job.title}</p>
+                                  <span className={`shrink-0 text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${statusColor}`}>{job.status}</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-xs text-[var(--text-muted)] mb-2">
+                                  <span>{job.department}</span>
+                                  <span>•</span>
+                                  <span>{job.location}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                  <span className="text-xs font-bold text-[var(--text-primary)]">{job.salary}</span>
+                                  <span className="text-xs text-[var(--text-muted)]">{job.applicants} applicants</span>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  {/* Desktop Table */}
+                  <div className="hidden sm:block">
+                    <DataTable
+                      data={openPositions}
+                      columns={jobColumns}
+                      sortable
+                      filterable
+                      filterPlaceholder="Search positions..."
+                      pagination
+                      pageSize={6}
+                      hoverable
+                    />
+                  </div>
+                </>
               )}
             </Card.Content>
           </Card>
