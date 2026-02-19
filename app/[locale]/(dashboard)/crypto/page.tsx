@@ -497,7 +497,7 @@ export default function CryptoDashboard() {
 
               {/* Center: Mini Candlestick */}
               <div className="hidden lg:flex flex-col items-center gap-2">
-                <svg viewBox="0 0 200 100" className="w-48 h-24" fill="none">
+                <svg viewBox="0 0 200 100" className="w-64 h-32" fill="none">
                   {/* Candlesticks */}
                   {[
                     { x: 12, o: 65, c: 45, h: 30, l: 75 },
