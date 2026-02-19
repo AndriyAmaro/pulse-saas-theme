@@ -596,19 +596,58 @@ export default function HRDashboardPage() {
           )}
 
           {/* ====== KPI CARDS ====== */}
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {isLoading ? (
-              <>
-                {[1, 2, 3, 4].map((i) => (
-                  <Skeleton key={i} className="h-[150px] rounded-xl" />
-                ))}
-              </>
-            ) : (
-              <>
+          {isLoading ? (
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+              {[1, 2, 3, 4].map((i) => (
+                <Skeleton key={i} className="h-[150px] rounded-xl" />
+              ))}
+            </div>
+          ) : (
+            <>
+              {/* Mobile Carousel */}
+              <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-4 px-4 py-1 sm:hidden scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {hrKPIs.map((kpi) => {
                   const Icon = kpi.icon
                   const isPositive = kpi.change > 0
+                  return (
+                    <Card key={kpi.id} className="group relative w-[70vw] max-w-[250px] flex-shrink-0 snap-center overflow-hidden">
+                      <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${kpi.lightBg}`} />
+                      <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${kpi.topBar}`} />
+                      <Card.Content className="relative">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <p className="text-sm text-[var(--text-secondary)]">{kpi.label}</p>
+                            <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
+                              {kpi.value.toLocaleString()}
+                            </p>
+                            {kpi.change !== 0 && (
+                              <div className={`mt-1 flex items-center gap-1 text-xs font-medium ${isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                                {isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                                {isPositive ? '+' : ''}{kpi.change}%
+                              </div>
+                            )}
+                            {kpi.change === 0 && (
+                              <div className="mt-1 text-xs text-[var(--text-muted)]">No change</div>
+                            )}
+                          </div>
+                          <div className={`rounded-lg p-2 ${kpi.iconBg}`}>
+                            <Icon className={`h-5 w-5 ${kpi.iconColor}`} />
+                          </div>
+                        </div>
+                        <div className="mt-3">
+                          <SparklineChart data={kpi.sparkline} type="area" color={kpi.sparkColor} width={140} height={32} gradient />
+                        </div>
+                      </Card.Content>
+                    </Card>
+                  )
+                })}
+              </div>
 
+              {/* Desktop Grid */}
+              <div className="hidden sm:grid grid-cols-2 gap-4 md:grid-cols-4">
+                {hrKPIs.map((kpi) => {
+                  const Icon = kpi.icon
+                  const isPositive = kpi.change > 0
                   return (
                     <Card key={kpi.id} className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
                       <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${kpi.lightBg}`} />
@@ -641,9 +680,9 @@ export default function HRDashboardPage() {
                     </Card>
                   )
                 })}
-              </>
-            )}
-          </div>
+              </div>
+            </>
+          )}
 
           {/* ====== HIRING PIPELINE (Premium Funnel) ====== */}
           {isLoading ? (
