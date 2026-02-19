@@ -456,18 +456,14 @@ export default function HRDashboardPage() {
       {/* HEADER */}
       {/* ================================================================ */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/25">
-              <Users className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-[var(--text-primary)]">HR & Recruitment</h1>
-              <p className="text-sm text-[var(--text-muted)]">
-                Manage hiring, onboarding, and employee lifecycle
-              </p>
-            </div>
-          </div>
+        <div className="hidden sm:block sm:w-48" />
+        <div className="text-center">
+          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-violet-600 via-purple-500 to-fuchsia-500 bg-clip-text text-transparent">
+            HR & Recruitment
+          </h1>
+          <p className="mt-1 text-[var(--text-secondary)]">
+            Manage hiring, onboarding, and employee lifecycle
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" leftIcon={<Filter className="h-4 w-4" />}>
@@ -542,16 +538,49 @@ export default function HRDashboardPage() {
 
                   <div className="w-full lg:w-80">
                     <p className="mb-2 text-xs text-[var(--text-muted)]">Headcount trend (30 days)</p>
-                    <SparklineChart
-                      data={heroData.headcountTrend}
-                      type="area"
-                      color="#8B5CF6"
-                      width={320}
-                      height={80}
-                      showDot
-                      gradient
-                      animated
-                    />
+                    <div className="relative h-20">
+                      <svg viewBox="0 0 300 80" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="hr-hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.1" />
+                            <stop offset="100%" stopColor="#D946EF" stopOpacity="0.3" />
+                          </linearGradient>
+                          <linearGradient id="hr-hero-line" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#8B5CF6" />
+                            <stop offset="100%" stopColor="#D946EF" />
+                          </linearGradient>
+                        </defs>
+                        {(() => {
+                          const data = heroData.headcountTrend
+                          const minVal = Math.min(...data)
+                          const maxVal = Math.max(...data)
+                          const range = maxVal - minVal || 1
+                          const points = data.map((v, i) => ({
+                            x: (i / (data.length - 1)) * 290 + 5,
+                            y: 70 - ((v - minVal) / range) * 60,
+                          }))
+                          const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
+                          const areaPath = `${linePath} L ${points[points.length - 1].x} 75 L ${points[0].x} 75 Z`
+                          return (
+                            <>
+                              <path d={areaPath} fill="url(#hr-hero-gradient)" />
+                              <path d={linePath} fill="none" stroke="url(#hr-hero-line)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                              {points.filter((_, i) => i % 3 === 0 || i === points.length - 1).map((p, i, arr) => {
+                                const isLast = i === arr.length - 1
+                                return (
+                                  <g key={i}>
+                                    <line x1={p.x} y1={p.y} x2={p.x} y2={75} stroke={isLast ? '#D946EF' : '#8B5CF6'} strokeWidth="1" strokeOpacity={isLast ? 0.4 : 0.15} strokeDasharray="2 2" />
+                                    {isLast && <circle cx={p.x} cy={p.y} r="6" fill="#D946EF" fillOpacity="0.2" />}
+                                    <circle cx={p.x} cy={p.y} r={isLast ? 4 : 2.5} fill={isLast ? '#D946EF' : '#8B5CF6'} fillOpacity={isLast ? 1 : 0.5 + (i / arr.length) * 0.5} />
+                                    {isLast && <circle cx={p.x} cy={p.y} r="4" fill="none" stroke="#D946EF" strokeWidth="1.5" strokeOpacity="0.6" />}
+                                  </g>
+                                )
+                              })}
+                            </>
+                          )
+                        })()}
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </Card.Content>
