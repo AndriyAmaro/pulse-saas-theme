@@ -735,19 +735,21 @@ export default function HealthcareDashboardPage() {
               </div>
             </div>
 
-            <ChartWrapper
-              type="area"
-              data={patientFlowData}
-              series={[
-                { dataKey: 'admissions', name: 'Admissions', color: '#3B82F6' },
-                { dataKey: 'discharges', name: 'Discharges', color: '#22C55E' },
-                { dataKey: 'emergency', name: 'Emergency', color: '#EF4444' },
-              ]}
-              xAxisKey="hour"
-              height={300}
-              showGrid
-              showLegend
-            />
+            <div className="-mx-6 sm:mx-0">
+              <ChartWrapper
+                type="area"
+                data={patientFlowData}
+                series={[
+                  { dataKey: 'admissions', name: 'Admissions', color: '#3B82F6' },
+                  { dataKey: 'discharges', name: 'Discharges', color: '#22C55E' },
+                  { dataKey: 'emergency', name: 'Emergency', color: '#EF4444' },
+                ]}
+                xAxisKey="hour"
+                height={340}
+                showGrid
+                showLegend
+              />
+            </div>
 
             {/* Peak Hours & Insights */}
             <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
