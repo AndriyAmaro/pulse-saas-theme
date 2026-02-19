@@ -537,22 +537,22 @@ export default function HRDashboardPage() {
                   </div>
 
                   {/* Center Stats */}
-                  <div className="hidden lg:flex lg:flex-col lg:gap-0 rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)]/60 divide-y divide-[var(--border-default)]">
+                  <div className="hidden lg:flex lg:flex-col lg:gap-0 rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)]/60 divide-y divide-[var(--border-default)] min-w-[220px]">
                     {[
                       { label: 'Departments', value: '12', icon: <BarChart3 className="h-3.5 w-3.5 text-violet-500" />, trend: '+1' },
                       { label: 'Avg Tenure', value: '2.4y', icon: <Clock className="h-3.5 w-3.5 text-purple-500" />, trend: '+0.3' },
                       { label: 'Offer Rate', value: '68%', icon: <CheckCircle2 className="h-3.5 w-3.5 text-fuchsia-500" />, trend: '+5%' },
                     ].map((stat) => (
-                      <div key={stat.label} className="flex items-center gap-3 px-4 py-2.5">
-                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--bg-subtle)]">
-                          {stat.icon}
-                        </div>
-                        <div>
-                          <p className="text-xs text-[var(--text-muted)]">{stat.label}</p>
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-sm font-bold text-[var(--text-primary)]">{stat.value}</span>
-                            <span className="text-[10px] font-medium text-green-600 dark:text-green-400">{stat.trend}</span>
+                      <div key={stat.label} className="flex items-center justify-between gap-6 px-5 py-3">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--bg-subtle)]">
+                            {stat.icon}
                           </div>
+                          <p className="text-sm font-medium text-[var(--text-secondary)]">{stat.label}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-base font-bold text-[var(--text-primary)]">{stat.value}</span>
+                          <span className="text-xs font-medium text-green-600 dark:text-green-400">{stat.trend}</span>
                         </div>
                       </div>
                     ))}
