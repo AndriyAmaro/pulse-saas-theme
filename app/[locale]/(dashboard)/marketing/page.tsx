@@ -1591,8 +1591,78 @@ export default function MarketingDashboardPage() {
                 </div>
               </div>
 
-              {/* Data Table */}
-              <div className="-mx-5 -mb-1">
+              {/* Mobile: 2-column Carousel */}
+              <div className="sm:hidden">
+                <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-5 px-5 py-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  {(() => {
+                    const pages: Campaign[][] = []
+                    for (let i = 0; i < campaignsData.length; i += 2) {
+                      pages.push(campaignsData.slice(i, i + 2))
+                    }
+                    return pages.map((page, pi) => (
+                      <div key={pi} className="flex w-[85vw] max-w-[320px] shrink-0 snap-start flex-col gap-3">
+                        {page.map((c) => {
+                          const budgetPct = Math.round((c.spent / c.budget) * 100)
+                          return (
+                            <div key={c.id} className="rounded-xl border border-[var(--border-primary)] bg-[var(--bg-primary)] p-3 space-y-2.5">
+                              <div className="flex items-start justify-between gap-2">
+                                <div className="min-w-0">
+                                  <p className="text-sm font-semibold text-[var(--text-primary)] truncate">{c.name}</p>
+                                  <div className="mt-1 flex items-center gap-1.5">
+                                    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium ${platformColors[c.platform] ?? 'bg-gray-500 text-white'}`}>
+                                      {c.platform}
+                                    </span>
+                                    <Badge variant={statusVariants[c.status] ?? 'default'} size="sm" className="text-[10px]">
+                                      {c.status}
+                                    </Badge>
+                                  </div>
+                                </div>
+                                <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400 shrink-0">{c.roi}%</span>
+                              </div>
+
+                              {/* Budget bar */}
+                              <div>
+                                <div className="flex items-center justify-between mb-1">
+                                  <span className="text-[10px] text-[var(--text-muted)]">Budget</span>
+                                  <span className="text-[10px] font-semibold text-[var(--text-secondary)]">{budgetPct}%</span>
+                                </div>
+                                <div className="h-1.5 w-full overflow-hidden rounded-full bg-[var(--border-primary)]">
+                                  <div
+                                    className="h-full rounded-full bg-gradient-to-r from-pink-500 to-purple-500"
+                                    style={{ width: `${budgetPct}%` }}
+                                  />
+                                </div>
+                                <p className="mt-0.5 text-[10px] text-[var(--text-muted)]">
+                                  {formatCurrency(c.spent)} of {formatCurrency(c.budget)}
+                                </p>
+                              </div>
+
+                              {/* Stats row */}
+                              <div className="grid grid-cols-3 gap-1.5">
+                                <div className="rounded-lg bg-[var(--bg-secondary)] px-2 py-1 text-center">
+                                  <p className="text-[9px] text-[var(--text-muted)]">Impr.</p>
+                                  <p className="text-xs font-bold text-[var(--text-primary)]">{formatNumber(c.impressions)}</p>
+                                </div>
+                                <div className="rounded-lg bg-[var(--bg-secondary)] px-2 py-1 text-center">
+                                  <p className="text-[9px] text-[var(--text-muted)]">CTR</p>
+                                  <p className="text-xs font-bold text-[var(--text-primary)]">{c.ctr}%</p>
+                                </div>
+                                <div className="rounded-lg bg-[var(--bg-secondary)] px-2 py-1 text-center">
+                                  <p className="text-[9px] text-[var(--text-muted)]">Conv.</p>
+                                  <p className="text-xs font-bold text-[var(--text-primary)]">{formatNumber(c.conversions)}</p>
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    ))
+                  })()}
+                </div>
+              </div>
+
+              {/* Desktop: Data Table */}
+              <div className="hidden sm:block -mx-5 -mb-1">
                 <DataTable
                   data={campaignsData}
                   columns={columns}
