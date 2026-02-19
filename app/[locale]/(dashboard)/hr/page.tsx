@@ -536,53 +536,37 @@ export default function HRDashboardPage() {
                     </div>
                   </div>
 
-                  <div className="w-full lg:w-80">
-                    <p className="mb-2 text-xs text-[var(--text-muted)]">Headcount trend (30 days)</p>
-                    <div className="relative h-20">
-                      <svg viewBox="0 0 300 80" className="w-full h-full overflow-visible" preserveAspectRatio="none">
-                        <defs>
-                          <linearGradient id="hr-hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.1" />
-                            <stop offset="100%" stopColor="#D946EF" stopOpacity="0.3" />
-                          </linearGradient>
-                          <linearGradient id="hr-hero-line" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#8B5CF6" />
-                            <stop offset="100%" stopColor="#D946EF" />
-                          </linearGradient>
-                        </defs>
-                        {(() => {
-                          const data = heroData.headcountTrend
-                          const minVal = Math.min(...data)
-                          const maxVal = Math.max(...data)
-                          const range = maxVal - minVal || 1
-                          const points = data.map((v, i) => ({
-                            x: (i / (data.length - 1)) * 290 + 5,
-                            y: 70 - ((v - minVal) / range) * 60,
-                          }))
-                          const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
-                          const lastPt = points[points.length - 1]!
-                          const firstPt = points[0]!
-                          const areaPath = `${linePath} L ${lastPt.x} 75 L ${firstPt.x} 75 Z`
-                          return (
-                            <>
-                              <path d={areaPath} fill="url(#hr-hero-gradient)" />
-                              <path d={linePath} fill="none" stroke="url(#hr-hero-line)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                              {points.filter((_, i) => i % 3 === 0 || i === points.length - 1).map((p, i, arr) => {
-                                const isLast = i === arr.length - 1
-                                return (
-                                  <g key={i}>
-                                    <line x1={p.x} y1={p.y} x2={p.x} y2={75} stroke={isLast ? '#D946EF' : '#8B5CF6'} strokeWidth="1" strokeOpacity={isLast ? 0.4 : 0.15} strokeDasharray="2 2" />
-                                    {isLast && <circle cx={p.x} cy={p.y} r="6" fill="#D946EF" fillOpacity="0.2" />}
-                                    <circle cx={p.x} cy={p.y} r={isLast ? 4 : 2.5} fill={isLast ? '#D946EF' : '#8B5CF6'} fillOpacity={isLast ? 1 : 0.5 + (i / arr.length) * 0.5} />
-                                    {isLast && <circle cx={p.x} cy={p.y} r="4" fill="none" stroke="#D946EF" strokeWidth="1.5" strokeOpacity="0.6" />}
-                                  </g>
-                                )
-                              })}
-                            </>
-                          )
-                        })()}
-                      </svg>
-                    </div>
+                  <div className="flex items-center justify-center gap-5 sm:gap-6 lg:gap-8">
+                    {[
+                      { label: 'Retention', value: 94, color: '#8B5CF6', trail: '#8B5CF620' },
+                      { label: 'Satisfaction', value: 87, color: '#A855F7', trail: '#A855F720' },
+                      { label: 'Growth', value: 78, color: '#D946EF', trail: '#D946EF20' },
+                    ].map((ring) => {
+                      const r = 28
+                      const circ = 2 * Math.PI * r
+                      const offset = circ - (ring.value / 100) * circ
+                      return (
+                        <div key={ring.label} className="flex flex-col items-center gap-1.5">
+                          <div className="relative">
+                            <svg width="72" height="72" viewBox="0 0 72 72" className="-rotate-90">
+                              <circle cx="36" cy="36" r={r} fill="none" stroke={ring.trail} strokeWidth="6" />
+                              <circle
+                                cx="36" cy="36" r={r} fill="none"
+                                stroke={ring.color} strokeWidth="6"
+                                strokeLinecap="round"
+                                strokeDasharray={circ}
+                                strokeDashoffset={offset}
+                                style={{ filter: `drop-shadow(0 0 4px ${ring.color}60)` }}
+                              />
+                            </svg>
+                            <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-[var(--text-primary)]">
+                              {ring.value}%
+                            </span>
+                          </div>
+                          <span className="text-[11px] font-medium text-[var(--text-muted)]">{ring.label}</span>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </Card.Content>
