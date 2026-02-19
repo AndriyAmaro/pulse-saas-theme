@@ -565,117 +565,221 @@ export default function MarketingDashboardPage() {
       {isLoading ? (
         <Skeleton className="h-56 w-full rounded-xl" />
       ) : (
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 p-0">
-          {/* Background overlays */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.1),transparent_60%)]" />
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.3),transparent_50%)]" />
-
-          <div className="relative p-6">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              {/* Left: Campaign Info */}
-              <div className="flex-1">
-                <div className="mb-4 flex items-center justify-center gap-3">
-                  <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm">
-                    <span className="mr-1.5 inline-block h-2 w-2 animate-pulse rounded-full bg-green-400" />
-                    Live Campaign
+        <>
+          {/* ===== MOBILE: 2 Cards ===== */}
+          <div className="flex flex-col gap-4 sm:hidden">
+            {/* Mobile Card 1: Title + Metrics Grid */}
+            <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 p-0">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.3),transparent_50%)]" />
+              <div className="relative p-4">
+                <div className="mb-3 flex items-center justify-center gap-2">
+                  <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm text-[10px]">
+                    <span className="mr-1 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-green-400" />
+                    Live
                   </Badge>
-                  <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm">
-                    <Crown className="mr-1 h-3 w-3" />
+                  <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm text-[10px]">
+                    <Crown className="mr-1 h-2.5 w-2.5" />
                     Featured
                   </Badge>
                 </div>
-
-                <h2 className="text-center text-3xl font-bold text-white md:text-4xl">{heroCampaign.name}</h2>
-
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-6">
-                  <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
-                    <p className="text-xs text-white/70">Impressions</p>
-                    <p className="text-xl font-bold text-white">{heroCampaign.impressions}</p>
-                  </div>
-                  <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
-                    <p className="text-xs text-white/70">Clicks</p>
-                    <p className="text-xl font-bold text-white">{heroCampaign.clicks}</p>
-                  </div>
-                  <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
-                    <p className="text-xs text-white/70">Conversions</p>
-                    <p className="text-xl font-bold text-white">{heroCampaign.conversions}</p>
-                  </div>
-                  <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
-                    <p className="text-xs text-white/70">Revenue</p>
-                    <p className="text-xl font-bold text-white">{heroCampaign.revenue}</p>
-                  </div>
-                  <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
-                    <p className="text-xs text-white/70">Bounce Rate</p>
-                    <p className="text-xl font-bold text-white">32.4%</p>
-                  </div>
-                  <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
-                    <p className="text-xs text-white/70">Avg. CPC</p>
-                    <p className="text-xl font-bold text-white">$0.87</p>
-                  </div>
+                <h2 className="text-center text-2xl font-bold text-white">{heroCampaign.name}</h2>
+                <div className="mt-3 grid grid-cols-3 gap-2">
+                  {[
+                    { label: 'Impressions', value: heroCampaign.impressions },
+                    { label: 'Clicks', value: heroCampaign.clicks },
+                    { label: 'Conversions', value: heroCampaign.conversions },
+                    { label: 'Revenue', value: heroCampaign.revenue },
+                    { label: 'Bounce Rate', value: '32.4%' },
+                    { label: 'Avg. CPC', value: '$0.87' },
+                  ].map((m) => (
+                    <div key={m.label} className="rounded-lg bg-white/10 px-2 py-1.5 text-center backdrop-blur-sm">
+                      <p className="text-[10px] text-white/60">{m.label}</p>
+                      <p className="text-sm font-bold text-white">{m.value}</p>
+                    </div>
+                  ))}
                 </div>
+              </div>
+            </Card>
 
+            {/* Mobile Card 2: Performance + Countdown + Budget */}
+            <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-500 via-indigo-500 to-pink-500 p-0">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.1),transparent_60%)]" />
+              <div className="relative p-4">
                 {/* Performance Bars */}
-                <div className="mt-4 space-y-2.5 max-w-sm mx-auto">
+                <div className="space-y-2">
                   {[
                     { label: 'CTR', value: 5.17, max: 10, suffix: '%', color: 'from-white/90 to-white/60' },
                     { label: 'Conv. Rate', value: 3.1, max: 8, suffix: '%', color: 'from-white/80 to-white/50' },
                     { label: 'ROI', value: 450, max: 600, suffix: '%', color: 'from-white/70 to-white/40' },
                   ].map((bar) => (
-                    <div key={bar.label} className="flex items-center gap-3">
-                      <span className="w-20 text-xs font-medium text-white/70 text-right shrink-0">{bar.label}</span>
-                      <div className="flex-1 h-2 rounded-full bg-white/15 overflow-hidden">
+                    <div key={bar.label} className="flex items-center gap-2">
+                      <span className="w-16 text-[10px] font-medium text-white/70 text-right shrink-0">{bar.label}</span>
+                      <div className="flex-1 h-1.5 rounded-full bg-white/15 overflow-hidden">
                         <div
                           className={`h-full rounded-full bg-gradient-to-r ${bar.color}`}
                           style={{ width: `${Math.min((bar.value / bar.max) * 100, 100)}%`, boxShadow: '0 0 8px rgba(255,255,255,0.3)' }}
                         />
                       </div>
-                      <span className="w-12 text-xs font-bold text-white shrink-0">{bar.value}{bar.suffix}</span>
+                      <span className="w-10 text-[10px] font-bold text-white shrink-0">{bar.value}{bar.suffix}</span>
                     </div>
                   ))}
                 </div>
-              </div>
 
-              {/* Right: Countdown & Budget */}
-              <div className="flex flex-col gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-sm lg:min-w-[320px]">
-                <div>
-                  <p className="mb-2 text-sm font-medium text-white/70">Campaign Ends In</p>
-                  <CountdownTimer
-                    targetDate={heroCampaign.endDate}
-                    variant="default"
-                    size="lg"
-                    showLabels
-                    showDays
-                    className="[&_.uppercase]:text-white/70"
-                  />
-                </div>
-
-                <div>
-                  <div className="mb-2 flex items-center justify-between">
-                    <p className="text-sm text-white/70">Budget Used</p>
-                    <p className="font-bold text-white">
-                      {Math.round((heroCampaign.budgetSpent / heroCampaign.budgetTotal) * 100)}%
-                    </p>
-                  </div>
-                  <div className="h-3 w-full overflow-hidden rounded-full bg-white/20">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-white to-white/80 transition-all duration-500"
-                      style={{ width: `${(heroCampaign.budgetSpent / heroCampaign.budgetTotal) * 100}%` }}
+                <div className="mt-3 flex gap-3">
+                  {/* Countdown */}
+                  <div className="flex-1 rounded-xl bg-white/10 p-3 backdrop-blur-sm">
+                    <p className="mb-1.5 text-[10px] font-medium text-white/60">Ends In</p>
+                    <CountdownTimer
+                      targetDate={heroCampaign.endDate}
+                      variant="default"
+                      size="sm"
+                      showLabels
+                      showDays
+                      className="[&_.uppercase]:text-white/70"
                     />
                   </div>
-                  <p className="mt-1 text-xs text-white/70">
-                    ${heroCampaign.budgetSpent.toLocaleString()} of ${heroCampaign.budgetTotal.toLocaleString()}
-                  </p>
+                  {/* Budget */}
+                  <div className="flex-1 rounded-xl bg-white/10 p-3 backdrop-blur-sm">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <p className="text-[10px] font-medium text-white/60">Budget</p>
+                      <p className="text-xs font-bold text-white">
+                        {Math.round((heroCampaign.budgetSpent / heroCampaign.budgetTotal) * 100)}%
+                      </p>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-white/20">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-white to-white/80"
+                        style={{ width: `${(heroCampaign.budgetSpent / heroCampaign.budgetTotal) * 100}%` }}
+                      />
+                    </div>
+                    <p className="mt-1 text-[10px] text-white/60">
+                      ${heroCampaign.budgetSpent.toLocaleString()} / ${heroCampaign.budgetTotal.toLocaleString()}
+                    </p>
+                  </div>
                 </div>
 
-                <Button className="mt-2 border-0 bg-white text-purple-600 hover:bg-white/90 shadow-lg shadow-purple-900/20">
+                <Button size="sm" className="mt-3 w-full border-0 bg-white text-purple-600 hover:bg-white/90 shadow-lg shadow-purple-900/20">
                   View Details
-                  <ChevronRight className="ml-2 h-4 w-4" />
+                  <ChevronRight className="ml-1 h-3 w-3" />
                 </Button>
               </div>
-            </div>
+            </Card>
           </div>
-        </Card>
+
+          {/* ===== DESKTOP: Single Card ===== */}
+          <Card className="relative hidden overflow-hidden border-0 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 p-0 sm:block">
+            {/* Background overlays */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.1),transparent_60%)]" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.3),transparent_50%)]" />
+
+            <div className="relative p-6">
+              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                {/* Left: Campaign Info */}
+                <div className="flex-1">
+                  <div className="mb-4 flex items-center justify-center gap-3">
+                    <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm">
+                      <span className="mr-1.5 inline-block h-2 w-2 animate-pulse rounded-full bg-green-400" />
+                      Live Campaign
+                    </Badge>
+                    <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm">
+                      <Crown className="mr-1 h-3 w-3" />
+                      Featured
+                    </Badge>
+                  </div>
+
+                  <h2 className="text-center text-3xl font-bold text-white md:text-4xl">{heroCampaign.name}</h2>
+
+                  <div className="mt-4 flex flex-wrap items-center justify-center gap-6">
+                    <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                      <p className="text-xs text-white/70">Impressions</p>
+                      <p className="text-xl font-bold text-white">{heroCampaign.impressions}</p>
+                    </div>
+                    <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                      <p className="text-xs text-white/70">Clicks</p>
+                      <p className="text-xl font-bold text-white">{heroCampaign.clicks}</p>
+                    </div>
+                    <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                      <p className="text-xs text-white/70">Conversions</p>
+                      <p className="text-xl font-bold text-white">{heroCampaign.conversions}</p>
+                    </div>
+                    <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                      <p className="text-xs text-white/70">Revenue</p>
+                      <p className="text-xl font-bold text-white">{heroCampaign.revenue}</p>
+                    </div>
+                    <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                      <p className="text-xs text-white/70">Bounce Rate</p>
+                      <p className="text-xl font-bold text-white">32.4%</p>
+                    </div>
+                    <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                      <p className="text-xs text-white/70">Avg. CPC</p>
+                      <p className="text-xl font-bold text-white">$0.87</p>
+                    </div>
+                  </div>
+
+                  {/* Performance Bars */}
+                  <div className="mt-4 space-y-2.5 max-w-sm mx-auto">
+                    {[
+                      { label: 'CTR', value: 5.17, max: 10, suffix: '%', color: 'from-white/90 to-white/60' },
+                      { label: 'Conv. Rate', value: 3.1, max: 8, suffix: '%', color: 'from-white/80 to-white/50' },
+                      { label: 'ROI', value: 450, max: 600, suffix: '%', color: 'from-white/70 to-white/40' },
+                    ].map((bar) => (
+                      <div key={bar.label} className="flex items-center gap-3">
+                        <span className="w-20 text-xs font-medium text-white/70 text-right shrink-0">{bar.label}</span>
+                        <div className="flex-1 h-2 rounded-full bg-white/15 overflow-hidden">
+                          <div
+                            className={`h-full rounded-full bg-gradient-to-r ${bar.color}`}
+                            style={{ width: `${Math.min((bar.value / bar.max) * 100, 100)}%`, boxShadow: '0 0 8px rgba(255,255,255,0.3)' }}
+                          />
+                        </div>
+                        <span className="w-12 text-xs font-bold text-white shrink-0">{bar.value}{bar.suffix}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right: Countdown & Budget */}
+                <div className="flex flex-col gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-sm lg:min-w-[320px]">
+                  <div>
+                    <p className="mb-2 text-sm font-medium text-white/70">Campaign Ends In</p>
+                    <CountdownTimer
+                      targetDate={heroCampaign.endDate}
+                      variant="default"
+                      size="lg"
+                      showLabels
+                      showDays
+                      className="[&_.uppercase]:text-white/70"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="mb-2 flex items-center justify-between">
+                      <p className="text-sm text-white/70">Budget Used</p>
+                      <p className="font-bold text-white">
+                        {Math.round((heroCampaign.budgetSpent / heroCampaign.budgetTotal) * 100)}%
+                      </p>
+                    </div>
+                    <div className="h-3 w-full overflow-hidden rounded-full bg-white/20">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-white to-white/80 transition-all duration-500"
+                        style={{ width: `${(heroCampaign.budgetSpent / heroCampaign.budgetTotal) * 100}%` }}
+                      />
+                    </div>
+                    <p className="mt-1 text-xs text-white/70">
+                      ${heroCampaign.budgetSpent.toLocaleString()} of ${heroCampaign.budgetTotal.toLocaleString()}
+                    </p>
+                  </div>
+
+                  <Button className="mt-2 border-0 bg-white text-purple-600 hover:bg-white/90 shadow-lg shadow-purple-900/20">
+                    View Details
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </>
       )}
 
       {/* ================================================================ */}
