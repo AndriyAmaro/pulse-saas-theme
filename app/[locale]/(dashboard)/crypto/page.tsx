@@ -645,13 +645,13 @@ export default function CryptoDashboard() {
               <Skeleton className="h-64 rounded-lg" />
             ) : (
               <div className="flex flex-col items-center gap-4">
-                <div className="w-48">
+                <div className="w-64">
                   <ChartWrapper
                     type="donut"
                     data={portfolioData.allocation}
                     series={[{ dataKey: 'value', name: 'Allocation' }]}
                     xAxisKey="name"
-                    height={180}
+                    height={240}
                     showTooltip
                     tooltipFormatter={(value) => `${value}%`}
                   />
