@@ -633,24 +633,24 @@ export default function RealEstatePage() {
               {/* Right: Quick stats panel */}
               <div className="flex flex-col gap-3 rounded-2xl bg-white/10 p-4 backdrop-blur-sm lg:min-w-[260px]">
                 {[
-                  { label: 'Ticket Médio', value: 'R$404K', change: '+12%', icon: DollarSign, positive: true },
-                  { label: 'Visitas Agendadas', value: '47', change: '+8', icon: CalendarDays, positive: true },
-                  { label: 'Leads Ativos', value: '186', change: '+23%', icon: Users, positive: true },
-                  { label: 'Taxa Ocupação', value: '91.3%', change: '+2.1%', icon: Home, positive: true },
+                  { label: 'Ticket Médio', value: 'R$404K', change: '+12%', icon: DollarSign, iconColor: 'text-emerald-300', bg: 'bg-emerald-400/20' },
+                  { label: 'Visitas Agendadas', value: '47', change: '+8', icon: CalendarDays, iconColor: 'text-cyan-300', bg: 'bg-cyan-400/20' },
+                  { label: 'Leads Ativos', value: '186', change: '+23%', icon: Users, iconColor: 'text-teal-200', bg: 'bg-teal-400/20' },
+                  { label: 'Taxa Ocupação', value: '91.3%', change: '+2.1%', icon: Home, iconColor: 'text-green-300', bg: 'bg-green-400/20' },
                 ].map((stat) => {
                   const SIcon = stat.icon
                   return (
                     <div key={stat.label} className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/15">
-                          <SIcon className="h-3.5 w-3.5 text-white" />
+                        <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${stat.bg}`}>
+                          <SIcon className={`h-3.5 w-3.5 ${stat.iconColor}`} />
                         </div>
                         <div>
                           <p className="text-xs text-white/60">{stat.label}</p>
                           <p className="text-sm font-bold text-white">{stat.value}</p>
                         </div>
                       </div>
-                      <span className="text-xs font-semibold text-emerald-200">{stat.change}</span>
+                      <span className={`text-xs font-semibold ${stat.iconColor}`}>{stat.change}</span>
                     </div>
                   )
                 })}
