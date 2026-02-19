@@ -560,7 +560,9 @@ export default function HRDashboardPage() {
                             y: 70 - ((v - minVal) / range) * 60,
                           }))
                           const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
-                          const areaPath = `${linePath} L ${points[points.length - 1].x} 75 L ${points[0].x} 75 Z`
+                          const lastPt = points[points.length - 1]!
+                          const firstPt = points[0]!
+                          const areaPath = `${linePath} L ${lastPt.x} 75 L ${firstPt.x} 75 Z`
                           return (
                             <>
                               <path d={areaPath} fill="url(#hr-hero-gradient)" />
