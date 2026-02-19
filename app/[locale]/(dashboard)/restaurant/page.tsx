@@ -482,15 +482,11 @@ export default function RestaurantDashboard() {
   return (
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-rose-600 shadow-lg shadow-red-500/25">
-              <UtensilsCrossed className="h-5 w-5 text-white" />
-            </div>
-            Restaurant Manager
-          </h1>
-          <p className="mt-1 text-[var(--text-secondary)] flex items-center gap-3">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="hidden sm:block sm:w-48" />
+        <div className="text-center flex-1">
+          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-red-600 via-rose-500 to-pink-500 bg-clip-text text-transparent">Restaurant Manager</h1>
+          <p className="mt-1 text-sm text-[var(--text-secondary)] flex items-center justify-center gap-3">
             <span className="flex items-center gap-1.5">
               <span className={`w-2 h-2 rounded-full ${isOpen ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
               {isOpen ? 'Open' : 'Closed'}
@@ -504,8 +500,7 @@ export default function RestaurantDashboard() {
             </Badge>
           </p>
         </div>
-
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
           <Button variant="primary" size="sm" leftIcon={<Plus className="h-4 w-4" />}>
             New Order
           </Button>
@@ -556,18 +551,24 @@ export default function RestaurantDashboard() {
                 </div>
               </div>
 
-              <div className="w-full lg:w-80">
-                <p className="mb-2 text-xs text-[var(--text-muted)]">Revenue trend (24 hours)</p>
-                <SparklineChart
-                  data={heroData.last24Hours}
-                  type="area"
-                  color="#EF4444"
-                  width={320}
-                  height={80}
-                  showDot
-                  gradient
-                  animated
-                />
+              {/* Right: Service Stats */}
+              <div className="grid grid-cols-2 gap-3 lg:min-w-[300px]">
+                {[
+                  { label: 'Table Turnover', value: '3.2x', icon: <ArrowUpRight className="h-3.5 w-3.5" />, color: 'text-green-600 dark:text-green-400', bg: 'bg-green-100 dark:bg-green-900/30' },
+                  { label: 'Avg Service', value: '42min', icon: <Clock className="h-3.5 w-3.5" />, color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-100 dark:bg-blue-900/30' },
+                  { label: 'Kitchen Speed', value: '18min', icon: <ChefHat className="h-3.5 w-3.5" />, color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-100 dark:bg-amber-900/30' },
+                  { label: 'Satisfaction', value: '4.8★', icon: <Star className="h-3.5 w-3.5" />, color: 'text-rose-600 dark:text-rose-400', bg: 'bg-rose-100 dark:bg-rose-900/30' },
+                ].map((stat) => (
+                  <div key={stat.label} className="rounded-xl bg-white/60 dark:bg-white/5 p-3 border border-red-200/30 dark:border-red-800/20">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <div className={`flex h-5 w-5 items-center justify-center rounded-md ${stat.bg}`}>
+                        <span className={stat.color}>{stat.icon}</span>
+                      </div>
+                      <p className="text-[10px] font-medium text-[var(--text-muted)] uppercase tracking-wider">{stat.label}</p>
+                    </div>
+                    <p className="text-lg font-bold text-[var(--text-primary)]">{stat.value}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </Card.Content>
@@ -575,166 +576,149 @@ export default function RestaurantDashboard() {
       )}
 
       {/* ====== ROW 1: LIVE STATS ====== */}
-      <DashboardGrid preset="4col" gap="lg">
-        {isLoading ? (
+      {(() => {
+        const kpiCards = [
+          {
+            key: 'tables',
+            label: 'Tables Occupied',
+            value: `${liveStats.tablesOccupied.value}/${liveStats.tablesOccupied.total}`,
+            sub: null,
+            progress: (liveStats.tablesOccupied.value / liveStats.tablesOccupied.total) * 100,
+            icon: <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30',
+            gradient: 'from-blue-500 to-blue-400',
+            sparkData: kpiSparklines.tablesOccupied,
+            sparkColor: '#3B82F6',
+            sparkType: 'area' as const,
+            urgent: false,
+          },
+          {
+            key: 'guests',
+            label: 'Guests Now',
+            value: String(liveStats.guestsNow.value),
+            sub: { text: `+${liveStats.guestsNow.change} from last hour`, positive: true },
+            progress: null,
+            icon: <Users className="h-5 w-5 text-green-600 dark:text-green-400" />,
+            iconBg: 'bg-green-100 dark:bg-green-900/30',
+            gradient: 'from-green-500 to-emerald-400',
+            sparkData: kpiSparklines.guestsNow,
+            sparkColor: '#22C55E',
+            sparkType: 'area' as const,
+            urgent: false,
+          },
+          {
+            key: 'kitchen',
+            label: 'Orders in Kitchen',
+            value: String(liveStats.ordersInKitchen.value),
+            sub: liveStats.ordersInKitchen.isUrgent ? { text: '2 orders over 20min', positive: false } : null,
+            progress: null,
+            icon: <ChefHat className="h-5 w-5 text-amber-600 dark:text-amber-400" />,
+            iconBg: 'bg-amber-100 dark:bg-amber-900/30',
+            gradient: 'from-amber-500 to-orange-400',
+            sparkData: kpiSparklines.ordersInKitchen,
+            sparkColor: '#F59E0B',
+            sparkType: 'bar' as const,
+            urgent: liveStats.ordersInKitchen.isUrgent,
+          },
+          {
+            key: 'revenue',
+            label: "Today's Revenue",
+            value: `$${liveStats.todayRevenue.value.toLocaleString()}`,
+            sub: { text: `+${liveStats.todayRevenue.change}% vs yesterday`, positive: true },
+            progress: null,
+            icon: <DollarSign className="h-5 w-5 text-red-600 dark:text-red-400" />,
+            iconBg: 'bg-red-100 dark:bg-red-900/30',
+            gradient: 'from-red-500 to-rose-400',
+            sparkData: kpiSparklines.todayRevenue,
+            sparkColor: '#EF4444',
+            sparkType: 'area' as const,
+            urgent: false,
+          },
+        ]
+
+        const renderKpiCard = (kpi: typeof kpiCards[number]) => (
+          <Card key={kpi.key} className={`group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${kpi.urgent ? 'ring-2 ring-amber-400 ring-offset-2 dark:ring-offset-slate-900' : ''}`}>
+            <div className={`absolute top-0 left-0 h-1 w-full bg-gradient-to-r ${kpi.gradient}`} />
+            <Card.Content className="relative p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-[var(--text-secondary)]">{kpi.label}</p>
+                  <p className={`text-2xl font-bold mt-1 ${kpi.urgent ? 'text-amber-600 dark:text-amber-400' : 'text-[var(--text-primary)]'}`}>{kpi.value}</p>
+                  {kpi.sub && (
+                    <p className={`text-xs mt-0.5 flex items-center gap-1 ${kpi.urgent ? 'text-amber-600 dark:text-amber-400 animate-pulse' : kpi.sub.positive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                      {kpi.urgent ? <Flame className="h-3 w-3" /> : <TrendingUp className="h-3 w-3" />}
+                      {kpi.sub.text}
+                    </p>
+                  )}
+                </div>
+                <div className={`rounded-lg p-2 ${kpi.iconBg} ${kpi.urgent ? 'animate-pulse' : ''}`}>{kpi.icon}</div>
+              </div>
+              {kpi.progress !== null && (
+                <div className="mt-2">
+                  <ProgressBar value={kpi.progress} size="sm" variant="default" />
+                </div>
+              )}
+              <div className="mt-2">
+                <SparklineChart data={kpi.sparkData} type={kpi.sparkType} color={kpi.sparkColor} width={140} height={32} gradient />
+              </div>
+            </Card.Content>
+          </Card>
+        )
+
+        return (
           <>
-            {[1, 2, 3, 4].map((i) => (
-              <Skeleton key={i} className="h-28 rounded-xl" />
-            ))}
+            {/* Mobile: Carousel */}
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 py-1 sm:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {isLoading
+                ? [1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-36 w-[75vw] max-w-[280px] shrink-0 snap-start rounded-xl" />)
+                : kpiCards.map((kpi) => (
+                    <div key={kpi.key} className="w-[75vw] max-w-[280px] shrink-0 snap-start">
+                      {renderKpiCard(kpi)}
+                    </div>
+                  ))
+              }
+            </div>
+            {/* Desktop: Grid */}
+            <div className="hidden sm:block">
+              <DashboardGrid preset="4col" gap="lg">
+                {isLoading
+                  ? [1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-28 rounded-xl" />)
+                  : kpiCards.map((kpi) => renderKpiCard(kpi))
+                }
+              </DashboardGrid>
+            </div>
           </>
-        ) : (
-          <>
-            {/* Tables Occupied */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent" />
-              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-blue-400" />
-              <Card.Content className="relative p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-[var(--text-secondary)]">Tables Occupied</p>
-                    <p className="text-2xl font-bold text-[var(--text-primary)] mt-1">
-                      {liveStats.tablesOccupied.value}/{liveStats.tablesOccupied.total}
-                    </p>
-                  </div>
-                  <div className="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
-                    <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <ProgressBar
-                    value={(liveStats.tablesOccupied.value / liveStats.tablesOccupied.total) * 100}
-                    size="sm"
-                    variant="default"
-                  />
-                </div>
-                <div className="mt-2">
-                  <SparklineChart
-                    data={kpiSparklines.tablesOccupied}
-                    type="area"
-                    color="#3B82F6"
-                    width={140}
-                    height={32}
-                    gradient
-                  />
-                </div>
-              </Card.Content>
-            </Card>
-
-            {/* Guests Now */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-transparent" />
-              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-green-500 to-emerald-400" />
-              <Card.Content className="relative p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-[var(--text-secondary)]">Guests Now</p>
-                    <p className="text-2xl font-bold text-[var(--text-primary)] mt-1">
-                      {liveStats.guestsNow.value}
-                    </p>
-                    <p className="text-xs text-green-600 dark:text-green-400 mt-0.5 flex items-center gap-1">
-                      <TrendingUp className="h-3 w-3" />
-                      +{liveStats.guestsNow.change} from last hour
-                    </p>
-                  </div>
-                  <div className="rounded-lg bg-green-100 p-2 dark:bg-green-900/30">
-                    <Users className="h-5 w-5 text-green-600 dark:text-green-400" />
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <SparklineChart
-                    data={kpiSparklines.guestsNow}
-                    type="area"
-                    color="#22C55E"
-                    width={140}
-                    height={32}
-                    gradient
-                  />
-                </div>
-              </Card.Content>
-            </Card>
-
-            {/* Orders in Kitchen */}
-            <Card className={`group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${liveStats.ordersInKitchen.isUrgent ? 'ring-2 ring-amber-400 ring-offset-2 dark:ring-offset-slate-900' : ''}`}>
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-transparent" />
-              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-amber-500 to-orange-400" />
-              <Card.Content className="relative p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-[var(--text-secondary)]">Orders in Kitchen</p>
-                    <p className={`text-2xl font-bold mt-1 ${liveStats.ordersInKitchen.isUrgent ? 'text-amber-600 dark:text-amber-400' : 'text-[var(--text-primary)]'}`}>
-                      {liveStats.ordersInKitchen.value}
-                    </p>
-                    {liveStats.ordersInKitchen.isUrgent && (
-                      <p className="text-xs text-amber-600 dark:text-amber-400 mt-0.5 flex items-center gap-1 animate-pulse">
-                        <Flame className="h-3 w-3" />
-                        2 orders over 20min
-                      </p>
-                    )}
-                  </div>
-                  <div className={`rounded-lg p-2 ${liveStats.ordersInKitchen.isUrgent ? 'bg-amber-100 dark:bg-amber-900/30 animate-pulse' : 'bg-amber-100 dark:bg-amber-900/30'}`}>
-                    <ChefHat className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <SparklineChart
-                    data={kpiSparklines.ordersInKitchen}
-                    type="bar"
-                    color="#F59E0B"
-                    width={140}
-                    height={32}
-                    gradient
-                  />
-                </div>
-              </Card.Content>
-            </Card>
-
-            {/* Today's Revenue */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-transparent" />
-              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-red-500 to-rose-400" />
-              <Card.Content className="relative p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-[var(--text-secondary)]">Today&apos;s Revenue</p>
-                    <p className="text-2xl font-bold text-[var(--text-primary)] mt-1">
-                      ${liveStats.todayRevenue.value.toLocaleString()}
-                    </p>
-                    <p className="text-xs text-green-600 dark:text-green-400 mt-0.5 flex items-center gap-1">
-                      <TrendingUp className="h-3 w-3" />
-                      +{liveStats.todayRevenue.change}% vs yesterday
-                    </p>
-                  </div>
-                  <div className="rounded-lg bg-red-100 p-2 dark:bg-red-900/30">
-                    <DollarSign className="h-5 w-5 text-red-600 dark:text-red-400" />
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <SparklineChart
-                    data={kpiSparklines.todayRevenue}
-                    type="area"
-                    color="#EF4444"
-                    width={140}
-                    height={32}
-                    gradient
-                  />
-                </div>
-              </Card.Content>
-            </Card>
-          </>
-        )}
-      </DashboardGrid>
+        )
+      })()}
 
       {/* ====== ROW 2: TABLE MAP ====== */}
       {isLoading ? (
         <Skeleton className="h-80 rounded-xl" />
       ) : (
-        <TableGrid
-          tables={restaurantTables}
-          columns={6}
-          onTableClick={(table) => console.log('Table clicked:', table)}
-          showLegend
-          title="Floor Plan"
-        />
+        <div className="relative">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-500 via-rose-500 to-pink-500 rounded-t-xl z-10" />
+          {/* Mobile: 3 columns */}
+          <div className="sm:hidden">
+            <TableGrid
+              tables={restaurantTables}
+              columns={3}
+              onTableClick={(table) => console.log('Table clicked:', table)}
+              showLegend
+              title="Floor Plan"
+              variant="compact"
+            />
+          </div>
+          {/* Desktop: 6 columns */}
+          <div className="hidden sm:block">
+            <TableGrid
+              tables={restaurantTables}
+              columns={6}
+              onTableClick={(table) => console.log('Table clicked:', table)}
+              showLegend
+              title="Floor Plan"
+            />
+          </div>
+        </div>
       )}
 
       {/* ====== ROW 3: KITCHEN ORDERS + RECENT ORDERS ====== */}
@@ -925,7 +909,41 @@ export default function RestaurantDashboard() {
                 </div>
 
                 {/* Order List */}
-                <div className="space-y-1">
+                {/* Mobile: 2-column carousel */}
+                <div className="sm:hidden">
+                  <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-5 px-5 py-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    {(() => {
+                      const pages: (typeof recentOrders)[] = []
+                      for (let i = 0; i < recentOrders.length; i += 2) {
+                        pages.push(recentOrders.slice(i, i + 2))
+                      }
+                      return pages.map((page, pi) => (
+                        <div key={pi} className="flex w-[85vw] max-w-[320px] shrink-0 snap-start flex-col gap-2">
+                          {page.map((order) => (
+                            <div key={order.id} className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)] p-3 space-y-1.5">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <div className={`h-2 w-2 rounded-full ${order.status === 'paid' ? 'bg-green-500' : order.status === 'served' ? 'bg-amber-500' : 'bg-blue-500'}`} />
+                                  <span className="text-sm font-bold text-[var(--text-primary)]">{order.orderNumber}</span>
+                                  <span className="text-xs text-[var(--text-muted)]">{order.tableNumber}</span>
+                                </div>
+                                <Badge variant={order.status === 'paid' ? 'success' : order.status === 'served' ? 'warning' : 'default'} size="sm">
+                                  {order.status}
+                                </Badge>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs text-[var(--text-muted)]">{order.items} itens • {order.time}</span>
+                                <span className="text-sm font-semibold text-[var(--text-primary)]">${order.total.toFixed(2)}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ))
+                    })()}
+                  </div>
+                </div>
+                {/* Desktop: List */}
+                <div className="hidden sm:block space-y-1">
                   {recentOrders.map((order) => (
                     <div
                       key={order.id}
@@ -1239,14 +1257,51 @@ export default function RestaurantDashboard() {
               ))}
             </div>
           ) : (
-            <DataTable
-              data={orderHistory}
-              columns={orderHistoryColumns}
-              sortable
-              pagination
-              pageSize={10}
-              hoverable
-            />
+            <>
+              {/* Mobile: Auto-scroll marquee */}
+              <div className="sm:hidden relative h-[320px] overflow-hidden px-4 py-2">
+                <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
+                <div className="animate-restaurant-marquee hover:[animation-play-state:paused]">
+                  {[...orderHistory, ...orderHistory].map((order, idx) => (
+                    <div key={`${order.id}-${idx}`} className="flex items-center justify-between p-2.5 rounded-lg border border-[var(--border-default)] mb-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div className={`h-2 w-2 rounded-full shrink-0 ${order.status === 'completed' ? 'bg-green-500' : 'bg-red-500'}`} />
+                        <span className="text-sm font-medium text-[var(--text-primary)]">{order.orderNumber}</span>
+                        {order.tableNumber && <span className="text-xs text-[var(--text-muted)]">{order.tableNumber}</span>}
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-xs text-[var(--text-muted)]">{order.time}</span>
+                        <span className="text-sm font-semibold text-[var(--text-primary)]">${order.total.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <style>{`
+                  @keyframes restaurant-marquee {
+                    0% { transform: translateY(0); }
+                    100% { transform: translateY(-50%); }
+                  }
+                  .animate-restaurant-marquee {
+                    animation: restaurant-marquee 40s linear infinite;
+                  }
+                  .animate-restaurant-marquee:hover {
+                    animation-play-state: paused;
+                  }
+                `}</style>
+              </div>
+              {/* Desktop: DataTable */}
+              <div className="hidden sm:block">
+                <DataTable
+                  data={orderHistory}
+                  columns={orderHistoryColumns}
+                  sortable
+                  pagination
+                  pageSize={10}
+                  hoverable
+                />
+              </div>
+            </>
           )}
         </Card.Content>
       </Card>

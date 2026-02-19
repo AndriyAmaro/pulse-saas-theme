@@ -139,7 +139,7 @@ const TableCard: React.FC<TableCardProps> = ({ table, onClick }) => {
     <button
       onClick={onClick}
       className={cn(
-        'group relative flex flex-col items-center justify-center rounded-xl border-2 p-3 transition-all duration-200',
+        'group relative flex flex-col items-center justify-center rounded-xl border-2 p-2 sm:p-3 transition-all duration-200 min-w-0 overflow-hidden',
         config.bg,
         config.border,
         table.status !== 'closed' && 'hover:scale-105 hover:shadow-lg cursor-pointer',
@@ -148,14 +148,14 @@ const TableCard: React.FC<TableCardProps> = ({ table, onClick }) => {
       )}
     >
       {/* Table Number */}
-      <span className={cn('text-xl font-bold', config.text)}>
+      <span className={cn('text-base sm:text-xl font-bold', config.text)}>
         {table.number}
       </span>
 
       {/* Seats Indicator */}
-      <div className="flex items-center gap-1 mt-1">
-        <Users className={cn('h-3 w-3', config.text)} />
-        <span className={cn('text-xs font-medium', config.text)}>
+      <div className="flex items-center gap-0.5 sm:gap-1 mt-0.5 sm:mt-1">
+        <Users className={cn('h-2.5 w-2.5 sm:h-3 sm:w-3', config.text)} />
+        <span className={cn('text-[10px] sm:text-xs font-medium', config.text)}>
           {table.guestCount !== undefined
             ? `${table.guestCount}/${table.seats}`
             : table.seats}
@@ -165,26 +165,26 @@ const TableCard: React.FC<TableCardProps> = ({ table, onClick }) => {
       {/* Status Info */}
       {table.status === 'occupied' && table.occupiedTime && (
         <div className={cn(
-          'flex items-center gap-1 mt-1.5 text-xs',
+          'flex items-center gap-0.5 sm:gap-1 mt-1 sm:mt-1.5 text-[10px] sm:text-xs',
           config.text,
           parseInt(table.occupiedTime) > 60 && 'animate-pulse'
         )}>
-          <Clock className="h-3 w-3" />
-          {table.occupiedTime}
+          <Clock className="h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0" />
+          <span className="truncate">{table.occupiedTime}</span>
         </div>
       )}
 
       {table.status === 'reserved' && table.reservationTime && (
-        <div className={cn('flex items-center gap-1 mt-1.5 text-xs', config.text)}>
-          <Calendar className="h-3 w-3" />
-          {table.reservationTime}
+        <div className={cn('flex items-center gap-0.5 sm:gap-1 mt-1 sm:mt-1.5 text-[10px] sm:text-xs', config.text)}>
+          <Calendar className="h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0" />
+          <span className="truncate">{table.reservationTime}</span>
         </div>
       )}
 
       {table.status === 'paying' && table.orderTotal !== undefined && (
-        <div className={cn('flex items-center gap-1 mt-1.5 text-xs font-medium', config.text)}>
-          <DollarSign className="h-3 w-3" />
-          ${table.orderTotal.toFixed(2)}
+        <div className={cn('flex items-center gap-0.5 sm:gap-1 mt-1 sm:mt-1.5 text-[10px] sm:text-xs font-medium', config.text)}>
+          <DollarSign className="h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0" />
+          <span className="truncate">${table.orderTotal.toFixed(2)}</span>
         </div>
       )}
 
