@@ -1514,17 +1514,17 @@ export default function MarketingDashboardPage() {
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5 dark:from-pink-950/20 dark:to-purple-950/20" />
         <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500" />
         <Card.Header className="relative">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 shadow-sm">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 shadow-sm">
                 <Megaphone className="h-4 w-4 text-white" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <Card.Title>Campaigns Overview</Card.Title>
                 <Card.Description className="mt-1">All marketing campaigns with performance metrics</Card.Description>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0">
               <Badge variant="success" size="sm">
                 {campaignsData.filter(c => c.status === 'active').length} active
               </Badge>
