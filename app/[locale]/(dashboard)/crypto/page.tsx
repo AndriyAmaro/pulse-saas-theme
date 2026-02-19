@@ -495,6 +495,49 @@ export default function CryptoDashboard() {
                 </div>
               </div>
 
+              {/* Center: Mini Candlestick */}
+              <div className="hidden lg:flex flex-col items-center gap-2">
+                <svg viewBox="0 0 200 100" className="w-48 h-24" fill="none">
+                  {/* Candlesticks */}
+                  {[
+                    { x: 12, o: 65, c: 45, h: 30, l: 75 },
+                    { x: 30, o: 50, c: 60, h: 38, l: 70 },
+                    { x: 48, o: 55, c: 40, h: 28, l: 65 },
+                    { x: 66, o: 42, c: 55, h: 30, l: 62 },
+                    { x: 84, o: 58, c: 38, h: 25, l: 68 },
+                    { x: 102, o: 40, c: 50, h: 28, l: 58 },
+                    { x: 120, o: 52, c: 35, h: 22, l: 60 },
+                    { x: 138, o: 38, c: 48, h: 25, l: 55 },
+                    { x: 156, o: 45, c: 30, h: 18, l: 55 },
+                    { x: 174, o: 32, c: 42, h: 20, l: 50 },
+                    { x: 192, o: 40, c: 25, h: 15, l: 48 },
+                  ].map((c, i) => {
+                    const isGreen = c.c < c.o
+                    const top = Math.min(c.o, c.c)
+                    const height = Math.abs(c.o - c.c) || 2
+                    return (
+                      <g key={i}>
+                        <line x1={c.x} y1={c.h} x2={c.x} y2={c.l} stroke={isGreen ? '#4ade80' : '#f87171'} strokeWidth="1.5" opacity="0.7" />
+                        <rect x={c.x - 5} y={top} width="10" height={height} rx="1" fill={isGreen ? '#4ade80' : '#f87171'} opacity="0.85" />
+                      </g>
+                    )
+                  })}
+                  {/* Trend line */}
+                  <path d="M12,55 Q50,52 84,48 T156,32 T192,28" stroke="url(#heroLine)" strokeWidth="2" fill="none" opacity="0.6" />
+                  <defs>
+                    <linearGradient id="heroLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#a78bfa" />
+                      <stop offset="50%" stopColor="#60a5fa" />
+                      <stop offset="100%" stopColor="#34d399" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="flex items-center gap-2 text-[10px] text-white/50">
+                  <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-400" />Bullish</span>
+                  <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-red-400" />Bearish</span>
+                </div>
+              </div>
+
               {/* Right: Trading Stats */}
               <div className="grid grid-cols-2 gap-3 lg:min-w-[320px]">
                 {[
