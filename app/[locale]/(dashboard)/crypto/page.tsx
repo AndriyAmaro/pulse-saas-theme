@@ -429,13 +429,11 @@ export default function CryptoDashboard() {
   return (
     <div className="space-y-6">
       {/* ====== HEADER ====== */}
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl flex items-center gap-2">
-            <Bitcoin className="h-8 w-8 text-amber-500" />
-            Crypto Trading
-          </h1>
-          <p className="mt-1 text-[var(--text-secondary)] flex items-center gap-2">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="hidden sm:block sm:w-48" />
+        <div className="text-center flex-1">
+          <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-amber-500 via-orange-400 to-yellow-500 bg-clip-text text-transparent">Crypto Trading</h1>
+          <p className="mt-1 text-sm text-[var(--text-secondary)] flex items-center justify-center gap-2">
             <span className="flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               Market Open
@@ -447,8 +445,7 @@ export default function CryptoDashboard() {
             </span>
           </p>
         </div>
-
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
           <Button variant="primary" size="sm" leftIcon={<ArrowRightLeft className="h-4 w-4" />}>
             Trade
           </Button>
@@ -498,18 +495,20 @@ export default function CryptoDashboard() {
                 </div>
               </div>
 
-              <div className="w-full lg:w-96">
-                <p className="mb-2 text-xs text-purple-200">24h Performance</p>
-                <SparklineChart
-                  data={portfolioData.sparkline}
-                  type="area"
-                  color="#22C55E"
-                  width={380}
-                  height={80}
-                  showDot
-                  gradient
-                  animated
-                />
+              {/* Right: Trading Stats */}
+              <div className="grid grid-cols-2 gap-3 lg:min-w-[320px]">
+                {[
+                  { label: '24h Volume', value: '$2.8B', change: '+12.4%', positive: true },
+                  { label: 'Open Orders', value: '3', change: 'Active', positive: true },
+                  { label: 'Win Rate', value: '74%', change: '+2.1%', positive: true },
+                  { label: 'Avg. Entry', value: '$52.4K', change: '-8.2%', positive: false },
+                ].map((stat) => (
+                  <div key={stat.label} className="rounded-xl bg-white/8 p-3 backdrop-blur-sm border border-white/10">
+                    <p className="text-[10px] font-medium text-purple-300/70 uppercase tracking-wider">{stat.label}</p>
+                    <p className="text-lg font-bold text-white mt-0.5">{stat.value}</p>
+                    <span className={`text-[10px] font-semibold ${stat.positive ? 'text-green-400' : 'text-red-400'}`}>{stat.change}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </Card.Content>
@@ -517,33 +516,61 @@ export default function CryptoDashboard() {
       )}
 
       {/* ====== ROW 2: CRYPTO CARDS ====== */}
-      <DashboardGrid preset="4col" gap="lg">
+      {/* Mobile: Carousel */}
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 py-1 sm:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {isLoading ? (
-          <>
-            {[1, 2, 3, 4].map((i) => (
-              <Skeleton key={i} className="h-48 rounded-xl" />
-            ))}
-          </>
+          [1, 2, 3, 4].map((i) => (
+            <Skeleton key={i} className="h-48 w-[75vw] max-w-[280px] shrink-0 snap-start rounded-xl" />
+          ))
         ) : (
           cryptoCards.map((crypto) => (
-            <CryptoCard
-              key={crypto.symbol}
-              name={crypto.name}
-              symbol={crypto.symbol}
-              price={crypto.price}
-              change={crypto.change}
-              icon={crypto.icon}
-              iconBg={crypto.iconBg}
-              sparklineData={crypto.sparkline}
-              holdings={crypto.holdings}
-              holdingsValue={crypto.holdingsValue}
-            />
+            <div key={crypto.symbol} className="w-[75vw] max-w-[280px] shrink-0 snap-start">
+              <CryptoCard
+                name={crypto.name}
+                symbol={crypto.symbol}
+                price={crypto.price}
+                change={crypto.change}
+                icon={crypto.icon}
+                iconBg={crypto.iconBg}
+                sparklineData={crypto.sparkline}
+                holdings={crypto.holdings}
+                holdingsValue={crypto.holdingsValue}
+              />
+            </div>
           ))
         )}
-      </DashboardGrid>
+      </div>
+      {/* Desktop: Grid */}
+      <div className="hidden sm:block">
+        <DashboardGrid preset="4col" gap="lg">
+          {isLoading ? (
+            <>
+              {[1, 2, 3, 4].map((i) => (
+                <Skeleton key={i} className="h-48 rounded-xl" />
+              ))}
+            </>
+          ) : (
+            cryptoCards.map((crypto) => (
+              <CryptoCard
+                key={crypto.symbol}
+                name={crypto.name}
+                symbol={crypto.symbol}
+                price={crypto.price}
+                change={crypto.change}
+                icon={crypto.icon}
+                iconBg={crypto.iconBg}
+                sparklineData={crypto.sparkline}
+                holdings={crypto.holdings}
+                holdingsValue={crypto.holdingsValue}
+              />
+            ))
+          )}
+        </DashboardGrid>
+      </div>
 
       {/* ====== ROW 3: CANDLESTICK CHART ====== */}
-      <Card>
+      <Card className="relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500" />
         <Card.Header>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -604,7 +631,8 @@ export default function CryptoDashboard() {
       {/* ====== ROW 4: ALLOCATION + QUICK TRADE ====== */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Portfolio Allocation */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-purple-500 via-violet-500 to-blue-500" />
           <Card.Header>
             <Card.Title className="flex items-center gap-2">
               <Wallet className="h-5 w-5 text-primary-500" />
@@ -628,18 +656,18 @@ export default function CryptoDashboard() {
                     tooltipFormatter={(value) => `${value}%`}
                   />
                 </div>
-                <div className="flex-1 space-y-3">
+                <div className="flex-1 divide-y divide-[var(--border-default)]">
                   {portfolioData.allocation.map((item) => (
-                    <div key={item.name} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-                        <span className="font-medium text-[var(--text-primary)]">{item.name}</span>
+                    <div key={item.name} className="flex items-center justify-between py-2.5 first:pt-0 last:pb-0">
+                      <div className="flex items-center gap-2.5">
+                        <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
+                        <span className="text-sm font-semibold text-[var(--text-primary)]">{item.name}</span>
                       </div>
-                      <div className="text-right">
-                        <span className="font-semibold text-[var(--text-primary)]">{item.value}%</span>
-                        <p className="text-xs text-[var(--text-muted)]">
+                      <div className="flex items-center gap-4">
+                        <span className="text-sm font-bold text-[var(--text-primary)]">{item.value}%</span>
+                        <span className="text-xs text-[var(--text-muted)] w-16 text-right">
                           ${((portfolioData.total * item.value) / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                        </p>
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -683,7 +711,8 @@ export default function CryptoDashboard() {
         )}
 
         {/* Market Movers */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div>
@@ -770,7 +799,8 @@ export default function CryptoDashboard() {
       </div>
 
       {/* ====== ROW 6: WATCHLIST TABLE ====== */}
-      <Card>
+      <Card className="relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
         <Card.Header>
           <div className="flex items-center justify-between">
             <div>
@@ -785,7 +815,7 @@ export default function CryptoDashboard() {
             </Button>
           </div>
         </Card.Header>
-        <Card.Content padding="none">
+        <Card.Content>
           {isLoading ? (
             <div className="p-4 space-y-3">
               {[1, 2, 3, 4, 5].map((i) => (
@@ -793,20 +823,66 @@ export default function CryptoDashboard() {
               ))}
             </div>
           ) : (
-            <DataTable
-              data={watchlistData}
-              columns={watchlistColumns}
-              sortable
-              pagination
-              pageSize={10}
-              hoverable
-            />
+            <>
+              {/* Mobile: 2-column carousel */}
+              <div className="sm:hidden">
+                <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-5 px-5 py-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  {(() => {
+                    const pages: (typeof watchlistData)[] = []
+                    for (let i = 0; i < watchlistData.length; i += 2) {
+                      pages.push(watchlistData.slice(i, i + 2))
+                    }
+                    return pages.map((page, pi) => (
+                      <div key={pi} className="flex w-[85vw] max-w-[320px] shrink-0 snap-start flex-col gap-3">
+                        {page.map((coin) => {
+                          const isPositive = coin.change24h >= 0
+                          return (
+                            <div key={coin.id} className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)] p-3 space-y-2">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  {coin.favorite && <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />}
+                                  <span className="text-sm font-bold text-[var(--text-primary)]">{coin.symbol}</span>
+                                  <span className="text-xs text-[var(--text-muted)]">{coin.name}</span>
+                                </div>
+                                <span className={`text-xs font-semibold ${isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                                  {isPositive ? '+' : ''}{coin.change24h}%
+                                </span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-lg font-bold text-[var(--text-primary)]">
+                                  ${coin.price < 1 ? coin.price.toFixed(3) : coin.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                </span>
+                                <span className="text-[10px] text-[var(--text-muted)]">
+                                  Vol: ${(coin.volume24h / 1e9).toFixed(1)}B
+                                </span>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    ))
+                  })()}
+                </div>
+              </div>
+              {/* Desktop: DataTable */}
+              <div className="hidden sm:block -mx-5 -mb-1">
+                <DataTable
+                  data={watchlistData}
+                  columns={watchlistColumns}
+                  sortable
+                  pagination
+                  pageSize={10}
+                  hoverable
+                />
+              </div>
+            </>
           )}
         </Card.Content>
       </Card>
 
       {/* ====== ROW 7: RECENT TRANSACTIONS ====== */}
-      <Card>
+      <Card className="relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500" />
         <Card.Header>
           <div className="flex items-center justify-between">
             <div>
