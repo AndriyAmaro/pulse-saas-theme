@@ -90,6 +90,9 @@ const marketingKPIs = [
     textColor: 'text-pink-600 dark:text-pink-400',
     sparkline: [18, 22, 19, 25, 28, 24, 30, 27, 32, 35, 33, 38],
     sparkColor: '#EC4899',
+    progress: 78,
+    target: '3.0M',
+    barGlow: 'rgba(236,72,153,0.4)',
   },
   {
     id: 'impressions',
@@ -103,6 +106,9 @@ const marketingKPIs = [
     textColor: 'text-purple-600 dark:text-purple-400',
     sparkline: [45, 52, 48, 55, 60, 58, 62, 65, 63, 70, 68, 75],
     sparkColor: '#8B5CF6',
+    progress: 85,
+    target: '7.0M',
+    barGlow: 'rgba(139,92,246,0.4)',
   },
   {
     id: 'clicks',
@@ -116,6 +122,9 @@ const marketingKPIs = [
     textColor: 'text-blue-600 dark:text-blue-400',
     sparkline: [8, 10, 9, 12, 14, 13, 16, 15, 18, 17, 20, 22],
     sparkColor: '#3B82F6',
+    progress: 62,
+    target: '200K',
+    barGlow: 'rgba(59,130,246,0.4)',
   },
   {
     id: 'ctr',
@@ -129,6 +138,9 @@ const marketingKPIs = [
     textColor: 'text-amber-600 dark:text-amber-400',
     sparkline: [1.8, 1.9, 1.95, 2.0, 2.1, 2.05, 2.1, 2.15, 2.2, 2.1, 2.14, 2.18],
     sparkColor: '#F59E0B',
+    progress: 71,
+    target: '3.0%',
+    barGlow: 'rgba(245,158,11,0.4)',
   },
   {
     id: 'conversions',
@@ -142,6 +154,9 @@ const marketingKPIs = [
     textColor: 'text-emerald-600 dark:text-emerald-400',
     sparkline: [250, 280, 290, 320, 310, 350, 380, 360, 400, 420, 410, 450],
     sparkColor: '#10B981',
+    progress: 92,
+    target: '4,200',
+    barGlow: 'rgba(16,185,129,0.4)',
   },
 ]
 
@@ -666,10 +681,65 @@ export default function MarketingDashboardPage() {
       {/* ================================================================ */}
       {/* ROW 1 - KPIs (5 Cards Horizontal) */}
       {/* ================================================================ */}
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+      {/* Mobile Carousel */}
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 py-1 sm:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {isLoading ? (
           Array.from({ length: 5 }).map((_, i) => (
-            <Skeleton key={i} className="h-[160px] rounded-xl" />
+            <Skeleton key={i} className="h-[180px] w-[70vw] max-w-[250px] shrink-0 snap-start rounded-xl" />
+          ))
+        ) : (
+          marketingKPIs.map((kpi) => {
+            const Icon = kpi.icon
+            const isPositive = kpi.change > 0
+
+            return (
+              <Card key={kpi.id} className="group relative w-[70vw] max-w-[250px] shrink-0 snap-start overflow-hidden transition-all duration-200">
+                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${kpi.bgLight} ${kpi.bgDark}`} />
+                <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${kpi.color}`} />
+                <Card.Content className="relative">
+                  <div className="flex items-start justify-between">
+                    <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br ${kpi.color} shadow-sm`}>
+                      <Icon className="h-4 w-4 text-white" />
+                    </div>
+                    <div className={`flex items-center gap-1 text-xs font-medium ${isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                      {isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                      {Math.abs(kpi.change)}%
+                    </div>
+                  </div>
+                  <div className="mt-3">
+                    <p className="text-2xl font-bold text-[var(--text-primary)]">{kpi.value}</p>
+                    <p className="text-xs text-[var(--text-muted)]">{kpi.label}</p>
+                  </div>
+                  {/* Premium Progress Bar */}
+                  <div className="mt-4">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Goal Progress</span>
+                      <span className="text-xs font-bold text-[var(--text-primary)]">{kpi.progress}%</span>
+                    </div>
+                    <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-[var(--border-primary)]/30">
+                      <div
+                        className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r ${kpi.color} transition-all duration-1000 ease-out`}
+                        style={{ width: `${kpi.progress}%`, boxShadow: `0 0 12px ${kpi.barGlow}, 0 0 4px ${kpi.barGlow}` }}
+                      />
+                      <div
+                        className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-white/30 to-transparent`}
+                        style={{ width: `${kpi.progress}%`, animation: 'pulse 2s ease-in-out infinite' }}
+                      />
+                    </div>
+                    <p className="mt-1.5 text-[10px] text-[var(--text-muted)]">Target: {kpi.target}</p>
+                  </div>
+                </Card.Content>
+              </Card>
+            )
+          })
+        )}
+      </div>
+
+      {/* Desktop Grid */}
+      <div className="hidden sm:grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+        {isLoading ? (
+          Array.from({ length: 5 }).map((_, i) => (
+            <Skeleton key={i} className="h-[180px] rounded-xl" />
           ))
         ) : (
           marketingKPIs.map((kpi) => {
@@ -694,17 +764,23 @@ export default function MarketingDashboardPage() {
                     <p className="text-2xl font-bold text-[var(--text-primary)]">{kpi.value}</p>
                     <p className="text-xs text-[var(--text-muted)]">{kpi.label}</p>
                   </div>
-                  <div className="mt-3">
-                    <SparklineChart
-                      data={kpi.sparkline}
-                      type="area"
-                      color={kpi.sparkColor}
-                      width={120}
-                      height={32}
-                      showDot
-                      gradient
-                      animated
-                    />
+                  {/* Premium Progress Bar */}
+                  <div className="mt-4">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Goal Progress</span>
+                      <span className="text-xs font-bold text-[var(--text-primary)]">{kpi.progress}%</span>
+                    </div>
+                    <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-[var(--border-primary)]/30">
+                      <div
+                        className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r ${kpi.color} transition-all duration-1000 ease-out`}
+                        style={{ width: `${kpi.progress}%`, boxShadow: `0 0 12px ${kpi.barGlow}, 0 0 4px ${kpi.barGlow}` }}
+                      />
+                      <div
+                        className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-white/30 to-transparent`}
+                        style={{ width: `${kpi.progress}%`, animation: 'pulse 2s ease-in-out infinite' }}
+                      />
+                    </div>
+                    <p className="mt-1.5 text-[10px] text-[var(--text-muted)]">Target: {kpi.target}</p>
                   </div>
                 </Card.Content>
               </Card>
