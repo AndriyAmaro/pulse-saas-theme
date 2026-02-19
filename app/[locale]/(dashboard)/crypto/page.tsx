@@ -644,7 +644,7 @@ export default function CryptoDashboard() {
             {isLoading ? (
               <Skeleton className="h-64 rounded-lg" />
             ) : (
-              <div className="flex flex-col items-center gap-6 md:flex-row">
+              <div className="flex flex-col items-center gap-4">
                 <div className="w-48">
                   <ChartWrapper
                     type="donut"
@@ -656,19 +656,15 @@ export default function CryptoDashboard() {
                     tooltipFormatter={(value) => `${value}%`}
                   />
                 </div>
-                <div className="flex-1 divide-y divide-[var(--border-default)]">
+                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 w-full">
                   {portfolioData.allocation.map((item) => (
-                    <div key={item.name} className="flex items-center justify-end gap-4 py-1.5 first:pt-0 last:pb-0">
-                      <div className="flex items-center gap-2.5">
-                        <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
-                        <span className="text-sm font-semibold text-[var(--text-primary)]">{item.name}</span>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <span className="text-sm font-bold text-[var(--text-primary)]">{item.value}%</span>
-                        <span className="text-xs text-[var(--text-muted)] w-16 text-right">
-                          ${((portfolioData.total * item.value) / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                        </span>
-                      </div>
+                    <div key={item.name} className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
+                      <span className="text-sm font-semibold text-[var(--text-primary)]">{item.name}</span>
+                      <span className="text-sm font-bold text-[var(--text-primary)]">{item.value}%</span>
+                      <span className="text-xs text-[var(--text-muted)]">
+                        ${((portfolioData.total * item.value) / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                      </span>
                     </div>
                   ))}
                 </div>
