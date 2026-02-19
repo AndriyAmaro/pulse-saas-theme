@@ -590,6 +590,14 @@ export default function MarketingDashboardPage() {
                     <p className="text-xs text-white/70">Revenue</p>
                     <p className="text-xl font-bold text-white">{heroCampaign.revenue}</p>
                   </div>
+                  <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                    <p className="text-xs text-white/70">Bounce Rate</p>
+                    <p className="text-xl font-bold text-white">32.4%</p>
+                  </div>
+                  <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                    <p className="text-xs text-white/70">Avg. CPC</p>
+                    <p className="text-xl font-bold text-white">$0.87</p>
+                  </div>
                 </div>
 
                 {/* Performance Bars */}
