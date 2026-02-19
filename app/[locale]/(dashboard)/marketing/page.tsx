@@ -560,7 +560,7 @@ export default function MarketingDashboardPage() {
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               {/* Left: Campaign Info */}
               <div className="flex-1">
-                <div className="mb-4 flex items-center gap-3">
+                <div className="mb-4 flex items-center justify-center gap-3">
                   <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm">
                     <span className="mr-1.5 inline-block h-2 w-2 animate-pulse rounded-full bg-green-400" />
                     Live Campaign
@@ -571,9 +571,9 @@ export default function MarketingDashboardPage() {
                   </Badge>
                 </div>
 
-                <h2 className="text-3xl font-bold text-white md:text-4xl">{heroCampaign.name}</h2>
+                <h2 className="text-center text-3xl font-bold text-white md:text-4xl">{heroCampaign.name}</h2>
 
-                <div className="mt-4 flex flex-wrap items-center gap-6">
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-6">
                   <div className="rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
                     <p className="text-xs text-white/70">Impressions</p>
                     <p className="text-xl font-bold text-white">{heroCampaign.impressions}</p>
@@ -601,7 +601,7 @@ export default function MarketingDashboardPage() {
                 </div>
 
                 {/* Performance Bars */}
-                <div className="mt-4 space-y-2.5 max-w-sm">
+                <div className="mt-4 space-y-2.5 max-w-sm mx-auto">
                   {[
                     { label: 'CTR', value: 5.17, max: 10, suffix: '%', color: 'from-white/90 to-white/60' },
                     { label: 'Conv. Rate', value: 3.1, max: 8, suffix: '%', color: 'from-white/80 to-white/50' },
