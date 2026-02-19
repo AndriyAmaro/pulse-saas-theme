@@ -537,15 +537,15 @@ export default function HRDashboardPage() {
                   </div>
 
                   {/* Center Stats */}
-                  <div className="hidden lg:flex lg:flex-col lg:gap-0 rounded-xl border border-violet-200/50 dark:border-violet-800/30 bg-[var(--bg-primary)]/60 overflow-hidden min-w-[220px]">
+                  <div className="hidden lg:flex lg:flex-col gap-3 min-w-[220px]">
                     {[
-                      { label: 'Departments', value: '12', icon: <BarChart3 className="h-3.5 w-3.5 text-violet-500" />, trend: '+1', border: 'border-violet-200/50 dark:border-violet-800/30' },
-                      { label: 'Avg Tenure', value: '2.4y', icon: <Clock className="h-3.5 w-3.5 text-purple-500" />, trend: '+0.3', border: 'border-purple-200/50 dark:border-purple-800/30' },
-                      { label: 'Offer Rate', value: '68%', icon: <CheckCircle2 className="h-3.5 w-3.5 text-fuchsia-500" />, trend: '+5%', border: '' },
+                      { label: 'Departments', value: '12', icon: <BarChart3 className="h-5 w-5 text-violet-500" />, trend: '+1', bg: 'bg-violet-500/10' },
+                      { label: 'Avg Tenure', value: '2.4y', icon: <Clock className="h-5 w-5 text-purple-500" />, trend: '+0.3', bg: 'bg-purple-500/10' },
+                      { label: 'Offer Rate', value: '68%', icon: <CheckCircle2 className="h-5 w-5 text-fuchsia-500" />, trend: '+5%', bg: 'bg-fuchsia-500/10' },
                     ].map((stat) => (
-                      <div key={stat.label} className={`flex items-center justify-between gap-6 px-5 py-3 ${stat.border ? `border-b ${stat.border}` : ''}`}>
+                      <div key={stat.label} className="flex items-center justify-between gap-6 px-5 py-2.5">
                         <div className="flex items-center gap-3">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--bg-subtle)]">
+                          <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${stat.bg}`}>
                             {stat.icon}
                           </div>
                           <p className="text-sm font-medium text-[var(--text-secondary)]">{stat.label}</p>
