@@ -282,100 +282,144 @@ export default function EducationPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <PageHeader
-        title="Learning Dashboard"
-        description="Welcome back, John! Keep learning and achieve your goals."
-        actions={
-          <div className="flex items-center gap-3">
-            <Button variant="outline" className="gap-2">
-              <Award className="h-4 w-4" />
-              My Certificates
-            </Button>
-            <Button variant="primary" className="gap-2 bg-purple-600 hover:bg-purple-700">
-              <BookOpen className="h-4 w-4" />
-              Browse Courses
-            </Button>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:block sm:w-48" />
+          <div className="text-center sm:flex-1">
+            <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-500 bg-clip-text text-transparent">Learning Dashboard</h1>
+            <p className="mt-1 text-sm text-[var(--text-secondary)]">Welcome back, John! Keep learning and achieve your goals.</p>
           </div>
-        }
-      />
+        </div>
+        <div className="flex items-center justify-center gap-2 sm:justify-end">
+          <Button variant="outline" className="gap-2">
+            <Award className="h-4 w-4" />
+            My Certificates
+          </Button>
+          <Button variant="primary" className="gap-2 bg-purple-600 hover:bg-purple-700">
+            <BookOpen className="h-4 w-4" />
+            Browse Courses
+          </Button>
+        </div>
+      </div>
 
       {/* Progress Overview - Hero Card */}
       {isLoading ? (
         <Skeleton className="h-[240px] rounded-xl" />
       ) : (
-      <Card className="bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white border-0">
-        <Card.Content className="py-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            {/* Left: Title & Stats */}
-            <div className="flex-1 text-center lg:text-left">
-              <h2 className="text-2xl font-bold mb-2">Your Learning Journey</h2>
-              <p className="text-purple-200 mb-6">You're making great progress! Keep it up.</p>
-
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                  <div className="text-3xl font-bold">{learningStats.coursesEnrolled}</div>
-                  <div className="text-sm text-purple-200">Courses Enrolled</div>
+      <>
+        {/* ===== MOBILE: 2 Cards ===== */}
+        <div className="flex flex-col gap-4 sm:hidden">
+          {/* Mobile Card 1: Title + Progress Circle + Stats Grid */}
+          <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white p-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_50%)]" />
+            <div className="relative p-4">
+              <h2 className="text-center text-xl font-bold mb-1">Your Learning Journey</h2>
+              <p className="text-center text-sm text-purple-200 mb-4">You're making great progress!</p>
+              <div className="flex justify-center mb-4">
+                <div className="relative w-28 h-28">
+                  <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="8" />
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="white" strokeWidth="8" strokeLinecap="round"
+                      strokeDasharray={`${learningStats.overallProgress * 2.64} ${264 - learningStats.overallProgress * 2.64}`}
+                      className="transition-all duration-1000" />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-2xl font-bold">{learningStats.overallProgress}%</span>
+                    <span className="text-[10px] text-purple-200">Complete</span>
+                  </div>
                 </div>
-                <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                  <div className="text-3xl font-bold">{learningStats.coursesCompleted}</div>
-                  <div className="text-sm text-purple-200">Completed</div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded-lg bg-white/10 px-3 py-2 text-center backdrop-blur-sm">
+                  <div className="text-xl font-bold">{learningStats.coursesEnrolled}</div>
+                  <div className="text-[10px] text-purple-200">Enrolled</div>
                 </div>
-                <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                  <div className="text-3xl font-bold">{learningStats.coursesInProgress}</div>
-                  <div className="text-sm text-purple-200">In Progress</div>
+                <div className="rounded-lg bg-white/10 px-3 py-2 text-center backdrop-blur-sm">
+                  <div className="text-xl font-bold">{learningStats.coursesCompleted}</div>
+                  <div className="text-[10px] text-purple-200">Completed</div>
                 </div>
-                <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                  <div className="text-3xl font-bold">{learningStats.certificates}</div>
-                  <div className="text-sm text-purple-200">Certificates</div>
+                <div className="rounded-lg bg-white/10 px-3 py-2 text-center backdrop-blur-sm">
+                  <div className="text-xl font-bold">{learningStats.coursesInProgress}</div>
+                  <div className="text-[10px] text-purple-200">In Progress</div>
+                </div>
+                <div className="rounded-lg bg-white/10 px-3 py-2 text-center backdrop-blur-sm">
+                  <div className="text-xl font-bold">{learningStats.certificates}</div>
+                  <div className="text-[10px] text-purple-200">Certificates</div>
                 </div>
               </div>
             </div>
+          </Card>
 
-            {/* Center: Progress Circle */}
-            <div className="flex flex-col items-center">
-              <div className="relative w-40 h-40">
-                <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="42"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.2)"
-                    strokeWidth="8"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="42"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="8"
-                    strokeLinecap="round"
-                    strokeDasharray={`${learningStats.overallProgress * 2.64} ${264 - learningStats.overallProgress * 2.64}`}
-                    className="transition-all duration-1000"
-                  />
-                </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-4xl font-bold">{learningStats.overallProgress}%</span>
-                  <span className="text-sm text-purple-200">Complete</span>
+          {/* Mobile Card 2: Streak + XP */}
+          <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 text-white p-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_60%)]" />
+            <div className="relative p-4 flex items-center justify-center gap-3">
+              <div className="flex items-center gap-2.5 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
+                <Flame className="h-5 w-5 text-orange-400" />
+                <span className="text-base font-bold">{learningStats.streak} day streak!</span>
+              </div>
+              <div className="flex items-center gap-2.5 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
+                <Zap className="h-5 w-5 text-yellow-400" />
+                <span className="text-base font-bold">{learningStats.xpPoints.toLocaleString()} XP</span>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* ===== DESKTOP: Single Card ===== */}
+        <Card className="hidden sm:block bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white border-0">
+          <Card.Content className="py-8">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+              <div className="flex-1 text-center lg:text-left">
+                <h2 className="text-2xl font-bold mb-2">Your Learning Journey</h2>
+                <p className="text-purple-200 mb-6">You're making great progress! Keep it up.</p>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="text-3xl font-bold">{learningStats.coursesEnrolled}</div>
+                    <div className="text-sm text-purple-200">Courses Enrolled</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="text-3xl font-bold">{learningStats.coursesCompleted}</div>
+                    <div className="text-sm text-purple-200">Completed</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="text-3xl font-bold">{learningStats.coursesInProgress}</div>
+                    <div className="text-sm text-purple-200">In Progress</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="text-3xl font-bold">{learningStats.certificates}</div>
+                    <div className="text-sm text-purple-200">Certificates</div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="relative w-40 h-40">
+                  <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="8" />
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="white" strokeWidth="8" strokeLinecap="round"
+                      strokeDasharray={`${learningStats.overallProgress * 2.64} ${264 - learningStats.overallProgress * 2.64}`}
+                      className="transition-all duration-1000" />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-4xl font-bold">{learningStats.overallProgress}%</span>
+                    <span className="text-sm text-purple-200">Complete</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col items-center lg:items-end gap-4">
+                <div className="flex items-center gap-3 bg-white/10 rounded-full px-5 py-2 backdrop-blur-sm">
+                  <Flame className="h-6 w-6 text-orange-400" />
+                  <span className="text-xl font-bold">{learningStats.streak} day streak!</span>
+                </div>
+                <div className="flex items-center gap-3 bg-white/10 rounded-full px-5 py-2 backdrop-blur-sm">
+                  <Zap className="h-6 w-6 text-yellow-400" />
+                  <span className="text-xl font-bold">{learningStats.xpPoints.toLocaleString()} XP</span>
                 </div>
               </div>
             </div>
-
-            {/* Right: Streak & XP */}
-            <div className="flex flex-col items-center lg:items-end gap-4">
-              <div className="flex items-center gap-3 bg-white/10 rounded-full px-5 py-2 backdrop-blur-sm">
-                <Flame className="h-6 w-6 text-orange-400" />
-                <span className="text-xl font-bold">{learningStats.streak} day streak!</span>
-              </div>
-              <div className="flex items-center gap-3 bg-white/10 rounded-full px-5 py-2 backdrop-blur-sm">
-                <Zap className="h-6 w-6 text-yellow-400" />
-                <span className="text-xl font-bold">{learningStats.xpPoints.toLocaleString()} XP</span>
-              </div>
-            </div>
-          </div>
-        </Card.Content>
-      </Card>
+          </Card.Content>
+        </Card>
+      </>
       )}
 
       {/* Continue Learning */}
@@ -621,7 +665,47 @@ export default function EducationPage() {
             <Card.Description>Your planned learning activities</Card.Description>
           </Card.Header>
           <Card.Content>
-            <div className="flex gap-6">
+            {/* Mobile: Stack vertically (calendar above, events below) */}
+            <div className="flex flex-col gap-4 sm:hidden">
+              <div className="flex justify-center">
+                <MiniCalendar
+                  events={[
+                    { date: new Date(2026, 1, 8), color: 'bg-purple-500' },
+                    { date: new Date(2026, 1, 10), color: 'bg-amber-500' },
+                    { date: new Date(2026, 1, 12), color: 'bg-green-500' },
+                    { date: new Date(2026, 1, 14), color: 'bg-purple-500' },
+                  ]}
+                />
+              </div>
+              <div className="space-y-2.5">
+                {upcomingEvents.map((event, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50"
+                  >
+                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                      event.type === 'live' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' :
+                      event.type === 'assignment' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' :
+                      'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                    }`}>
+                      {event.type === 'live' ? <Play className="h-4 w-4" /> :
+                       event.type === 'assignment' ? <FileText className="h-4 w-4" /> :
+                       <Target className="h-4 w-4" />}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-slate-900 dark:text-white text-sm truncate">
+                        {event.title}
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        {event.date} at {event.time}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Desktop: Side by side */}
+            <div className="hidden sm:flex gap-6">
               <MiniCalendar
                 events={[
                   { date: new Date(2026, 1, 8), color: 'bg-purple-500' },
@@ -726,15 +810,59 @@ export default function EducationPage() {
           <Card.Description>Your complete course library</Card.Description>
         </Card.Header>
         <Card.Content>
-          <DataTable
-            data={allCourses}
-            columns={coursesColumns}
-            sortable
-            filterable
-            filterPlaceholder="Search courses..."
-            pagination
-            pageSize={8}
-          />
+          {/* Mobile: 2-column carousel */}
+          <div className="sm:hidden">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-5 px-5 py-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {(() => {
+                const pages: (typeof allCourses)[] = []
+                for (let i = 0; i < allCourses.length; i += 2) {
+                  pages.push(allCourses.slice(i, i + 2))
+                }
+                return pages.map((page, pi) => (
+                  <div key={pi} className="flex w-[85vw] max-w-[320px] shrink-0 snap-start flex-col gap-3">
+                    {page.map((course) => (
+                      <div key={course.id} className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)] p-3 space-y-2">
+                        <div className="flex items-start gap-3">
+                          <div className="w-9 h-9 shrink-0 rounded-lg bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                            <BookOpen className="h-4 w-4 text-white" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-semibold text-[var(--text-primary)] truncate">{course.title}</p>
+                            <p className="text-[11px] text-[var(--text-muted)]">{course.category} · {course.duration}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 h-1.5 rounded-full bg-[var(--border-primary)] overflow-hidden">
+                            <div
+                              className={`h-full rounded-full ${course.progress === 100 ? 'bg-green-500' : 'bg-purple-500'}`}
+                              style={{ width: `${course.progress}%` }}
+                            />
+                          </div>
+                          <span className="text-xs font-bold text-[var(--text-primary)] w-8 text-right">{course.progress}%</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] text-[var(--text-muted)]">{course.lessons} lessons</span>
+                          {getStatusBadge(course.status)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))
+              })()}
+            </div>
+          </div>
+          {/* Desktop: DataTable */}
+          <div className="hidden sm:block">
+            <DataTable
+              data={allCourses}
+              columns={coursesColumns}
+              sortable
+              filterable
+              filterPlaceholder="Search courses..."
+              pagination
+              pageSize={8}
+            />
+          </div>
         </Card.Content>
       </Card>
     </div>
