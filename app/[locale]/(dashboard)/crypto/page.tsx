@@ -658,7 +658,7 @@ export default function CryptoDashboard() {
                 </div>
                 <div className="flex-1 divide-y divide-[var(--border-default)]">
                   {portfolioData.allocation.map((item) => (
-                    <div key={item.name} className="flex items-center justify-between py-1.5 first:pt-0 last:pb-0">
+                    <div key={item.name} className="flex items-center justify-end gap-4 py-1.5 first:pt-0 last:pb-0">
                       <div className="flex items-center gap-2.5">
                         <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
                         <span className="text-sm font-semibold text-[var(--text-primary)]">{item.name}</span>
