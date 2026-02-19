@@ -425,7 +425,8 @@ export default function EducationPage() {
       {/* Activity & Stats Row */}
       <DashboardGrid preset="2col">
         {/* Weekly Activity Heatmap */}
-        <Card className="overflow-hidden">
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-purple-500 via-violet-500 to-indigo-500" />
           <Card.Header>
             <Card.Title>Weekly Activity</Card.Title>
             <Card.Description>Your learning activity over the last 6 months</Card.Description>
@@ -445,7 +446,8 @@ export default function EducationPage() {
         </Card>
 
         {/* Learning Stats */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500" />
           <Card.Header>
             <Card.Title>Learning Stats</Card.Title>
             <Card.Description>Your all-time achievements</Card.Description>
@@ -479,7 +481,8 @@ export default function EducationPage() {
       </DashboardGrid>
 
       {/* Achievements & Certificates */}
-      <Card>
+      <Card className="relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500" />
         <Card.Header>
           <Card.Title>Achievements & Certificates</Card.Title>
           <Card.Description>Your earned badges and certifications</Card.Description>
@@ -536,7 +539,8 @@ export default function EducationPage() {
       {/* Recommended & Leaderboard */}
       <DashboardGrid preset="2col">
         {/* Recommended Courses */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-violet-500" />
           <Card.Header>
             <Card.Title>Recommended For You</Card.Title>
             <Card.Description>Based on your learning history</Card.Description>
@@ -586,7 +590,8 @@ export default function EducationPage() {
         </Card>
 
         {/* Leaderboard */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-rose-500" />
           <Card.Header>
             <Card.Title>Top Learners This Week</Card.Title>
             <Card.Description>Compete with fellow learners</Card.Description>
@@ -609,7 +614,8 @@ export default function EducationPage() {
       {/* Upcoming Schedule */}
       <DashboardGrid preset="2col">
         {/* Calendar */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500" />
           <Card.Header>
             <Card.Title>Upcoming Schedule</Card.Title>
             <Card.Description>Your planned learning activities</Card.Description>
@@ -655,7 +661,8 @@ export default function EducationPage() {
         </Card>
 
         {/* Quick Stats */}
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500" />
           <Card.Header>
             <Card.Title>This Week's Goals</Card.Title>
             <Card.Description>Track your weekly progress</Card.Description>
@@ -712,7 +719,8 @@ export default function EducationPage() {
       </DashboardGrid>
 
       {/* All Courses Table */}
-      <Card>
+      <Card className="relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500" />
         <Card.Header>
           <Card.Title>All Courses</Card.Title>
           <Card.Description>Your complete course library</Card.Description>
