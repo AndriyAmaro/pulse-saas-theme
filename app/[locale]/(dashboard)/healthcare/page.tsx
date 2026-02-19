@@ -420,19 +420,19 @@ export default function HealthcareDashboardPage() {
       {vitalAlerts.filter(a => a.severity === 'critical').length > 0 && (
         <Card className="relative overflow-hidden border-red-200 bg-gradient-to-r from-red-50 via-white to-red-50 p-0 dark:border-red-900 dark:from-red-950/50 dark:via-[var(--bg-base)] dark:to-red-950/30">
           <div className="h-1 bg-gradient-to-r from-red-500 via-rose-500 to-red-500" />
-          <div className="flex items-center justify-between p-4">
+          <div className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 animate-pulse items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-rose-600 shadow-lg shadow-red-500/30">
+              <div className="flex h-11 w-11 shrink-0 animate-pulse items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-rose-600 shadow-lg shadow-red-500/30">
                 <AlertTriangle className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold text-red-800 dark:text-red-200">Critical Alert — Immediate Attention Required</h3>
-                <p className="text-sm text-red-700 dark:text-red-300">
+                <h3 className="text-sm font-semibold text-red-800 sm:text-base dark:text-red-200">Critical Alert — Immediate Attention</h3>
+                <p className="text-xs text-red-700 sm:text-sm dark:text-red-300">
                   {vitalAlerts.filter(a => a.severity === 'critical').length} patient(s) in critical condition
                 </p>
               </div>
             </div>
-            <Button variant="outline" size="sm" className="border-red-300 text-red-700 hover:bg-red-200 dark:border-red-800 dark:text-red-300">
+            <Button variant="outline" size="sm" className="w-full shrink-0 border-red-300 text-red-700 hover:bg-red-200 sm:w-auto dark:border-red-800 dark:text-red-300">
               View All Alerts
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
