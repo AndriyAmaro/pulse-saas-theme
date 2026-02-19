@@ -544,7 +544,7 @@ export default function RealEstatePage() {
         <div className="flex items-center gap-3">
           <div className="hidden sm:block sm:w-48" />
           <div className="text-center sm:flex-1">
-            <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">Real Estate Dashboard</h1>
+            <h1 className="text-2xl font-bold md:text-3xl bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent">Real Estate Dashboard</h1>
             <p className="mt-1 text-sm text-[var(--text-secondary)]">Gerencie seus imóveis, acompanhe vendas e monitore performance</p>
           </div>
         </div>
@@ -565,11 +565,11 @@ export default function RealEstatePage() {
       {isLoading ? (
         <Skeleton className="h-52 w-full rounded-2xl" />
       ) : (
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-amber-500 via-orange-500 to-yellow-500 p-0">
+        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-emerald-600 via-teal-500 to-cyan-500 p-0">
           {/* Background overlays */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_50%)]" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.1),transparent_60%)]" />
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.3),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_60%)]" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.3),transparent_50%)]" />
 
           <div className="relative p-4 sm:p-6">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
@@ -600,8 +600,8 @@ export default function RealEstatePage() {
               <div className="flex items-center justify-center gap-4 sm:gap-6 lg:gap-8">
                 {[
                   { label: 'Vendidos', value: heroData.propertiesSold, max: 20, suffix: '', color: '#FFFFFF', icon: CheckCircle2 },
-                  { label: 'Dias Mercado', value: heroData.avgDaysOnMarket, max: 60, suffix: 'd', color: '#FEF3C7', icon: Timer },
-                  { label: 'Conversão', value: heroData.conversionRate, max: 100, suffix: '%', color: '#FDE68A', icon: Target },
+                  { label: 'Dias Mercado', value: heroData.avgDaysOnMarket, max: 60, suffix: 'd', color: '#A7F3D0', icon: Timer },
+                  { label: 'Conversão', value: heroData.conversionRate, max: 100, suffix: '%', color: '#99F6E4', icon: Target },
                 ].map((metric) => {
                   const r = 26
                   const circ = 2 * Math.PI * r
