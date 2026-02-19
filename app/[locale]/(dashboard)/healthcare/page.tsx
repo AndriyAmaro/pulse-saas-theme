@@ -443,7 +443,44 @@ export default function HealthcareDashboardPage() {
       {/* ================================================================ */}
       {/* DEPARTMENT OVERVIEW — Premium Cards */}
       {/* ================================================================ */}
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+      {/* Mobile Carousel */}
+      <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-4 px-4 py-1 sm:hidden scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        {departmentStats.map((dept) => {
+          const Icon = dept.icon
+          const occupancyRate = (dept.patients / dept.capacity) * 100
+          return (
+            <Card key={dept.id} className="group relative w-[65vw] max-w-[240px] flex-shrink-0 snap-center cursor-pointer overflow-hidden p-0 transition-all duration-200">
+              <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${dept.lightBg} ${dept.darkBg}`} />
+              <div className={`h-1 bg-gradient-to-r ${dept.color}`} />
+              <div className="relative p-4">
+                <div className="flex items-center justify-between">
+                  <div className={`flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br ${dept.color} shadow-sm`}>
+                    <Icon className="h-4 w-4 text-white" />
+                  </div>
+                  <span className="text-xs font-medium text-[var(--text-muted)]">{dept.wait}</span>
+                </div>
+                <h3 className="mt-3 text-sm font-semibold text-[var(--text-primary)]">{dept.name}</h3>
+                <div className="mt-1 flex items-baseline gap-1">
+                  <span className="text-2xl font-bold text-[var(--text-primary)]">{dept.patients}</span>
+                  <span className="text-sm text-[var(--text-muted)]">/ {dept.capacity}</span>
+                </div>
+                <div className="mt-2">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-secondary-200 dark:bg-secondary-700">
+                    <div className={`h-full bg-gradient-to-r ${dept.color} transition-all duration-500`} style={{ width: `${occupancyRate}%` }} />
+                  </div>
+                  <div className="mt-1 flex items-center justify-between">
+                    <p className="text-xs text-[var(--text-muted)]">{Math.round(occupancyRate)}% full</p>
+                    <p className="text-xs text-[var(--text-muted)]">+{dept.admitted} / -{dept.discharged}</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          )
+        })}
+      </div>
+
+      {/* Desktop Grid */}
+      <div className="hidden sm:grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
         {departmentStats.map((dept) => {
           const Icon = dept.icon
           const occupancyRate = (dept.patients / dept.capacity) * 100
@@ -1001,13 +1038,53 @@ export default function HealthcareDashboardPage() {
             </div>
           </Card.Header>
           <Card.Content className="relative">
-            <DataTable
-              data={todayAppointments}
-              columns={appointmentColumns}
-              sortable
-              pagination
-              pageSize={6}
-            />
+            {/* Mobile Carousel */}
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-6 px-6 py-1 sm:hidden scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {todayAppointments.map((apt) => {
+                const status = statusColors[apt.status]
+                return (
+                  <div
+                    key={apt.id}
+                    className="w-[72vw] max-w-[260px] flex-shrink-0 snap-center rounded-xl border border-[var(--border-default)] bg-[var(--bg-primary)] p-4 shadow-sm"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-rose-500/10 to-pink-500/10">
+                          <Clock className="h-3.5 w-3.5 text-rose-500" />
+                        </div>
+                        <span className="font-bold text-[var(--text-primary)]">{apt.time}</span>
+                      </div>
+                      <Badge variant={status.variant} className="capitalize text-xs">
+                        {apt.status === 'in-progress' && <span className="mr-1 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400" />}
+                        {apt.status.replace('-', ' ')}
+                      </Badge>
+                    </div>
+                    <div className="flex items-center gap-2.5 mb-2">
+                      <Avatar size="sm" fallback={apt.patient.split(' ').map(n => n[0] ?? '').join('')} />
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-[var(--text-primary)] truncate">{apt.patient}</p>
+                        <p className="text-xs text-[var(--text-muted)] truncate">{apt.doctor}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between pt-2 border-t border-[var(--border-default)]">
+                      <span className="text-xs text-[var(--text-muted)]">{apt.department}</span>
+                      <Badge variant="default" className="text-xs">{apt.type}</Badge>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Desktop Table */}
+            <div className="hidden sm:block">
+              <DataTable
+                data={todayAppointments}
+                columns={appointmentColumns}
+                sortable
+                pagination
+                pageSize={6}
+              />
+            </div>
           </Card.Content>
         </Card>
 
