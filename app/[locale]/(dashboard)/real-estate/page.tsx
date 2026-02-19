@@ -438,17 +438,17 @@ function PropertyMapPremium({ isLoading }: { isLoading: boolean }) {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-orange-500/5 dark:from-amber-950/20 dark:to-orange-950/20" />
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500" />
       <Card.Header className="relative">
-        <div className="flex items-center justify-between">
-          <div>
-            <Card.Title className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 shadow-sm shadow-amber-500/25">
-                <MapPin className="h-4 w-4 text-white" />
-              </div>
-              Mapa de Imóveis
-            </Card.Title>
-            <Card.Description className="mt-1">47 imóveis em 8 cidades brasileiras</Card.Description>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 shadow-sm shadow-amber-500/25">
+              <MapPin className="h-4 w-4 text-white" />
+            </div>
+            <div className="min-w-0">
+              <Card.Title>Mapa de Imóveis</Card.Title>
+              <Card.Description className="mt-1">47 imóveis em 8 cidades brasileiras</Card.Description>
+            </div>
           </div>
-          <div className="flex items-center gap-4 text-xs">
+          <div className="flex items-center gap-4 shrink-0 text-xs">
             <div className="flex items-center gap-1.5">
               <span className="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 shadow-sm" />
               <span className="text-[var(--text-muted)]">Disponível</span>
@@ -472,52 +472,106 @@ function PropertyMapPremium({ isLoading }: { isLoading: boolean }) {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {areas.map((area) => (
-              <div
-                key={area.name}
-                className="group relative overflow-hidden rounded-xl border border-[var(--border-default)] p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02] hover:border-amber-300 dark:hover:border-amber-700"
-              >
-                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${area.color} opacity-[0.04] transition-opacity group-hover:opacity-[0.08]`} />
-                <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${area.color}`} />
-                <div className="relative">
-                  <div className="mb-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className={`flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${area.color} shadow-sm`}>
-                        <MapPin className="h-3.5 w-3.5 text-white" />
+          <>
+            {/* Mobile: 2-column carousel */}
+            <div className="sm:hidden">
+              <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-5 px-5 py-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                {(() => {
+                  const pages: typeof areas extends (infer T)[] ? T[][] : never = []
+                  for (let i = 0; i < areas.length; i += 2) {
+                    pages.push(areas.slice(i, i + 2))
+                  }
+                  return pages.map((page, pi) => (
+                    <div key={pi} className="flex w-[85vw] max-w-[320px] shrink-0 snap-start flex-col gap-3">
+                      {page.map((area) => (
+                        <div
+                          key={area.name}
+                          className="relative overflow-hidden rounded-xl border border-[var(--border-default)] p-3"
+                        >
+                          <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${area.color} opacity-[0.04]`} />
+                          <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${area.color}`} />
+                          <div className="relative">
+                            <div className="mb-2 flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <div className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${area.color} shadow-sm`}>
+                                  <MapPin className="h-3 w-3 text-white" />
+                                </div>
+                                <div>
+                                  <h4 className="text-sm font-bold text-[var(--text-primary)]">{area.name}</h4>
+                                  <span className="text-[10px] text-[var(--text-muted)]">{area.state}</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-0.5 text-xs font-medium text-green-600 dark:text-green-400">
+                                <TrendingUp className="h-3 w-3" />
+                                {area.trend}%
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-3 text-[11px]">
+                              <span><strong className="text-blue-600 dark:text-blue-400">{area.available}</strong> <span className="text-[var(--text-muted)]">disp.</span></span>
+                              <span><strong className="text-amber-600 dark:text-amber-400">{area.underContract}</strong> <span className="text-[var(--text-muted)]">contrato</span></span>
+                              <span><strong className="text-green-600 dark:text-green-400">{area.sold}</strong> <span className="text-[var(--text-muted)]">vend.</span></span>
+                            </div>
+                            <div className="mt-2 rounded-lg bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/15 dark:to-orange-900/10 px-2 py-1 text-center">
+                              <p className="text-[10px] text-[var(--text-muted)]">Preço Médio</p>
+                              <p className="text-xs font-bold text-amber-700 dark:text-amber-300">{formatCurrency(area.avgPrice)}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))
+                })()}
+              </div>
+            </div>
+
+            {/* Desktop: Grid */}
+            <div className="hidden sm:grid grid-cols-2 gap-4 md:grid-cols-4">
+              {areas.map((area) => (
+                <div
+                  key={area.name}
+                  className="group relative overflow-hidden rounded-xl border border-[var(--border-default)] p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02] hover:border-amber-300 dark:hover:border-amber-700"
+                >
+                  <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${area.color} opacity-[0.04] transition-opacity group-hover:opacity-[0.08]`} />
+                  <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${area.color}`} />
+                  <div className="relative">
+                    <div className="mb-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className={`flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${area.color} shadow-sm`}>
+                          <MapPin className="h-3.5 w-3.5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-[var(--text-primary)]">{area.name}</h4>
+                          <span className="text-[10px] font-medium text-[var(--text-muted)]">{area.state}</span>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-[var(--text-primary)]">{area.name}</h4>
-                        <span className="text-[10px] font-medium text-[var(--text-muted)]">{area.state}</span>
+                      <div className="flex items-center gap-0.5 text-xs font-medium text-green-600 dark:text-green-400">
+                        <TrendingUp className="h-3 w-3" />
+                        {area.trend}%
                       </div>
                     </div>
-                    <div className="flex items-center gap-0.5 text-xs font-medium text-green-600 dark:text-green-400">
-                      <TrendingUp className="h-3 w-3" />
-                      {area.trend}%
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-[var(--text-muted)]">Disponível</span>
+                        <span className="font-bold text-blue-600 dark:text-blue-400">{area.available}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-[var(--text-muted)]">Em Contrato</span>
+                        <span className="font-bold text-amber-600 dark:text-amber-400">{area.underContract}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-[var(--text-muted)]">Vendido</span>
+                        <span className="font-bold text-green-600 dark:text-green-400">{area.sold}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-[var(--text-muted)]">Disponível</span>
-                      <span className="font-bold text-blue-600 dark:text-blue-400">{area.available}</span>
+                    <div className="mt-3 rounded-lg bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/15 dark:to-orange-900/10 px-2 py-1.5 text-center">
+                      <p className="text-[10px] font-medium text-[var(--text-muted)]">Preço Médio</p>
+                      <p className="text-xs font-bold text-amber-700 dark:text-amber-300">{formatCurrency(area.avgPrice)}</p>
                     </div>
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-[var(--text-muted)]">Em Contrato</span>
-                      <span className="font-bold text-amber-600 dark:text-amber-400">{area.underContract}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-[var(--text-muted)]">Vendido</span>
-                      <span className="font-bold text-green-600 dark:text-green-400">{area.sold}</span>
-                    </div>
-                  </div>
-                  <div className="mt-3 rounded-lg bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/15 dark:to-orange-900/10 px-2 py-1.5 text-center">
-                    <p className="text-[10px] font-medium text-[var(--text-muted)]">Preço Médio</p>
-                    <p className="text-xs font-bold text-amber-700 dark:text-amber-300">{formatCurrency(area.avgPrice)}</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </>
         )}
       </Card.Content>
     </Card>
@@ -661,112 +715,66 @@ export default function RealEstatePage() {
       )}
 
       {/* ====== KPI CARDS ====== */}
-      <DashboardGrid preset="4col" gap="lg">
-        {isLoading ? (
+      {(() => {
+        const kpiCards = [
+          { label: 'Imóveis Ativos', value: '47', sub: '+8.2% vs mês anterior', subIcon: TrendingUp, icon: Home, color: 'from-emerald-500 to-teal-600', bgLight: 'from-emerald-500/5', sparkData: kpiSparklines.listings, sparkColor: '#10B981' },
+          { label: 'Vendidos (Mês)', value: '12', sub: 'R$4.85M em valor total', subIcon: null, icon: CheckCircle2, color: 'from-teal-500 to-cyan-600', bgLight: 'from-teal-500/5', sparkData: kpiSparklines.sold, sparkColor: '#14B8A6' },
+          { label: 'Média Dias no Mercado', value: '23', sub: '-12.5% mais rápido', subIcon: TrendingDown, icon: Clock, color: 'from-cyan-500 to-blue-600', bgLight: 'from-cyan-500/5', sparkData: kpiSparklines.daysOnMarket, sparkColor: '#06B6D4' },
+          { label: 'Comissão Recebida', value: 'R$126K', sub: '+22.8% vs mês anterior', subIcon: TrendingUp, icon: DollarSign, color: 'from-green-500 to-emerald-600', bgLight: 'from-green-500/5', sparkData: kpiSparklines.commission, sparkColor: '#22C55E' },
+        ]
+
+        const renderKpiCard = (kpi: typeof kpiCards[number], className?: string) => {
+          const Icon = kpi.icon
+          const SubIcon = kpi.subIcon
+          return (
+            <Card key={kpi.label} className={`group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${className ?? ''}`}>
+              <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${kpi.bgLight} via-transparent to-transparent`} />
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${kpi.color}`} />
+              <Card.Content className="relative">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-sm text-[var(--text-secondary)]">{kpi.label}</p>
+                    <p className="mt-1 text-3xl font-bold text-[var(--text-primary)]">{kpi.value}</p>
+                    <div className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
+                      {SubIcon && <SubIcon className="h-3 w-3" />}
+                      {kpi.sub}
+                    </div>
+                  </div>
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${kpi.color} shadow-lg`}>
+                    <Icon className="h-5 w-5 text-white" />
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <SparklineChart data={kpi.sparkData} type="area" color={kpi.sparkColor} height={32} gradient animated />
+                </div>
+              </Card.Content>
+            </Card>
+          )
+        }
+
+        return (
           <>
-            {[1, 2, 3, 4].map((i) => (
-              <Skeleton key={i} className="h-[150px] rounded-xl" />
-            ))}
+            {/* Mobile: Carousel */}
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 py-1 sm:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {isLoading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                    <Skeleton key={i} className="h-[150px] w-[70vw] max-w-[250px] shrink-0 snap-start rounded-xl" />
+                  ))
+                : kpiCards.map((kpi) => renderKpiCard(kpi, 'w-[70vw] max-w-[250px] shrink-0 snap-start'))
+              }
+            </div>
+            {/* Desktop: Grid */}
+            <div className="hidden sm:block">
+              <DashboardGrid preset="4col" gap="lg">
+                {isLoading
+                  ? [1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-[150px] rounded-xl" />)
+                  : kpiCards.map((kpi) => renderKpiCard(kpi))
+                }
+              </DashboardGrid>
+            </div>
           </>
-        ) : (
-          <>
-            {/* Active Listings */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-transparent" />
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-orange-400" />
-              <Card.Content className="relative">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-sm text-[var(--text-secondary)]">Imóveis Ativos</p>
-                    <p className="mt-1 text-3xl font-bold text-[var(--text-primary)]">47</p>
-                    <div className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
-                      <TrendingUp className="h-3 w-3" />
-                      +8.2% vs mês anterior
-                    </div>
-                  </div>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg shadow-amber-500/20">
-                    <Home className="h-5 w-5 text-white" />
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <SparklineChart data={kpiSparklines.listings} type="area" color="#F59E0B" height={32} gradient animated />
-                </div>
-              </Card.Content>
-            </Card>
-
-            {/* Properties Sold */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-transparent" />
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-emerald-400" />
-              <Card.Content className="relative">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-sm text-[var(--text-secondary)]">Vendidos (Mês)</p>
-                    <p className="mt-1 text-3xl font-bold text-[var(--text-primary)]">12</p>
-                    <div className="mt-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                      R$4.85M em valor total
-                    </div>
-                  </div>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-lg shadow-green-500/20">
-                    <CheckCircle2 className="h-5 w-5 text-white" />
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <SparklineChart data={kpiSparklines.sold} type="area" color="#22C55E" height={32} gradient animated />
-                </div>
-              </Card.Content>
-            </Card>
-
-            {/* Avg Days on Market */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent" />
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-400" />
-              <Card.Content className="relative">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-sm text-[var(--text-secondary)]">Média Dias no Mercado</p>
-                    <p className="mt-1 text-3xl font-bold text-[var(--text-primary)]">23</p>
-                    <div className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
-                      <TrendingDown className="h-3 w-3" />
-                      -12.5% mais rápido
-                    </div>
-                  </div>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg shadow-blue-500/20">
-                    <Clock className="h-5 w-5 text-white" />
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <SparklineChart data={kpiSparklines.daysOnMarket} type="area" color="#3B82F6" height={32} gradient animated />
-                </div>
-              </Card.Content>
-            </Card>
-
-            {/* Commission Earned */}
-            <Card className="group relative overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-transparent" />
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-500 to-purple-400" />
-              <Card.Content className="relative">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-sm text-[var(--text-secondary)]">Comissão Recebida</p>
-                    <p className="mt-1 text-3xl font-bold text-[var(--text-primary)]">R$126K</p>
-                    <div className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
-                      <TrendingUp className="h-3 w-3" />
-                      +22.8% vs mês anterior
-                    </div>
-                  </div>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/20">
-                    <DollarSign className="h-5 w-5 text-white" />
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <SparklineChart data={kpiSparklines.commission} type="area" color="#8B5CF6" height={32} gradient animated />
-                </div>
-              </Card.Content>
-            </Card>
-          </>
-        )}
-      </DashboardGrid>
+        )
+      })()}
 
       {/* ====== PROPERTY MAP ====== */}
       <PropertyMapPremium isLoading={isLoading} />
