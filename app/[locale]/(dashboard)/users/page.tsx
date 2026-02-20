@@ -454,7 +454,7 @@ export default function UsersPage() {
                 </div>
               </div>
             </div>
-            <SparklineChart data={userStats.total.trend} color="#06b6d4" width={64} height={28} showDot animated gradient />
+            <div className="hidden sm:block"><SparklineChart data={userStats.total.trend} color="#06b6d4" width={64} height={28} showDot animated gradient /></div>
           </div>
         </div>
 
@@ -474,7 +474,7 @@ export default function UsersPage() {
                 </div>
               </div>
             </div>
-            <SparklineChart data={userStats.active.trend} color="#10b981" width={64} height={28} showDot animated gradient />
+            <div className="hidden sm:block"><SparklineChart data={userStats.active.trend} color="#10b981" width={64} height={28} showDot animated gradient /></div>
           </div>
         </div>
 
@@ -494,7 +494,7 @@ export default function UsersPage() {
                 </div>
               </div>
             </div>
-            <SparklineChart data={userStats.inactive.trend} color="#94a3b8" width={64} height={28} showDot animated gradient />
+            <div className="hidden sm:block"><SparklineChart data={userStats.inactive.trend} color="#94a3b8" width={64} height={28} showDot animated gradient /></div>
           </div>
         </div>
 
@@ -514,7 +514,7 @@ export default function UsersPage() {
                 </div>
               </div>
             </div>
-            <SparklineChart data={userStats.pending.trend} color="#f59e0b" width={64} height={28} showDot animated gradient />
+            <div className="hidden sm:block"><SparklineChart data={userStats.pending.trend} color="#f59e0b" width={64} height={28} showDot animated gradient /></div>
           </div>
         </div>
       </div>
