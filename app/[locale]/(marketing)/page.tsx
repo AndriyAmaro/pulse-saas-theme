@@ -1148,11 +1148,33 @@ const FeatureVisual = ({ type }: { type: string }) => {
             </>
           )
         })()}
-        <div className="flex items-end gap-0.5 sm:gap-1 h-8 sm:h-20">
-          {[30, 50, 35, 70, 45, 80, 60, 90, 55, 75, 85, 65, 95, 70, 80].map((h, i) => (
-            <div key={i} className="flex-1 bg-gradient-to-t from-primary-500/80 to-primary-400/60 dark:from-primary-400/80 dark:to-primary-300/60 rounded-t-sm" style={{ height: `${h}%` }} />
-          ))}
-        </div>
+        {(() => {
+          const bars = [30, 50, 35, 70, 45, 80, 60, 90, 55, 75, 85, 65, 95, 70, 80, 40, 65, 50, 85, 60]
+          return (
+            <>
+              {/* Mobile: scrolling bars */}
+              <div className="sm:hidden h-10 overflow-hidden">
+                <div className="flex items-end gap-1 h-full animate-[marquee-bars_12s_linear_infinite] w-max">
+                  {[...bars, ...bars].map((h, i) => (
+                    <div key={i} className="w-2 shrink-0 bg-gradient-to-t from-primary-500/80 to-primary-400/60 dark:from-primary-400/80 dark:to-primary-300/60 rounded-t-sm" style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+                <style>{`
+                  @keyframes marquee-bars {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                  }
+                `}</style>
+              </div>
+              {/* Desktop: static bars */}
+              <div className="hidden sm:flex items-end gap-1 h-20">
+                {bars.slice(0, 15).map((h, i) => (
+                  <div key={i} className="flex-1 bg-gradient-to-t from-primary-500/80 to-primary-400/60 dark:from-primary-400/80 dark:to-primary-300/60 rounded-t-sm" style={{ height: `${h}%` }} />
+                ))}
+              </div>
+            </>
+          )
+        })()}
         {/* Top Sources — premium addition (hidden on mobile to save space) */}
         <div className="hidden sm:block rounded-xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40 p-3">
           <div className="flex items-center justify-between mb-2.5">
