@@ -478,3 +478,36 @@ export type { OrderTicketProps, KitchenOrder, OrderItem } from './OrderTicket'
 // ReservationTimeline
 export { ReservationTimeline, reservationTimelineVariants, ReservationItem } from './ReservationTimeline'
 export type { ReservationTimelineProps, Reservation, ReservationStatus } from './ReservationTimeline'
+
+// ============================================================================
+// BLOG PATTERNS
+// ============================================================================
+
+// BlogCard
+export { BlogCard, blogCardVariants } from './BlogCard'
+export type { BlogCardProps, BlogPost } from './BlogCard'
+
+// TeamMemberCard
+export { TeamMemberCard, teamMemberCardVariants } from './TeamMemberCard'
+export type { TeamMemberCardProps, TeamMember } from './TeamMemberCard'
+
+// ============================================================================
+// MARKETING PATTERNS
+// ============================================================================
+
+// EmailCapture
+export { EmailCapture, emailCaptureVariants } from './EmailCapture'
+export type { EmailCaptureProps } from './EmailCapture'
+
+// ============================================================================
+// ILLUSTRATIONS
+// ============================================================================
+
+// Illustrations
+export {
+  Illustration404,
+  Illustration500,
+  IllustrationRocket,
+  IllustrationMaintenance,
+} from './Illustrations'
+export type { IllustrationProps } from './Illustrations'
