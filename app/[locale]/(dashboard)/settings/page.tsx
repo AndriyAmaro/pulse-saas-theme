@@ -616,7 +616,7 @@ export default function SettingsPage() {
         {/* Full-width gradient banner */}
         <div className="h-28 bg-gradient-to-br from-green-500 via-emerald-500 to-lime-500 relative">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMS41IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz48L3N2Zz4=')] opacity-60" />
-          <div className="absolute bottom-4 right-6 flex gap-2">
+          <div className="absolute bottom-4 right-6 hidden lg:flex gap-2">
             {TAB_CONFIG.map((tab) => (
               <span key={tab.value} className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-white/90 border border-white/10">
                 <tab.icon size={12} />
