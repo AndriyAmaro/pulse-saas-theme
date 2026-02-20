@@ -1105,19 +1105,49 @@ const FeatureVisual = ({ type }: { type: string }) => {
             <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">Real-time</span>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {[
+        {(() => {
+          const metrics = [
             { label: 'Visitors', value: '12.4K', change: '+14%' },
             { label: 'Conversion', value: '3.2%', change: '+0.8%' },
             { label: 'Revenue', value: '$8.4K', change: '+22%' },
-          ].map((m, i) => (
-            <div key={i} className="p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40">
+            { label: 'Sessions', value: '38.1K', change: '+11%' },
+            { label: 'Bounce', value: '24.3%', change: '-3.2%' },
+            { label: 'Avg Time', value: '4m 12s', change: '+18%' },
+          ]
+          const MetricCard = ({ m }: { m: typeof metrics[number] }) => (
+            <div className="p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40">
               <p className="text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">{m.label}</p>
               <p className="text-sm font-bold text-slate-900 dark:text-white mt-1">{m.value}</p>
-              <p className="text-[10px] font-medium text-emerald-500">{m.change}</p>
+              <p className={cn('text-[10px] font-medium', m.change.startsWith('-') ? 'text-emerald-500' : 'text-emerald-500')}>{m.change}</p>
             </div>
-          ))}
-        </div>
+          )
+          return (
+            <>
+              {/* Mobile: infinite marquee */}
+              <div className="sm:hidden overflow-hidden">
+                <div className="flex animate-[marquee-analytics_18s_linear_infinite] gap-3 w-max">
+                  {[...metrics, ...metrics].map((m, i) => (
+                    <div key={i} className="w-[100px] shrink-0">
+                      <MetricCard m={m} />
+                    </div>
+                  ))}
+                </div>
+                <style>{`
+                  @keyframes marquee-analytics {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                  }
+                `}</style>
+              </div>
+              {/* Desktop: grid */}
+              <div className="hidden sm:grid grid-cols-3 gap-3">
+                {metrics.slice(0, 3).map((m, i) => (
+                  <MetricCard key={i} m={m} />
+                ))}
+              </div>
+            </>
+          )
+        })()}
         <div className="flex items-end gap-1 h-20">
           {[30, 50, 35, 70, 45, 80, 60, 90, 55, 75, 85, 65, 95, 70, 80].map((h, i) => (
             <div key={i} className="flex-1 bg-gradient-to-t from-primary-500/80 to-primary-400/60 dark:from-primary-400/80 dark:to-primary-300/60 rounded-t-sm" style={{ height: `${h}%` }} />
@@ -1196,8 +1226,8 @@ const FeatureVisual = ({ type }: { type: string }) => {
           <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">All synced</span>
         </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {[
+      {(() => {
+        const apps = [
           { name: 'Slack', color: 'bg-[#4A154B]', shadow: 'shadow-[#4A154B]/20', svg: (
             <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
               <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52ZM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313ZM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834ZM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312ZM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834ZM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312ZM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52ZM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313Z" fill="white" />
@@ -1263,15 +1293,42 @@ const FeatureVisual = ({ type }: { type: string }) => {
               <path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.24-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.032-.863.104a6.37 6.37 0 0 0-.862.272 2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.024c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167 4.593 4.593 0 0 1 1.005-.36 4.84 4.84 0 0 1 1.246-.168c.95 0 1.644.216 2.091.647.44.43.662 1.085.662 1.963v2.586Zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296Zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311l-1.876-6.175a1.378 1.378 0 0 1-.072-.335c0-.128.064-.2.191-.2h.783c.152 0 .256.025.304.08.064.048.112.16.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.152-.312a.546.546 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.524.524 0 0 1 .311-.08h.743c.128 0 .2.064.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.215l-1.924 6.175c-.048.16-.104.263-.168.311a.524.524 0 0 1-.311.08h-.687c-.151 0-.255-.024-.32-.08-.063-.055-.12-.16-.151-.319l-1.238-5.14-1.23 5.132c-.04.16-.088.264-.152.32-.064.055-.176.079-.32.079h-.687Zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.216-.151-.248-.223a.56.56 0 0 1-.048-.224v-.407c0-.167.064-.247.183-.247.048 0 .096.008.144.024.048.016.12.048.2.08.271.12.566.215.878.279.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.415-.287-.806-.414l-1.158-.36c-.583-.183-1.013-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.176 0 .36.008.535.032.183.024.351.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.072-1.062.223-.248.152-.375.383-.375.694 0 .224.08.416.24.567.16.152.455.303.878.44l1.134.358c.574.184.99.44 1.237.767.248.327.375.702.375 1.118 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167Z" />
             </svg>
           )},
-        ].map((app, i) => (
-          <div key={i} className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40 hover:border-primary-300 dark:hover:border-primary-600 hover:shadow-lg transition-all duration-200 cursor-pointer group/app hover:scale-[1.04]">
+        ]
+        const AppCard = ({ app }: { app: typeof apps[number] }) => (
+          <div className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40 hover:border-primary-300 dark:hover:border-primary-600 hover:shadow-lg transition-all duration-200 cursor-pointer group/app hover:scale-[1.04]">
             <div className={cn('p-2.5 rounded-xl shadow-md', app.color, app.shadow)}>
               {app.svg}
             </div>
             <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300 group-hover/app:text-slate-900 dark:group-hover/app:text-white transition-colors">{app.name}</span>
           </div>
-        ))}
-      </div>
+        )
+        return (
+          <>
+            {/* Mobile: infinite marquee */}
+            <div className="sm:hidden overflow-hidden">
+              <div className="flex animate-[marquee-apps_20s_linear_infinite] gap-3 w-max">
+                {[...apps, ...apps].map((app, i) => (
+                  <div key={i} className="w-[72px] shrink-0">
+                    <AppCard app={app} />
+                  </div>
+                ))}
+              </div>
+              <style>{`
+                @keyframes marquee-apps {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+              `}</style>
+            </div>
+            {/* Desktop: grid */}
+            <div className="hidden sm:grid grid-cols-4 gap-3">
+              {apps.map((app, i) => (
+                <AppCard key={i} app={app} />
+              ))}
+            </div>
+          </>
+        )
+      })()}
       <div className="mt-4 flex items-center gap-2.5 p-3 rounded-xl border border-dashed border-slate-300 dark:border-slate-600 justify-center cursor-pointer hover:border-primary-400 dark:hover:border-primary-500 hover:bg-primary-50/50 dark:hover:bg-primary-900/10 transition-all duration-200 group/browse">
         <MousePointerClick className="h-4 w-4 text-slate-400 group-hover/browse:text-primary-500 transition-colors" />
         <span className="text-xs font-medium text-slate-500 dark:text-slate-400 group-hover/browse:text-primary-600 dark:group-hover/browse:text-primary-400 transition-colors">Browse all integrations</span>
