@@ -187,12 +187,12 @@ export function AbstractBackground({ className }: AbstractBackgroundProps) {
       <div
         className="absolute inset-0 block dark:hidden"
         style={{
-          background: 'linear-gradient(155deg, #f0fdf9 0%, #ecfdf5 25%, #f0fdfa 50%, #e6f7f2 75%, #f0fdf4 100%)',
+          background: 'linear-gradient(155deg, #e8faf5 0%, #ddf5ed 25%, #e4f9f4 40%, #d4f1e8 60%, #dcf5ef 80%, #e8faf5 100%)',
         }}
       />
 
       {/* ── 2. Organic blob shapes ── */}
-      <div className="ab-canvas dark:opacity-100 opacity-30">
+      <div className="ab-canvas dark:opacity-100 opacity-40">
         <div className="ab-blob ab-main" />
         <div className="ab-blob ab-dark dark:opacity-100 opacity-0" />
         <div className="ab-blob ab-glow" />
@@ -200,7 +200,7 @@ export function AbstractBackground({ className }: AbstractBackgroundProps) {
 
       {/* ── 3. SVG: Large sweeping arcs + sphere + waves + pulse ECG ── */}
       <svg
-        className="absolute inset-0 w-full h-full dark:opacity-100 opacity-[0.18]"
+        className="absolute inset-0 w-full h-full dark:opacity-100 opacity-[0.25]"
         viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
         fill="none"
