@@ -177,30 +177,30 @@ export function AbstractBackground({ className }: AbstractBackgroundProps) {
 
   return (
     <div className={cn('absolute inset-0 overflow-hidden', className)}>
-      {/* ── 1. Base: Dark navy / Light white-teal ── */}
+      {/* ── 1. Base: Light subtle gradient / Dark deep navy ── */}
       <div
-        className="absolute inset-0 dark:block hidden"
+        className="absolute inset-0 hidden dark:block"
         style={{
           background: 'linear-gradient(155deg, #0B0D2E 0%, #080A22 35%, #0A0C28 55%, #06081C 100%)',
         }}
       />
       <div
-        className="absolute inset-0 dark:hidden block"
+        className="absolute inset-0 block dark:hidden"
         style={{
-          background: 'linear-gradient(155deg, #0B0D2E 0%, #080A22 35%, #0A0C28 55%, #06081C 100%)',
+          background: 'linear-gradient(155deg, #f0fdf9 0%, #ecfdf5 25%, #f0fdfa 50%, #e6f7f2 75%, #f0fdf4 100%)',
         }}
       />
 
       {/* ── 2. Organic blob shapes ── */}
-      <div className="ab-canvas">
+      <div className="ab-canvas dark:opacity-100 opacity-30">
         <div className="ab-blob ab-main" />
-        <div className="ab-blob ab-dark" />
+        <div className="ab-blob ab-dark dark:opacity-100 opacity-0" />
         <div className="ab-blob ab-glow" />
       </div>
 
       {/* ── 3. SVG: Large sweeping arcs + sphere + waves + pulse ECG ── */}
       <svg
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full dark:opacity-100 opacity-[0.18]"
         viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
         fill="none"
@@ -436,7 +436,7 @@ export function AbstractBackground({ className }: AbstractBackgroundProps) {
       </svg>
 
       {/* ── Noise texture ── */}
-      <div className="noise-overlay absolute inset-0 opacity-20 dark:opacity-20" />
+      <div className="noise-overlay absolute inset-0 opacity-[0.08] dark:opacity-20" />
 
       {/* ── CSS ── */}
       <style>{`
