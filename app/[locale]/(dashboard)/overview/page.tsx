@@ -441,21 +441,24 @@ export default function OverviewPage() {
           </div>
 
           {/* Quick stats row */}
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { label: 'Revenue today', value: '$2,847', icon: TrendingUp, color: 'text-emerald-500' },
-              { label: 'Active users', value: '1,429', icon: Users, color: 'text-blue-500' },
-              { label: 'Completed', value: '24 tasks', icon: CheckCircle2, color: 'text-teal-500' },
-              { label: 'Avg. response', value: '1.2s', icon: Zap, color: 'text-amber-500' },
+              { label: 'Revenue today', value: '$2,847', icon: TrendingUp, color: 'text-emerald-500', gradient: 'from-emerald-400 via-emerald-500 to-teal-500' },
+              { label: 'Active users', value: '1,429', icon: Users, color: 'text-blue-500', gradient: 'from-blue-400 via-blue-500 to-indigo-500' },
+              { label: 'Completed', value: '24 tasks', icon: CheckCircle2, color: 'text-teal-500', gradient: 'from-teal-400 via-teal-500 to-emerald-500' },
+              { label: 'Avg. response', value: '1.2s', icon: Zap, color: 'text-amber-500', gradient: 'from-amber-400 via-amber-500 to-orange-500' },
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="flex items-center gap-3 rounded-xl bg-white/50 dark:bg-slate-800/40 backdrop-blur-sm px-4 py-3 border border-white/60 dark:border-slate-700/40"
+                className="relative overflow-hidden rounded-xl bg-white/50 dark:bg-slate-800/40 backdrop-blur-sm border border-white/60 dark:border-slate-700/40"
               >
-                <stat.icon className={cn('h-4 w-4 shrink-0', stat.color)} />
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-[var(--text-primary)] truncate">{stat.value}</p>
-                  <p className="text-xs text-[var(--text-muted)] truncate">{stat.label}</p>
+                <div className={cn('h-1 w-full bg-gradient-to-r', stat.gradient)} />
+                <div className="flex items-center gap-3 px-4 py-3">
+                  <stat.icon className={cn('h-4 w-4 shrink-0', stat.color)} />
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-[var(--text-primary)] truncate">{stat.value}</p>
+                    <p className="text-xs text-[var(--text-muted)] truncate">{stat.label}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -464,29 +467,24 @@ export default function OverviewPage() {
       </div>
 
       {/* ====== KPI CARDS — Premium with Gradient Border ====== */}
-      <DashboardGrid preset="4col" gap="lg">
+      {/* Mobile: horizontal scroll */}
+      <div className="sm:hidden flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-4 px-4 pb-2" style={{ scrollbarWidth: 'none' }}>
         {isLoading ? (
           <>
             {[1, 2, 3, 4].map((i) => (
-              <Skeleton key={i} className="h-[180px] rounded-2xl" />
+              <Skeleton key={i} className="h-[180px] w-[280px] shrink-0 rounded-2xl snap-start" />
             ))}
           </>
         ) : (
           <>
             {kpiData.map((kpi) => (
-              <div key={kpi.id} className="group relative">
-                {/* Hover glow — top only */}
+              <div key={kpi.id} className="group relative w-[280px] shrink-0 snap-start">
                 <div
                   className="absolute -inset-2 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
                   style={{ background: `radial-gradient(ellipse at 50% 0%, ${kpi.glowColor}, transparent 70%)` }}
                 />
-                {/* Card with top accent only */}
-                <div className="relative rounded-xl overflow-hidden border border-teal-200/30 dark:border-teal-800/50 bg-white dark:bg-slate-900 shadow-[0_4px_12px_-2px_rgba(20,184,154,0.12)] hover:shadow-[0_8px_24px_-4px_rgba(20,184,154,0.18)] dark:shadow-[0_4px_12px_-2px_rgba(20,184,154,0.2)] dark:hover:shadow-[0_8px_24px_-4px_rgba(20,184,154,0.35)] transition-all duration-300">
-                  {/* Top gradient accent line */}
-                  <div className={cn(
-                    'h-1 w-full bg-gradient-to-r',
-                    kpi.borderGradient
-                  )} />
+                <div className="relative rounded-xl overflow-hidden border border-teal-200/30 dark:border-teal-800/50 bg-white dark:bg-slate-900 shadow-[0_4px_12px_-2px_rgba(20,184,154,0.12)] transition-all duration-300">
+                  <div className={cn('h-1 w-full bg-gradient-to-r', kpi.borderGradient)} />
                   <MetricCardAdvanced
                     title={kpi.title}
                     value={kpi.value}
@@ -498,9 +496,7 @@ export default function OverviewPage() {
                     target={kpi.target}
                     progressLabel={kpi.progressLabel}
                     breakdown={kpi.breakdown}
-                    icon={
-                      <span className="text-white">{kpi.icon}</span>
-                    }
+                    icon={<span className="text-white">{kpi.icon}</span>}
                     iconBgColor={kpi.iconBg}
                     variant="elevated"
                     className="border-0 shadow-none rounded-none"
@@ -510,7 +506,47 @@ export default function OverviewPage() {
             ))}
           </>
         )}
-      </DashboardGrid>
+      </div>
+      {/* Desktop: grid */}
+      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {isLoading ? (
+          <>
+            {[1, 2, 3, 4].map((i) => (
+              <Skeleton key={i} className="h-[180px] rounded-2xl" />
+            ))}
+          </>
+        ) : (
+          <>
+            {kpiData.map((kpi) => (
+              <div key={kpi.id} className="group relative">
+                <div
+                  className="absolute -inset-2 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
+                  style={{ background: `radial-gradient(ellipse at 50% 0%, ${kpi.glowColor}, transparent 70%)` }}
+                />
+                <div className="relative rounded-xl overflow-hidden border border-teal-200/30 dark:border-teal-800/50 bg-white dark:bg-slate-900 shadow-[0_4px_12px_-2px_rgba(20,184,154,0.12)] hover:shadow-[0_8px_24px_-4px_rgba(20,184,154,0.18)] dark:shadow-[0_4px_12px_-2px_rgba(20,184,154,0.2)] dark:hover:shadow-[0_8px_24px_-4px_rgba(20,184,154,0.35)] transition-all duration-300">
+                  <div className={cn('h-1 w-full bg-gradient-to-r', kpi.borderGradient)} />
+                  <MetricCardAdvanced
+                    title={kpi.title}
+                    value={kpi.value}
+                    change={kpi.change}
+                    changeLabel={kpi.changeLabel}
+                    sparkline={kpi.sparkline}
+                    sparklineColor={kpi.sparklineColor}
+                    progress={kpi.progress}
+                    target={kpi.target}
+                    progressLabel={kpi.progressLabel}
+                    breakdown={kpi.breakdown}
+                    icon={<span className="text-white">{kpi.icon}</span>}
+                    iconBgColor={kpi.iconBg}
+                    variant="elevated"
+                    className="border-0 shadow-none rounded-none"
+                  />
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
 
       {/* ====== ROW 2: Projects + Calendar ====== */}
       <DashboardGrid preset="content-sidebar" gap="lg">
@@ -673,7 +709,8 @@ export default function OverviewPage() {
       {/* ====== ROW 2b: Today's Schedule + Project Health (horizontal) ====== */}
       <DashboardGrid preset="2col" gap="lg">
         {/* Today's Schedule */}
-        <Card variant="elevated">
+        <Card variant="elevated" className="overflow-hidden">
+          <div className="h-1 w-full bg-gradient-to-r from-violet-400 via-purple-500 to-fuchsia-500" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -770,7 +807,8 @@ export default function OverviewPage() {
       {/* ====== ROW 3: Activity + Gauge + Leaderboard ====== */}
       <DashboardGrid preset="3col" gap="lg">
         {/* Activity Timeline — Premium */}
-        <Card variant="elevated">
+        <Card variant="elevated" className="overflow-hidden">
+          <div className="h-1 w-full bg-gradient-to-r from-amber-400 via-orange-500 to-red-500" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -813,7 +851,8 @@ export default function OverviewPage() {
         </Card>
 
         {/* Monthly Goal Gauge — Premium */}
-        <Card variant="elevated">
+        <Card variant="elevated" className="overflow-hidden">
+          <div className="h-1 w-full bg-gradient-to-r from-teal-400 via-emerald-500 to-green-500" />
           <Card.Header>
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center h-9 w-9 rounded-xl bg-gradient-to-br from-teal-400 to-emerald-600 shadow-lg shadow-teal-500/25">
@@ -856,7 +895,8 @@ export default function OverviewPage() {
         </Card>
 
         {/* Team Leaderboard — Premium */}
-        <Card variant="elevated">
+        <Card variant="elevated" className="overflow-hidden">
+          <div className="h-1 w-full bg-gradient-to-r from-violet-400 via-purple-500 to-indigo-500" />
           <Card.Header>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -898,7 +938,8 @@ export default function OverviewPage() {
       </DashboardGrid>
 
       {/* ====== ROW 4: My Tasks — Premium Table ====== */}
-      <Card variant="elevated">
+      <Card variant="elevated" className="overflow-hidden">
+        <div className="h-1 w-full bg-gradient-to-r from-primary-400 via-primary-500 to-teal-500" />
         <Card.Header>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
