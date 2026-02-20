@@ -551,6 +551,59 @@ export default function RestaurantDashboard() {
                 </div>
               </div>
 
+              {/* Center: Mini Hourly Revenue Chart */}
+              <div className="hidden lg:flex flex-col items-center gap-2">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Revenue by Hour</p>
+                <svg viewBox="0 0 200 80" className="w-56 h-28" fill="none">
+                  <defs>
+                    <linearGradient id="heroBarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#f43f5e" />
+                      <stop offset="100%" stopColor="#fb923c" />
+                    </linearGradient>
+                    <linearGradient id="heroBarPeak" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#e11d48" />
+                      <stop offset="100%" stopColor="#f43f5e" />
+                    </linearGradient>
+                  </defs>
+                  {/* Grid lines */}
+                  {[20, 40, 60].map((y) => (
+                    <line key={y} x1="8" y1={y} x2="196" y2={y} stroke="var(--border-default)" strokeWidth="0.5" opacity="0.3" />
+                  ))}
+                  {/* Bars */}
+                  {[
+                    { x: 12, h: 18, label: '11' },
+                    { x: 28, h: 48, label: '12' },
+                    { x: 44, h: 58, label: '13', peak: true },
+                    { x: 60, h: 38, label: '14' },
+                    { x: 76, h: 14, label: '15' },
+                    { x: 92, h: 8, label: '16' },
+                    { x: 108, h: 16, label: '17' },
+                    { x: 124, h: 34, label: '18' },
+                    { x: 140, h: 54, label: '19' },
+                    { x: 156, h: 62, label: '20', peak: true },
+                    { x: 172, h: 42, label: '21' },
+                    { x: 188, h: 22, label: '22' },
+                  ].map((bar) => (
+                    <g key={bar.label}>
+                      <rect
+                        x={bar.x - 5}
+                        y={68 - bar.h}
+                        width="10"
+                        height={bar.h}
+                        rx="3"
+                        fill={bar.peak ? 'url(#heroBarPeak)' : 'url(#heroBarGrad)'}
+                        opacity={bar.peak ? 1 : 0.75}
+                      />
+                      <text x={bar.x} y={76} textAnchor="middle" fontSize="5" fill="var(--text-muted)" opacity="0.5">{bar.label}</text>
+                    </g>
+                  ))}
+                </svg>
+                <div className="flex items-center gap-3 text-[10px] text-[var(--text-muted)]">
+                  <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-rose-500" />Peak hours</span>
+                  <span>Lunch 12-14h • Dinner 19-21h</span>
+                </div>
+              </div>
+
               {/* Right: Service Stats */}
               <div className="grid grid-cols-2 gap-3 lg:min-w-[300px]">
                 {[
