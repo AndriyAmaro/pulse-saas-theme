@@ -1004,7 +1004,7 @@ const LogoCloudSection = () => {
             {/* Inner container — glassmorphism */}
             <div className="relative rounded-[calc(1rem-1px)] sm:rounded-[calc(1.5rem-1px)] bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl overflow-hidden">
               {/* Top accent bar — gradient */}
-              <div className="h-1 bg-gradient-to-r from-primary-400 via-accent-400 to-primary-400 dark:from-primary-500 dark:via-accent-500 dark:to-primary-500" />
+              <div className="h-1 bg-gradient-to-r from-primary-400 via-emerald-400 to-cyan-400 dark:from-primary-500 dark:via-emerald-400 dark:to-cyan-500" />
 
               {/* Glow accent — full width */}
               <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-primary-400/8 to-transparent dark:from-primary-500/10 pointer-events-none" />
@@ -1015,10 +1015,10 @@ const LogoCloudSection = () => {
                 <div className="scroll-reveal text-center mb-8 sm:mb-10">
                   {/* Badge */}
                   <div className="inline-flex items-center mb-4">
-                    <div className="relative p-px rounded-full bg-gradient-to-r from-primary-400 via-primary-300 to-accent-400 dark:from-primary-500 dark:via-primary-400 dark:to-accent-500">
+                    <div className="relative p-px rounded-full bg-gradient-to-r from-primary-400 via-emerald-300 to-cyan-400 dark:from-primary-500 dark:via-emerald-400 dark:to-cyan-500">
                       <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-950">
                         <Sparkles className="h-3.5 w-3.5 text-primary-500" />
-                        <span className="text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-primary-600 to-accent-600 dark:from-primary-400 dark:to-accent-400 bg-clip-text text-transparent">
+                        <span className="text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-primary-600 to-emerald-600 dark:from-primary-400 dark:to-emerald-400 bg-clip-text text-transparent">
                           {t('logos.badge')}
                         </span>
                       </div>

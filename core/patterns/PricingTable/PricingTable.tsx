@@ -256,7 +256,7 @@ const PricingCard = React.forwardRef<HTMLDivElement, PricingCardProps>(
         <div className={cn(
           'h-1 w-full',
           plan.popular
-            ? 'bg-gradient-to-r from-primary-400 via-accent-400 to-primary-400 dark:from-primary-500 dark:via-accent-500 dark:to-primary-500'
+            ? 'bg-gradient-to-r from-primary-400 via-emerald-400 to-cyan-400 dark:from-primary-500 dark:via-emerald-400 dark:to-cyan-500'
             : 'bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700'
         )} />
 
@@ -265,10 +265,10 @@ const PricingCard = React.forwardRef<HTMLDivElement, PricingCardProps>(
           {/* Popular Badge */}
           {plan.popular && (
             <div className="flex justify-center mb-4">
-              <div className="relative p-px rounded-full bg-gradient-to-r from-primary-400 via-accent-400 to-primary-400 dark:from-primary-500 dark:via-accent-400 dark:to-primary-500">
+              <div className="relative p-px rounded-full bg-gradient-to-r from-primary-400 via-emerald-400 to-cyan-400 dark:from-primary-500 dark:via-emerald-400 dark:to-cyan-500">
                 <div className="flex items-center gap-1.5 px-4 py-1 rounded-full bg-white dark:bg-slate-900">
                   <Sparkles className="h-3.5 w-3.5 text-primary-500" />
-                  <span className="text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-primary-600 to-accent-600 dark:from-primary-400 dark:to-accent-400 bg-clip-text text-transparent">
+                  <span className="text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-primary-600 to-emerald-600 dark:from-primary-400 dark:to-emerald-400 bg-clip-text text-transparent">
                     {plan.badge || 'Most Popular'}
                   </span>
                 </div>
