@@ -1094,7 +1094,7 @@ const LogoCloudSection = () => {
 const FeatureVisual = ({ type }: { type: string }) => {
   if (type === 'analytics') {
     return (
-      <div className="p-3 sm:p-6 space-y-3 sm:space-y-4">
+      <div className="p-3 sm:p-6 space-y-3 sm:space-y-4 overflow-hidden">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="h-2.5 w-2.5 rounded-full bg-primary-500" />
