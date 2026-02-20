@@ -492,20 +492,26 @@ export default function ReportsPage() {
       {/* ════════════════ PREMIUM FILTER BAR ════════════════ */}
       <div className="relative overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] shadow-sm">
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500" />
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 shadow-sm shadow-orange-500/25">
-              <Filter size={12} className="text-white" />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 py-3 gap-2.5">
+          <div className="flex items-center justify-between sm:justify-start gap-2">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 shadow-sm shadow-orange-500/25">
+                <Filter size={12} className="text-white" />
+              </div>
+              <span className="text-sm font-semibold text-[var(--text-primary)]">Filter by Type</span>
             </div>
-            <span className="text-sm font-semibold text-[var(--text-primary)]">Filter by Type</span>
+            <div className="flex sm:hidden items-center gap-1.5 rounded-full bg-orange-50 dark:bg-orange-950/20 px-2.5 py-1 border border-orange-200/50 dark:border-orange-800/30">
+              <FileText size={12} className="text-orange-600 dark:text-orange-400" />
+              <span className="text-[10px] font-bold text-orange-600 dark:text-orange-400">{filteredReports.length}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex overflow-x-auto gap-1.5 -mx-4 px-4 sm:mx-0 sm:px-0" style={{ scrollbarWidth: 'none' }}>
             {[{ key: 'all', label: 'All' }, ...reportTypeData.map(t => ({ key: t.name.toLowerCase(), label: t.name }))].map((filter) => (
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
                 className={cn(
-                  'rounded-lg px-3 py-1.5 text-xs font-semibold transition-all',
+                  'rounded-lg px-3 py-1.5 text-xs font-semibold transition-all shrink-0',
                   activeFilter === filter.key
                     ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/25'
                     : 'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-muted)]'
@@ -515,7 +521,7 @@ export default function ReportsPage() {
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-1.5 rounded-full bg-orange-50 dark:bg-orange-950/20 px-2.5 py-1 border border-orange-200/50 dark:border-orange-800/30">
+          <div className="hidden sm:flex items-center gap-1.5 rounded-full bg-orange-50 dark:bg-orange-950/20 px-2.5 py-1 border border-orange-200/50 dark:border-orange-800/30">
             <FileText size={12} className="text-orange-600 dark:text-orange-400" />
             <span className="text-[10px] font-bold text-orange-600 dark:text-orange-400">{filteredReports.length} reports</span>
           </div>
