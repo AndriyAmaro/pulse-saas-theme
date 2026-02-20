@@ -1,4 +1,4 @@
 <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="180" height="180" rx="36" fill="#14B89A"/>
-  <path d="M36 90H63L76.5 54L90 126L103.5 72L117 90H144" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M27 90H54L72 45L90 135L108 63L126 90H153" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
