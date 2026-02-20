@@ -1148,7 +1148,7 @@ const FeatureVisual = ({ type }: { type: string }) => {
             </>
           )
         })()}
-        <div className="flex items-end gap-1 h-14 sm:h-20">
+        <div className="flex items-end gap-0.5 sm:gap-1 h-8 sm:h-20">
           {[30, 50, 35, 70, 45, 80, 60, 90, 55, 75, 85, 65, 95, 70, 80].map((h, i) => (
             <div key={i} className="flex-1 bg-gradient-to-t from-primary-500/80 to-primary-400/60 dark:from-primary-400/80 dark:to-primary-300/60 rounded-t-sm" style={{ height: `${h}%` }} />
           ))}
