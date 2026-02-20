@@ -386,6 +386,41 @@ export default function AnalyticsPage() {
                 </div>
               </div>
 
+              {/* Center: Performance ring + metrics */}
+              <div className="hidden xl:flex flex-col items-center gap-4 px-4">
+                {/* Conversion ring */}
+                <div className="relative">
+                  <svg className="h-28 w-28 -rotate-90" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border-default)" strokeWidth="8" opacity="0.3" />
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="url(#analyticsRing)" strokeWidth="8" strokeDasharray={`${0.032 * 314.16} ${314.16}`} strokeLinecap="round" />
+                    <defs>
+                      <linearGradient id="analyticsRing" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#3B82F6" />
+                        <stop offset="100%" stopColor="#6366F1" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-2xl font-bold text-[var(--text-primary)]">3.2%</span>
+                    <span className="text-[10px] font-medium text-[var(--text-muted)]">Conversion</span>
+                  </div>
+                </div>
+                {/* Mini metrics */}
+                <div className="space-y-2 w-full">
+                  {[
+                    { label: 'Sessions', value: '38.4K', icon: Eye, color: 'text-blue-500' },
+                    { label: 'Pages/Session', value: '4.2', icon: Activity, color: 'text-indigo-500' },
+                    { label: 'New Users', value: '62%', icon: Users, color: 'text-violet-500' },
+                  ].map((m) => (
+                    <div key={m.label} className="flex items-center gap-2.5 rounded-lg bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm px-3 py-2 border border-white/40 dark:border-slate-700/30">
+                      <m.icon className={`h-3.5 w-3.5 shrink-0 ${m.color}`} />
+                      <span className="text-xs text-[var(--text-muted)] flex-1">{m.label}</span>
+                      <span className="text-xs font-bold text-[var(--text-primary)]">{m.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Right: Dual sparklines */}
               <div className="w-full lg:w-[380px] space-y-4">
                 <div className="rounded-xl bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm border border-white/60 dark:border-slate-700/40 p-4">
