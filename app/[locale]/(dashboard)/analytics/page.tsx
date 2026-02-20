@@ -49,6 +49,11 @@ const heroData = {
     160000, 163000, 159000, 165000, 162000, 168000, 164000, 170000, 167000, 173000,
     169000, 175000, 171000, 177000, 174000, 179000, 176000, 180000, 178000, 182450,
   ],
+  visitors30Days: [
+    32000, 33500, 34200, 33800, 35600, 36100, 34800, 37200, 38000, 36900,
+    38500, 39200, 37800, 40100, 39500, 41200, 40000, 42300, 41500, 43100,
+    42000, 43800, 42500, 44200, 43500, 44800, 44000, 45100, 44600, 45289,
+  ],
 }
 
 // KPI Data with comparison and sparklines
@@ -319,22 +324,42 @@ export default function AnalyticsPage() {
 
       {/* ====== HERO OVERVIEW CARD ====== */}
       {isLoading ? (
-        <Skeleton className="h-48 w-full rounded-xl" />
+        <Skeleton className="h-48 w-full rounded-2xl" />
       ) : (
-        <Card className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-indigo-950/20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.1),transparent_50%)]" />
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_bottom_right,rgba(99,102,241,0.08),transparent_60%)]" />
-          <Card.Content className="relative">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10">
-                    <BarChart3 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+        <div className="relative overflow-hidden rounded-2xl border border-blue-200/40 dark:border-blue-800/40 bg-[var(--bg-base)] shadow-md">
+          {/* Top gradient accent */}
+          <div className="h-1.5 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500" />
+
+          {/* Multi-layer background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-indigo-500/5 dark:from-blue-500/15 dark:via-transparent dark:to-indigo-500/10" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_80%_-20%,rgba(59,130,246,0.12),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_80%_-20%,rgba(59,130,246,0.2),transparent)]" />
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-bl from-blue-400/15 to-transparent blur-3xl" />
+          <div className="absolute -left-10 -bottom-10 h-48 w-48 rounded-full bg-gradient-to-tr from-indigo-400/10 to-transparent blur-3xl" />
+
+          {/* Grid pattern */}
+          <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]" style={{
+            backgroundImage: 'linear-gradient(rgba(59,130,246,1) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,1) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }} />
+
+          <div className="relative p-6 md:p-8">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              {/* Left: Main metric */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/25">
+                    <BarChart3 className="h-5 w-5 text-white" />
                   </div>
-                  <p className="text-sm font-medium text-[var(--text-secondary)]">Total Page Views</p>
+                  <div>
+                    <p className="text-sm font-medium text-[var(--text-secondary)]">Total Page Views</p>
+                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                      Updated just now
+                    </div>
+                  </div>
                 </div>
                 <div className="flex items-baseline gap-3">
-                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)]">
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-primary)] tracking-tight">
                     {heroData.pageViews.toLocaleString()}
                   </span>
                   <Badge variant="success" size="sm" className="flex items-center gap-1">
@@ -342,28 +367,63 @@ export default function AnalyticsPage() {
                     {heroData.changePercent}%
                   </Badge>
                 </div>
-                <p className="flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400">
+                <p className="flex items-center gap-1.5 text-sm text-blue-600 dark:text-blue-400 font-medium">
                   <TrendingUp className="h-4 w-4" />
                   +{heroData.changeValue.toLocaleString()} from last month
                 </p>
+
+                {/* Quick stats pills */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {[
+                    { label: 'Visitors', value: '45.3K', color: 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border-blue-200/50 dark:border-blue-800/30' },
+                    { label: 'Bounce', value: '42.3%', color: 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200/50 dark:border-emerald-800/30' },
+                    { label: 'Avg Time', value: '4:32', color: 'text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/20 border-violet-200/50 dark:border-violet-800/30' },
+                  ].map((pill) => (
+                    <span key={pill.label} className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border ${pill.color}`}>
+                      {pill.label}: {pill.value}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              <div className="w-full lg:w-80">
-                <p className="mb-2 text-xs text-[var(--text-muted)]">Last 30 days trend</p>
-                <SparklineChart
-                  data={heroData.last30Days}
-                  type="area"
-                  color="#3B82F6"
-                  width={320}
-                  height={80}
-                  showDot
-                  gradient
-                  animated
-                />
+              {/* Right: Dual sparklines */}
+              <div className="w-full lg:w-[380px] space-y-4">
+                <div className="rounded-xl bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm border border-white/60 dark:border-slate-700/40 p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-semibold text-[var(--text-secondary)]">Page Views — 30 days</p>
+                    <span className="text-xs font-bold text-blue-600 dark:text-blue-400">182.4K</span>
+                  </div>
+                  <SparklineChart
+                    data={heroData.last30Days}
+                    type="area"
+                    color="#3B82F6"
+                    width={340}
+                    height={60}
+                    showDot
+                    gradient
+                    animated
+                  />
+                </div>
+                <div className="rounded-xl bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm border border-white/60 dark:border-slate-700/40 p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-semibold text-[var(--text-secondary)]">Visitors — 30 days</p>
+                    <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">45.3K</span>
+                  </div>
+                  <SparklineChart
+                    data={heroData.visitors30Days}
+                    type="area"
+                    color="#6366F1"
+                    width={340}
+                    height={60}
+                    showDot
+                    gradient
+                    animated
+                  />
+                </div>
               </div>
             </div>
-          </Card.Content>
-        </Card>
+          </div>
+        </div>
       )}
 
       {/* ====== KPI CARDS ====== */}
