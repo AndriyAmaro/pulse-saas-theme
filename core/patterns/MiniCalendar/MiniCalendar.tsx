@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 const miniCalendarVariants = cva('w-full', {
   variants: {
     size: {
-      sm: 'max-w-[240px]',
+      sm: 'max-w-[260px]',
       md: 'max-w-[280px]',
       lg: 'max-w-[320px]',
     },
@@ -252,7 +252,7 @@ const MiniCalendar = React.forwardRef<HTMLDivElement, MiniCalendarProps>(
             <ChevronLeft size={navButtonSize} />
           </button>
 
-          <h2 className="text-sm font-semibold text-[var(--text-primary)]">
+          <h2 className="text-sm font-semibold text-[var(--text-primary)] whitespace-nowrap">
             {monthYearLabel}
           </h2>
 
