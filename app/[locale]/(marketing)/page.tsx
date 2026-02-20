@@ -1094,7 +1094,7 @@ const LogoCloudSection = () => {
 const FeatureVisual = ({ type }: { type: string }) => {
   if (type === 'analytics') {
     return (
-      <div className="p-4 sm:p-6 space-y-4">
+      <div className="p-3 sm:p-6 space-y-3 sm:space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="h-2.5 w-2.5 rounded-full bg-primary-500" />
@@ -1148,13 +1148,13 @@ const FeatureVisual = ({ type }: { type: string }) => {
             </>
           )
         })()}
-        <div className="flex items-end gap-1 h-20">
+        <div className="flex items-end gap-1 h-14 sm:h-20">
           {[30, 50, 35, 70, 45, 80, 60, 90, 55, 75, 85, 65, 95, 70, 80].map((h, i) => (
             <div key={i} className="flex-1 bg-gradient-to-t from-primary-500/80 to-primary-400/60 dark:from-primary-400/80 dark:to-primary-300/60 rounded-t-sm" style={{ height: `${h}%` }} />
           ))}
         </div>
-        {/* Top Sources — premium addition */}
-        <div className="rounded-xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40 p-3">
+        {/* Top Sources — premium addition (hidden on mobile to save space) */}
+        <div className="hidden sm:block rounded-xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40 p-3">
           <div className="flex items-center justify-between mb-2.5">
             <span className="text-[10px] font-semibold text-slate-700 dark:text-slate-200 uppercase tracking-wider">Top Sources</span>
             <span className="text-[9px] font-medium text-slate-400 dark:text-slate-500">Last 24h</span>
@@ -1215,8 +1215,8 @@ const FeatureVisual = ({ type }: { type: string }) => {
 
   // integrations
   return (
-    <div className="p-4 sm:p-6">
-      <div className="flex items-center justify-between mb-5">
+    <div className="p-3 sm:p-6">
+      <div className="flex items-center justify-between mb-3 sm:mb-5">
         <div className="flex items-center gap-2.5">
           <span className="text-sm font-semibold text-slate-900 dark:text-white">Connected Apps</span>
           <span className="px-2 py-0.5 rounded-full bg-primary-50 dark:bg-primary-900/30 text-[10px] font-bold text-primary-600 dark:text-primary-400">150+</span>
@@ -1304,11 +1304,18 @@ const FeatureVisual = ({ type }: { type: string }) => {
         )
         return (
           <>
-            {/* Mobile: infinite marquee */}
-            <div className="sm:hidden overflow-hidden">
-              <div className="flex animate-[marquee-apps_20s_linear_infinite] gap-3 w-max">
+            {/* Mobile: 2-row infinite marquee */}
+            <div className="sm:hidden space-y-2 overflow-hidden">
+              <div className="flex animate-[marquee-apps_16s_linear_infinite] gap-2.5 w-max">
                 {[...apps, ...apps].map((app, i) => (
-                  <div key={i} className="w-[72px] shrink-0">
+                  <div key={i} className="w-[64px] shrink-0">
+                    <AppCard app={app} />
+                  </div>
+                ))}
+              </div>
+              <div className="flex animate-[marquee-apps-reverse_18s_linear_infinite] gap-2.5 w-max">
+                {[...apps.slice(6), ...apps.slice(0, 6), ...apps.slice(6), ...apps.slice(0, 6)].map((app, i) => (
+                  <div key={i} className="w-[64px] shrink-0">
                     <AppCard app={app} />
                   </div>
                 ))}
@@ -1317,6 +1324,10 @@ const FeatureVisual = ({ type }: { type: string }) => {
                 @keyframes marquee-apps {
                   0% { transform: translateX(0); }
                   100% { transform: translateX(-50%); }
+                }
+                @keyframes marquee-apps-reverse {
+                  0% { transform: translateX(-50%); }
+                  100% { transform: translateX(0); }
                 }
               `}</style>
             </div>
@@ -1329,7 +1340,7 @@ const FeatureVisual = ({ type }: { type: string }) => {
           </>
         )
       })()}
-      <div className="mt-4 flex items-center gap-2.5 p-3 rounded-xl border border-dashed border-slate-300 dark:border-slate-600 justify-center cursor-pointer hover:border-primary-400 dark:hover:border-primary-500 hover:bg-primary-50/50 dark:hover:bg-primary-900/10 transition-all duration-200 group/browse">
+      <div className="hidden sm:flex mt-4 items-center gap-2.5 p-3 rounded-xl border border-dashed border-slate-300 dark:border-slate-600 justify-center cursor-pointer hover:border-primary-400 dark:hover:border-primary-500 hover:bg-primary-50/50 dark:hover:bg-primary-900/10 transition-all duration-200 group/browse">
         <MousePointerClick className="h-4 w-4 text-slate-400 group-hover/browse:text-primary-500 transition-colors" />
         <span className="text-xs font-medium text-slate-500 dark:text-slate-400 group-hover/browse:text-primary-600 dark:group-hover/browse:text-primary-400 transition-colors">Browse all integrations</span>
       </div>
@@ -1477,7 +1488,7 @@ const FeaturesSection = () => {
                 <div className={cn(isReversed && 'md:order-1')}>
                   <div className="relative group/visual">
                     <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-r from-primary-500/10 to-accent-500/10 dark:from-primary-500/5 dark:to-accent-500/5 rounded-2xl blur-xl opacity-0 group-hover/visual:opacity-100 transition-opacity duration-500" />
-                    <div className="relative aspect-[4/3] rounded-2xl border border-slate-200/60 dark:border-slate-700/40 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800/80 dark:to-slate-900 shadow-xl overflow-hidden transition-all duration-500 group-hover/visual:shadow-2xl group-hover/visual:-translate-y-1">
+                    <div className="relative aspect-[5/4] sm:aspect-[4/3] rounded-2xl border border-slate-200/60 dark:border-slate-700/40 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800/80 dark:to-slate-900 shadow-xl overflow-hidden transition-all duration-500 group-hover/visual:shadow-2xl group-hover/visual:-translate-y-1">
                       {/* Top accent bar */}
                       <div className={cn(
                         'absolute inset-x-0 top-0 h-1 z-10 bg-gradient-to-r',
