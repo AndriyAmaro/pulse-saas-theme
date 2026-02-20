@@ -306,15 +306,15 @@
     },
     "story": {
       "title": "A História do Pulse",
-      "p1": "O Pulse nasceu da minha frustração com os templates de dashboard existentes: muitos eram desatualizados, mal organizados ou simplesmente feios. Eu sabia que poderia criar algo melhor.",
-      "p2": "Decidi construir do zero um tema que eu mesmo gostaria de usar — com arquitetura moderna (React 19, Next.js 16, TypeScript strict), componentes reutilizáveis com CVA, e um design system completo com dark mode premium.",
-      "p3": "O resultado é o Pulse: 96 componentes, 16 dashboards temáticos, 126 páginas e suporte a 3 idiomas. Um tema que supera concorrentes de $99 em qualidade técnica e visual."
+      "p1": "O Pulse nasceu da minha vontade de criar um template de dashboard realmente completo e bem estruturado. Ao pesquisar o mercado, percebi que havia espaço para algo com mais cuidado técnico e visual — e decidi construir.",
+      "p2": "Construí do zero um tema que eu mesmo gostaria de usar — com arquitetura moderna (React 19, Next.js 16, TypeScript strict), componentes reutilizáveis com CVA, e um design system completo com dark mode premium.",
+      "p3": "O resultado é o Pulse: 96 componentes, 16 dashboards temáticos, 126 páginas e suporte a 3 idiomas. Um tema feito com dedicação e atenção a cada detalhe."
     },
     "timeline": {
       "y1": {
         "year": "2024",
         "title": "Início do Projeto",
-        "description": "Frustrado com templates existentes, comecei a planejar uma solução melhor."
+        "description": "Ao pesquisar templates no mercado, vi a oportunidade de criar algo com mais cuidado técnico e visual."
       },
       "y2": {
         "year": "2025 Q1",
