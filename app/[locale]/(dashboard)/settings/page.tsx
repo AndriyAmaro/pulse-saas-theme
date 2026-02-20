@@ -616,10 +616,10 @@ export default function SettingsPage() {
         {/* Full-width gradient banner */}
         <div className="h-28 bg-gradient-to-br from-green-500 via-emerald-500 to-lime-500 relative">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMS41IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz48L3N2Zz4=')] opacity-60" />
-          <div className="absolute bottom-4 right-6 hidden lg:flex gap-2">
+          <div className="absolute top-2.5 left-3 right-3 sm:top-auto sm:left-auto sm:bottom-4 sm:right-6 flex flex-wrap gap-1.5 sm:gap-2 z-10">
             {TAB_CONFIG.map((tab) => (
-              <span key={tab.value} className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-white/90 border border-white/10">
-                <tab.icon size={12} />
+              <span key={tab.value} className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-white/20 sm:bg-white/15 backdrop-blur-sm px-2 sm:px-3 py-1 text-[10px] sm:text-[11px] font-medium text-white border border-white/20 sm:border-white/10">
+                <tab.icon size={11} className="shrink-0" />
                 {tab.label}
               </span>
             ))}
