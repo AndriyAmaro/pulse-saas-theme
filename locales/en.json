@@ -306,16 +306,11 @@
     },
     "story": {
       "title": "The Pulse Story",
-      "p1": "Pulse was born from my desire to create a truly complete and well-structured dashboard template. While researching the market, I noticed there was room for something with more technical and visual care — and I decided to build it.",
+      "p1": "Pulse was born from my desire to create a truly complete and well-structured dashboard template. While researching the market, I noticed there was room for something with more technical and visual care, and I decided to build it.",
       "p2": "I built from scratch a theme I'd actually want to use — with modern architecture (React 19, Next.js 16, strict TypeScript), reusable components with CVA, and a complete design system with premium dark mode.",
       "p3": "The result is Pulse: 96 components, 16 themed dashboards, 126 pages, and support for 3 languages. A theme built with dedication and attention to every detail."
     },
     "timeline": {
-      "y1": {
-        "year": "2024",
-        "title": "Project Inception",
-        "description": "While researching templates on the market, I saw an opportunity to create something with more technical and visual care."
-      },
       "y2": {
         "year": "2025 Q1",
         "title": "Foundation",

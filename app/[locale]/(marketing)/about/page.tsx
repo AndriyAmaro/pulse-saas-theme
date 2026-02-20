@@ -388,7 +388,6 @@ const OurStorySection = () => {
   const t = useTranslations('about')
 
   const timelineItems = [
-    { yearKey: 'timeline.y1.year' as const, titleKey: 'timeline.y1.title' as const, descKey: 'timeline.y1.description' as const },
     { yearKey: 'timeline.y2.year' as const, titleKey: 'timeline.y2.title' as const, descKey: 'timeline.y2.description' as const },
     { yearKey: 'timeline.y3.year' as const, titleKey: 'timeline.y3.title' as const, descKey: 'timeline.y3.description' as const },
     { yearKey: 'timeline.y4.year' as const, titleKey: 'timeline.y4.title' as const, descKey: 'timeline.y4.description' as const },
