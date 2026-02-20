@@ -664,6 +664,7 @@ export default function OverviewPage() {
               highlightedDates={highlightedDates}
               events={calendarEvents}
               size="sm"
+              className="!max-w-none sm:!max-w-[260px]"
             />
             <div className="mt-4 space-y-1.5">
               {upcomingDeadlines.map((deadline) => (
@@ -941,9 +942,9 @@ export default function OverviewPage() {
       <Card variant="elevated" className="overflow-hidden">
         <div className="h-1 w-full bg-gradient-to-r from-primary-400 via-primary-500 to-teal-500" />
         <Card.Header>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center h-9 w-9 rounded-xl bg-gradient-to-br from-primary-400 to-teal-600 shadow-lg shadow-primary-500/25">
+              <div className="flex items-center justify-center h-9 w-9 shrink-0 rounded-xl bg-gradient-to-br from-primary-400 to-teal-600 shadow-lg shadow-primary-500/25">
                 <CheckCircle2 className="h-4.5 w-4.5 text-white" />
               </div>
               <div>
@@ -951,7 +952,7 @@ export default function OverviewPage() {
                 <Card.Description>Your assigned tasks across all projects</Card.Description>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0">
               <Button variant="ghost" size="sm" leftIcon={<Filter className="h-3.5 w-3.5" />}>
                 Filter
               </Button>
