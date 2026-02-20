@@ -887,7 +887,7 @@ export default function EmailPage() {
                 </div>
               </div>
             </div>
-            <SparklineChart data={emailStats.received.trend} color="#f43f5e" width={64} height={28} showDot animated gradient />
+            <div className="hidden sm:block"><SparklineChart data={emailStats.received.trend} color="#f43f5e" width={64} height={28} showDot animated gradient /></div>
           </div>
         </div>
 
@@ -907,7 +907,7 @@ export default function EmailPage() {
                 </div>
               </div>
             </div>
-            <SparklineChart data={emailStats.sent.trend} color="#ec4899" width={64} height={28} showDot animated gradient />
+            <div className="hidden sm:block"><SparklineChart data={emailStats.sent.trend} color="#ec4899" width={64} height={28} showDot animated gradient /></div>
           </div>
         </div>
 
@@ -927,7 +927,7 @@ export default function EmailPage() {
                 </div>
               </div>
             </div>
-            <SparklineChart data={emailStats.responseTime.trend} color="#8b5cf6" width={64} height={28} showDot animated gradient />
+            <div className="hidden sm:block"><SparklineChart data={emailStats.responseTime.trend} color="#8b5cf6" width={64} height={28} showDot animated gradient /></div>
           </div>
         </div>
 
@@ -947,7 +947,7 @@ export default function EmailPage() {
                 </div>
               </div>
             </div>
-            <SparklineChart data={emailStats.unread.trend} color="#f59e0b" width={64} height={28} showDot animated gradient />
+            <div className="hidden sm:block"><SparklineChart data={emailStats.unread.trend} color="#f59e0b" width={64} height={28} showDot animated gradient /></div>
           </div>
         </div>
       </div>
