@@ -212,7 +212,7 @@ export default function NotificationsPage() {
                   </div>
                 </div>
               </div>
-              <div className="opacity-60 group-hover:opacity-100 transition-opacity">
+              <div className="hidden sm:block opacity-60 group-hover:opacity-100 transition-opacity">
                 <SparklineChart data={stat.trend} type="area" width={64} height={28} color={stat.color} gradient showDot={false} strokeWidth={1.5} />
               </div>
             </div>
