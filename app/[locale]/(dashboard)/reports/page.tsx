@@ -250,8 +250,8 @@ export default function ReportsPage() {
         <div className="absolute top-6 right-6 h-32 w-32 rounded-full bg-gradient-to-br from-orange-500/5 to-amber-500/5 blur-2xl" />
         <div className="absolute bottom-0 right-24 h-20 w-20 rounded-full bg-gradient-to-br from-yellow-500/5 to-orange-500/5 blur-xl" />
 
-        <div className="flex items-center justify-between px-5 py-4 bg-gradient-to-r from-orange-50/40 to-transparent dark:from-orange-950/10">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between px-5 py-4 bg-gradient-to-r from-orange-50/40 to-transparent dark:from-orange-950/10 gap-3">
+          <div className="hidden sm:flex items-center gap-4">
             <div className="relative">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-lg shadow-orange-500/25">
                 <FileBarChart size={28} className="text-white" />
@@ -264,6 +264,19 @@ export default function ReportsPage() {
               <h1 className="text-2xl lg:text-3xl font-bold text-[var(--text-primary)] tracking-tight">Reports & Analytics</h1>
               <p className="text-sm text-[var(--text-muted)]">Generate, schedule, and manage your business reports</p>
             </div>
+          </div>
+          {/* Mobile: centered gradient title */}
+          <div className="flex sm:hidden flex-col items-center text-center w-full">
+            <div className="relative mb-2">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-lg shadow-orange-500/25">
+                <FileBarChart size={24} className="text-white" />
+              </div>
+              <div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-orange-400 shadow-md">
+                <Sparkles size={10} className="text-white" />
+              </div>
+            </div>
+            <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-orange-600 via-amber-500 to-yellow-500 bg-clip-text text-transparent">Reports & Analytics</h1>
+            <p className="text-xs text-[var(--text-muted)] mt-0.5">Generate, schedule, and manage reports</p>
           </div>
           <div className="flex items-center gap-2">
             {/* Summary badges */}
@@ -304,7 +317,7 @@ export default function ReportsPage() {
                   </div>
                 </div>
               </div>
-              <div className="opacity-60 group-hover:opacity-100 transition-opacity">
+              <div className="hidden sm:block opacity-60 group-hover:opacity-100 transition-opacity">
                 <SparklineChart data={stat.trend} type="area" width={64} height={28} color={stat.gradient.includes('orange') ? '#f97316' : stat.gradient.includes('amber') ? '#f59e0b' : stat.gradient.includes('violet') ? '#8b5cf6' : '#10b981'} gradient showDot={false} strokeWidth={1.5} />
               </div>
             </div>
@@ -333,7 +346,7 @@ export default function ReportsPage() {
       </div>
 
       {/* ════════════════ CHARTS ROW ════════════════ */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Reports Generated */}
         <div className="relative overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500" />
@@ -429,7 +442,30 @@ export default function ReportsPage() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-6 gap-3">
+          {/* Mobile: carousel */}
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-5 px-5 py-1 sm:hidden" style={{ scrollbarWidth: 'none' }}>
+            {reportTypeData.map((type) => (
+              <div key={type.name} className="group relative overflow-hidden rounded-xl border border-[var(--border-default)] p-3 snap-start shrink-0 w-[140px]">
+                <div className={cn('absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r', type.gradient)} />
+                <div className="flex items-center gap-2 mb-2">
+                  <div className={cn('flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br shadow-sm', type.gradient)}>
+                    <FileText size={10} className="text-white" />
+                  </div>
+                  <span className="text-xs font-semibold text-[var(--text-primary)]">{type.name}</span>
+                </div>
+                <div className="text-lg font-bold text-[var(--text-primary)]">{type.value}</div>
+                <div className="mt-1">
+                  <SparklineChart data={type.trend} type="area" width={100} height={32} color={type.color} gradient showDot strokeWidth={1.5} animated />
+                </div>
+                <div className="mt-1 flex items-center gap-1">
+                  <TrendingUp size={10} className="text-emerald-500" />
+                  <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">+{Math.round((type.trend[11]! - type.trend[0]!) / type.trend[0]! * 100)}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Desktop: grid */}
+          <div className="hidden sm:grid grid-cols-3 lg:grid-cols-6 gap-3">
             {reportTypeData.map((type) => (
               <div key={type.name} className="group relative overflow-hidden rounded-xl border border-[var(--border-default)] p-3 hover:shadow-md transition-all hover:scale-[1.02]">
                 <div className={cn('absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r', type.gradient)} />
@@ -487,7 +523,72 @@ export default function ReportsPage() {
       </div>
 
       {/* ════════════════ PREMIUM REPORTS TABLE ════════════════ */}
-      <div className="relative overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] shadow-sm">
+      {/* Mobile: 2-column carousel */}
+      <div className="sm:hidden relative overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] shadow-sm">
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500" />
+        <div className="p-4">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 shadow-md shadow-orange-500/25">
+                <FileCheck size={16} className="text-white" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-[var(--text-primary)]">All Reports</h3>
+                <p className="text-xs text-[var(--text-muted)]">{filteredReports.length} reports</p>
+              </div>
+            </div>
+            <button className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/10 px-3 py-1.5 text-xs font-semibold text-orange-700 dark:text-orange-300 border border-orange-200/50 dark:border-orange-800/30 hover:shadow-sm transition-all">
+              <Download size={12} /> Export
+            </button>
+          </div>
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-4 px-4 py-1" style={{ scrollbarWidth: 'none' }}>
+            {Array.from({ length: Math.ceil(filteredReports.length / 2) }).map((_, pageIdx) => {
+              const pair = filteredReports.slice(pageIdx * 2, pageIdx * 2 + 2)
+              return (
+                <div key={pageIdx} className="flex flex-col gap-2 snap-start shrink-0 w-[85vw] max-w-[320px]">
+                  {pair.map((report) => {
+                    const typeCfg = REPORT_TYPE_CONFIG[report.type]
+                    const statusCfg = STATUS_CONFIG[report.status]
+                    return (
+                      <div key={report.id} className="relative overflow-hidden rounded-xl border border-[var(--border-default)] p-3">
+                        <div className={cn('absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r', typeCfg?.gradient ?? 'from-gray-500 to-gray-600')} />
+                        <div className="flex items-start gap-3">
+                          <div className={cn('flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br shadow-sm', typeCfg?.gradient ?? 'from-gray-500 to-gray-600')}>
+                            <FileText size={14} className="text-white" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-semibold text-[var(--text-primary)] truncate">{report.name}</p>
+                            <p className="text-[10px] text-[var(--text-muted)]">{report.id} · {report.createdBy}</p>
+                            <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+                              {typeCfg && (
+                                <span className={cn('inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-semibold capitalize border', typeCfg.lightBg, typeCfg.darkBg, typeCfg.text, typeCfg.border)}>
+                                  <span className={cn('h-1 w-1 rounded-full bg-gradient-to-r', typeCfg.dot)} />
+                                  {report.type}
+                                </span>
+                              )}
+                              {statusCfg && (
+                                <span className={cn('inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-semibold capitalize border', statusCfg.lightBg, statusCfg.darkBg, statusCfg.text, statusCfg.border)}>
+                                  {statusCfg.icon}
+                                  {report.status}
+                                </span>
+                              )}
+                              {report.size !== '—' && (
+                                <span className="text-[9px] text-[var(--text-muted)]">{report.size}</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+      {/* Desktop: DataTable */}
+      <div className="hidden sm:block relative overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-base)] shadow-sm">
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500" />
         <div className="p-4">
           <div className="flex items-center justify-between mb-4">
