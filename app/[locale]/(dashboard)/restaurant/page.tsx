@@ -554,7 +554,7 @@ export default function RestaurantDashboard() {
               {/* Center: Mini Hourly Revenue Chart */}
               <div className="hidden lg:flex flex-col items-center gap-2">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Revenue by Hour</p>
-                <svg viewBox="0 0 200 80" className="w-56 h-28" fill="none">
+                <svg viewBox="0 0 200 80" className="w-72 h-36" fill="none">
                   <defs>
                     <linearGradient id="heroBarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                       <stop offset="0%" stopColor="#f43f5e" />
