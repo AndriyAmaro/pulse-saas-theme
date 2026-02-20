@@ -393,46 +393,91 @@ export function AbstractBackground({ className }: AbstractBackgroundProps) {
           )
         })}
 
-        {/* ════════════════════════════════════════════════════
-            PREMIUM PULSE ECG — Heartbeat animation left side
-            2 beats then fade, glow + main + echo per line
-            ════════════════════════════════════════════════════ */}
+      </svg>
+
+      {/* ── 4. PULSE ECG — Separate SVG for independent light mode opacity ── */}
+      <svg
+        className="absolute inset-0 w-full h-full dark:opacity-100 opacity-60"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+      >
+        <defs>
+          <filter id="ab-pulse-glow-l" x="-20%" y="-50%" width="140%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+            <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.36  0 0 0 0 0.89  0 0 0 0 0.78  0 0 0 0.6 0" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <linearGradient id="ab-pg-top" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#5DE4C8" stopOpacity="0" />
+            <stop offset="8%" stopColor="#5DE4C8" stopOpacity="1" />
+            <stop offset="85%" stopColor="#2DD1B1" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="ab-pg-bot" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#2DD1B1" stopOpacity="0" />
+            <stop offset="8%" stopColor="#2DD1B1" stopOpacity="1" />
+            <stop offset="85%" stopColor="#5DE4C8" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#9AF0DD" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="ab-pg-rtop" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+            <stop offset="10%" stopColor="#2DD1B1" stopOpacity="0.8" />
+            <stop offset="80%" stopColor="#5DE4C8" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#9AF0DD" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="ab-pg-rbot" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+            <stop offset="10%" stopColor="#5DE4C8" stopOpacity="0.7" />
+            <stop offset="80%" stopColor="#2DD1B1" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="ab-pg-mid" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#5DE4C8" stopOpacity="0" />
+            <stop offset="6%" stopColor="#5DE4C8" stopOpacity="0.7" />
+            <stop offset="50%" stopColor="#2DD1B1" stopOpacity="0.5" />
+            <stop offset="94%" stopColor="#14B89A" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+          </linearGradient>
+        </defs>
 
         {/* PULSE TOP — y~240 */}
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-          <path className="ab-pulse-top-glow" filter="url(#ab-pulse-glow)" d={PULSE_TOP} stroke="#5DE4C8" strokeWidth="4" />
-          <path className="ab-pulse-top" d={PULSE_TOP} stroke="url(#ab-pulse-grad-top)" strokeWidth="1.1" />
+          <path className="ab-pulse-top-glow" filter="url(#ab-pulse-glow-l)" d={PULSE_TOP} stroke="#5DE4C8" strokeWidth="4" />
+          <path className="ab-pulse-top" d={PULSE_TOP} stroke="url(#ab-pg-top)" strokeWidth="1.1" />
           <path className="ab-pulse-top-echo" d={PULSE_TOP_ECHO} stroke="#2DD1B1" strokeWidth="0.5" />
         </g>
 
         {/* PULSE BOTTOM — y~630 */}
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-          <path className="ab-pulse-bot-glow" filter="url(#ab-pulse-glow)" d={PULSE_BOTTOM} stroke="#2DD1B1" strokeWidth="3.5" />
-          <path className="ab-pulse-bot" d={PULSE_BOTTOM} stroke="url(#ab-pulse-grad-bot)" strokeWidth="0.9" />
+          <path className="ab-pulse-bot-glow" filter="url(#ab-pulse-glow-l)" d={PULSE_BOTTOM} stroke="#2DD1B1" strokeWidth="3.5" />
+          <path className="ab-pulse-bot" d={PULSE_BOTTOM} stroke="url(#ab-pg-bot)" strokeWidth="0.9" />
           <path className="ab-pulse-bot-echo" d={PULSE_BOTTOM_ECHO} stroke="#9AF0DD" strokeWidth="0.4" />
         </g>
 
-        {/* PULSE RIGHT TOP — y~240, continuation from left */}
+        {/* PULSE RIGHT TOP */}
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-          <path className="ab-pulse-rtop-glow" filter="url(#ab-pulse-glow)" d={PULSE_RIGHT_TOP} stroke="#5DE4C8" strokeWidth="3.5" />
-          <path className="ab-pulse-rtop" d={PULSE_RIGHT_TOP} stroke="url(#ab-pulse-grad-rtop)" strokeWidth="1" />
+          <path className="ab-pulse-rtop-glow" filter="url(#ab-pulse-glow-l)" d={PULSE_RIGHT_TOP} stroke="#5DE4C8" strokeWidth="3.5" />
+          <path className="ab-pulse-rtop" d={PULSE_RIGHT_TOP} stroke="url(#ab-pg-rtop)" strokeWidth="1" />
           <path className="ab-pulse-rtop-echo" d={PULSE_RIGHT_TOP_ECHO} stroke="#2DD1B1" strokeWidth="0.4" />
         </g>
 
-        {/* PULSE RIGHT BOTTOM — y~630, continuation from left */}
+        {/* PULSE RIGHT BOTTOM */}
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-          <path className="ab-pulse-rbot-glow" filter="url(#ab-pulse-glow)" d={PULSE_RIGHT_BOTTOM} stroke="#2DD1B1" strokeWidth="3" />
-          <path className="ab-pulse-rbot" d={PULSE_RIGHT_BOTTOM} stroke="url(#ab-pulse-grad-rbot)" strokeWidth="0.8" />
+          <path className="ab-pulse-rbot-glow" filter="url(#ab-pulse-glow-l)" d={PULSE_RIGHT_BOTTOM} stroke="#2DD1B1" strokeWidth="3" />
+          <path className="ab-pulse-rbot" d={PULSE_RIGHT_BOTTOM} stroke="url(#ab-pg-rbot)" strokeWidth="0.8" />
           <path className="ab-pulse-rbot-echo" d={PULSE_RIGHT_BOTTOM_ECHO} stroke="#9AF0DD" strokeWidth="0.35" />
         </g>
 
-        {/* PULSE MIDDLE — y~435, spanning wider */}
+        {/* PULSE MIDDLE */}
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-          <path className="ab-pulse-mid-glow" filter="url(#ab-pulse-glow)" d={PULSE_MID} stroke="#2DD1B1" strokeWidth="3" />
-          <path className="ab-pulse-mid" d={PULSE_MID} stroke="url(#ab-pulse-grad-mid)" strokeWidth="0.9" />
+          <path className="ab-pulse-mid-glow" filter="url(#ab-pulse-glow-l)" d={PULSE_MID} stroke="#2DD1B1" strokeWidth="3" />
+          <path className="ab-pulse-mid" d={PULSE_MID} stroke="url(#ab-pg-mid)" strokeWidth="0.9" />
           <path className="ab-pulse-mid-echo" d={PULSE_MID_ECHO} stroke="#5DE4C8" strokeWidth="0.35" />
         </g>
-
       </svg>
 
       {/* ── Noise texture ── */}
