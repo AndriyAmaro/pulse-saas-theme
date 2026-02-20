@@ -209,10 +209,10 @@ const FooterMarketing = ({
           )}
         >
           {/* Brand column */}
-          <div className="space-y-5">
-            {logo}
+          <div className="flex flex-col">
+            <div className="mb-4">{logo}</div>
             {tagline && (
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
+              <p className="mb-5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
                 {tagline}
               </p>
             )}

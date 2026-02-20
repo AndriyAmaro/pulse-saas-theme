@@ -1659,13 +1659,48 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Testimonials Grid */}
+        {/* Testimonials — Mobile: 2-col carousel | Desktop: 3-col grid */}
         <div className="scroll-reveal">
-          <TestimonialGrid
-            testimonials={testimonials}
-            columns={3}
-            cardVariant="default"
-          />
+          {/* Mobile carousel */}
+          <div className="sm:hidden flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-4 px-4 pb-4 scrollbar-hide">
+            {Array.from({ length: Math.ceil(testimonials.length / 2) }).map((_, pairIdx) => (
+              <div key={pairIdx} className="w-[85vw] shrink-0 snap-start grid grid-cols-2 gap-3">
+                {testimonials.slice(pairIdx * 2, pairIdx * 2 + 2).map((t) => (
+                  <div
+                    key={t.id}
+                    className="relative p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/40 shadow-sm flex flex-col"
+                  >
+                    <div className="flex items-center gap-0.5 mb-3">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} className="h-3 w-3 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <blockquote className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed mb-4 flex-1 line-clamp-5">
+                      &ldquo;{t.quote}&rdquo;
+                    </blockquote>
+                    <div className="flex items-center gap-2">
+                      <div className="h-7 w-7 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-[10px] font-bold text-white shrink-0">
+                        {t.author.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-900 dark:text-white truncate">{t.author.name}</p>
+                        <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{t.author.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop grid */}
+          <div className="hidden sm:block">
+            <TestimonialGrid
+              testimonials={testimonials}
+              columns={3}
+              cardVariant="default"
+            />
+          </div>
         </div>
       </div>
     </section>
