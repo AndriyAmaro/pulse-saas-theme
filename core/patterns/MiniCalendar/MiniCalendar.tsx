@@ -268,7 +268,7 @@ const MiniCalendar = React.forwardRef<HTMLDivElement, MiniCalendarProps>(
 
         {/* Weekday headers */}
         <div
-          className="mb-1 grid grid-cols-7 gap-1"
+          className="mb-1 grid grid-cols-7 gap-1 place-items-center"
           role="row"
           aria-label="Days of the week"
         >
@@ -289,7 +289,7 @@ const MiniCalendar = React.forwardRef<HTMLDivElement, MiniCalendarProps>(
 
         {/* Calendar grid */}
         <div
-          className="grid grid-cols-7 gap-1"
+          className="grid grid-cols-7 gap-1 place-items-center"
           role="grid"
           aria-label="Calendar days"
         >
