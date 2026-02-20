@@ -114,7 +114,7 @@ const Navbar = () => {
           <div className="flex h-16 md:h-[72px] items-center justify-between">
             {/* Logo: white gradient on dark hero, theme-aware on solid bg */}
             <LinkedPulseLogo
-              textClassName={!onSolidBg ? 'from-white to-slate-300' : undefined}
+              textClassName={!onSolidBg ? 'from-slate-800 to-slate-600 dark:from-white dark:to-slate-300' : undefined}
             />
 
             {/* Desktop Navigation */}
@@ -133,10 +133,10 @@ const Navbar = () => {
                       'transition-all duration-200',
                       'group',
                       isActive
-                        ? isScrolled ? 'text-primary-600 dark:text-primary-400' : 'text-primary-300'
+                        ? isScrolled ? 'text-primary-600 dark:text-primary-400' : 'text-primary-600 dark:text-primary-300'
                         : isScrolled
                           ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-                          : 'text-white/80 hover:text-white'
+                          : 'text-slate-600 dark:text-white/80 hover:text-slate-900 dark:hover:text-white'
                     )}
                   >
                     {link.label}
@@ -156,7 +156,7 @@ const Navbar = () => {
 
             {/* Desktop CTAs */}
             <div className="hidden md:flex items-center gap-3">
-              <ThemeToggle className={isScrolled ? '' : 'text-white/80 hover:text-white hover:bg-white/10'} />
+              <ThemeToggle className={isScrolled ? '' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/10'} />
               <Link href="/login">
                 <Button
                   variant="ghost"
@@ -164,7 +164,7 @@ const Navbar = () => {
                   className={cn(
                     isScrolled
                       ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-                      : 'text-white/80 hover:text-white hover:bg-white/10'
+                      : 'text-slate-600 dark:text-white/80 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10'
                   )}
                 >
                   {t('signIn')}
@@ -192,7 +192,7 @@ const Navbar = () => {
 
             {/* Mobile menu button */}
             <div className="flex md:hidden items-center gap-2">
-              <ThemeToggle className={onSolidBg ? '' : 'text-white/80 hover:text-white hover:bg-white/10'} />
+              <ThemeToggle className={onSolidBg ? '' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/10'} />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={cn(
@@ -200,7 +200,7 @@ const Navbar = () => {
                   'transition-all duration-200',
                   onSolidBg
                     ? 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-                    : 'text-white hover:bg-white/15'
+                    : 'text-slate-600 dark:text-white hover:bg-slate-100 dark:hover:bg-white/15'
                 )}
                 aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
