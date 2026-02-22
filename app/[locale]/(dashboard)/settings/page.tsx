@@ -412,7 +412,7 @@ function BillingTab() {
   ]
 
   const billingActions: RowAction<(typeof billingHistory)[0]>[] = [
-    { label: 'Download', icon: <Download className="h-4 w-4" />, onClick: (row) => console.log('Download invoice:', row.id) },
+    { label: 'Download', icon: <Download className="h-4 w-4" />, onClick: () => {/* Handle download invoice */} },
   ]
 
   const planFeatures = ['Unlimited projects', 'Priority support', 'Advanced analytics', 'Custom integrations']
@@ -540,8 +540,8 @@ function TeamTab() {
   ]
 
   const teamActions: RowAction<(typeof teamMembers)[0]>[] = [
-    { label: 'Resend Invite', icon: <Send className="h-4 w-4" />, onClick: (row) => console.log('Resend:', row.email), hidden: (row) => row.status !== 'Pending' },
-    { label: 'Remove', icon: <Trash2 className="h-4 w-4" />, onClick: (row) => console.log('Remove:', row.id), destructive: true },
+    { label: 'Resend Invite', icon: <Send className="h-4 w-4" />, onClick: () => {/* Handle resend invite */}, hidden: (row) => row.status !== 'Pending' },
+    { label: 'Remove', icon: <Trash2 className="h-4 w-4" />, onClick: () => {/* Handle remove member */}, destructive: true },
   ]
 
   return (

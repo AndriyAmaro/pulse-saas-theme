@@ -725,7 +725,7 @@ export default function CryptoDashboard() {
             defaultCrypto="BTC"
             usdBalance={15000}
             feePercent={0.1}
-            onTrade={(data) => console.log('Trade:', data)}
+            onTrade={() => {/* Handle trade execution */}}
           />
         )}
       </div>
@@ -743,9 +743,9 @@ export default function CryptoDashboard() {
                     alert.symbol === 'ETH' ? <EthereumIcon /> :
                     alert.symbol === 'SOL' ? <SolanaIcon /> : undefined
             }))}
-            onAddAlert={() => console.log('Add alert')}
-            onDeleteAlert={(id) => console.log('Delete:', id)}
-            onToggleAlert={(id) => console.log('Toggle:', id)}
+            onAddAlert={() => {/* Handle add alert */}}
+            onDeleteAlert={() => {/* Handle delete alert */}}
+            onToggleAlert={() => {/* Handle toggle alert */}}
           />
         )}
 

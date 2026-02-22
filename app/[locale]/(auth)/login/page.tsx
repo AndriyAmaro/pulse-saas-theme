@@ -42,14 +42,14 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true)
-    console.log('Login data:', data)
+    // Handle login submission
     await new Promise((resolve) => setTimeout(resolve, 2000))
     setIsLoading(false)
   }
 
   const handleSocialLogin = async (provider: string) => {
     setSocialLoading(provider)
-    console.log('Social login:', provider)
+    // Handle social login
     await new Promise((resolve) => setTimeout(resolve, 2000))
     setSocialLoading(null)
   }

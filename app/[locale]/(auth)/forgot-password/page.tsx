@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
 
   const onSubmit = async (data: ForgotPasswordFormData) => {
     setIsLoading(true)
-    console.log('Forgot password:', data)
+    // Handle forgot password submission
     await new Promise((resolve) => setTimeout(resolve, 2000))
     setSubmittedEmail(data.email)
     setIsSuccess(true)
@@ -43,7 +43,7 @@ export default function ForgotPasswordPage() {
 
   const handleResend = async () => {
     setIsLoading(true)
-    console.log('Resending to:', submittedEmail)
+    // Handle resend verification email
     await new Promise((resolve) => setTimeout(resolve, 1500))
     setIsLoading(false)
   }

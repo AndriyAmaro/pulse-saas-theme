@@ -171,13 +171,11 @@ function DashboardLayoutInner({ children }: { children: React.ReactNode }) {
           showSearch
           searchProps={{
             placeholder: tHeader('search'),
-            onSearch: (query) => console.log('Search:', query),
+            onSearch: () => {/* Handle search */},
           }}
           notifications={notifications}
-          onNotificationClick={(notification) =>
-            console.log('Notification clicked:', notification)
-          }
-          onNotificationsViewAll={() => console.log('View all notifications')}
+          onNotificationClick={() => {/* Handle notification click */}}
+          onNotificationsViewAll={() => {/* Handle view all notifications */}}
           user={currentUser}
           onMobileMenuClick={() => setMobileOpen((prev) => !prev)}
           showMobileMenu

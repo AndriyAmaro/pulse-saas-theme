@@ -755,7 +755,7 @@ export default function RestaurantDashboard() {
             <TableGrid
               tables={restaurantTables}
               columns={3}
-              onTableClick={(table) => console.log('Table clicked:', table)}
+              onTableClick={() => {/* Handle table click */}}
               showLegend
               title="Floor Plan"
               variant="compact"
@@ -766,7 +766,7 @@ export default function RestaurantDashboard() {
             <TableGrid
               tables={restaurantTables}
               columns={6}
-              onTableClick={(table) => console.log('Table clicked:', table)}
+              onTableClick={() => {/* Handle table click */}}
               showLegend
               title="Floor Plan"
             />
@@ -808,8 +808,8 @@ export default function RestaurantDashboard() {
             ) : (
               <OrderTicketList
                 orders={kitchenOrders}
-                onMarkReady={(id) => console.log('Mark ready:', id)}
-                onStartPreparing={(id) => console.log('Start preparing:', id)}
+                onMarkReady={() => {/* Handle mark order ready */}}
+                onStartPreparing={() => {/* Handle start preparing */}}
                 maxVisible={4}
               />
             )}
@@ -1147,7 +1147,7 @@ export default function RestaurantDashboard() {
               endTime="22:00"
               interval={30}
               currentTime={currentTimeString}
-              onReservationClick={(res) => console.log('Reservation clicked:', res)}
+              onReservationClick={() => {/* Handle reservation click */}}
             />
           )}
         </div>

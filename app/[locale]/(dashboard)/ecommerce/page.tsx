@@ -749,8 +749,8 @@ export default function EcommercePage() {
                   reviewCount={product.reviewCount}
                   badge={product.badge}
                   size="full"
-                  onAddToCart={() => console.log('Add to cart:', product.name)}
-                  onWishlist={() => console.log('Wishlist:', product.name)}
+                  onAddToCart={() => {/* Handle add to cart */}}
+                  onWishlist={() => {/* Handle wishlist toggle */}}
                 />
                 </div>
               ))}
@@ -831,7 +831,7 @@ export default function EcommercePage() {
                       {
                         label: 'View',
                         icon: <Eye className="h-4 w-4" />,
-                        onClick: (row) => console.log('View:', row),
+                        onClick: () => {/* Handle view order */},
                       },
                     ]}
                   />

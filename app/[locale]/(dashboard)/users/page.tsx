@@ -381,18 +381,18 @@ export default function UsersPage() {
     {
       label: 'Edit User',
       icon: <Edit className="h-4 w-4" />,
-      onClick: (row) => console.log('Edit user:', row.id),
+      onClick: () => {/* Handle edit user */},
     },
     {
       label: 'Disable User',
       icon: <UserX className="h-4 w-4" />,
-      onClick: (row) => console.log('Disable user:', row.id),
+      onClick: () => {/* Handle disable user */},
       hidden: (row) => row.status === 'Inactive',
     },
     {
       label: 'Delete User',
       icon: <Trash2 className="h-4 w-4" />,
-      onClick: (row) => console.log('Delete user:', row.id),
+      onClick: () => {/* Handle delete user */},
       destructive: true,
     },
   ]
@@ -725,11 +725,11 @@ export default function UsersPage() {
       <BulkActionsBar
         selectedCount={selectedUsers.length}
         onDelete={() => {
-          console.log('Delete users:', selectedUsers.map((u) => u.id))
+          // Handle bulk delete users
           setSelectedUsers([])
         }}
         onExport={() => {
-          console.log('Export users:', selectedUsers.map((u) => u.id))
+          // Handle export users
         }}
         onClear={() => setSelectedUsers([])}
       />

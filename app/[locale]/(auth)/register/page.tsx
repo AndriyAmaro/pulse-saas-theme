@@ -64,14 +64,14 @@ export default function RegisterPage() {
 
   const onSubmit = async (data: RegisterFormData) => {
     setIsLoading(true)
-    console.log('Register data:', data)
+    // Handle registration submission
     await new Promise((resolve) => setTimeout(resolve, 2000))
     setIsLoading(false)
   }
 
   const handleSocialLogin = async (provider: string) => {
     setSocialLoading(provider)
-    console.log('Social login:', provider)
+    // Handle social login
     await new Promise((resolve) => setTimeout(resolve, 2000))
     setSocialLoading(null)
   }

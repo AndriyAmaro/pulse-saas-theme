@@ -68,7 +68,7 @@ export default function MaintenancePage() {
 
   const handleNotifySubmit = async (email: string) => {
     await new Promise(resolve => setTimeout(resolve, 1500))
-    console.log('Notify email:', email)
+    // Handle notification signup
     setNotifySubmitted(true)
   }
 

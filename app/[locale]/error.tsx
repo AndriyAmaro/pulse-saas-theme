@@ -35,7 +35,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
       setTimeout(() => setCopied(false), 2000)
     } catch {
       // Fallback for older browsers
-      console.error('Failed to copy error ID')
+      // Fallback: clipboard not available
     }
   }
 

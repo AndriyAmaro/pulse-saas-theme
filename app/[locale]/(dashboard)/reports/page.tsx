@@ -624,23 +624,23 @@ export default function ReportsPage() {
               {
                 label: 'View',
                 icon: <Eye className="h-4 w-4" />,
-                onClick: (row) => console.log('View', row.id),
+                onClick: () => {/* Handle view report */},
               },
               {
                 label: 'Download',
                 icon: <Download className="h-4 w-4" />,
-                onClick: (row) => console.log('Download', row.id),
+                onClick: () => {/* Handle download report */},
                 disabled: (row) => row.status !== 'completed',
               },
               {
                 label: 'Share',
                 icon: <Share2 className="h-4 w-4" />,
-                onClick: (row) => console.log('Share', row.id),
+                onClick: () => {/* Handle share report */},
               },
               {
                 label: 'Delete',
                 icon: <Trash2 className="h-4 w-4" />,
-                onClick: (row) => console.log('Delete', row.id),
+                onClick: () => {/* Handle delete report */},
                 destructive: true,
               },
             ]}

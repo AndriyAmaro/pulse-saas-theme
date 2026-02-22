@@ -27,7 +27,7 @@ export default function ComingSoonPage() {
   const handleEmailSubmit = async (email: string) => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500))
-    console.log('Email submitted:', email)
+    // Handle email notification signup
     setEmailSubmitted(true)
   }
 
