@@ -6,7 +6,7 @@
 
 ## ADR-001: Next.js App Router over Pages Router
 
-**Date:** 2024
+**Date:** 2025
 **Status:** Accepted
 
 ### Context
@@ -35,7 +35,7 @@ Use App Router exclusively.
 
 ## ADR-002: Atomic Design for Component Architecture
 
-**Date:** 2024
+**Date:** 2025/2026
 **Status:** Accepted
 
 ### Context
@@ -72,7 +72,7 @@ Adopt Atomic Design methodology with four tiers: `primitives` (atoms), `patterns
 
 ## ADR-003: Tailwind CSS 4 over CSS-in-JS
 
-**Date:** 2024
+**Date:** 2025
 **Status:** Accepted
 
 ### Context
@@ -125,7 +125,7 @@ const buttonVariants = cva('inline-flex items-center rounded-lg font-medium', {
 
 ## ADR-004: next-intl for Internationalization
 
-**Date:** 2024
+**Date:** 2025
 **Status:** Accepted
 
 ### Context
@@ -162,7 +162,7 @@ Use `next-intl` with App Router integration and pathname-based locale routing.
 
 ## ADR-005: Radix UI for Accessible Primitives
 
-**Date:** 2024
+**Date:** 2025
 **Status:** Accepted
 
 ### Context
@@ -191,7 +191,7 @@ Use Radix UI headless primitives as the foundation for interactive components (D
 
 ## ADR-006: SVG-Based Animations over JS Libraries
 
-**Date:** 2024
+**Date:** 2025
 **Status:** Accepted
 
 ### Context
@@ -243,7 +243,7 @@ Use pure CSS keyframes + SVG `stroke-dasharray` / `stroke-dashoffset` for all br
 
 ## ADR-007: Route Groups for Layout Isolation
 
-**Date:** 2024
+**Date:** 2025
 **Status:** Accepted
 
 ### Context
@@ -275,7 +275,7 @@ app/[locale]/
 
 ## ADR-008: Design Tokens Strategy
 
-**Date:** 2024
+**Date:** 2025
 **Status:** Accepted
 
 ### Context
@@ -308,7 +308,7 @@ CSS Custom Properties as the primary token layer, mapped to Tailwind CSS utiliti
 
 ## ADR-009: Recharts for Data Visualization
 
-**Date:** 2024
+**Date:** 2025
 **Status:** Accepted
 
 ### Context
