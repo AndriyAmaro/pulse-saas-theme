@@ -397,7 +397,7 @@ export function AbstractBackground({ className }: AbstractBackgroundProps) {
 
       {/* ── 4. PULSE ECG — Separate SVG for independent light mode opacity ── */}
       <svg
-        className="absolute inset-0 w-full h-full dark:opacity-100 opacity-90"
+        className="ab-pulse-svg absolute inset-0 w-full h-full dark:opacity-100 opacity-90"
         viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
         fill="none"
@@ -720,6 +720,14 @@ export function AbstractBackground({ className }: AbstractBackgroundProps) {
           stroke-dasharray: 2400; stroke-dashoffset: 2400;
           animation: ab-ecg-glow-mid 20s cubic-bezier(0.4, 0, 0.2, 1) infinite;
           animation-delay: 10s;
+        }
+
+        /* Mobile: smaller pulse animation */
+        @media (max-width: 768px) {
+          .ab-pulse-svg {
+            transform: scale(0.65);
+            transform-origin: center center;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
