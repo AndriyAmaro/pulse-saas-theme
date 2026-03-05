@@ -250,6 +250,6 @@ This project is licensed under a **Source Available License** — you can view, 
 
 <br />
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=6366f1&height=60&section=footer" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=14B8A6&height=60&section=footer" width="100%" />
 
 </div>
