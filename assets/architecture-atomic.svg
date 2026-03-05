@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" fill="none">
+
+  <!-- Background -->
+  <rect width="600" height="280" rx="12" fill="#0d1117" />
+
+  <!-- Title -->
+  <text x="300" y="30" text-anchor="middle" fill="#c7d2fe" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2">ATOMIC DESIGN HIERARCHY</text>
+
+  <!-- Flow: Tokens → Primitives → Patterns → Organisms → Layouts → Pages -->
+
+  <!-- Tokens -->
+  <rect x="20" y="60" width="80" height="50" rx="8" fill="#1a1a2e" stroke="#6366f1" stroke-width="1.5" />
+  <text x="60" y="82" text-anchor="middle" fill="#818cf8" font-family="Segoe UI, system-ui, sans-serif" font-size="10" font-weight="700">TOKENS</text>
+  <text x="60" y="98" text-anchor="middle" fill="#64748b" font-family="Segoe UI, system-ui, sans-serif" font-size="9">Colors, Fonts</text>
+
+  <!-- Arrow 1 -->
+  <path d="M100,85 L128,85" stroke="#6366f1" stroke-width="1.5" fill="none" />
+  <polygon fill="#6366f1" points="128,85 122,80 122,90" />
+
+  <!-- Primitives -->
+  <rect x="132" y="60" width="80" height="50" rx="8" fill="#1a1a2e" stroke="#6366f1" stroke-width="1.5" />
+  <text x="172" y="82" text-anchor="middle" fill="#818cf8" font-family="Segoe UI, system-ui, sans-serif" font-size="10" font-weight="700">PRIMITIVES</text>
+  <text x="172" y="98" text-anchor="middle" fill="#64748b" font-family="Segoe UI, system-ui, sans-serif" font-size="9">17 components</text>
+
+  <!-- Arrow 2 -->
+  <path d="M212,85 L240,85" stroke="#6366f1" stroke-width="1.5" fill="none" />
+  <polygon fill="#6366f1" points="240,85 234,80 234,90" />
+
+  <!-- Patterns -->
+  <rect x="244" y="60" width="80" height="50" rx="8" fill="#1a1a2e" stroke="#818cf8" stroke-width="1.5" />
+  <text x="284" y="82" text-anchor="middle" fill="#a5b4fc" font-family="Segoe UI, system-ui, sans-serif" font-size="10" font-weight="700">PATTERNS</text>
+  <text x="284" y="98" text-anchor="middle" fill="#64748b" font-family="Segoe UI, system-ui, sans-serif" font-size="9">71 components</text>
+
+  <!-- Arrow 3 -->
+  <path d="M324,85 L352,85" stroke="#818cf8" stroke-width="1.5" fill="none" />
+  <polygon fill="#818cf8" points="352,85 346,80 346,90" />
+
+  <!-- Organisms -->
+  <rect x="356" y="60" width="80" height="50" rx="8" fill="#1a1a2e" stroke="#a5b4fc" stroke-width="1.5" />
+  <text x="396" y="82" text-anchor="middle" fill="#c7d2fe" font-family="Segoe UI, system-ui, sans-serif" font-size="10" font-weight="700">ORGANISMS</text>
+  <text x="396" y="98" text-anchor="middle" fill="#64748b" font-family="Segoe UI, system-ui, sans-serif" font-size="9">9 components</text>
+
+  <!-- Arrow 4 -->
+  <path d="M436,85 L464,85" stroke="#a5b4fc" stroke-width="1.5" fill="none" />
+  <polygon fill="#a5b4fc" points="464,85 458,80 458,90" />
+
+  <!-- Layouts -->
+  <rect x="468" y="60" width="80" height="50" rx="8" fill="#1a1a2e" stroke="#06b6d4" stroke-width="1.5" />
+  <text x="508" y="82" text-anchor="middle" fill="#06b6d4" font-family="Segoe UI, system-ui, sans-serif" font-size="10" font-weight="700">LAYOUTS</text>
+  <text x="508" y="98" text-anchor="middle" fill="#64748b" font-family="Segoe UI, system-ui, sans-serif" font-size="9">7 components</text>
+
+  <!-- Arrow down from Layouts to Pages -->
+  <path d="M508,110 L508,130" stroke="#06b6d4" stroke-width="1.5" fill="none" />
+  <polygon fill="#06b6d4" points="508,130 503,124 513,124" />
+
+  <!-- Pages Box (large) -->
+  <rect x="30" y="135" width="540" height="56" rx="8" fill="#1a1a2e" stroke="#06b6d4" stroke-width="1.5" />
+  <text x="300" y="157" text-anchor="middle" fill="#06b6d4" font-family="Segoe UI, system-ui, sans-serif" font-size="12" font-weight="700">41 PAGES</text>
+  <text x="300" y="177" text-anchor="middle" fill="#64748b" font-family="Segoe UI, system-ui, sans-serif" font-size="10">Marketing (7) · Dashboard (28) · Auth (4) · Standalone (2)</text>
+
+  <!-- Ecosystem section -->
+  <path d="M300,191 L300,210" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,4" fill="none" />
+  <polygon fill="#22c55e" points="300,210 295,204 305,204" />
+
+  <!-- Ecosystem Box -->
+  <rect x="80" y="215" width="440" height="50" rx="8" fill="#1a1a2e" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,4" />
+  <text x="300" y="237" text-anchor="middle" fill="#22c55e" font-family="Segoe UI, system-ui, sans-serif" font-size="11" font-weight="700">POWERS THE PULSE ECOSYSTEM</text>
+  <text x="300" y="255" text-anchor="middle" fill="#64748b" font-family="Segoe UI, system-ui, sans-serif" font-size="10">Pulse Finance · Pulse Chat · Vexiat · AI · CRM · LMS</text>
+
+</svg>
