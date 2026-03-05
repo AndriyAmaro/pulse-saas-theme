@@ -45,16 +45,24 @@ Every component, every page, and every animation was designed and coded by hand 
 <div align="center">
   <img src="assets/screenshot-landing.png" alt="Pulse Landing Page" width="80%" />
   <br />
-  <sub>Landing page — Dark mode with custom ECG pulse animations</sub>
+  <sub>Landing Page — Dark mode with custom ECG pulse animations</sub>
 </div>
 
-<!-- Add more screenshots here as you take them:
+<br />
+
 <div align="center">
-  <img src="assets/screenshot-dashboard.png" alt="Dashboard" width="80%" />
+  <img src="assets/screenshot-dashboard.png" alt="Analytics Dashboard" width="80%" />
   <br />
-  <sub>Dashboard — Analytics overview with real-time charts</sub>
+  <sub>Analytics Dashboard — Traffic sources, browser stats & real-time visitors</sub>
 </div>
--->
+
+<br />
+
+<div align="center">
+  <img src="assets/screenshot-auth.png" alt="Authentication" width="80%" />
+  <br />
+  <sub>Authentication — Login with OAuth providers & branded sidebar</sub>
+</div>
 
 ---
 
