@@ -20,7 +20,6 @@
   .banner {
     width: 1280px;
     height: 640px;
-    background: #0a0a1a;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -29,52 +28,54 @@
     justify-content: center;
   }
 
-  /* Gradient orbs */
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-  }
-
-  .orb-1 {
-    width: 500px;
-    height: 500px;
-    background: #6366f1;
-    top: -200px;
-    right: -100px;
-    opacity: 0.25;
-  }
-
-  .orb-2 {
-    width: 400px;
-    height: 400px;
-    background: #06b6d4;
-    bottom: -150px;
-    left: -100px;
-    opacity: 0.2;
-  }
-
-  .orb-3 {
-    width: 300px;
-    height: 300px;
-    background: #14b8a6;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.1;
-  }
-
-  /* Grid pattern */
-  .grid-pattern {
+  /* ── Base ── */
+  .bg-base {
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background: linear-gradient(155deg, #0B0D2E 0%, #080A22 35%, #0A0C28 55%, #06081C 100%);
   }
 
-  /* Content */
+  /* ── Blobs ── */
+  .blob { position: absolute; }
+
+  .blob-main {
+    width: 65%;
+    height: 75%;
+    top: -20%;
+    left: -15%;
+    background: radial-gradient(ellipse 75% 65% at 55% 55%, rgba(20,184,154,0.28) 0%, rgba(13,148,136,0.15) 30%, rgba(6,95,85,0.06) 55%, transparent 75%);
+    filter: blur(45px);
+    border-radius: 42% 58% 65% 35% / 45% 55% 45% 55%;
+  }
+
+  .blob-dark {
+    width: 45%;
+    height: 50%;
+    top: 15%;
+    right: 8%;
+    background: radial-gradient(ellipse 65% 60% at 50% 50%, rgba(5,7,20,0.6) 0%, rgba(8,10,34,0.3) 45%, transparent 70%);
+    filter: blur(50px);
+    border-radius: 55% 45% 50% 50% / 50% 60% 40% 50%;
+  }
+
+  .blob-glow {
+    width: 50%;
+    height: 45%;
+    bottom: -15%;
+    right: -10%;
+    background: radial-gradient(ellipse 65% 55% at 40% 35%, rgba(20,184,154,0.22) 0%, rgba(6,182,212,0.12) 35%, rgba(94,234,212,0.05) 55%, transparent 75%);
+    filter: blur(55px);
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+  }
+
+  .bg-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Content ── */
   .content {
     position: relative;
     z-index: 10;
@@ -82,25 +83,38 @@
     color: #fff;
   }
 
+  /* ── Tech badges ── */
   .badge-row {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
 
   .badge {
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 5px 14px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 6px 16px;
     border-radius: 100px;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    background: rgba(0, 0, 0, 0.3);
-    color: rgba(199, 210, 254, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(6, 182, 212, 0.04));
+    color: #5eead4;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
+  .badge-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #2dd1b1;
+    box-shadow: 0 0 6px rgba(45, 209, 177, 0.5);
+  }
+
+  /* ── Pulse label ── */
   .pulse-label {
     display: inline-flex;
     align-items: center;
@@ -128,79 +142,94 @@
     letter-spacing: 2px;
   }
 
+  /* ── Title ── */
   .name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 58px;
+    font-size: 76px;
     font-weight: 900;
-    letter-spacing: 2px;
-    margin-bottom: 4px;
-    line-height: 1.1;
-    background: linear-gradient(135deg, #818cf8 0%, #6366f1 20%, #a5b4fc 40%, #14b8a6 60%, #06b6d4 80%, #818cf8 100%);
+    letter-spacing: 8px;
+    margin-bottom: 8px;
+    line-height: 1;
+    background: linear-gradient(135deg, #f0fdfa 0%, #99f6e4 20%, #5eead4 40%, #2dd1b1 60%, #14b8a6 80%, #5eead4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 20px rgba(99, 102, 241, 0.3));
+    filter: drop-shadow(0 0 30px rgba(20, 184, 166, 0.35)) drop-shadow(0 0 60px rgba(20, 184, 166, 0.15));
   }
 
+  /* ── Subtitle ── */
   .subtitle {
-    font-size: 18px;
-    font-weight: 500;
-    color: #94a3b8;
-    letter-spacing: 3px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
   }
 
+  /* ── Stats ── */
   .stats-row {
     display: flex;
-    gap: 40px;
+    gap: 16px;
     justify-content: center;
-    padding: 18px 36px;
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(99, 102, 241, 0.15);
-    margin-bottom: 28px;
+    margin-bottom: 36px;
   }
 
-  .stat {
+  .stat-card {
     text-align: center;
-    padding: 0 12px;
-  }
-
-  .stat + .stat {
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-    padding-left: 52px;
+    padding: 20px 32px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(6, 182, 212, 0.03));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(20, 184, 166, 0.15);
+    min-width: 140px;
   }
 
   .stat-value {
-    font-size: 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
     font-weight: 800;
-    background: linear-gradient(135deg, #818cf8, #14b8a6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #5eead4;
+    line-height: 1;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 8px rgba(94, 234, 212, 0.3));
   }
 
   .stat-label {
     font-size: 11px;
-    font-weight: 500;
-    color: #94a3b8;
+    font-weight: 600;
+    color: #cbd5e1;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: 2px;
+    letter-spacing: 2px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .footer-line {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.4), transparent);
   }
 
   .footer-text {
-    font-size: 13px;
-    color: #64748b;
-    letter-spacing: 1px;
-  }
-
-  .footer-text span {
-    color: #14b8a6;
+    font-size: 12px;
     font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
 
-  /* Corner decorations */
+  .footer-text strong {
+    color: #5eead4;
+    font-weight: 800;
+  }
+
+  /* ── Corners ── */
   .corner-tl, .corner-br {
     position: absolute;
     width: 60px;
@@ -218,29 +247,93 @@
   .corner-br {
     bottom: 20px;
     right: 20px;
-    border-bottom: 2px solid rgba(99, 102, 241, 0.3);
-    border-right: 2px solid rgba(99, 102, 241, 0.3);
+    border-bottom: 2px solid rgba(20, 184, 166, 0.3);
+    border-right: 2px solid rgba(20, 184, 166, 0.3);
   }
 </style>
 </head>
 <body>
 
 <div class="banner">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="grid-pattern"></div>
+  <div class="bg-base"></div>
+  <div class="blob blob-main"></div>
+  <div class="blob blob-dark"></div>
+  <div class="blob blob-glow"></div>
+
+  <svg class="bg-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+    <defs>
+      <linearGradient id="ab-green" x1="0%" y1="0%" x2="80%" y2="100%">
+        <stop offset="0%" stop-color="#0A5E53" />
+        <stop offset="45%" stop-color="#0D7768" />
+        <stop offset="100%" stop-color="#109580" stop-opacity="0.7" />
+      </linearGradient>
+      <linearGradient id="ab-blue" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#074A42" />
+        <stop offset="50%" stop-color="#0A5E53" />
+        <stop offset="100%" stop-color="#0D7768" stop-opacity="0.8" />
+      </linearGradient>
+      <linearGradient id="ab-teal-fade" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#5DE4C8" stop-opacity="0.45" />
+        <stop offset="50%" stop-color="#2DD1B1" stop-opacity="0.25" />
+        <stop offset="100%" stop-color="#14B89A" stop-opacity="0.06" />
+      </linearGradient>
+      <radialGradient id="ab-amber" cx="70%" cy="80%" r="60%">
+        <stop offset="0%" stop-color="#2DD1B1" stop-opacity="0.3" />
+        <stop offset="40%" stop-color="#14B89A" stop-opacity="0.2" />
+        <stop offset="100%" stop-color="#109580" stop-opacity="0.06" />
+      </radialGradient>
+      <radialGradient id="ab-coral" cx="80%" cy="90%" r="50%">
+        <stop offset="0%" stop-color="#9AF0DD" stop-opacity="0.3" />
+        <stop offset="50%" stop-color="#5DE4C8" stop-opacity="0.15" />
+        <stop offset="100%" stop-color="#2DD1B1" stop-opacity="0.05" />
+      </radialGradient>
+      <radialGradient id="ab-center-glow" cx="55%" cy="55%" r="40%">
+        <stop offset="0%" stop-color="#2DD1B1" stop-opacity="0.07" />
+        <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+      </radialGradient>
+      <filter id="ab-pulse-glow" x="-20%" y="-50%" width="140%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+        <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.36  0 0 0 0 0.89  0 0 0 0 0.78  0 0 0 0.6 0" result="glow" />
+        <feMerge><feMergeNode in="glow" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+      <linearGradient id="pulse-grad-mid" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#5DE4C8" stop-opacity="0" />
+        <stop offset="6%" stop-color="#5DE4C8" stop-opacity="0.7" />
+        <stop offset="50%" stop-color="#2DD1B1" stop-opacity="0.5" />
+        <stop offset="94%" stop-color="#14B89A" stop-opacity="0.6" />
+        <stop offset="100%" stop-color="#14B89A" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+
+    <!-- Arcs -->
+    <path d="M 0,0 L 0,900 L 990,900 C 900,700 840,500 855,333 C 870,167 930,50 840,0 Z" fill="url(#ab-green)" opacity="0.85" />
+    <path d="M 1440,0 L 795,0 C 690,133 675,300 705,467 C 735,667 810,800 885,900 L 960,900 C 885,767 840,617 818,467 C 795,283 810,133 900,0 Z" fill="url(#ab-blue)" opacity="0.75" />
+    <path d="M 900,0 L 1440,0 L 1440,900 L 960,900 C 885,767 840,617 818,467 C 795,283 810,133 900,0 Z" fill="url(#ab-blue)" opacity="0.75" />
+    <path d="M 855,0 C 735,167 720,367 750,567 C 780,767 855,867 930,900 L 1020,900 C 945,833 885,717 855,567 C 818,367 833,167 945,0 Z" fill="url(#ab-teal-fade)" />
+    <path d="M 570,900 L 1440,900 L 1440,383 C 1320,300 1170,300 1020,350 C 840,433 690,617 570,900 Z" fill="url(#ab-amber)" />
+    <path d="M 750,900 L 1440,900 L 1440,500 C 1350,433 1245,433 1140,475 C 1005,533 900,667 750,900 Z" fill="url(#ab-coral)" />
+    <rect width="1440" height="900" fill="url(#ab-center-glow)" />
+
+    <!-- Middle ECG only -->
+    <path d="M 180,435 L 228,435 L 258,435 L 276,435 L 286,428 L 296,442 L 303,435 L 341,435 L 371,435 L 382,418 L 393,458 L 404,400 L 415,453 L 426,426 L 437,435 L 485,435 L 523,435 L 553,435 L 563,428 L 573,442 L 580,435 L 618,435 L 653,435 L 665,420 L 677,456 L 689,404 L 701,450 L 713,428 L 725,435 L 773,435 L 821,435 L 870,435 L 918,435 L 948,435 L 958,428 L 968,442 L 975,435 L 1013,435 L 1043,435 L 1054,420 L 1065,456 L 1076,403 L 1087,451 L 1098,428 L 1109,435 L 1157,435 L 1205,435 L 1260,435"
+          stroke="url(#pulse-grad-mid)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.25" />
+    <path d="M 180,435 L 228,435 L 258,435 L 276,435 L 286,428 L 296,442 L 303,435 L 341,435 L 371,435 L 382,418 L 393,458 L 404,400 L 415,453 L 426,426 L 437,435 L 485,435 L 523,435 L 553,435 L 563,428 L 573,442 L 580,435 L 618,435 L 653,435 L 665,420 L 677,456 L 689,404 L 701,450 L 713,428 L 725,435 L 773,435 L 821,435 L 870,435 L 918,435 L 948,435 L 958,428 L 968,442 L 975,435 L 1013,435 L 1043,435 L 1054,420 L 1065,456 L 1076,403 L 1087,451 L 1098,428 L 1109,435 L 1157,435 L 1205,435 L 1260,435"
+          stroke="#2DD1B1" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#ab-pulse-glow)" opacity="0.08" />
+    <path d="M 180,442 L 228,442 L 258,442 L 276,442 L 286,436 L 296,448 L 303,442 L 341,442 L 371,442 L 382,426 L 393,462 L 404,409 L 415,457 L 426,433 L 437,442 L 485,442 L 523,442 L 553,442 L 563,436 L 573,448 L 580,442 L 618,442 L 653,442 L 665,428 L 677,460 L 689,412 L 701,455 L 713,434 L 725,442 L 773,442 L 821,442 L 870,442 L 918,442 L 948,442 L 958,436 L 968,448 L 975,442 L 1013,442 L 1043,442 L 1054,427 L 1065,460 L 1076,411 L 1087,456 L 1098,435 L 1109,442 L 1157,442 L 1205,442 L 1260,442"
+          stroke="#5DE4C8" stroke-width="0.4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.12" />
+  </svg>
 
   <div class="corner-tl"></div>
   <div class="corner-br"></div>
 
+  <!-- Tech badges with dots -->
   <div class="badge-row">
-    <span class="badge">Next.js 16</span>
-    <span class="badge">React 19</span>
-    <span class="badge">TypeScript 5</span>
-    <span class="badge">Tailwind 4</span>
-    <span class="badge">Radix UI</span>
-    <span class="badge">Atomic Design</span>
+    <span class="badge"><span class="badge-dot"></span>Next.js 16</span>
+    <span class="badge"><span class="badge-dot"></span>React 19</span>
+    <span class="badge"><span class="badge-dot"></span>TypeScript 5</span>
+    <span class="badge"><span class="badge-dot"></span>Tailwind 4</span>
+    <span class="badge"><span class="badge-dot"></span>Radix UI</span>
+    <span class="badge"><span class="badge-dot"></span>Atomic Design</span>
   </div>
 
   <div class="content">
@@ -249,29 +342,33 @@
       <span class="pulse-text">DESIGN SYSTEM</span>
     </div>
 
-    <div class="name">Pulse</div>
+    <div class="name">PULSE</div>
     <div class="subtitle">The Foundation of the Ecosystem</div>
 
     <div class="stats-row">
-      <div class="stat">
+      <div class="stat-card">
         <div class="stat-value">104+</div>
         <div class="stat-label">Components</div>
       </div>
-      <div class="stat">
+      <div class="stat-card">
         <div class="stat-value">41</div>
         <div class="stat-label">Pages</div>
       </div>
-      <div class="stat">
+      <div class="stat-card">
         <div class="stat-value">28</div>
         <div class="stat-label">Dashboards</div>
       </div>
-      <div class="stat">
+      <div class="stat-card">
         <div class="stat-value">3</div>
         <div class="stat-label">Languages</div>
       </div>
     </div>
 
-    <div class="footer-text">Built from scratch by <span>Andri Amaro</span> · Source Available License</div>
+    <div class="footer">
+      <div class="footer-line"></div>
+      <div class="footer-text">Handcrafted by <strong>Andri Amaro</strong></div>
+      <div class="footer-line"></div>
+    </div>
   </div>
 </div>
 
