@@ -1,4 +1,4 @@
-<!-- Hero Banner — Replace with your screenshot of banner-pulse.html -->
+<!-- Hero Banner -->
 <div align="center">
   <img src="assets/banner.png" alt="Pulse Design System" width="100%" />
 </div>
@@ -34,7 +34,7 @@
 
 ## Overview
 
-Pulse is a production-grade design system and SaaS platform with **104+ handcrafted components**, **41 pages**, and **full i18n support** in 3 languages. Built entirely from scratch using Atomic Design methodology — not forked from any template.
+Pulse is a production-grade design system and SaaS platform with **104+ handcrafted components**, **41 pages**, and **full i18n support** in 3 languages. Built entirely from scratch using Atomic Design methodology · not forked from any template.
 
 Every component, every page, and every animation was designed and coded by hand to serve as the unified foundation for an entire ecosystem of SaaS applications.
 
@@ -45,7 +45,7 @@ Every component, every page, and every animation was designed and coded by hand 
 <div align="center">
   <img src="assets/screenshot-landing.png" alt="Pulse Landing Page" width="80%" />
   <br />
-  <sub>Landing Page — Dark mode with custom ECG pulse animations</sub>
+  <sub>Landing Page · Dark mode with custom ECG pulse animations</sub>
 </div>
 
 <br />
@@ -53,7 +53,7 @@ Every component, every page, and every animation was designed and coded by hand 
 <div align="center">
   <img src="assets/screenshot-dashboard.png" alt="Analytics Dashboard" width="80%" />
   <br />
-  <sub>Analytics Dashboard — Traffic sources, browser stats & real-time visitors</sub>
+  <sub>Analytics Dashboard · Traffic sources, browser stats & real-time visitors</sub>
 </div>
 
 <br />
@@ -61,14 +61,14 @@ Every component, every page, and every animation was designed and coded by hand 
 <div align="center">
   <img src="assets/screenshot-auth.png" alt="Authentication" width="80%" />
   <br />
-  <sub>Authentication — Login with OAuth providers & branded sidebar</sub>
+  <sub>Authentication · Login with OAuth providers & branded sidebar</sub>
 </div>
 
 ---
 
 ## Why I Built This
 
-I wanted to prove that one design system could power **multiple production apps** — not just a portfolio piece, but a real foundation that scales. Every component is built to be reused across Finance dashboards, Chat interfaces, CRM pipelines, and beyond.
+I wanted to prove that one design system could power **multiple production apps** ·not just a portfolio piece, but a real foundation that scales. Every component is built to be reused across Finance dashboards, Chat interfaces, CRM pipelines, and beyond.
 
 The result: **3 apps already powered by Pulse**, with more in development.
 
@@ -156,20 +156,20 @@ Every industry vertical, one design system:
 
 ## Key Features
 
-- **104+ Components** — Built from scratch, not forked from any template
-- **Dark/Light Mode** — System-aware theme with smooth transitions
-- **3 Languages** — Portuguese, English, and Spanish with pathname-based routing
-- **28 Dashboard Variants** — Analytics, CRM, ecommerce, finance, healthcare, HR, and more
-- **Custom SVG Animations** — ECG heartbeat pulses using CSS keyframes (zero JS runtime cost)
-- **Accessible** — Radix UI primitives for keyboard navigation and screen readers
-- **Responsive** — Mobile-first design across all components and pages
-- **Performance** — Server Components by default, automatic code splitting, CSS purging
+- **104+ Components** ·Built from scratch, not forked from any template
+- **Dark/Light Mode** ·System-aware theme with smooth transitions
+- **3 Languages** ·Portuguese, English, and Spanish with pathname-based routing
+- **28 Dashboard Variants** ·Analytics, CRM, ecommerce, finance, healthcare, HR, and more
+- **Custom SVG Animations** ·ECG heartbeat pulses using CSS keyframes (zero JS runtime cost)
+- **Accessible** ·Radix UI primitives for keyboard navigation and screen readers
+- **Responsive** ·Mobile-first design across all components and pages
+- **Performance** ·Server Components by default, automatic code splitting, CSS purging
 
 ---
 
 ## What Powers the Ecosystem
 
-Pulse isn't just a standalone project — it's the foundation for multiple SaaS apps:
+Pulse isn't just a standalone project ·it's the foundation for multiple SaaS apps:
 
 <div align="center">
 
@@ -238,7 +238,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 ## License
 
-This project is licensed under a **Source Available License** — you can view, study, and learn from the code. Commercial use requires a separate license. See [LICENSE](LICENSE) for details.
+This project is licensed under a **Source Available License** ·you can view, study, and learn from the code. Commercial use requires a separate license. See [LICENSE](LICENSE) for details.
 
 ---
 
