@@ -301,6 +301,90 @@ const HeroSection = () => {
       {/* Soft gradient overlay for harmony */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
 
+      {/* Single ECG pulse line — centered */}
+      <svg
+        className="absolute inset-0 z-[1] w-full h-full pointer-events-none"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+      >
+        <defs>
+          <filter id="hero-ecg-glow" x="-20%" y="-50%" width="140%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {/* Glow layer */}
+          <path
+            className="hero-ecg-glow"
+            filter="url(#hero-ecg-glow)"
+            d="M 0,450 L 80,450 L 160,450 L 220,450 L 240,442 L 260,458 L 275,450 L 340,450 L 400,450 L 420,432 L 440,478 L 460,400 L 480,472 L 500,440 L 520,450 L 600,450 L 680,450 L 740,450 L 760,442 L 780,458 L 795,450 L 860,450 L 920,450 L 940,434 L 960,476 L 980,402 L 1000,470 L 1020,442 L 1040,450 L 1120,450 L 1200,450 L 1260,450 L 1280,442 L 1300,458 L 1315,450 L 1380,450 L 1440,450"
+            stroke="rgb(20, 184, 154)"
+            strokeWidth="4"
+          />
+          {/* Main line */}
+          <path
+            className="hero-ecg-main"
+            d="M 0,450 L 80,450 L 160,450 L 220,450 L 240,442 L 260,458 L 275,450 L 340,450 L 400,450 L 420,432 L 440,478 L 460,400 L 480,472 L 500,440 L 520,450 L 600,450 L 680,450 L 740,450 L 760,442 L 780,458 L 795,450 L 860,450 L 920,450 L 940,434 L 960,476 L 980,402 L 1000,470 L 1020,442 L 1040,450 L 1120,450 L 1200,450 L 1260,450 L 1280,442 L 1300,458 L 1315,450 L 1380,450 L 1440,450"
+            stroke="rgb(94, 234, 212)"
+            strokeWidth="1.2"
+          />
+          {/* Echo line */}
+          <path
+            className="hero-ecg-echo"
+            d="M 0,457 L 80,457 L 160,457 L 220,457 L 240,450 L 260,464 L 275,457 L 340,457 L 400,457 L 420,440 L 440,482 L 460,409 L 480,477 L 500,447 L 520,457 L 600,457 L 680,457 L 740,457 L 760,450 L 780,464 L 795,457 L 860,457 L 920,457 L 940,441 L 960,480 L 980,411 L 1000,475 L 1020,448 L 1040,457 L 1120,457 L 1200,457 L 1260,457 L 1280,450 L 1300,464 L 1315,457 L 1380,457 L 1440,457"
+            stroke="rgb(94, 234, 212)"
+            strokeWidth="0.4"
+          />
+        </g>
+      </svg>
+      <style>{`
+        @keyframes hero-ecg-draw {
+          0%   { stroke-dashoffset: 2800; opacity: 0; }
+          3%   { opacity: 0.22; }
+          35%  { stroke-dashoffset: 0; opacity: 0.18; }
+          40%  { stroke-dashoffset: 2800; opacity: 0.05; }
+          43%  { opacity: 0.22; }
+          75%  { stroke-dashoffset: 0; opacity: 0.16; }
+          85%  { stroke-dashoffset: 0; opacity: 0.04; }
+          95%  { stroke-dashoffset: 0; opacity: 0; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        @keyframes hero-ecg-glow-draw {
+          0%   { stroke-dashoffset: 2800; opacity: 0; }
+          3%   { opacity: 0.10; }
+          35%  { stroke-dashoffset: 0; opacity: 0.08; }
+          40%  { stroke-dashoffset: 2800; opacity: 0.02; }
+          43%  { opacity: 0.10; }
+          75%  { stroke-dashoffset: 0; opacity: 0.06; }
+          85%  { stroke-dashoffset: 0; opacity: 0.015; }
+          95%  { stroke-dashoffset: 0; opacity: 0; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        .hero-ecg-main {
+          stroke-dasharray: 2800; stroke-dashoffset: 2800;
+          animation: hero-ecg-draw 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        .hero-ecg-echo {
+          stroke-dasharray: 2800; stroke-dashoffset: 2800;
+          animation: hero-ecg-draw 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          animation-delay: 0.3s;
+        }
+        .hero-ecg-glow {
+          stroke-dasharray: 2800; stroke-dashoffset: 2800;
+          animation: hero-ecg-glow-draw 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-ecg-main, .hero-ecg-echo, .hero-ecg-glow {
+            animation: none !important;
+          }
+        }
+      `}</style>
+
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-14 lg:py-20">
         <div className="flex flex-col items-center text-center">
 
