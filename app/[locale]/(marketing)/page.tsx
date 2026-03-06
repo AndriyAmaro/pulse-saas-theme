@@ -14,7 +14,6 @@ import { FAQAccordion, type FAQItem } from '@core/patterns/FAQAccordion'
 import { ParticleNetwork } from '@core/patterns/ParticleNetwork'
 import { TestimonialGrid, type Testimonial } from '@core/patterns/TestimonialCard'
 import { HeroBackground } from '@core/patterns/HeroBackground'
-import { AbstractBackground } from '@core/patterns/AbstractBackground'
 import {
   Play,
   ArrowRight,
@@ -289,8 +288,18 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Abstract Background — dark with blobs, arcs, sphere, waves */}
-      <AbstractBackground className="absolute inset-0 z-0" />
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url(/fundo-blackground.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 z-0 bg-slate-900/40 dark:bg-slate-900/60" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-14 lg:py-20">
         <div className="flex flex-col items-center text-center">
