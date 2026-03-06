@@ -15,10 +15,10 @@ import { Menu, X, ChevronRight, Sparkles, ArrowRight } from 'lucide-react'
 // ============================================================================
 
 const socialLinks = [
-  { platform: 'twitter' as const, href: '#', label: 'Twitter' },
-  { platform: 'linkedin' as const, href: '#', label: 'LinkedIn' },
-  { platform: 'github' as const, href: '#', label: 'GitHub' },
-  { platform: 'youtube' as const, href: '#', label: 'YouTube' },
+  { platform: 'twitter' as const, href: 'https://x.com/paborrego', label: 'Twitter' },
+  { platform: 'linkedin' as const, href: 'https://www.linkedin.com/in/andri-amaro/', label: 'LinkedIn' },
+  { platform: 'github' as const, href: 'https://github.com/AndriyAmaro', label: 'GitHub' },
+  { platform: 'youtube' as const, href: 'https://youtube.com/@pulse-dev', label: 'YouTube' },
 ]
 
 // ============================================================================
@@ -320,9 +320,9 @@ export default function MarketingLayout({
       links: [
         { label: tf('product.features'), href: '/#features' },
         { label: tf('product.pricing'), href: '/#pricing' },
-        { label: tf('product.integrations'), href: '#' },
-        { label: tf('product.changelog'), href: '#' },
-        { label: tf('product.roadmap'), href: '#' },
+        { label: tf('product.integrations'), href: '/integrations' },
+        { label: tf('product.changelog'), href: '/changelog' },
+        { label: tf('product.roadmap'), href: '/roadmap' },
       ],
     },
     {
@@ -330,19 +330,19 @@ export default function MarketingLayout({
       links: [
         { label: tf('company.about'), href: '/about' },
         { label: tf('company.blog'), href: '/blog' },
-        { label: tf('company.careers'), href: '#' },
-        { label: tf('company.press'), href: '#' },
+        { label: tf('company.careers'), href: '/careers' },
+        { label: tf('company.press'), href: '/press' },
         { label: tf('company.contact'), href: '/contact' },
       ],
     },
     {
       title: tf('resources.title'),
       links: [
-        { label: tf('resources.documentation'), href: '#' },
-        { label: tf('resources.helpCenter'), href: '#' },
-        { label: tf('resources.community'), href: '#' },
-        { label: tf('resources.templates'), href: '#' },
-        { label: tf('resources.webinars'), href: '#' },
+        { label: tf('resources.documentation'), href: '/docs' },
+        { label: tf('resources.helpCenter'), href: '/help' },
+        { label: tf('resources.community'), href: '/community' },
+        { label: tf('resources.templates'), href: '/templates' },
+        { label: tf('resources.webinars'), href: '/webinars' },
       ],
     },
     {
@@ -350,9 +350,9 @@ export default function MarketingLayout({
       links: [
         { label: tf('legal.privacy'), href: '/privacy' },
         { label: tf('legal.terms'), href: '/terms' },
-        { label: tf('legal.cookies'), href: '#' },
-        { label: tf('legal.gdpr'), href: '#' },
-        { label: tf('legal.security'), href: '#' },
+        { label: tf('legal.cookies'), href: '/cookies' },
+        { label: tf('legal.gdpr'), href: '/gdpr' },
+        { label: tf('legal.security'), href: '/security' },
       ],
     },
   ]
@@ -374,7 +374,7 @@ export default function MarketingLayout({
         bottomLinks={[
           { label: tf('legal.privacy'), href: '/privacy' },
           { label: tf('legal.terms'), href: '/terms' },
-          { label: tf('legal.cookies'), href: '#' },
+          { label: tf('legal.cookies'), href: '/cookies' },
         ]}
         copyright={tf('copyright', { year: new Date().getFullYear() })}
         showBackToTop
