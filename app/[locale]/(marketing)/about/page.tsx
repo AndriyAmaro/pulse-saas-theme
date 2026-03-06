@@ -7,12 +7,7 @@ import { cn } from '@shared/utils/cn'
 import { Button } from '@core/primitives/Button'
 import {
   Sparkles,
-  Code2,
-  Layers,
-  Palette,
-  Globe,
   Puzzle,
-  Zap,
   BarChart3,
   Moon,
   Languages,
@@ -20,7 +15,6 @@ import {
   Rocket,
   Calendar,
   FileText,
-  Github,
   Mail,
   Users,
   TrendingUp,
@@ -28,7 +22,66 @@ import {
   MessageSquare,
   Settings,
   LayoutDashboard,
+  Zap,
+  Globe,
 } from 'lucide-react'
+
+// ============================================================================
+// REAL TECHNOLOGY LOGOS (inline SVG components)
+// ============================================================================
+
+const ReactLogo = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="2.2" fill="#61DAFB"/>
+    <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1" fill="none"/>
+    <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1" fill="none" transform="rotate(60 12 12)"/>
+    <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1" fill="none" transform="rotate(120 12 12)"/>
+  </svg>
+)
+
+const NextJSLogo = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.572 0c-.176.001-.215.227-.007.306l9.535 7.18c.148.113.014.344-.18.276L11.572 0zm-1.68.436c-5.156.57-9.262 4.82-9.787 10.004-.538 5.305 2.768 10.083 7.724 11.567l7.076-10.19-.001-.001L8.91 2.403c-.109-.095-.002-.303.128-.245l6.56 2.943-5.705 8.262v.001l5.97 8.61c4.87-1.7 8.137-6.47 7.587-11.777C22.911 5.028 17.766.846 12.262.09c-.228-.03-.255-.1-.37.346z"/>
+  </svg>
+)
+
+const TypeScriptLogo = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none">
+    <rect width="24" height="24" rx="3" fill="#3178C6"/>
+    <path d="M5.5 12.5h3v7.5h2v-7.5h3v-1.7H5.5v1.7z" fill="white"/>
+    <path d="M15.5 19.8c.4.2.9.3 1.4.4.5.1 1 .1 1.5.1.5 0 1 0 1.4-.1.5-.1.9-.3 1.2-.5.4-.2.6-.5.8-.9.2-.4.3-.8.3-1.3 0-.4-.1-.7-.2-1-.1-.3-.3-.5-.6-.7-.2-.2-.5-.4-.8-.5-.3-.1-.7-.3-1.1-.4-.3-.1-.5-.2-.7-.3-.2-.1-.3-.2-.5-.3-.1-.1-.2-.2-.3-.3 0-.1-.1-.2-.1-.4 0-.1 0-.3.1-.4.1-.1.2-.2.3-.3.1-.1.3-.1.5-.2h.7c.2 0 .4 0 .6.1.2.1.4.1.6.2.2.1.4.2.5.3v-1.7c-.3-.1-.7-.2-1.1-.3-.4-.1-.9-.1-1.3-.1-.5 0-.9.1-1.4.2-.4.1-.8.3-1.1.5-.3.2-.6.5-.8.9-.2.3-.3.8-.3 1.3 0 .6.2 1.2.5 1.6.4.4.9.8 1.7 1.1.3.1.5.2.8.3.2.1.4.2.5.3.2.1.3.2.3.3.1.1.1.3.1.4 0 .1 0 .3-.1.4-.1.1-.2.2-.3.3-.1.1-.3.1-.5.2-.2 0-.4.1-.7.1-.4 0-.8-.1-1.2-.2-.4-.2-.8-.4-1.1-.7v1.8z" fill="white"/>
+  </svg>
+)
+
+const TailwindLogo = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none">
+    <path d="M12 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.9 1.35C13.33 10.79 14.44 12 17 12c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.9-1.35C15.67 7.21 14.56 6 12 6zM7 12c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.9 1.35C8.33 16.79 9.44 18 12 18c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.9-1.35C10.67 13.21 9.56 12 7 12z" fill="#06B6D4"/>
+  </svg>
+)
+
+const CVALogo = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none">
+    <rect x="2" y="2" width="20" height="20" rx="4" fill="#A855F7"/>
+    <path d="M7 8.5h3v7H7v-7zm4 0h3v7h-3v-7zm4 0h3v7h-3v-7z" fill="white" opacity="0.9"/>
+    <path d="M7 8.5h10v2H7v-2z" fill="white"/>
+  </svg>
+)
+
+const NextIntlLogo = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="10" stroke="#10B981" strokeWidth="1.5" fill="none"/>
+    <ellipse cx="12" cy="12" rx="4" ry="10" stroke="#10B981" strokeWidth="1.5" fill="none"/>
+    <line x1="2" y1="9" x2="22" y2="9" stroke="#10B981" strokeWidth="1"/>
+    <line x1="2" y1="15" x2="22" y2="15" stroke="#10B981" strokeWidth="1"/>
+    <line x1="12" y1="2" x2="12" y2="22" stroke="#10B981" strokeWidth="1"/>
+  </svg>
+)
+
+const GitHubLogo = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+  </svg>
+)
 
 // ============================================================================
 // SCROLL REVEAL HOOK
@@ -287,12 +340,12 @@ const HeroSection = () => {
   const t = useTranslations('about')
 
   const floatingBadges = [
-    { icon: Code2, label: 'React 19', color: 'text-blue-500', pos: '-top-4 -left-4 md:-top-6 md:-left-10', delay: '0s' },
-    { icon: Layers, label: 'Next.js 16', color: 'text-slate-700 dark:text-slate-300', pos: '-top-4 -right-4 md:-top-6 md:-right-10', delay: '1s' },
-    { icon: Zap, label: 'TypeScript', color: 'text-blue-600', pos: 'top-1/4 -left-6 md:-left-16', delay: '0.5s' },
-    { icon: Palette, label: 'Tailwind v4', color: 'text-cyan-500', pos: 'top-1/4 -right-6 md:-right-16', delay: '1.5s' },
+    { icon: ReactLogo, label: 'React 19', color: '', pos: '-top-4 -left-4 md:-top-6 md:-left-10', delay: '0s' },
+    { icon: NextJSLogo, label: 'Next.js 16', color: 'text-slate-700 dark:text-slate-300', pos: '-top-4 -right-4 md:-top-6 md:-right-10', delay: '1s' },
+    { icon: TypeScriptLogo, label: 'TypeScript', color: '', pos: 'top-1/4 -left-6 md:-left-16', delay: '0.5s' },
+    { icon: TailwindLogo, label: 'Tailwind v4', color: '', pos: 'top-1/4 -right-6 md:-right-16', delay: '1.5s' },
     { icon: Moon, label: 'Dark Mode', color: 'text-violet-500', pos: 'bottom-12 -left-4 md:-left-12', delay: '2s' },
-    { icon: Globe, label: 'i18n', color: 'text-emerald-500', pos: 'bottom-12 -right-4 md:-right-12', delay: '0.8s' },
+    { icon: NextIntlLogo, label: 'i18n', color: '', pos: 'bottom-12 -right-4 md:-right-12', delay: '0.8s' },
   ]
 
   return (
@@ -477,7 +530,7 @@ const TechStackSection = () => {
 
   const techs = [
     {
-      icon: Code2,
+      icon: ReactLogo,
       titleKey: 'tech.react.title' as const,
       descriptionKey: 'tech.react.description' as const,
       version: 'v19',
@@ -486,13 +539,12 @@ const TechStackSection = () => {
       gradient: 'from-blue-500 to-blue-600',
       gradientBorder: 'from-blue-400/60 via-blue-500/20 to-blue-400/60',
       iconBg: 'bg-blue-500/10 dark:bg-blue-500/15',
-      iconColor: 'text-blue-500',
       glowColor: 'group-hover:shadow-blue-500/20 dark:group-hover:shadow-blue-500/15',
       dotColor: 'bg-blue-500',
       tagBg: 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400',
     },
     {
-      icon: Layers,
+      icon: NextJSLogo,
       titleKey: 'tech.nextjs.title' as const,
       descriptionKey: 'tech.nextjs.description' as const,
       version: 'v16',
@@ -501,13 +553,12 @@ const TechStackSection = () => {
       gradient: 'from-indigo-500 to-indigo-600',
       gradientBorder: 'from-indigo-400/60 via-indigo-500/20 to-indigo-400/60',
       iconBg: 'bg-indigo-500/10 dark:bg-indigo-500/15',
-      iconColor: 'text-indigo-500',
       glowColor: 'group-hover:shadow-indigo-500/20 dark:group-hover:shadow-indigo-500/15',
       dotColor: 'bg-indigo-500',
       tagBg: 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
     },
     {
-      icon: Zap,
+      icon: TypeScriptLogo,
       titleKey: 'tech.typescript.title' as const,
       descriptionKey: 'tech.typescript.description' as const,
       version: 'v5.7',
@@ -516,13 +567,12 @@ const TechStackSection = () => {
       gradient: 'from-blue-600 to-blue-700',
       gradientBorder: 'from-blue-500/60 via-blue-600/20 to-blue-500/60',
       iconBg: 'bg-blue-600/10 dark:bg-blue-600/15',
-      iconColor: 'text-blue-600',
       glowColor: 'group-hover:shadow-blue-600/20 dark:group-hover:shadow-blue-600/15',
       dotColor: 'bg-blue-600',
       tagBg: 'bg-blue-50 dark:bg-blue-600/10 text-blue-700 dark:text-blue-400',
     },
     {
-      icon: Palette,
+      icon: TailwindLogo,
       titleKey: 'tech.tailwind.title' as const,
       descriptionKey: 'tech.tailwind.description' as const,
       version: 'v4',
@@ -531,13 +581,12 @@ const TechStackSection = () => {
       gradient: 'from-cyan-500 to-cyan-600',
       gradientBorder: 'from-cyan-400/60 via-cyan-500/20 to-cyan-400/60',
       iconBg: 'bg-cyan-500/10 dark:bg-cyan-500/15',
-      iconColor: 'text-cyan-500',
       glowColor: 'group-hover:shadow-cyan-500/20 dark:group-hover:shadow-cyan-500/15',
       dotColor: 'bg-cyan-500',
       tagBg: 'bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',
     },
     {
-      icon: Puzzle,
+      icon: CVALogo,
       titleKey: 'tech.cva.title' as const,
       descriptionKey: 'tech.cva.description' as const,
       version: 'v1',
@@ -546,13 +595,12 @@ const TechStackSection = () => {
       gradient: 'from-purple-500 to-purple-600',
       gradientBorder: 'from-purple-400/60 via-purple-500/20 to-purple-400/60',
       iconBg: 'bg-purple-500/10 dark:bg-purple-500/15',
-      iconColor: 'text-purple-500',
       glowColor: 'group-hover:shadow-purple-500/20 dark:group-hover:shadow-purple-500/15',
       dotColor: 'bg-purple-500',
       tagBg: 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400',
     },
     {
-      icon: Globe,
+      icon: NextIntlLogo,
       titleKey: 'tech.intl.title' as const,
       descriptionKey: 'tech.intl.description' as const,
       version: 'v4.8',
@@ -561,7 +609,6 @@ const TechStackSection = () => {
       gradient: 'from-emerald-500 to-emerald-600',
       gradientBorder: 'from-emerald-400/60 via-emerald-500/20 to-emerald-400/60',
       iconBg: 'bg-emerald-500/10 dark:bg-emerald-500/15',
-      iconColor: 'text-emerald-500',
       glowColor: 'group-hover:shadow-emerald-500/20 dark:group-hover:shadow-emerald-500/15',
       dotColor: 'bg-emerald-500',
       tagBg: 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
@@ -617,7 +664,7 @@ const TechStackSection = () => {
                           'ring-1 ring-inset ring-black/5 dark:ring-white/5',
                           tech.iconBg,
                         )}>
-                          <tech.icon className={cn('h-6 w-6', tech.iconColor)} />
+                          <tech.icon className="h-6 w-6" />
                         </div>
                         <span className={cn(
                           'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase',
@@ -921,7 +968,7 @@ const CtaSection = () => {
                     size="lg"
                     className="bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-8 animate-glow-pulse"
                   >
-                    <Github className="h-4 w-4" />
+                    <GitHubLogo className="h-4 w-4" />
                     {t('cta.github')}
                   </Button>
                 </a>
