@@ -248,8 +248,11 @@ export default function CookiesPage() {
                 <Shield className="h-5 w-5 text-primary-500" />
               </div>
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
-                  Politica de Cookies
+                <h1 className="text-3xl md:text-4xl font-bold">
+                  <span className="text-slate-900 dark:text-white">Politica de </span>
+                  <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+                    Cookies
+                  </span>
                 </h1>
               </div>
             </div>

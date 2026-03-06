@@ -266,7 +266,7 @@ export default function SecurityPage() {
               </div>
               <h1 className="scroll-reveal text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
                 Seguridad de Nivel{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-emerald-500">Empresarial</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400">Empresarial</span>
               </h1>
               <p className="scroll-reveal text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-8">
                 Protegemos sus datos con los mas altos estandares de seguridad de la industria. Cifrado de extremo a extremo, monitoreo continuo y cumplimiento normativo completo.

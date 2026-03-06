@@ -409,8 +409,11 @@ const HeroSection = () => {
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-          Hoja de Ruta
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          <span className="text-slate-900 dark:text-white">Hoja de </span>
+          <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+            Ruta
+          </span>
         </h1>
 
         {/* Subtitle */}

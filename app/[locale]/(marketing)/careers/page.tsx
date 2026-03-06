@@ -151,7 +151,7 @@ const HeroSection = () => {
         {/* Title */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
           Unete al Equipo{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-primary-700 dark:from-primary-400 dark:to-primary-600">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400">
             Pulse
           </span>
         </h1>

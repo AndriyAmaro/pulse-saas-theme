@@ -458,23 +458,23 @@ const NewsletterSection = () => {
     <RevealSection>
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="scroll-reveal-scale relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 p-10 md:p-16 text-center">
+          <div className="scroll-reveal-scale relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 p-10 md:p-16 text-center noise-overlay">
             <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }} />
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent-500/10 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent-400/20 rounded-full blur-3xl" />
             <div className="relative">
-              <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-primary-500/20 mb-6">
-                <Mail className="h-6 w-6 text-primary-400" />
+              <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-white/20 mb-6">
+                <Mail className="h-6 w-6 text-white" />
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 {t('newsletter.title')}
               </h2>
-              <p className="text-slate-400 max-w-md mx-auto mb-8">
+              <p className="text-primary-100 max-w-md mx-auto mb-8">
                 {t('newsletter.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
-                <Input placeholder={t('newsletter.placeholder')} className="bg-white/10 border-white/10 text-white placeholder:text-slate-400 focus:border-primary-500" />
-                <Button className="w-full sm:w-auto gap-2 px-6 bg-primary-500 hover:bg-primary-600 shrink-0">
+                <Input placeholder={t('newsletter.placeholder')} className="bg-white/10 border-white/10 text-white placeholder:text-white/50 focus:border-white/30" />
+                <Button className="w-full sm:w-auto gap-2 px-6 bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 shrink-0">
                   {t('newsletter.subscribe')}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
