@@ -288,22 +288,19 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background Image — subtle, blended */}
+      {/* Background Image — subtle, blended, no zoom on mobile */}
       <div
-        className="absolute inset-0 z-0 opacity-30 dark:opacity-40"
+        className="absolute inset-0 z-0 opacity-30 dark:opacity-40 bg-no-repeat bg-[length:100%_100%] md:bg-cover md:bg-center"
         style={{
           backgroundImage: 'url(/fundo-blackground.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
         }}
       />
       {/* Soft gradient overlay for harmony */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
 
-      {/* Single ECG pulse line — centered */}
+      {/* ECG pulse line — Desktop (3 beats, wide) */}
       <svg
-        className="absolute inset-0 z-[1] w-full h-full pointer-events-none"
+        className="absolute inset-0 z-[1] w-full h-full pointer-events-none hidden md:block"
         viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
         fill="none"
@@ -318,30 +315,47 @@ const HeroSection = () => {
           </filter>
         </defs>
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-          {/* Glow layer */}
-          <path
-            className="hero-ecg-glow"
-            filter="url(#hero-ecg-glow)"
+          <path className="hero-ecg-glow" filter="url(#hero-ecg-glow)"
             d="M 0,380 L 80,380 L 160,380 L 220,380 L 240,372 L 260,388 L 275,380 L 340,380 L 400,380 L 420,362 L 440,408 L 460,330 L 480,402 L 500,370 L 520,380 L 600,380 L 680,380 L 740,380 L 760,372 L 780,388 L 795,380 L 860,380 L 920,380 L 940,364 L 960,406 L 980,332 L 1000,400 L 1020,372 L 1040,380 L 1120,380 L 1200,380 L 1260,380 L 1280,372 L 1300,388 L 1315,380 L 1380,380 L 1440,380"
-            stroke="rgb(20, 184, 154)"
-            strokeWidth="4"
-          />
-          {/* Main line */}
-          <path
-            className="hero-ecg-main"
+            stroke="rgb(20, 184, 154)" strokeWidth="4" />
+          <path className="hero-ecg-main"
             d="M 0,380 L 80,380 L 160,380 L 220,380 L 240,372 L 260,388 L 275,380 L 340,380 L 400,380 L 420,362 L 440,408 L 460,330 L 480,402 L 500,370 L 520,380 L 600,380 L 680,380 L 740,380 L 760,372 L 780,388 L 795,380 L 860,380 L 920,380 L 940,364 L 960,406 L 980,332 L 1000,400 L 1020,372 L 1040,380 L 1120,380 L 1200,380 L 1260,380 L 1280,372 L 1300,388 L 1315,380 L 1380,380 L 1440,380"
-            stroke="rgb(94, 234, 212)"
-            strokeWidth="1.2"
-          />
-          {/* Echo line */}
-          <path
-            className="hero-ecg-echo"
+            stroke="rgb(94, 234, 212)" strokeWidth="1.2" />
+          <path className="hero-ecg-echo"
             d="M 0,387 L 80,387 L 160,387 L 220,387 L 240,380 L 260,394 L 275,387 L 340,387 L 400,387 L 420,370 L 440,412 L 460,339 L 480,407 L 500,377 L 520,387 L 600,387 L 680,387 L 740,387 L 760,380 L 780,394 L 795,387 L 860,387 L 920,387 L 940,371 L 960,410 L 980,341 L 1000,405 L 1020,378 L 1040,387 L 1120,387 L 1200,387 L 1260,387 L 1280,380 L 1300,394 L 1315,387 L 1380,387 L 1440,387"
-            stroke="rgb(94, 234, 212)"
-            strokeWidth="0.4"
-          />
+            stroke="rgb(94, 234, 212)" strokeWidth="0.4" />
         </g>
       </svg>
+
+      {/* ECG pulse line — Mobile (1 beat, compact, at title height) */}
+      <svg
+        className="absolute inset-0 z-[1] w-full h-full pointer-events-none md:hidden"
+        viewBox="0 0 400 700"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+      >
+        <defs>
+          <filter id="hero-ecg-glow-m" x="-20%" y="-50%" width="140%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="hero-ecg-glow-mobile" filter="url(#hero-ecg-glow-m)"
+            d="M 0,290 L 40,290 L 80,290 L 110,290 L 120,284 L 130,296 L 138,290 L 170,290 L 200,290 L 212,276 L 224,310 L 236,258 L 248,306 L 260,282 L 272,290 L 310,290 L 350,290 L 400,290"
+            stroke="rgb(20, 184, 154)" strokeWidth="3" />
+          <path className="hero-ecg-main-mobile"
+            d="M 0,290 L 40,290 L 80,290 L 110,290 L 120,284 L 130,296 L 138,290 L 170,290 L 200,290 L 212,276 L 224,310 L 236,258 L 248,306 L 260,282 L 272,290 L 310,290 L 350,290 L 400,290"
+            stroke="rgb(94, 234, 212)" strokeWidth="1" />
+          <path className="hero-ecg-echo-mobile"
+            d="M 0,295 L 40,295 L 80,295 L 110,295 L 120,290 L 130,300 L 138,295 L 170,295 L 200,295 L 212,282 L 224,314 L 236,264 L 248,310 L 260,287 L 272,295 L 310,295 L 350,295 L 400,295"
+            stroke="rgb(94, 234, 212)" strokeWidth="0.3" />
+        </g>
+      </svg>
+
       <style>{`
         @keyframes hero-ecg-draw {
           0%   { stroke-dashoffset: 2800; opacity: 0; }
@@ -365,6 +379,29 @@ const HeroSection = () => {
           95%  { stroke-dashoffset: 0; opacity: 0; }
           100% { stroke-dashoffset: 0; opacity: 0; }
         }
+        @keyframes hero-ecg-draw-mobile {
+          0%   { stroke-dashoffset: 800; opacity: 0; }
+          5%   { opacity: 0.22; }
+          35%  { stroke-dashoffset: 0; opacity: 0.18; }
+          42%  { stroke-dashoffset: 800; opacity: 0.05; }
+          45%  { opacity: 0.22; }
+          75%  { stroke-dashoffset: 0; opacity: 0.16; }
+          85%  { stroke-dashoffset: 0; opacity: 0.04; }
+          95%  { stroke-dashoffset: 0; opacity: 0; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        @keyframes hero-ecg-glow-draw-mobile {
+          0%   { stroke-dashoffset: 800; opacity: 0; }
+          5%   { opacity: 0.10; }
+          35%  { stroke-dashoffset: 0; opacity: 0.08; }
+          42%  { stroke-dashoffset: 800; opacity: 0.02; }
+          45%  { opacity: 0.10; }
+          75%  { stroke-dashoffset: 0; opacity: 0.06; }
+          85%  { stroke-dashoffset: 0; opacity: 0.015; }
+          95%  { stroke-dashoffset: 0; opacity: 0; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        /* Desktop */
         .hero-ecg-main {
           stroke-dasharray: 2800; stroke-dashoffset: 2800;
           animation: hero-ecg-draw 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
@@ -378,8 +415,23 @@ const HeroSection = () => {
           stroke-dasharray: 2800; stroke-dashoffset: 2800;
           animation: hero-ecg-glow-draw 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
+        /* Mobile */
+        .hero-ecg-main-mobile {
+          stroke-dasharray: 800; stroke-dashoffset: 800;
+          animation: hero-ecg-draw-mobile 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        .hero-ecg-echo-mobile {
+          stroke-dasharray: 800; stroke-dashoffset: 800;
+          animation: hero-ecg-draw-mobile 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          animation-delay: 0.3s;
+        }
+        .hero-ecg-glow-mobile {
+          stroke-dasharray: 800; stroke-dashoffset: 800;
+          animation: hero-ecg-glow-draw-mobile 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
         @media (prefers-reduced-motion: reduce) {
-          .hero-ecg-main, .hero-ecg-echo, .hero-ecg-glow {
+          .hero-ecg-main, .hero-ecg-echo, .hero-ecg-glow,
+          .hero-ecg-main-mobile, .hero-ecg-echo-mobile, .hero-ecg-glow-mobile {
             animation: none !important;
           }
         }
