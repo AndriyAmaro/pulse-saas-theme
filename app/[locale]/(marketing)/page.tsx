@@ -1623,7 +1623,7 @@ const StatsSection = () => {
   <RevealSection>
     <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden">
       {/* Dark gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700" />
 
       {/* Dot pattern */}
       <div className="absolute inset-0 opacity-20" style={{
@@ -2015,7 +2015,7 @@ const FinalCTASection = () => {
   <RevealSection>
     <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
       {/* Vibrant gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500 animate-bg-gradient" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700" />
 
       {/* Dot pattern */}
       <div className="absolute inset-0 opacity-20" style={{

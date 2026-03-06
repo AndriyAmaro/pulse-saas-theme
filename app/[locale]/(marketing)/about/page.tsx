@@ -378,7 +378,10 @@ const HeroSection = () => {
 
         {/* Title */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-          {t('hero.title')}
+          {t('hero.title').split(' ').slice(0, -1).join(' ')}{' '}
+          <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+            {t('hero.title').split(' ').slice(-1)}
+          </span>
         </h1>
 
         {/* Subtitle */}
@@ -872,7 +875,7 @@ const StatsSection = () => {
 
   return (
     <section ref={sectionRef} className="relative py-20 md:py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700" />
       <div
         className="absolute inset-0 opacity-[0.05]"
         style={{
@@ -881,8 +884,8 @@ const StatsSection = () => {
         }}
       />
       {/* Orbs */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-orb-slow" />
-      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-accent-500/10 rounded-full blur-3xl animate-orb" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-orb-slow" />
+      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-accent-400/20 rounded-full blur-3xl animate-orb" />
       {/* Light particles on dark bg */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particleData.map((p, i) => (
@@ -907,7 +910,7 @@ const StatsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {t('stats.title')}
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-primary-100 max-w-2xl mx-auto">
             {t('stats.subtitle')}
           </p>
         </div>

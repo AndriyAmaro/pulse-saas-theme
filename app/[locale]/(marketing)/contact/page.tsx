@@ -149,7 +149,10 @@ const HeroSection = () => {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-          {t('hero.title')}
+          {t('hero.title').split(' ').slice(0, -1).join(' ')}{' '}
+          <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+            {t('hero.title').split(' ').slice(-1)}
+          </span>
         </h1>
 
         <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
