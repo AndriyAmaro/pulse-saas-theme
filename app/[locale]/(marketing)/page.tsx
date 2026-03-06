@@ -288,9 +288,9 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background Image */}
+      {/* Background Image — subtle, blended */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 opacity-30 dark:opacity-50"
         style={{
           backgroundImage: 'url(/fundo-blackground.png)',
           backgroundSize: 'cover',
@@ -298,8 +298,8 @@ const HeroSection = () => {
           backgroundRepeat: 'no-repeat',
         }}
       />
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 z-0 bg-slate-900/40 dark:bg-slate-900/60" />
+      {/* Soft gradient overlay for harmony */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-14 lg:py-20">
         <div className="flex flex-col items-center text-center">
