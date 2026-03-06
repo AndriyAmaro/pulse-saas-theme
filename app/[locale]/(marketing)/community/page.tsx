@@ -18,6 +18,8 @@ import {
   Send,
   TrendingUp,
   ExternalLink,
+  Github,
+  MessageCircle,
 } from 'lucide-react'
 
 // ============================================================================
