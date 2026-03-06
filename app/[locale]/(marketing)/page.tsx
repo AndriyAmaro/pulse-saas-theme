@@ -290,7 +290,7 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
       {/* Background Image — subtle, blended, no zoom on mobile */}
       <div
-        className="absolute inset-0 z-0 opacity-30 dark:opacity-40 bg-no-repeat bg-[length:100%_100%] md:bg-cover md:bg-center"
+        className="absolute -inset-x-16 inset-y-0 z-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40"
         style={{
           backgroundImage: 'url(/fundo-blackground.png)',
         }}
