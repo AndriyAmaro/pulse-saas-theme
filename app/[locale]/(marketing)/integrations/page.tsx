@@ -687,11 +687,30 @@ const CTASection = () => {
 
 export default function IntegrationsPage() {
   return (
-    <>
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Full-page background gradient */}
+      <div className="fixed inset-0 -z-20 bg-white dark:bg-slate-950" />
+      <div className="fixed inset-0 -z-10">
+        {/* Top-left warm glow */}
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-primary-400/8 dark:bg-primary-500/5 rounded-full blur-3xl" />
+        {/* Center radial glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-br from-blue-400/5 via-primary-400/5 to-accent-400/5 dark:from-blue-500/[0.03] dark:via-primary-500/[0.03] dark:to-accent-500/[0.03] rounded-full blur-3xl" />
+        {/* Bottom-right accent glow */}
+        <div className="absolute -bottom-40 -right-40 w-[700px] h-[700px] bg-accent-400/6 dark:bg-accent-500/[0.03] rounded-full blur-3xl" />
+        {/* Subtle mesh overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 0.5px, transparent 0)',
+            backgroundSize: '48px 48px',
+          }}
+        />
+      </div>
+
       <HeroSection />
       <IntegrationsGridSection />
       <HowItWorksSection />
       <CTASection />
-    </>
+    </div>
   )
 }
