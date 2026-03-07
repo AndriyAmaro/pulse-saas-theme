@@ -1269,25 +1269,9 @@ const FeatureVisual = ({ type }: { type: string }) => {
           )
           return (
             <>
-              {/* Mobile: infinite marquee */}
-              <div className="sm:hidden overflow-hidden">
-                <div className="flex animate-[marquee-analytics_18s_linear_infinite] gap-3 w-max">
-                  {[...metrics, ...metrics].map((m, i) => (
-                    <div key={i} className="w-[100px] shrink-0">
-                      <MetricCard m={m} />
-                    </div>
-                  ))}
-                </div>
-                <style>{`
-                  @keyframes marquee-analytics {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
-                  }
-                `}</style>
-              </div>
-              {/* Desktop: grid */}
-              <div className="hidden sm:grid grid-cols-3 gap-3">
-                {metrics.slice(0, 3).map((m, i) => (
+              {/* Mobile: 2-col grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                {metrics.slice(0, 6).map((m, i) => (
                   <MetricCard key={i} m={m} />
                 ))}
               </div>
