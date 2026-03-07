@@ -569,10 +569,34 @@ const IntegrationCard = ({ integration, delay }: { integration: Integration; del
 
 const IntegrationsGridSection = () => {
   const [activeCategory, setActiveCategory] = React.useState<Category>('Todos')
+  const gridRef = React.useRef<HTMLDivElement>(null)
 
   const filteredIntegrations = activeCategory === 'Todos'
     ? integrations
     : integrations.filter((i) => i.category === activeCategory)
+
+  // Re-observe cards when filter changes
+  React.useEffect(() => {
+    const el = gridRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    )
+
+    const children = el.querySelectorAll('.scroll-reveal-scale')
+    children.forEach((child) => observer.observe(child))
+
+    return () => observer.disconnect()
+  }, [activeCategory])
 
   return (
     <RevealSection>
@@ -608,7 +632,7 @@ const IntegrationsGridSection = () => {
           </div>
 
           {/* Integration cards — Desktop grid */}
-          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div ref={gridRef} className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredIntegrations.map((integration, i) => (
               <IntegrationCard key={integration.name} integration={integration} delay={i * 60} />
             ))}
