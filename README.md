@@ -1,8 +1,3 @@
-<!-- Hero Banner -->
-<div align="center">
-  <img src="assets/banner.png" alt="Pulse Design System" width="100%" />
-</div>
-
 <div align="center">
 
 # Pulse
@@ -42,27 +37,7 @@ Every component, every page, and every animation was designed and coded by hand 
 
 ## Screenshots
 
-<div align="center">
-  <img src="assets/screenshot-landing.png" alt="Pulse Landing Page" width="80%" />
-  <br />
-  <sub>Landing Page · Dark mode with custom ECG pulse animations</sub>
-</div>
-
-<br />
-
-<div align="center">
-  <img src="assets/screenshot-dashboard.png" alt="Analytics Dashboard" width="80%" />
-  <br />
-  <sub>Analytics Dashboard · Traffic sources, browser stats & real-time visitors</sub>
-</div>
-
-<br />
-
-<div align="center">
-  <img src="assets/screenshot-auth.png" alt="Authentication" width="80%" />
-  <br />
-  <sub>Authentication · Login with OAuth providers & branded sidebar</sub>
-</div>
+<!-- TODO: Add new screenshots -->
 
 ---
 
