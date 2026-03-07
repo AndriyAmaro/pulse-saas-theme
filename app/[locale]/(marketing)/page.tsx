@@ -1240,7 +1240,7 @@ const LogoCloudSection = () => {
 const FeatureVisual = ({ type }: { type: string }) => {
   if (type === 'analytics') {
     return (
-      <div className="p-4 sm:p-6 space-y-3 sm:space-y-4 overflow-hidden">
+      <div className="p-3 sm:p-6 space-y-3 sm:space-y-4 overflow-hidden">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="h-2.5 w-2.5 rounded-full bg-primary-500" />
@@ -1261,9 +1261,9 @@ const FeatureVisual = ({ type }: { type: string }) => {
             { label: 'Avg Time', value: '4m 12s', change: '+18%' },
           ]
           const MetricCard = ({ m }: { m: typeof metrics[number] }) => (
-            <div className="p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40">
-              <p className="text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">{m.label}</p>
-              <p className="text-sm font-bold text-slate-900 dark:text-white mt-1">{m.value}</p>
+            <div className="p-2 sm:p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40">
+              <p className="text-[8px] sm:text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">{m.label}</p>
+              <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mt-0.5 sm:mt-1">{m.value}</p>
               <p className={cn('text-[10px] font-medium', m.change.startsWith('-') ? 'text-emerald-500' : 'text-emerald-500')}>{m.change}</p>
             </div>
           )
