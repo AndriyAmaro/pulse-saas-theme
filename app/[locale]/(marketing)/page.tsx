@@ -330,7 +330,7 @@ const HeroSection = () => {
       {/* ECG pulse line — Mobile (1 beat, compact, at title height) */}
       <svg
         className="absolute inset-0 z-[1] w-full h-full pointer-events-none md:hidden"
-        viewBox="0 0 800 1000"
+        viewBox="0 0 1200 1400"
         preserveAspectRatio="xMidYMid slice"
         fill="none"
       >
