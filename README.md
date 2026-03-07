@@ -76,20 +76,12 @@ The result: **3 apps already powered by Pulse**, with more in development.
 
 ## Key Metrics
 
-<div align="center">
-
-| Metric | Value |
-|:------:|:-----:|
-| Handcrafted Components | **100+** |
-| Total Pages | **56** |
-| Dashboard Variants | **25** |
-| Languages (i18n) | **3** |
-| Radix UI Primitives | **12** |
-| Route Groups | **4** |
-| Architecture Decision Records | **9** |
-| Documentation Pages | **3** |
-
-</div>
+| Metric | Value | Metric | Value |
+|--------|:-----:|--------|:-----:|
+| Handcrafted Components | **100+** | Dashboard Variants | **25** |
+| Total Pages | **56** | Languages (i18n) | **3** |
+| Radix UI Primitives | **12** | Route Groups | **4** |
+| Architecture Decision Records | **9** | Documentation Pages | **3** |
 
 ---
 
