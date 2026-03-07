@@ -1560,7 +1560,7 @@ const FeaturesSection = () => {
 
   return (
   <RevealSection>
-    <section id="features" className="relative py-20 sm:py-24 md:py-32 overflow-hidden">
+    <section id="features" className="relative py-20 sm:py-24 md:py-32 overflow-x-clip overflow-y-visible">
       {/* Background decorations */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary-400/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute top-1/3 right-0 w-80 h-80 bg-accent-400/5 rounded-full blur-3xl translate-x-1/2" />
@@ -1581,7 +1581,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* Main Features - Alternating Layout */}
-        <div className="space-y-16 sm:space-y-20 md:space-y-28">
+        <div className="space-y-16 sm:space-y-20 md:space-y-28 overflow-hidden">
           {mainFeatures.map((feature, index) => {
             const Icon = feature.icon
             const isReversed = index % 2 === 1
@@ -1592,7 +1592,7 @@ const FeaturesSection = () => {
                 key={feature.title}
                 className={cn(
                   revealClass,
-                  'grid gap-8 md:gap-12 lg:gap-16 items-center',
+                  'grid gap-8 md:gap-12 lg:gap-16 items-center min-w-0',
                   'md:grid-cols-2'
                 )}
               >
@@ -1637,7 +1637,7 @@ const FeaturesSection = () => {
                 </div>
 
                 {/* Visual */}
-                <div className={cn(isReversed && 'md:order-1')}>
+                <div className={cn('min-w-0 overflow-hidden', isReversed && 'md:order-1')}>
                   <div className="relative group/visual">
                     <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-r from-primary-500/10 to-accent-500/10 dark:from-primary-500/5 dark:to-accent-500/5 rounded-2xl blur-xl opacity-0 group-hover/visual:opacity-100 transition-opacity duration-500" />
                     <div className="relative rounded-2xl border border-slate-200/60 dark:border-slate-700/40 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800/80 dark:to-slate-900 shadow-xl overflow-hidden transition-all duration-500 group-hover/visual:shadow-2xl group-hover/visual:-translate-y-1">
