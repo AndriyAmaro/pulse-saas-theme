@@ -77,7 +77,7 @@
     "profile": "Perfil",
     "logout": "Cerrar Sesión",
     "sectionMain": "Principal",
-    "sectionDashboards": "Paneles",
+    "sectionDashboards": "Dashboards",
     "sectionSystems": "Sistemas",
     "sectionShowcase": "Vitrina",
     "sectionManagement": "Gestión",
@@ -668,7 +668,7 @@
       "privacy": "Privacidad",
       "terms": "Términos",
       "cookies": "Cookies",
-      "gdpr": "RGPD",
+      "gdpr": "GDPR",
       "security": "Seguridad"
     },
     "newsletter": {
