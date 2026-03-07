@@ -558,7 +558,7 @@ const HeroSection = () => {
       </div>
 
       {/* Dashboard Preview — Full Width (outside max-w container) */}
-      <div className="relative z-10 w-full px-3 sm:px-6 lg:px-10 mt-14 sm:mt-16 lg:mt-20 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
+      <div className="relative z-10 w-full px-3 sm:px-6 lg:px-10 mt-8 sm:mt-10 lg:mt-12 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
             <div className="relative">
               {/* Glow behind */}
               <div className="absolute -inset-6 sm:-inset-10 rounded-[2rem] bg-gradient-to-r from-primary-500/30 via-primary-400/15 to-cyan-500/25 blur-3xl opacity-70 animate-orb" />
@@ -880,7 +880,7 @@ const HeroSection = () => {
               </div>
 
               {/* Floating cards */}
-              <div className="absolute -left-4 lg:-left-12 top-[18%] hidden lg:block animate-float z-10">
+              <div className="absolute left-0 lg:-left-4 top-[18%] hidden lg:block animate-float z-10">
                 <div className="p-3.5 rounded-xl glass shadow-xl dark:card-glow">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-900/50">
@@ -894,7 +894,7 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <div className="absolute -right-4 lg:-right-12 top-[25%] hidden lg:block animate-float-delayed z-10">
+              <div className="absolute right-0 lg:-right-4 top-[25%] hidden lg:block animate-float-delayed z-10">
                 <div className="p-3.5 rounded-xl glass shadow-xl dark:card-glow">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary-100 dark:bg-primary-900/50">
