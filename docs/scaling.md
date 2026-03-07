@@ -26,17 +26,9 @@ This is intentional. The frontend architecture is complete and production-ready.
 
 ### Architecture
 
-```
-┌────────────┐     ┌──────────────┐     ┌────────────────┐
-│   Client   │────▶│  Next.js     │────▶│  PostgreSQL    │
-│  (Browser) │◀────│  (Vercel)    │◀────│  (Supabase)    │
-└────────────┘     │              │     └────────────────┘
-                   │  Server      │
-                   │  Components  │     ┌────────────────┐
-                   │  + Actions   │────▶│  Auth Provider  │
-                   └──────────────┘     │  (NextAuth.js)  │
-                                        └────────────────┘
-```
+<div align="center">
+  <img src="../assets/scaling-phase1.svg" alt="Phase 1 Architecture" width="600" />
+</div>
 
 ### Changes Required
 
@@ -92,43 +84,15 @@ enum Role {
 
 ### Architecture
 
-```
-┌────────────┐     ┌──────────────┐     ┌────────────────┐
-│   Client   │────▶│  Next.js     │────▶│  PostgreSQL    │
-│            │◀────│  (Vercel)    │◀────│  (Neon/Supabase)│
-│            │     │              │     └────────────────┘
-│  WebSocket │◀───▶│  Service     │            │
-│  (Pusher)  │     │  Layer       │     ┌──────▼─────────┐
-└────────────┘     │              │────▶│     Redis       │
-                   └──────────────┘     │  (Upstash)      │
-                                        │                 │
-                                        │  - Session cache│
-                                        │  - Query cache  │
-                                        │  - Rate limiting│
-                                        └─────────────────┘
-```
+<div align="center">
+  <img src="../assets/scaling-phase2.svg" alt="Phase 2 Architecture" width="640" />
+</div>
 
 ### Redis Caching Strategy
 
-```
-Cache Layer Design:
-
-┌─────────────────────────────────────────────┐
-│               CACHE HIERARCHY               │
-│                                             │
-│  L1: React Cache (per-request, in-memory)   │
-│      TTL: Request lifetime                  │
-│      Use: Deduplicate DB calls in one SSR   │
-│                                             │
-│  L2: Redis (shared, persistent)             │
-│      TTL: 60s - 3600s (configurable)        │
-│      Use: Cross-request query caching       │
-│                                             │
-│  L3: CDN (edge, static)                     │
-│      TTL: 3600s+ (revalidate on demand)     │
-│      Use: Static assets, marketing pages    │
-└─────────────────────────────────────────────┘
-```
+<div align="center">
+  <img src="../assets/scaling-cache.svg" alt="Cache Hierarchy" width="520" />
+</div>
 
 ### Cache Implementation Pattern
 
@@ -177,50 +141,15 @@ async function getAnalytics(userId: string): Promise<Analytics> {
 
 ### Architecture
 
-```
-┌────────────┐     ┌──────────────┐     ┌────────────────┐
-│   Client   │────▶│  Next.js     │────▶│  PostgreSQL    │
-│            │◀────│  API Routes  │◀────│  (Read Replica) │
-└────────────┘     │              │     └────────────────┘
-                   │  Server      │            │
-                   │  Actions     │     ┌──────▼─────────┐
-                   └──────┬───────┘     │     Redis       │
-                          │             └─────────────────┘
-                          │
-                   ┌──────▼───────┐     ┌─────────────────┐
-                   │   BullMQ     │────▶│    Workers       │
-                   │  Job Queue   │     │                  │
-                   │              │     │  - Email sender  │
-                   │  Redis-based │     │  - PDF generator │
-                   └──────────────┘     │  - Analytics ETL │
-                                        │  - Image resize  │
-                                        │  - Webhook retry │
-                                        └─────────────────┘
-```
+<div align="center">
+  <img src="../assets/scaling-phase3.svg" alt="Phase 3 Architecture" width="680" />
+</div>
 
 ### Queue Strategy (BullMQ)
 
-```
-Job Queue Design:
-
-┌─────────────────────────────────────────────┐
-│              QUEUE ARCHITECTURE              │
-│                                             │
-│  Priority Queues:                           │
-│  ┌─────────────────────────────────────┐    │
-│  │ CRITICAL (P0)  │ Auth, payments    │    │
-│  │ HIGH (P1)      │ Emails, webhooks  │    │
-│  │ NORMAL (P2)    │ Analytics, PDFs   │    │
-│  │ LOW (P3)       │ Cleanup, reports  │    │
-│  └─────────────────────────────────────┘    │
-│                                             │
-│  Retry Policy:                              │
-│  - Exponential backoff (1s, 4s, 16s, 64s)  │
-│  - Max 5 retries                           │
-│  - Dead letter queue for failed jobs        │
-│  - Alert on DLQ threshold                  │
-└─────────────────────────────────────────────┘
-```
+<div align="center">
+  <img src="../assets/scaling-queue.svg" alt="Queue Architecture" width="520" />
+</div>
 
 ### Job Types
 
@@ -250,65 +179,15 @@ Job Queue Design:
 
 ### Architecture
 
-```
-                   ┌──────────────────┐
-                   │   Load Balancer  │
-                   │   (Vercel Edge)  │
-                   └────────┬─────────┘
-                            │
-              ┌─────────────┼─────────────┐
-              ▼             ▼             ▼
-      ┌──────────┐  ┌──────────┐  ┌──────────┐
-      │  Web App │  │  API      │  │  Admin   │
-      │  (Next)  │  │  Gateway  │  │  Panel   │
-      └────┬─────┘  └────┬─────┘  └────┬─────┘
-           │              │              │
-           └──────────────┼──────────────┘
-                          │
-         ┌────────────────┼────────────────┐
-         ▼                ▼                ▼
-   ┌──────────┐    ┌──────────┐    ┌──────────┐
-   │  Auth    │    │ Analytics│    │ Billing  │
-   │ Service  │    │ Service  │    │ Service  │
-   └────┬─────┘    └────┬─────┘    └────┬─────┘
-        │               │               │
-   ┌────▼─────┐    ┌────▼─────┐    ┌────▼─────┐
-   │ Auth DB  │    │Analytics │    │ Billing  │
-   │ (PG)     │    │   DB     │    │   DB     │
-   └──────────┘    │ (PG +    │    │ (PG)     │
-                   │ ClickHouse│    └──────────┘
-                   └──────────┘
-                        │
-                   ┌────▼─────┐
-                   │  Redis   │
-                   │ Cluster  │
-                   └──────────┘
-```
+<div align="center">
+  <img src="../assets/scaling-phase4.svg" alt="Phase 4 Architecture" width="700" />
+</div>
 
 ### Multi-Tenancy Strategy
 
-```
-Approach: Schema-based isolation (PostgreSQL schemas)
-
-┌─────────────────────────────────────────────┐
-│              TENANT ISOLATION               │
-│                                             │
-│  Option A: Row-level (tenant_id column)     │
-│  ✓ Simple, works at any scale              │
-│  ✓ Single database, easy backups           │
-│  ✗ Must never forget WHERE tenant_id = ?   │
-│                                             │
-│  Option B: Schema-level (one schema/tenant) │ ← Selected
-│  ✓ Stronger isolation                      │
-│  ✓ Per-tenant migrations possible          │
-│  ✓ Easy to extract to separate DB later    │
-│  ✗ More complex connection management      │
-│                                             │
-│  Option C: Database-level (one DB/tenant)   │
-│  ✓ Maximum isolation                       │
-│  ✗ Operational nightmare at scale          │
-└─────────────────────────────────────────────┘
-```
+<div align="center">
+  <img src="../assets/scaling-tenancy.svg" alt="Tenant Isolation Strategy" width="560" />
+</div>
 
 ### Microservices Boundary Rules
 
@@ -336,56 +215,11 @@ Asynchronous (Event-driven via Redis Streams):
 
 ---
 
-## Database Scaling Path
+## Monitoring, Observability & Database Scaling
 
-```
-Phase 1 (0-1K users):
-  Single PostgreSQL instance (Supabase/Neon)
-  └── All tables in public schema
-      └── ~100 queries/sec capacity
-
-Phase 2 (1K-10K users):
-  PostgreSQL + Connection pooling (PgBouncer)
-  └── Read replica for analytics queries
-      └── ~1,000 queries/sec capacity
-
-Phase 3 (10K-50K users):
-  PostgreSQL (primary) + Read replicas (2-3)
-  └── Redis for hot data caching
-  └── ClickHouse for analytics (write-optimized)
-      └── ~10,000 queries/sec capacity
-
-Phase 4 (50K-100K+ users):
-  PostgreSQL cluster (Citus or manual sharding)
-  └── Redis Cluster (6+ nodes)
-  └── ClickHouse cluster
-  └── S3 for object storage
-      └── ~100,000+ queries/sec capacity
-```
-
----
-
-## Monitoring & Observability Strategy
-
-```
-┌─────────────────────────────────────────────┐
-│            OBSERVABILITY STACK              │
-│                                             │
-│  Metrics:     Vercel Analytics + custom     │
-│  Logging:     Vercel Logs / Axiom           │
-│  Tracing:     OpenTelemetry (future)        │
-│  Errors:      Sentry                        │
-│  Uptime:      Better Uptime / Checkly       │
-│  APM:         Vercel Speed Insights         │
-│                                             │
-│  Key Metrics:                               │
-│  ├── p95 response time < 200ms             │
-│  ├── Error rate < 0.1%                     │
-│  ├── Core Web Vitals (LCP < 2.5s)         │
-│  ├── Cache hit ratio > 85%                 │
-│  └── Queue processing time p95 < 30s      │
-└─────────────────────────────────────────────┘
-```
+<div align="center">
+  <img src="../assets/scaling-observability.svg" alt="Observability Stack & DB Scaling" width="540" />
+</div>
 
 ---
 

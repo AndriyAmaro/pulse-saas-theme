@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 310" width="680">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 6" refX="9" refY="3" markerWidth="7" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,3 L0,6z" fill="#14B8A6"/>
+    </marker>
+  </defs>
+  <rect width="680" height="310" rx="16" fill="#0D1117"/>
+  <text x="340" y="30" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="11" font-weight="700" letter-spacing="2">PHASE 3 · 10K-50K USERS</text>
+
+  <!-- Client -->
+  <rect x="20" y="65" width="110" height="55" rx="10" fill="#161B22" stroke="#E6EDF3" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="75" y="90" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="700">Client</text>
+  <text x="75" y="106" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Browser</text>
+
+  <!-- Arrow Client → Next.js -->
+  <line x1="130" y1="90" x2="176" y2="90" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Next.js -->
+  <rect x="180" y="50" width="150" height="85" rx="10" fill="#161B22" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="255" y="78" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Next.js</text>
+  <text x="255" y="95" text-anchor="middle" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="9">API Routes</text>
+  <text x="255" y="110" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Server Actions</text>
+  <text x="255" y="123" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Server Components</text>
+
+  <!-- Arrow → PostgreSQL -->
+  <line x1="330" y1="75" x2="396" y2="75" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Arrow → Redis -->
+  <line x1="330" y1="110" x2="396" y2="110" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- PostgreSQL (with read replica) -->
+  <rect x="400" y="50" width="250" height="46" rx="8" fill="#161B22" stroke="#8B5CF6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="525" y="71" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">PostgreSQL + Read Replicas</text>
+  <text x="525" y="87" text-anchor="middle" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="9">Primary + 2-3 replicas</text>
+
+  <!-- Redis -->
+  <rect x="400" y="103" width="120" height="40" rx="8" fill="#161B22" stroke="#EF4444" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="460" y="122" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Redis</text>
+  <text x="460" y="136" text-anchor="middle" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">Hot data cache</text>
+
+  <!-- Arrow Next.js → BullMQ -->
+  <line x1="255" y1="135" x2="255" y2="168" stroke="#F59E0B" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- BullMQ -->
+  <rect x="180" y="170" width="150" height="40" rx="8" fill="#161B22" stroke="#F59E0B" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="255" y="190" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">BullMQ</text>
+  <text x="255" y="204" text-anchor="middle" fill="#FBBF24" font-family="system-ui,sans-serif" font-size="9">Redis-based job queue</text>
+
+  <!-- Arrow BullMQ → Workers -->
+  <line x1="330" y1="190" x2="396" y2="190" stroke="#F59E0B" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Workers -->
+  <rect x="400" y="162" width="250" height="70" rx="8" fill="#161B22" stroke="#F59E0B" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="525" y="182" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Workers</text>
+  <text x="460" y="200" fill="#8B949E" font-family="system-ui,sans-serif" font-size="8">Email sender</text>
+  <text x="560" y="200" fill="#8B949E" font-family="system-ui,sans-serif" font-size="8">PDF generator</text>
+  <text x="460" y="214" fill="#8B949E" font-family="system-ui,sans-serif" font-size="8">Analytics ETL</text>
+  <text x="560" y="214" fill="#8B949E" font-family="system-ui,sans-serif" font-size="8">Image resize</text>
+  <text x="510" y="228" fill="#8B949E" font-family="system-ui,sans-serif" font-size="8">Webhook retry</text>
+
+  <!-- Cost label -->
+  <text x="340" y="280" text-anchor="middle" fill="#64748B" font-family="system-ui,sans-serif" font-size="10">~$500/mo · + Workers + Read Replicas</text>
+</svg>

@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" width="720">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 6" refX="9" refY="3" markerWidth="7" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,3 L0,6z" fill="#14B8A6"/>
+    </marker>
+    <marker id="arr-b" viewBox="0 0 10 6" refX="9" refY="3" markerWidth="7" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,3 L0,6z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arr-a" viewBox="0 0 10 6" refX="9" refY="3" markerWidth="7" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,3 L0,6z" fill="#F59E0B"/>
+    </marker>
+  </defs>
+  <rect width="720" height="460" rx="16" fill="#0D1117"/>
+
+  <!-- CURRENT PANEL -->
+  <rect x="16" y="16" width="320" height="428" rx="12" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="176" y="44" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="12" font-weight="700" letter-spacing="2">CURRENT · SSG</text>
+
+  <rect x="96" y="64" width="160" height="42" rx="8" fill="#0D1117" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="176" y="90" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Build Time</text>
+  <line x1="176" y1="106" x2="176" y2="126" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="76" y="128" width="200" height="42" rx="8" fill="#0D1117" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="176" y="154" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Static Generation</text>
+  <line x1="176" y1="170" x2="176" y2="190" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Side branch: Translation JSON -->
+  <line x1="276" y1="149" x2="310" y2="149" stroke="#64748B" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="312" y="145" fill="#64748B" font-family="system-ui,sans-serif" font-size="9" font-weight="500">Translation</text>
+  <text x="312" y="157" fill="#64748B" font-family="system-ui,sans-serif" font-size="9" font-weight="500">JSON files</text>
+
+  <rect x="96" y="192" width="160" height="42" rx="8" fill="#0D1117" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="176" y="218" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">CDN Edge</text>
+  <line x1="176" y1="234" x2="176" y2="254" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="96" y="256" width="160" height="42" rx="8" fill="#0D1117" stroke="#14B8A6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="176" y="282" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Client</text>
+
+  <text x="176" y="330" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">Zero backend deps</text>
+  <text x="176" y="345" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">Unlimited users (CDN)</text>
+  <text x="176" y="360" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">~$0 hosting cost</text>
+
+  <!-- FUTURE PANEL -->
+  <rect x="352" y="16" width="352" height="428" rx="12" fill="#161B22" stroke="#3B82F6" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="528" y="44" text-anchor="middle" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="12" font-weight="700" letter-spacing="2">FUTURE · FULL-STACK</text>
+
+  <rect x="448" y="64" width="160" height="38" rx="8" fill="#0D1117" stroke="#3B82F6" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="528" y="88" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Client Request</text>
+  <line x1="528" y1="102" x2="528" y2="118" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arr-b)"/>
+
+  <rect x="438" y="120" width="180" height="38" rx="8" fill="#0D1117" stroke="#3B82F6" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="528" y="144" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Edge Middleware</text>
+  <text x="528" y="156" text-anchor="middle" fill="#64748B" font-family="system-ui,sans-serif" font-size="8">auth + i18n</text>
+  <line x1="528" y1="158" x2="528" y2="174" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arr-b)"/>
+
+  <rect x="428" y="176" width="200" height="38" rx="8" fill="#0D1117" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="528" y="200" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Next.js Server (App Router)</text>
+
+  <!-- Three branches -->
+  <line x1="468" y1="214" x2="468" y2="234" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.6"/>
+  <line x1="528" y1="214" x2="528" y2="234" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.6"/>
+  <line x1="588" y1="214" x2="588" y2="234" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.6"/>
+
+  <!-- Branch labels -->
+  <rect x="380" y="236" width="100" height="34" rx="6" fill="#0D1117" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="430" y="252" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9" font-weight="600">Server</text>
+  <text x="430" y="263" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9" font-weight="600">Component</text>
+
+  <rect x="488" y="236" width="80" height="34" rx="6" fill="#0D1117" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="528" y="258" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9" font-weight="600">API Route</text>
+
+  <rect x="576" y="236" width="100" height="34" rx="6" fill="#0D1117" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="626" y="252" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9" font-weight="600">Server</text>
+  <text x="626" y="263" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9" font-weight="600">Action</text>
+
+  <!-- Arrows to data layer -->
+  <line x1="430" y1="270" x2="430" y2="310" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.5"/>
+  <line x1="528" y1="270" x2="528" y2="310" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.5"/>
+  <line x1="626" y1="270" x2="626" y2="310" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- Data layer -->
+  <rect x="378" y="312" width="120" height="34" rx="6" fill="#0D1117" stroke="#8B5CF6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="438" y="334" text-anchor="middle" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="10" font-weight="600">PostgreSQL</text>
+
+  <rect x="504" y="312" width="80" height="34" rx="6" fill="#0D1117" stroke="#EF4444" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="544" y="334" text-anchor="middle" fill="#F87171" font-family="system-ui,sans-serif" font-size="10" font-weight="600">Redis</text>
+
+  <rect x="590" y="312" width="90" height="34" rx="6" fill="#0D1117" stroke="#F59E0B" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="635" y="334" text-anchor="middle" fill="#FBBF24" font-family="system-ui,sans-serif" font-size="10" font-weight="600">BullMQ</text>
+
+  <!-- Cache flow annotation -->
+  <path d="M544,346 L544,370 L438,370 L438,346" fill="none" stroke="#64748B" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="491" y="385" text-anchor="middle" fill="#64748B" font-family="system-ui,sans-serif" font-size="8">cache-aside pattern</text>
+
+  <text x="528" y="420" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">Prisma ORM · Server Components first</text>
+</svg>

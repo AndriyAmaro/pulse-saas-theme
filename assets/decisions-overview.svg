@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" width="700">
+  <rect width="700" height="320" rx="16" fill="#0D1117"/>
+  <text x="350" y="28" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="11" font-weight="700" letter-spacing="2">ARCHITECTURE DECISIONS OVERVIEW</text>
+
+  <!-- Row 1 -->
+  <rect x="20" y="46" width="210" height="78" rx="10" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="36" y="66" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-001</text>
+  <text x="36" y="82" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">App Router</text>
+  <text x="36" y="98" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">SSR · Nested layouts</text>
+  <text x="36" y="112" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Server Components first</text>
+  <rect x="168" y="52" width="52" height="16" rx="4" fill="#14B8A6" fill-opacity="0.15"/>
+  <text x="194" y="64" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="8" font-weight="600">Perf+DX</text>
+
+  <rect x="245" y="46" width="210" height="78" rx="10" fill="#161B22" stroke="#8B5CF6" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="261" y="66" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-002</text>
+  <text x="261" y="82" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Atomic Design</text>
+  <text x="261" y="98" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">4-tier hierarchy</text>
+  <text x="261" y="112" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Clear dependency rules</text>
+  <rect x="395" y="52" width="50" height="16" rx="4" fill="#8B5CF6" fill-opacity="0.15"/>
+  <text x="420" y="64" text-anchor="middle" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="8" font-weight="600">Maint</text>
+
+  <rect x="470" y="46" width="210" height="78" rx="10" fill="#161B22" stroke="#3B82F6" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="486" y="66" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-003</text>
+  <text x="486" y="82" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Tailwind CSS 4</text>
+  <text x="486" y="98" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Zero runtime cost</text>
+  <text x="486" y="112" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">CVA for variants</text>
+  <rect x="618" y="52" width="52" height="16" rx="4" fill="#3B82F6" fill-opacity="0.15"/>
+  <text x="644" y="64" text-anchor="middle" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="8" font-weight="600">Perf+DX</text>
+
+  <!-- Row 2 -->
+  <rect x="20" y="138" width="210" height="78" rx="10" fill="#161B22" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="36" y="158" fill="#FBBF24" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-004</text>
+  <text x="36" y="174" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">next-intl</text>
+  <text x="36" y="190" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Pathname-based i18n</text>
+  <text x="36" y="204" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Type-safe · 3 languages</text>
+  <rect x="168" y="144" width="52" height="16" rx="4" fill="#F59E0B" fill-opacity="0.15"/>
+  <text x="194" y="156" text-anchor="middle" fill="#FBBF24" font-family="system-ui,sans-serif" font-size="8" font-weight="600">SEO+DX</text>
+
+  <rect x="245" y="138" width="210" height="78" rx="10" fill="#161B22" stroke="#22C55E" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="261" y="158" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-005</text>
+  <text x="261" y="174" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Radix UI</text>
+  <text x="261" y="190" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Headless a11y primitives</text>
+  <text x="261" y="204" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">WAI-ARIA compliant</text>
+  <rect x="399" y="144" width="46" height="16" rx="4" fill="#22C55E" fill-opacity="0.15"/>
+  <text x="422" y="156" text-anchor="middle" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="8" font-weight="600">A11y</text>
+
+  <rect x="470" y="138" width="210" height="78" rx="10" fill="#161B22" stroke="#EF4444" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="486" y="158" fill="#F87171" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-006</text>
+  <text x="486" y="174" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">SVG Animations</text>
+  <text x="486" y="190" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">CSS keyframes only</text>
+  <text x="486" y="204" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Zero JS runtime cost</text>
+  <rect x="627" y="144" width="43" height="16" rx="4" fill="#EF4444" fill-opacity="0.15"/>
+  <text x="649" y="156" text-anchor="middle" fill="#F87171" font-family="system-ui,sans-serif" font-size="8" font-weight="600">Perf</text>
+
+  <!-- Row 3 -->
+  <rect x="20" y="230" width="210" height="78" rx="10" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="36" y="250" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-007</text>
+  <text x="36" y="266" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Route Groups</text>
+  <text x="36" y="282" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Layout isolation</text>
+  <text x="36" y="296" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Zero re-renders on nav</text>
+  <rect x="172" y="236" width="48" height="16" rx="4" fill="#14B8A6" fill-opacity="0.15"/>
+  <text x="196" y="248" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="8" font-weight="600">Arch</text>
+
+  <rect x="245" y="230" width="210" height="78" rx="10" fill="#161B22" stroke="#8B5CF6" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="261" y="250" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-008</text>
+  <text x="261" y="266" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Design Tokens</text>
+  <text x="261" y="282" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">CSS Custom Properties</text>
+  <text x="261" y="296" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Runtime theming</text>
+  <rect x="403" y="236" width="42" height="16" rx="4" fill="#8B5CF6" fill-opacity="0.15"/>
+  <text x="424" y="248" text-anchor="middle" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="8" font-weight="600">Flex</text>
+
+  <rect x="470" y="230" width="210" height="78" rx="10" fill="#161B22" stroke="#3B82F6" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="486" y="250" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="9" font-weight="700">ADR-009</text>
+  <text x="486" y="266" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Recharts</text>
+  <text x="486" y="282" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">SVG-based charts</text>
+  <text x="486" y="296" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Tree-shakeable</text>
+  <rect x="618" y="236" width="52" height="16" rx="4" fill="#3B82F6" fill-opacity="0.15"/>
+  <text x="644" y="248" text-anchor="middle" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="8" font-weight="600">DX+Bndl</text>
+</svg>

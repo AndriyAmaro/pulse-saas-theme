@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="400">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 6" refX="9" refY="3" markerWidth="7" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,3 L0,6z" fill="#14B8A6"/>
+    </marker>
+  </defs>
+  <rect width="400" height="320" rx="16" fill="#0D1117"/>
+  <rect x="40" y="20" width="320" height="52" rx="10" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="200" y="43" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Design Tokens</text>
+  <text x="200" y="60" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">CSS Custom Properties</text>
+  <line x1="200" y1="72" x2="200" y2="90" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="40" y="92" width="320" height="52" rx="10" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="200" y="115" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Tailwind CSS 4</text>
+  <text x="200" y="132" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">Utility-first classes</text>
+  <line x1="200" y1="144" x2="200" y2="162" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="40" y="164" width="320" height="52" rx="10" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="200" y="187" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="13" font-weight="700">class-variance-authority</text>
+  <text x="200" y="204" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">Type-safe variant management</text>
+  <line x1="200" y1="216" x2="200" y2="234" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="40" y="236" width="320" height="52" rx="10" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="200" y="259" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="13" font-weight="700">cn() utility</text>
+  <text x="200" y="276" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10">clsx + tailwind-merge · conditional classes</text>
+  <text x="200" y="306" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="10" font-weight="600" opacity="0.6">Zero runtime cost · Server Component safe</text>
+</svg>

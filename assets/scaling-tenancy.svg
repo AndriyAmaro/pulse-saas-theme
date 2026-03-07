@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 260" width="560">
+  <rect width="560" height="260" rx="16" fill="#0D1117"/>
+  <text x="280" y="28" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="11" font-weight="700" letter-spacing="2">TENANT ISOLATION STRATEGY</text>
+
+  <!-- Option A: Row-level -->
+  <rect x="20" y="46" width="160" height="170" rx="10" fill="#161B22" stroke="#64748B" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="100" y="68" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10" font-weight="700">OPTION A</text>
+  <text x="100" y="86" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Row-level</text>
+  <text x="100" y="102" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">tenant_id column</text>
+  <text x="36" y="124" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9">+ Simple</text>
+  <text x="36" y="140" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9">+ Single DB</text>
+  <text x="36" y="156" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9">+ Easy backups</text>
+  <text x="36" y="178" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">- Must never forget</text>
+  <text x="40" y="192" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">  WHERE tenant_id</text>
+
+  <!-- Option B: Schema-level (selected) -->
+  <rect x="200" y="46" width="160" height="170" rx="10" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.6" stroke-width="2"/>
+  <rect x="232" y="40" width="96" height="18" rx="4" fill="#14B8A6"/>
+  <text x="280" y="52" text-anchor="middle" fill="#0D1117" font-family="system-ui,sans-serif" font-size="9" font-weight="700">SELECTED</text>
+  <text x="280" y="72" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="10" font-weight="700">OPTION B</text>
+  <text x="280" y="90" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Schema-level</text>
+  <text x="280" y="106" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">One schema per tenant</text>
+  <text x="216" y="128" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9">+ Strong isolation</text>
+  <text x="216" y="144" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9">+ Per-tenant migrations</text>
+  <text x="216" y="160" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9">+ Easy to extract later</text>
+  <text x="216" y="182" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">- Complex connection</text>
+  <text x="220" y="196" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">  management</text>
+
+  <!-- Option C: Database-level -->
+  <rect x="380" y="46" width="160" height="170" rx="10" fill="#161B22" stroke="#64748B" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="460" y="68" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="10" font-weight="700">OPTION C</text>
+  <text x="460" y="86" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Database-level</text>
+  <text x="460" y="102" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">One DB per tenant</text>
+  <text x="396" y="124" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9">+ Maximum isolation</text>
+  <text x="396" y="152" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">- Operational nightmare</text>
+  <text x="400" y="166" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">  at scale</text>
+  <text x="396" y="186" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">- Resource heavy</text>
+
+  <text x="280" y="242" text-anchor="middle" fill="#64748B" font-family="system-ui,sans-serif" font-size="9">PostgreSQL schemas · Balance of isolation and operational simplicity</text>
+</svg>

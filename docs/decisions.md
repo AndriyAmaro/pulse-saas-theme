@@ -2,6 +2,10 @@
 
 > A record of architectural decisions made during Pulse development, the reasoning behind each, and the trade-offs considered.
 
+<div align="center">
+  <img src="../assets/decisions-overview.svg" alt="Architecture Decisions Overview" width="700" />
+</div>
+
 ---
 
 ## ADR-001: Next.js App Router over Pages Router

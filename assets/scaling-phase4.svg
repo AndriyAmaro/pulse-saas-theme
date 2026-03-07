@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 6" refX="9" refY="3" markerWidth="7" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,3 L0,6z" fill="#14B8A6"/>
+    </marker>
+  </defs>
+  <rect width="700" height="420" rx="16" fill="#0D1117"/>
+  <text x="350" y="28" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="11" font-weight="700" letter-spacing="2">PHASE 4 · 50K-100K+ USERS</text>
+
+  <!-- Load Balancer -->
+  <rect x="250" y="42" width="200" height="38" rx="8" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.5" stroke-width="1.5"/>
+  <text x="350" y="66" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="700">Load Balancer (Vercel Edge)</text>
+
+  <!-- Lines from LB to apps -->
+  <line x1="280" y1="80" x2="120" y2="108" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.5"/>
+  <line x1="350" y1="80" x2="350" y2="108" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.5"/>
+  <line x1="420" y1="80" x2="580" y2="108" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- Web App -->
+  <rect x="50" y="110" width="140" height="42" rx="8" fill="#161B22" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="120" y="130" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Web App</text>
+  <text x="120" y="144" text-anchor="middle" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="9">Next.js</text>
+
+  <!-- API Gateway -->
+  <rect x="270" y="110" width="160" height="42" rx="8" fill="#161B22" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="350" y="130" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">API Gateway</text>
+  <text x="350" y="144" text-anchor="middle" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="9">Rate limiting + routing</text>
+
+  <!-- Admin Panel -->
+  <rect x="510" y="110" width="140" height="42" rx="8" fill="#161B22" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="580" y="130" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Admin Panel</text>
+  <text x="580" y="144" text-anchor="middle" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="9">Next.js</text>
+
+  <!-- Connecting bar -->
+  <line x1="120" y1="152" x2="120" y2="170" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="350" y1="152" x2="350" y2="170" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="580" y1="152" x2="580" y2="170" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="120" y1="170" x2="580" y2="170" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Service layer label -->
+  <text x="350" y="192" text-anchor="middle" fill="#64748B" font-family="system-ui,sans-serif" font-size="9" letter-spacing="1.5">MICROSERVICES</text>
+
+  <!-- Lines down to services -->
+  <line x1="160" y1="170" x2="160" y2="208" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="350" y1="195" x2="350" y2="208" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="540" y1="170" x2="540" y2="208" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.4"/>
+
+  <!-- Auth Service -->
+  <rect x="80" y="210" width="160" height="42" rx="8" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="160" y="230" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Auth Service</text>
+  <text x="160" y="244" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9">JWT + sessions</text>
+
+  <!-- Analytics Service -->
+  <rect x="270" y="210" width="160" height="42" rx="8" fill="#161B22" stroke="#22C55E" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="350" y="230" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Analytics Service</text>
+  <text x="350" y="244" text-anchor="middle" fill="#4ADE80" font-family="system-ui,sans-serif" font-size="9">ETL + aggregation</text>
+
+  <!-- Billing Service -->
+  <rect x="460" y="210" width="160" height="42" rx="8" fill="#161B22" stroke="#F59E0B" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="540" y="230" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Billing Service</text>
+  <text x="540" y="244" text-anchor="middle" fill="#FBBF24" font-family="system-ui,sans-serif" font-size="9">Stripe + webhooks</text>
+
+  <!-- Lines to DBs -->
+  <line x1="160" y1="252" x2="160" y2="282" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="350" y1="252" x2="350" y2="282" stroke="#22C55E" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="540" y1="252" x2="540" y2="282" stroke="#F59E0B" stroke-width="1" stroke-opacity="0.4"/>
+
+  <!-- Auth DB -->
+  <rect x="95" y="284" width="130" height="40" rx="8" fill="#161B22" stroke="#8B5CF6" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="160" y="304" text-anchor="middle" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="10" font-weight="600">Auth DB</text>
+  <text x="160" y="318" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="8">PostgreSQL</text>
+
+  <!-- Analytics DB -->
+  <rect x="270" y="284" width="160" height="40" rx="8" fill="#161B22" stroke="#8B5CF6" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="350" y="304" text-anchor="middle" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="10" font-weight="600">Analytics DB</text>
+  <text x="350" y="318" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="8">PG + ClickHouse</text>
+
+  <!-- Billing DB -->
+  <rect x="475" y="284" width="130" height="40" rx="8" fill="#161B22" stroke="#8B5CF6" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="540" y="304" text-anchor="middle" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="10" font-weight="600">Billing DB</text>
+  <text x="540" y="318" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="8">PostgreSQL</text>
+
+  <!-- Redis Cluster -->
+  <rect x="240" y="340" width="220" height="38" rx="8" fill="#161B22" stroke="#EF4444" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="350" y="360" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Redis Cluster</text>
+  <text x="350" y="374" text-anchor="middle" fill="#F87171" font-family="system-ui,sans-serif" font-size="9">6+ nodes · shared cache</text>
+
+  <!-- Dashed lines from DBs to Redis -->
+  <line x1="350" y1="324" x2="350" y2="340" stroke="#EF4444" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3,2"/>
+
+  <!-- Cost label -->
+  <text x="350" y="403" text-anchor="middle" fill="#64748B" font-family="system-ui,sans-serif" font-size="10">~$2,000+/mo · Multi-region · ClickHouse + S3</text>
+</svg>

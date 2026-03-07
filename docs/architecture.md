@@ -75,11 +75,9 @@ core/
 
 ### Component Dependency Flow
 
-```
-Tokens → Primitives → Patterns → Organisms → Layouts → Pages
-  ↑                                                        │
-  └────────────────── Shared Utils ─────────────────────────┘
-```
+<div align="center">
+  <img src="../assets/architecture-dependency.svg" alt="Component Dependency Flow" width="700" />
+</div>
 
 **Rules:**
 - Primitives never import from patterns or organisms
@@ -167,18 +165,9 @@ i18n/
 
 ## Styling Architecture
 
-```
-Design Tokens (CSS Custom Properties)
-        │
-        ▼
-Tailwind CSS 4 (utility-first)
-        │
-        ▼
-class-variance-authority (CVA) ·variant management
-        │
-        ▼
-cn() utility (clsx + twMerge) ·conditional classes
-```
+<div align="center">
+  <img src="../assets/architecture-styling.svg" alt="Styling Architecture" width="400" />
+</div>
 
 ### Theme System
 
@@ -191,48 +180,9 @@ cn() utility (clsx + twMerge) ·conditional classes
 
 ## Data Flow (Current + Future)
 
-### Current (Static/SSG)
-
-```
-Build Time → Static Generation → CDN → Client
-                  │
-                  ▼
-          Translation files (JSON)
-          Static page content
-```
-
-### Future (Full-Stack)
-
-```
-Client Request
-    │
-    ▼
-Edge Middleware (auth check, i18n redirect)
-    │
-    ▼
-Next.js Server (App Router)
-    │
-    ├─► Server Component → Direct DB query (Prisma)
-    │                           │
-    │                           ▼
-    │                      PostgreSQL
-    │
-    ├─► API Route → Service Layer
-    │                    │
-    │                    ├─► Redis (cache check)
-    │                    │     │ miss
-    │                    │     ▼
-    │                    ├─► PostgreSQL (query)
-    │                    │     │
-    │                    │     ▼
-    │                    └─► Redis (cache set)
-    │
-    └─► Server Action → Direct mutation
-                            │
-                            ├─► PostgreSQL (write)
-                            ├─► Redis (invalidate)
-                            └─► BullMQ (async job)
-```
+<div align="center">
+  <img src="../assets/architecture-dataflow.svg" alt="Data Flow · Current & Future" width="720" />
+</div>
 
 ---
 

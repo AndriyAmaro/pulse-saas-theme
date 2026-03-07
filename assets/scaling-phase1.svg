@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="600">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 6" refX="9" refY="3" markerWidth="7" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,3 L0,6z" fill="#14B8A6"/>
+    </marker>
+  </defs>
+  <rect width="600" height="220" rx="16" fill="#0D1117"/>
+  <text x="300" y="30" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="11" font-weight="700" letter-spacing="2">PHASE 1 · 0-1K USERS</text>
+
+  <!-- Client -->
+  <rect x="30" y="65" width="120" height="60" rx="10" fill="#161B22" stroke="#E6EDF3" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="90" y="92" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="700">Client</text>
+  <text x="90" y="108" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Browser</text>
+
+  <!-- Arrows Client ↔ Next.js -->
+  <line x1="150" y1="88" x2="206" y2="88" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="206" y1="102" x2="150" y2="102" stroke="#14B8A6" stroke-width="1.5" stroke-opacity="0.4" marker-end="url(#arr)"/>
+
+  <!-- Next.js -->
+  <rect x="210" y="50" width="160" height="90" rx="10" fill="#161B22" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="290" y="78" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Next.js</text>
+  <text x="290" y="95" text-anchor="middle" fill="#60A5FA" font-family="system-ui,sans-serif" font-size="9">Vercel · App Router</text>
+  <text x="290" y="110" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">Server Components</text>
+  <text x="290" y="123" text-anchor="middle" fill="#8B949E" font-family="system-ui,sans-serif" font-size="9">+ Server Actions</text>
+
+  <!-- Arrow → PostgreSQL -->
+  <line x1="370" y1="78" x2="426" y2="78" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Arrow → Auth -->
+  <line x1="370" y1="115" x2="426" y2="115" stroke="#14B8A6" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- PostgreSQL -->
+  <rect x="430" y="53" width="140" height="46" rx="8" fill="#161B22" stroke="#8B5CF6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="500" y="74" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">PostgreSQL</text>
+  <text x="500" y="90" text-anchor="middle" fill="#A78BFA" font-family="system-ui,sans-serif" font-size="9">Supabase</text>
+
+  <!-- Auth -->
+  <rect x="430" y="106" width="140" height="46" rx="8" fill="#161B22" stroke="#14B8A6" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="500" y="127" text-anchor="middle" fill="#E6EDF3" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Auth Provider</text>
+  <text x="500" y="143" text-anchor="middle" fill="#5EEAD4" font-family="system-ui,sans-serif" font-size="9">NextAuth.js · JWT</text>
+
+  <!-- Cost label -->
+  <text x="300" y="195" text-anchor="middle" fill="#64748B" font-family="system-ui,sans-serif" font-size="10">~$45/mo · Vercel Pro + Supabase Free</text>
+</svg>
