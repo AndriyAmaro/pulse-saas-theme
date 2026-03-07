@@ -415,7 +415,7 @@ const HeroSection = () => {
         {/* ═══════════════════════════════════════════════════════
             PREMIUM DASHBOARD MOCKUP ILLUSTRATION
             ═══════════════════════════════════════════════════════ */}
-        <div className="mt-14 md:mt-20 relative mx-auto max-w-3xl perspective-1200">
+        <div className="mt-14 md:mt-20 relative mx-auto max-w-4xl perspective-1200">
           <DashboardMockup />
 
           {/* ═══ Floating tech badges ═══ */}
