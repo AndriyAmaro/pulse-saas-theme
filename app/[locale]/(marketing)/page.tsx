@@ -558,7 +558,7 @@ const HeroSection = () => {
       </div>
 
       {/* Dashboard Preview — Full Width (outside max-w container) */}
-      <div className="relative z-10 w-full px-3 sm:px-6 lg:px-10 mt-4 sm:mt-6 lg:mt-8 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
+      <div className="relative z-10 w-full px-3 sm:px-6 lg:px-10 -mt-2 sm:mt-0 lg:mt-2 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
             <div className="relative">
               {/* Glow behind */}
               <div className="absolute -inset-6 sm:-inset-10 rounded-[2rem] bg-gradient-to-r from-primary-500/30 via-primary-400/15 to-cyan-500/25 blur-3xl opacity-70 animate-orb" />
