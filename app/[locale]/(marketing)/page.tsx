@@ -1261,9 +1261,9 @@ const FeatureVisual = ({ type }: { type: string }) => {
             { label: 'Avg Time', value: '4m 12s', change: '+18%' },
           ]
           const MetricCard = ({ m }: { m: typeof metrics[number] }) => (
-            <div className="p-2 sm:p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40">
-              <p className="text-[8px] sm:text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">{m.label}</p>
-              <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mt-0.5 sm:mt-1">{m.value}</p>
+            <div className="p-2 sm:p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/40 min-w-0">
+              <p className="text-[8px] sm:text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate">{m.label}</p>
+              <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mt-0.5 sm:mt-1 truncate">{m.value}</p>
               <p className={cn('text-[10px] font-medium', m.change.startsWith('-') ? 'text-emerald-500' : 'text-emerald-500')}>{m.change}</p>
             </div>
           )
