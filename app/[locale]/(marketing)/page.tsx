@@ -1640,7 +1640,7 @@ const FeaturesSection = () => {
                 <div className={cn(isReversed && 'md:order-1')}>
                   <div className="relative group/visual">
                     <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-r from-primary-500/10 to-accent-500/10 dark:from-primary-500/5 dark:to-accent-500/5 rounded-2xl blur-xl opacity-0 group-hover/visual:opacity-100 transition-opacity duration-500" />
-                    <div className="relative sm:aspect-[4/3] rounded-2xl border border-slate-200/60 dark:border-slate-700/40 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800/80 dark:to-slate-900 shadow-xl overflow-hidden transition-all duration-500 group-hover/visual:shadow-2xl group-hover/visual:-translate-y-1">
+                    <div className="relative rounded-2xl border border-slate-200/60 dark:border-slate-700/40 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800/80 dark:to-slate-900 shadow-xl overflow-hidden transition-all duration-500 group-hover/visual:shadow-2xl group-hover/visual:-translate-y-1">
                       {/* Top accent bar */}
                       <div className={cn(
                         'absolute inset-x-0 top-0 h-1 z-10 bg-gradient-to-r',
