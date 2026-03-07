@@ -227,42 +227,99 @@ const typeConfig: Record<ChangeType, { label: string; className: string }> = {
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/50 via-white to-white dark:from-primary-950/30 dark:via-slate-950 dark:to-slate-950" />
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-            backgroundSize: '32px 32px',
-          }}
-        />
-        {/* Orbs */}
-        <div className="absolute top-20 right-1/4 w-72 h-72 bg-primary-400/10 dark:bg-primary-400/5 rounded-full blur-3xl animate-orb-slow" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent-400/10 dark:bg-accent-400/5 rounded-full blur-3xl animate-orb" />
-      </div>
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-x-clip">
+      {/* Background Image */}
+      <div
+        className="absolute -inset-x-16 inset-y-0 z-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40"
+        style={{ backgroundImage: 'url(/fundo-blackground.png)' }}
+      />
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
+
+      {/* ECG pulse line — Desktop */}
+      <svg
+        className="absolute inset-0 z-[1] w-full h-full pointer-events-none hidden md:block"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+      >
+        <defs>
+          <filter id="cl-ecg-glow" x="-20%" y="-50%" width="140%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="cl-ecg-glow" filter="url(#cl-ecg-glow)"
+            d="M 0,420 L 80,420 L 160,420 L 220,420 L 240,412 L 260,428 L 275,420 L 340,420 L 400,420 L 420,402 L 440,448 L 460,370 L 480,442 L 500,410 L 520,420 L 600,420 L 680,420 L 740,420 L 760,412 L 780,428 L 795,420 L 860,420 L 920,420 L 940,404 L 960,446 L 980,372 L 1000,440 L 1020,412 L 1040,420 L 1120,420 L 1200,420 L 1260,420 L 1280,412 L 1300,428 L 1315,420 L 1380,420 L 1440,420"
+            stroke="rgb(20, 184, 154)" strokeWidth="4" />
+          <path className="cl-ecg-main"
+            d="M 0,420 L 80,420 L 160,420 L 220,420 L 240,412 L 260,428 L 275,420 L 340,420 L 400,420 L 420,402 L 440,448 L 460,370 L 480,442 L 500,410 L 520,420 L 600,420 L 680,420 L 740,420 L 760,412 L 780,428 L 795,420 L 860,420 L 920,420 L 940,404 L 960,446 L 980,372 L 1000,440 L 1020,412 L 1040,420 L 1120,420 L 1200,420 L 1260,420 L 1280,412 L 1300,428 L 1315,420 L 1380,420 L 1440,420"
+            stroke="rgb(94, 234, 212)" strokeWidth="1.2" />
+        </g>
+      </svg>
+
+      {/* ECG pulse line — Mobile */}
+      <svg
+        className="absolute inset-0 z-[1] w-full h-full pointer-events-none md:hidden"
+        viewBox="0 0 500 600"
+        preserveAspectRatio="xMidYMid meet"
+        fill="none"
+      >
+        <defs>
+          <filter id="cl-ecg-glow-m" x="-20%" y="-50%" width="140%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="cl-ecg-glow-m" filter="url(#cl-ecg-glow-m)"
+            d="M 0,220 L 50,220 L 100,220 L 140,220 L 150,216 L 160,224 L 167,220 L 200,220 L 240,220 L 252,212 L 264,230 L 276,200 L 288,228 L 300,216 L 312,220 L 360,220 L 410,220 L 500,220"
+            stroke="rgb(20, 184, 154)" strokeWidth="2" />
+          <path className="cl-ecg-main-m"
+            d="M 0,220 L 50,220 L 100,220 L 140,220 L 150,216 L 160,224 L 167,220 L 200,220 L 240,220 L 252,212 L 264,230 L 276,200 L 288,228 L 300,216 L 312,220 L 360,220 L 410,220 L 500,220"
+            stroke="rgb(94, 234, 212)" strokeWidth="0.7" />
+        </g>
+      </svg>
+
+      <style>{`
+        .cl-ecg-main { stroke-dasharray: 2800; stroke-dashoffset: 2800; animation: cl-draw 16s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .cl-ecg-glow { stroke-dasharray: 2800; stroke-dashoffset: 2800; animation: cl-glow 16s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .cl-ecg-main-m { stroke-dasharray: 800; stroke-dashoffset: 800; animation: cl-draw-m 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .cl-ecg-glow-m { stroke-dasharray: 800; stroke-dashoffset: 800; animation: cl-glow-m 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        @keyframes cl-draw { 0% { stroke-dashoffset: 2800; opacity: 0; } 3% { opacity: 0.22; } 35% { stroke-dashoffset: 0; opacity: 0.18; } 40% { stroke-dashoffset: 2800; opacity: 0.05; } 43% { opacity: 0.22; } 75% { stroke-dashoffset: 0; opacity: 0.16; } 85% { stroke-dashoffset: 0; opacity: 0.04; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes cl-glow { 0% { stroke-dashoffset: 2800; opacity: 0; } 3% { opacity: 0.10; } 35% { stroke-dashoffset: 0; opacity: 0.08; } 40% { stroke-dashoffset: 2800; opacity: 0.02; } 43% { opacity: 0.10; } 75% { stroke-dashoffset: 0; opacity: 0.06; } 85% { stroke-dashoffset: 0; opacity: 0.015; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes cl-draw-m { 0% { stroke-dashoffset: 800; opacity: 0; } 5% { opacity: 0.22; } 35% { stroke-dashoffset: 0; opacity: 0.18; } 42% { stroke-dashoffset: 800; opacity: 0.05; } 45% { opacity: 0.22; } 75% { stroke-dashoffset: 0; opacity: 0.16; } 85% { stroke-dashoffset: 0; opacity: 0.04; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes cl-glow-m { 0% { stroke-dashoffset: 800; opacity: 0; } 5% { opacity: 0.10; } 35% { stroke-dashoffset: 0; opacity: 0.08; } 42% { stroke-dashoffset: 800; opacity: 0.02; } 45% { opacity: 0.10; } 75% { stroke-dashoffset: 0; opacity: 0.06; } 85% { stroke-dashoffset: 0; opacity: 0.015; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .cl-ecg-main, .cl-ecg-glow, .cl-ecg-main-m, .cl-ecg-glow-m { animation: none !important; } }
+      `}</style>
 
       {/* Floating particles */}
       <FloatingParticles />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20 mb-6">
           <History className="h-3.5 w-3.5 text-primary-500" />
           <span className="text-sm font-semibold text-primary-700 dark:text-primary-400">Changelog</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        {/* Title with Pulse gradient */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
           <span className="text-slate-900 dark:text-white">Historial de </span>
-          <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 dark:from-primary-400 dark:via-emerald-300 dark:to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
             Cambios
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
           Mantente al dia con todas las novedades, mejoras y correcciones de Pulse.
           Cada actualización está diseñada para mejorar tu experiencia de desarrollo.
         </p>
@@ -456,99 +513,77 @@ const TimelineSection = () => {
 const NewsletterSection = () => {
   return (
     <RevealSection>
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="scroll-reveal-scale relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 p-10 md:p-16 text-center noise-overlay">
-            {/* Dot pattern */}
-            <div
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                backgroundSize: '20px 20px',
-              }}
-            />
+      <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
+        {/* Full-width gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700" />
 
-            {/* Orbs */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent-400/20 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+        {/* Dot pattern */}
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.25) 1px, transparent 0)',
+          backgroundSize: '28px 28px',
+        }} />
 
-            {/* Particles */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {particleData.slice(0, 8).map((p, i) => (
-                <div
-                  key={i}
-                  className="absolute rounded-full bg-white animate-float"
-                  style={{
-                    width: p.size,
-                    height: p.size,
-                    left: p.x,
-                    top: p.y,
-                    opacity: p.opacity * 0.4,
-                    animationDelay: p.delay,
-                    animationDuration: p.dur,
-                  }}
-                />
-              ))}
+        {/* Animated orbs */}
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-orb" />
+        <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-orb-slow" />
+
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="scroll-reveal">
+            {/* Icon */}
+            <div className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/20 border border-white/30 mb-6">
+              <Bell className="h-7 w-7 text-white" />
             </div>
 
-            <div className="relative z-10">
-              {/* Icon */}
-              <div className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/20 border border-white/30 mb-6">
-                <Bell className="h-7 w-7 text-white" />
-              </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+              Suscribete a las Actualizaciones
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-8">
+              Recibe notificaciones de cada nueva versión directamente en tu correo.
+              Sin spam, solo las novedades que importan.
+            </p>
+          </div>
 
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Suscribete a las Actualizaciones
-              </h2>
-              <p className="text-lg text-primary-100 max-w-xl mx-auto mb-8">
-                Recibe notificaciones de cada nueva versión directamente en tu correo.
-                Sin spam, solo las novedades que importan.
-              </p>
-
-              {/* Email form */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
-                <div className="relative w-full sm:flex-1">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
-                  <input
-                    type="email"
-                    placeholder="tu@email.com"
-                    className={cn(
-                      'w-full pl-10 pr-4 py-3 rounded-xl',
-                      'bg-white/10 backdrop-blur-sm',
-                      'border border-white/10 hover:border-white/20 focus:border-primary-500/50',
-                      'text-white placeholder:text-white/50',
-                      'text-sm font-medium',
-                      'outline-none focus:ring-2 focus:ring-primary-500/20',
-                      'transition-all duration-200',
-                    )}
-                  />
-                </div>
-                <Button
-                  size="lg"
-                  className="w-full sm:w-auto bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-6 shrink-0"
-                >
-                  Suscribirme
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </div>
-
-              {/* Trust line */}
-              <div className="flex items-center justify-center gap-4 mt-6 text-xs text-primary-100">
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                  Sin spam
-                </span>
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                  Cancela cuando quieras
-                </span>
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                  Solo novedades
-                </span>
-              </div>
+          {/* Email form */}
+          <div className="scroll-reveal stagger-2 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+            <div className="relative w-full sm:flex-1">
+              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
+              <input
+                type="email"
+                placeholder="tu@email.com"
+                className={cn(
+                  'w-full pl-10 pr-4 py-3.5 rounded-xl',
+                  'bg-white/15 backdrop-blur-sm',
+                  'border border-white/25 hover:border-white/30 focus:border-white/40',
+                  'text-white placeholder:text-white/50',
+                  'text-sm font-medium',
+                  'outline-none focus:ring-2 focus:ring-white/20',
+                  'transition-all duration-200',
+                )}
+              />
             </div>
+            <Button
+              size="lg"
+              className="w-full sm:w-auto bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-6 shrink-0"
+            >
+              Suscribirme
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+
+          {/* Trust line */}
+          <div className="scroll-reveal stagger-4 flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 mt-6 text-sm text-white/70">
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="h-4 w-4" />
+              Sin spam
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="h-4 w-4" />
+              Cancela cuando quieras
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="h-4 w-4" />
+              Solo novedades
+            </span>
           </div>
         </div>
       </section>
