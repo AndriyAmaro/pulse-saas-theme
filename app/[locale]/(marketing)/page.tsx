@@ -330,7 +330,7 @@ const HeroSection = () => {
       {/* ECG pulse line — Mobile (1 beat, compact, at title height) */}
       <svg
         className="absolute inset-0 z-[1] w-full h-full pointer-events-none md:hidden"
-        viewBox="0 0 400 700"
+        viewBox="0 0 800 1000"
         preserveAspectRatio="xMidYMid slice"
         fill="none"
       >
@@ -345,13 +345,13 @@ const HeroSection = () => {
         </defs>
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
           <path className="hero-ecg-glow-mobile" filter="url(#hero-ecg-glow-m)"
-            d="M 0,290 L 40,290 L 80,290 L 110,290 L 120,284 L 130,296 L 138,290 L 170,290 L 200,290 L 212,276 L 224,310 L 236,258 L 248,306 L 260,282 L 272,290 L 310,290 L 350,290 L 400,290"
-            stroke="rgb(20, 184, 154)" strokeWidth="3" />
+            d="M 100,410 L 160,410 L 220,410 L 270,410 L 282,405 L 294,415 L 302,410 L 350,410 L 400,410 L 414,400 L 428,422 L 442,386 L 456,420 L 470,404 L 484,410 L 540,410 L 600,410 L 700,410"
+            stroke="rgb(20, 184, 154)" strokeWidth="2.5" />
           <path className="hero-ecg-main-mobile"
-            d="M 0,290 L 40,290 L 80,290 L 110,290 L 120,284 L 130,296 L 138,290 L 170,290 L 200,290 L 212,276 L 224,310 L 236,258 L 248,306 L 260,282 L 272,290 L 310,290 L 350,290 L 400,290"
-            stroke="rgb(94, 234, 212)" strokeWidth="1" />
+            d="M 100,410 L 160,410 L 220,410 L 270,410 L 282,405 L 294,415 L 302,410 L 350,410 L 400,410 L 414,400 L 428,422 L 442,386 L 456,420 L 470,404 L 484,410 L 540,410 L 600,410 L 700,410"
+            stroke="rgb(94, 234, 212)" strokeWidth="0.8" />
           <path className="hero-ecg-echo-mobile"
-            d="M 0,295 L 40,295 L 80,295 L 110,295 L 120,290 L 130,300 L 138,295 L 170,295 L 200,295 L 212,282 L 224,314 L 236,264 L 248,310 L 260,287 L 272,295 L 310,295 L 350,295 L 400,295"
+            d="M 100,415 L 160,415 L 220,415 L 270,415 L 282,411 L 294,419 L 302,415 L 350,415 L 400,415 L 414,406 L 428,426 L 442,392 L 456,424 L 470,408 L 484,415 L 540,415 L 600,415 L 700,415"
             stroke="rgb(94, 234, 212)" strokeWidth="0.3" />
         </g>
       </svg>
