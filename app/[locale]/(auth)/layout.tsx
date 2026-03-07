@@ -92,17 +92,19 @@ export default function AuthLayout({
             </div>
 
             {/* Brand Name — large elegant typography */}
-            <h1 className="mb-2 text-5xl font-bold tracking-tight xl:text-6xl">
-              Pulse
+            <h1 className="mb-2 text-5xl font-extrabold tracking-tight xl:text-6xl">
+              <span className="bg-gradient-to-r from-white via-white/90 to-emerald-200 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+                Pulse
+              </span>
             </h1>
 
             {/* Tagline — with subtle separator */}
             <div className="mb-8 flex items-center gap-3 xl:mb-10">
-              <span className="h-px w-8 bg-white/30" />
+              <span className="h-px w-10 bg-gradient-to-r from-transparent to-white/40" />
               <p className="text-lg font-light tracking-[0.15em] uppercase text-white/80 xl:text-xl">
                 Data that breathes
               </p>
-              <span className="h-px w-8 bg-white/30" />
+              <span className="h-px w-10 bg-gradient-to-l from-transparent to-white/40" />
             </div>
 
             {/* Description */}

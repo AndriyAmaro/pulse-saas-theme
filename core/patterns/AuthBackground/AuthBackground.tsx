@@ -127,12 +127,28 @@ export function AuthBackground({ className }: AuthBackgroundProps) {
         }}
       />
 
+      {/* Background image layer for depth */}
+      <div
+        className="absolute inset-0 opacity-[0.08] bg-no-repeat bg-center bg-cover mix-blend-overlay"
+        style={{ backgroundImage: 'url(/fundo-blackground.png)' }}
+      />
+
       {/* Depth overlay */}
       <div
         className="absolute inset-0"
         style={{
           background:
             'radial-gradient(ellipse at 30% 20%, transparent 0%, rgba(8, 90, 78, 0.2) 100%)',
+        }}
+      />
+
+      {/* Grid pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
         }}
       />
 
