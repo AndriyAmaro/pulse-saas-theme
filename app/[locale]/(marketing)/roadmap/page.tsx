@@ -248,24 +248,36 @@ const RoadmapCard = ({
   const statusConfig = {
     completed: {
       dotColor: 'bg-emerald-500',
-      gradientBorder: 'from-emerald-400/50 via-emerald-500/15 to-emerald-400/50',
-      glowColor: 'group-hover:shadow-emerald-500/15 dark:group-hover:shadow-emerald-500/10',
+      gradientBorder: 'from-emerald-400/40 via-emerald-500/20 to-emerald-400/40',
+      glowColor: 'group-hover:shadow-emerald-500/20 dark:group-hover:shadow-emerald-500/15',
       badgeColor: 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20',
+      iconBg: 'bg-emerald-500/10 dark:bg-emerald-500/15',
+      iconColor: 'text-emerald-500',
       accentColor: '#10B981',
+      progressWidth: '100%',
+      progressGradient: 'from-emerald-400 to-emerald-600',
     },
     'in-progress': {
       dotColor: 'bg-primary-500',
-      gradientBorder: 'from-primary-400/50 via-primary-500/15 to-primary-400/50',
-      glowColor: 'group-hover:shadow-primary-500/15 dark:group-hover:shadow-primary-500/10',
+      gradientBorder: 'from-primary-400/40 via-primary-500/20 to-primary-400/40',
+      glowColor: 'group-hover:shadow-primary-500/20 dark:group-hover:shadow-primary-500/15',
       badgeColor: 'bg-primary-50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 border-primary-200 dark:border-primary-500/20',
+      iconBg: 'bg-primary-500/10 dark:bg-primary-500/15',
+      iconColor: 'text-primary-500',
       accentColor: '#14B89A',
+      progressWidth: '60%',
+      progressGradient: 'from-primary-400 to-primary-600',
     },
     planned: {
       dotColor: 'bg-slate-400',
-      gradientBorder: 'from-slate-300/50 via-slate-400/15 to-slate-300/50 dark:from-slate-600/50 dark:via-slate-700/15 dark:to-slate-600/50',
-      glowColor: 'group-hover:shadow-slate-400/15 dark:group-hover:shadow-slate-500/10',
+      gradientBorder: 'from-slate-300/40 via-slate-400/15 to-slate-300/40 dark:from-slate-600/40 dark:via-slate-700/15 dark:to-slate-600/40',
+      glowColor: 'group-hover:shadow-slate-400/20 dark:group-hover:shadow-slate-500/15',
       badgeColor: 'bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700',
+      iconBg: 'bg-slate-100 dark:bg-slate-800',
+      iconColor: 'text-slate-500 dark:text-slate-400',
       accentColor: '#94A3B8',
+      progressWidth: '15%',
+      progressGradient: 'from-slate-300 to-slate-400 dark:from-slate-600 dark:to-slate-500',
     },
   }
 
@@ -295,12 +307,31 @@ const RoadmapCard = ({
           config.glowColor
         )}
       >
-        <div className="relative rounded-[15px] bg-white dark:bg-slate-900 p-5 h-full overflow-hidden group-hover:-translate-y-0.5 transition-transform duration-300">
+        <div className="relative rounded-[15px] bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-5 h-full overflow-hidden group-hover:-translate-y-0.5 transition-transform duration-300">
+          {/* Scan line effect on hover */}
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+            style={{
+              background: `linear-gradient(180deg, transparent 0%, ${config.accentColor}06 50%, transparent 100%)`,
+              backgroundSize: '100% 200%',
+              animation: 'none',
+            }}
+          />
+
           {/* Corner gradient glow */}
           <div
             className="absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
             style={{
-              background: `radial-gradient(circle, ${config.accentColor}15 0%, transparent 70%)`,
+              background: `radial-gradient(circle, ${config.accentColor}20 0%, transparent 70%)`,
+            }}
+          />
+
+          {/* Grid pattern overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none"
+            style={{
+              backgroundImage: `linear-gradient(${config.accentColor}30 1px, transparent 1px), linear-gradient(90deg, ${config.accentColor}30 1px, transparent 1px)`,
+              backgroundSize: '20px 20px',
             }}
           />
 
@@ -309,20 +340,11 @@ const RoadmapCard = ({
             <div
               className={cn(
                 'inline-flex items-center justify-center h-10 w-10 rounded-xl',
-                'ring-1 ring-inset ring-black/5 dark:ring-white/5',
-                status === 'completed' && 'bg-emerald-500/10 dark:bg-emerald-500/15',
-                status === 'in-progress' && 'bg-primary-500/10 dark:bg-primary-500/15',
-                status === 'planned' && 'bg-slate-100 dark:bg-slate-800'
+                'ring-1 ring-inset ring-black/5 dark:ring-white/10',
+                config.iconBg
               )}
             >
-              <item.icon
-                className={cn(
-                  'h-5 w-5',
-                  status === 'completed' && 'text-emerald-500',
-                  status === 'in-progress' && 'text-primary-500',
-                  status === 'planned' && 'text-slate-500 dark:text-slate-400'
-                )}
-              />
+              <item.icon className={cn('h-5 w-5', config.iconColor)} />
             </div>
             <span className="relative flex h-3 w-3">
               {status === 'in-progress' && (
@@ -343,15 +365,25 @@ const RoadmapCard = ({
           </h3>
 
           {/* Description */}
-          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 relative z-10">
+          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3 relative z-10">
             {item.description}
           </p>
 
+          {/* Progress bar */}
+          <div className="relative z-10 mb-4">
+            <div className="h-1 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+              <div
+                className={cn('h-full rounded-full bg-gradient-to-r transition-all duration-700', config.progressGradient)}
+                style={{ width: config.progressWidth }}
+              />
+            </div>
+          </div>
+
           {/* Footer: category badge + vote button */}
-          <div className="flex items-center justify-between relative z-10 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+          <div className="flex items-center justify-between relative z-10 pt-3 border-t border-slate-100/80 dark:border-slate-800/60">
             <span
               className={cn(
-                'inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border',
+                'inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border backdrop-blur-sm',
                 config.badgeColor
               )}
             >
@@ -362,11 +394,11 @@ const RoadmapCard = ({
               className={cn(
                 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200',
                 voted
-                  ? 'bg-primary-50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 ring-1 ring-primary-200 dark:ring-primary-500/30'
+                  ? 'bg-primary-50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 ring-1 ring-primary-200 dark:ring-primary-500/30 scale-105'
                   : 'bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 ring-1 ring-slate-200 dark:ring-slate-700'
               )}
             >
-              <ThumbsUp className={cn('h-3.5 w-3.5', voted && 'fill-primary-500 text-primary-500')} />
+              <ThumbsUp className={cn('h-3.5 w-3.5 transition-transform', voted && 'fill-primary-500 text-primary-500 -rotate-12')} />
               <span className="tabular-nums">{voteCount}</span>
             </button>
           </div>
@@ -382,42 +414,61 @@ const RoadmapCard = ({
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/50 via-white to-white dark:from-primary-950/30 dark:via-slate-950 dark:to-slate-950" />
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-            backgroundSize: '32px 32px',
-          }}
-        />
-        {/* Animated orbs */}
-        <div className="absolute top-20 right-1/4 w-72 h-72 bg-primary-400/10 dark:bg-primary-400/5 rounded-full blur-3xl animate-orb-slow" />
-        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-accent-400/10 dark:bg-accent-400/5 rounded-full blur-3xl animate-orb" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-500/5 dark:bg-primary-500/[0.03] rounded-full blur-3xl" />
-      </div>
+    <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-x-clip">
+      {/* Background Image */}
+      <div
+        className="absolute -inset-x-16 inset-y-0 z-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40"
+        style={{ backgroundImage: 'url(/fundo-blackground.png)' }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
+
+      {/* ECG — Desktop */}
+      <svg className="absolute inset-0 z-[1] w-full h-full pointer-events-none hidden md:block" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        <defs><filter id="rm-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="rm-ecg-glow" filter="url(#rm-glow)" d="M 0,420 L 80,420 L 160,420 L 220,420 L 240,412 L 260,428 L 275,420 L 340,420 L 400,420 L 420,402 L 440,448 L 460,370 L 480,442 L 500,410 L 520,420 L 600,420 L 680,420 L 740,420 L 760,412 L 780,428 L 795,420 L 860,420 L 920,420 L 940,404 L 960,446 L 980,372 L 1000,440 L 1020,412 L 1040,420 L 1120,420 L 1200,420 L 1260,420 L 1280,412 L 1300,428 L 1315,420 L 1380,420 L 1440,420" stroke="rgb(20, 184, 154)" strokeWidth="4"/>
+          <path className="rm-ecg-main" d="M 0,420 L 80,420 L 160,420 L 220,420 L 240,412 L 260,428 L 275,420 L 340,420 L 400,420 L 420,402 L 440,448 L 460,370 L 480,442 L 500,410 L 520,420 L 600,420 L 680,420 L 740,420 L 760,412 L 780,428 L 795,420 L 860,420 L 920,420 L 940,404 L 960,446 L 980,372 L 1000,440 L 1020,412 L 1040,420 L 1120,420 L 1200,420 L 1260,420 L 1280,412 L 1300,428 L 1315,420 L 1380,420 L 1440,420" stroke="rgb(94, 234, 212)" strokeWidth="1.2"/>
+        </g>
+      </svg>
+      {/* ECG — Mobile */}
+      <svg className="absolute inset-0 z-[1] w-full h-full pointer-events-none md:hidden" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid meet" fill="none">
+        <defs><filter id="rm-glow-m" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="rm-ecg-glow-m" filter="url(#rm-glow-m)" d="M 0,220 L 50,220 L 100,220 L 140,220 L 150,216 L 160,224 L 167,220 L 200,220 L 240,220 L 252,212 L 264,230 L 276,200 L 288,228 L 300,216 L 312,220 L 360,220 L 410,220 L 500,220" stroke="rgb(20, 184, 154)" strokeWidth="2"/>
+          <path className="rm-ecg-main-m" d="M 0,220 L 50,220 L 100,220 L 140,220 L 150,216 L 160,224 L 167,220 L 200,220 L 240,220 L 252,212 L 264,230 L 276,200 L 288,228 L 300,216 L 312,220 L 360,220 L 410,220 L 500,220" stroke="rgb(94, 234, 212)" strokeWidth="0.7"/>
+        </g>
+      </svg>
+      <style>{`
+        .rm-ecg-main { stroke-dasharray: 2800; stroke-dashoffset: 2800; animation: rm-draw 16s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .rm-ecg-glow { stroke-dasharray: 2800; stroke-dashoffset: 2800; animation: rm-glow-a 16s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .rm-ecg-main-m { stroke-dasharray: 800; stroke-dashoffset: 800; animation: rm-draw-m 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .rm-ecg-glow-m { stroke-dasharray: 800; stroke-dashoffset: 800; animation: rm-glow-m 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        @keyframes rm-draw { 0% { stroke-dashoffset: 2800; opacity: 0; } 3% { opacity: 0.22; } 35% { stroke-dashoffset: 0; opacity: 0.18; } 40% { stroke-dashoffset: 2800; opacity: 0.05; } 43% { opacity: 0.22; } 75% { stroke-dashoffset: 0; opacity: 0.16; } 85% { stroke-dashoffset: 0; opacity: 0.04; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes rm-glow-a { 0% { stroke-dashoffset: 2800; opacity: 0; } 3% { opacity: 0.10; } 35% { stroke-dashoffset: 0; opacity: 0.08; } 40% { stroke-dashoffset: 2800; opacity: 0.02; } 43% { opacity: 0.10; } 75% { stroke-dashoffset: 0; opacity: 0.06; } 85% { stroke-dashoffset: 0; opacity: 0.015; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes rm-draw-m { 0% { stroke-dashoffset: 800; opacity: 0; } 5% { opacity: 0.22; } 35% { stroke-dashoffset: 0; opacity: 0.18; } 42% { stroke-dashoffset: 800; opacity: 0.05; } 45% { opacity: 0.22; } 75% { stroke-dashoffset: 0; opacity: 0.16; } 85% { stroke-dashoffset: 0; opacity: 0.04; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes rm-glow-m { 0% { stroke-dashoffset: 800; opacity: 0; } 5% { opacity: 0.10; } 35% { stroke-dashoffset: 0; opacity: 0.08; } 42% { stroke-dashoffset: 800; opacity: 0.02; } 45% { opacity: 0.10; } 75% { stroke-dashoffset: 0; opacity: 0.06; } 85% { stroke-dashoffset: 0; opacity: 0.015; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .rm-ecg-main, .rm-ecg-glow, .rm-ecg-main-m, .rm-ecg-glow-m { animation: none !important; } }
+      `}</style>
 
       <FloatingParticles />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20 mb-6">
           <Map className="h-3.5 w-3.5 text-primary-500" />
           <span className="text-sm font-semibold text-primary-700 dark:text-primary-400">Roadmap</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        {/* Title with Pulse gradient */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
           <span className="text-slate-900 dark:text-white">Hoja de </span>
-          <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 dark:from-primary-400 dark:via-emerald-300 dark:to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
             Ruta
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
           Nuestra visión para el futuro de Pulse. Descubre las funcionalidades completadas,
           en desarrollo y planificadas para las próximas versiones.
         </p>
@@ -495,8 +546,11 @@ const RoadmapSection = () => {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <div className="text-center mb-14 scroll-reveal">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Estado del Desarrollo
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-slate-900 dark:text-white">Estado del </span>
+              <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 dark:from-primary-400 dark:via-emerald-300 dark:to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
+                Desarrollo
+              </span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               Sigue el progreso de cada funcionalidad. Vota por las features que más te interesan para ayudarnos a priorizar.
@@ -507,29 +561,33 @@ const RoadmapSection = () => {
           <div className="grid lg:grid-cols-3 gap-8">
             {columns.map((column) => (
               <div key={column.title} className="scroll-reveal">
-                {/* Column header */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className={cn(
-                      'inline-flex items-center justify-center h-9 w-9 rounded-lg bg-gradient-to-br text-white shadow-lg',
-                      column.headerGradient
-                    )}
-                  >
-                    <column.icon className="h-4.5 w-4.5" />
+                {/* Column header — glass card */}
+                <div className="relative mb-6 p-4 rounded-xl bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/40 overflow-hidden">
+                  {/* Accent top border */}
+                  <div className={cn('absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r', column.headerGradient)} />
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={cn(
+                        'inline-flex items-center justify-center h-9 w-9 rounded-lg bg-gradient-to-br text-white shadow-lg',
+                        column.headerGradient
+                      )}
+                    >
+                      <column.icon className="h-4.5 w-4.5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-900 dark:text-white leading-tight">
+                        {column.title}
+                      </h3>
+                    </div>
+                    <span
+                      className={cn(
+                        'ml-auto inline-flex items-center justify-center h-7 w-7 rounded-lg text-xs font-bold text-white',
+                        `bg-gradient-to-br ${column.headerGradient}`
+                      )}
+                    >
+                      {column.count}
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
-                      {column.title}
-                    </h3>
-                  </div>
-                  <span
-                    className={cn(
-                      'ml-auto inline-flex items-center justify-center h-6 w-6 rounded-full text-xs font-bold text-white',
-                      `bg-gradient-to-br ${column.headerGradient}`
-                    )}
-                  >
-                    {column.count}
-                  </span>
                 </div>
 
                 {/* Cards */}
@@ -631,63 +689,61 @@ const SuggestSection = () => {
 
 const CtaSection = () => {
   return (
-    <RevealSection>
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="scroll-reveal-scale relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 p-10 md:p-16 text-center noise-overlay">
-            <div
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                backgroundSize: '20px 20px',
-              }}
-            />
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent-400/20 rounded-full blur-3xl" />
+    <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
+      {/* Full-width gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700" />
+      {/* Dot pattern */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)',
+          backgroundSize: '28px 28px',
+        }}
+      />
+      {/* Animated orbs */}
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl animate-orb" />
+      <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-white/10 rounded-full blur-3xl animate-orb-slow" />
 
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-6">
-                <Rocket className="h-3.5 w-3.5 text-white" />
-                <span className="text-sm font-semibold text-white/90">Construye con nosotros</span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Quieres dar forma al futuro de Pulse?
-              </h2>
-              <p className="text-lg text-primary-100 max-w-xl mx-auto mb-8">
-                Únete a nuestra comunidad de desarrolladores, comparte tus ideas y ayúdanos a
-                construir la mejor plataforma SaaS del mercado.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a
-                  href="https://github.com/AndriyAmaro"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button
-                    size="lg"
-                    className="bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-8 animate-glow-pulse"
-                  >
-                    <Github className="h-4 w-4" />
-                    Explorar en GitHub
-                  </Button>
-                </a>
-                <a href="/contact">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-white/30 text-white hover:bg-white/10 gap-2 px-8"
-                  >
-                    <Mail className="h-4 w-4" />
-                    Contactar
-                  </Button>
-                </a>
-              </div>
-            </div>
-          </div>
+      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-6">
+          <Rocket className="h-3.5 w-3.5 text-white" />
+          <span className="text-sm font-semibold text-white/90">Construye con nosotros</span>
         </div>
-      </section>
-    </RevealSection>
+
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          Quieres dar forma al futuro de Pulse?
+        </h2>
+        <p className="text-lg text-primary-100 max-w-xl mx-auto mb-8">
+          Únete a nuestra comunidad de desarrolladores, comparte tus ideas y ayúdanos a
+          construir la mejor plataforma SaaS del mercado.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="https://github.com/AndriyAmaro"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              size="lg"
+              className="bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-8 animate-glow-pulse"
+            >
+              <Github className="h-4 w-4" />
+              Explorar en GitHub
+            </Button>
+          </a>
+          <a href="/contact">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-white/30 text-white hover:bg-white/10 gap-2 px-8"
+            >
+              <Mail className="h-4 w-4" />
+              Contactar
+            </Button>
+          </a>
+        </div>
+      </div>
+    </section>
   )
 }
 
