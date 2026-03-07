@@ -361,43 +361,150 @@ const categories: Category[] = [
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/50 via-white to-white dark:from-primary-950/30 dark:via-slate-950 dark:to-slate-950" />
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-            backgroundSize: '32px 32px',
-          }}
-        />
-        {/* Orbs */}
-        <div className="absolute top-20 right-1/4 w-72 h-72 bg-primary-400/10 dark:bg-primary-400/5 rounded-full blur-3xl animate-orb-slow" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent-400/10 dark:bg-accent-400/5 rounded-full blur-3xl animate-orb" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-500/5 dark:bg-primary-500/[0.03] rounded-full blur-3xl" />
-      </div>
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-x-clip">
+      {/* Background Image */}
+      <div
+        className="absolute -inset-x-16 inset-y-0 z-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40"
+        style={{ backgroundImage: 'url(/fundo-blackground.png)' }}
+      />
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
+
+      {/* ECG pulse line — Desktop */}
+      <svg
+        className="absolute inset-0 z-[1] w-full h-full pointer-events-none hidden md:block"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+      >
+        <defs>
+          <filter id="integ-ecg-glow" x="-20%" y="-50%" width="140%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="integ-ecg-glow" filter="url(#integ-ecg-glow)"
+            d="M 0,400 L 80,400 L 160,400 L 220,400 L 240,392 L 260,408 L 275,400 L 340,400 L 400,400 L 420,382 L 440,428 L 460,350 L 480,422 L 500,390 L 520,400 L 600,400 L 680,400 L 740,400 L 760,392 L 780,408 L 795,400 L 860,400 L 920,400 L 940,384 L 960,426 L 980,352 L 1000,420 L 1020,392 L 1040,400 L 1120,400 L 1200,400 L 1260,400 L 1280,392 L 1300,408 L 1315,400 L 1380,400 L 1440,400"
+            stroke="rgb(20, 184, 154)" strokeWidth="4" />
+          <path className="integ-ecg-main"
+            d="M 0,400 L 80,400 L 160,400 L 220,400 L 240,392 L 260,408 L 275,400 L 340,400 L 400,400 L 420,382 L 440,428 L 460,350 L 480,422 L 500,390 L 520,400 L 600,400 L 680,400 L 740,400 L 760,392 L 780,408 L 795,400 L 860,400 L 920,400 L 940,384 L 960,426 L 980,352 L 1000,420 L 1020,392 L 1040,400 L 1120,400 L 1200,400 L 1260,400 L 1280,392 L 1300,408 L 1315,400 L 1380,400 L 1440,400"
+            stroke="rgb(94, 234, 212)" strokeWidth="1.2" />
+        </g>
+      </svg>
+
+      {/* ECG pulse line — Mobile */}
+      <svg
+        className="absolute inset-0 z-[1] w-full h-full pointer-events-none md:hidden"
+        viewBox="0 0 500 600"
+        preserveAspectRatio="xMidYMid meet"
+        fill="none"
+      >
+        <defs>
+          <filter id="integ-ecg-glow-m" x="-20%" y="-50%" width="140%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="integ-ecg-glow-m" filter="url(#integ-ecg-glow-m)"
+            d="M 0,200 L 50,200 L 100,200 L 140,200 L 150,196 L 160,204 L 167,200 L 200,200 L 240,200 L 252,192 L 264,210 L 276,180 L 288,208 L 300,196 L 312,200 L 360,200 L 410,200 L 500,200"
+            stroke="rgb(20, 184, 154)" strokeWidth="2" />
+          <path className="integ-ecg-main-m"
+            d="M 0,200 L 50,200 L 100,200 L 140,200 L 150,196 L 160,204 L 167,200 L 200,200 L 240,200 L 252,192 L 264,210 L 276,180 L 288,208 L 300,196 L 312,200 L 360,200 L 410,200 L 500,200"
+            stroke="rgb(94, 234, 212)" strokeWidth="0.7" />
+        </g>
+      </svg>
+
+      <style>{`
+        .integ-ecg-main {
+          stroke-dasharray: 2800; stroke-dashoffset: 2800;
+          animation: integ-draw 16s cubic-bezier(0.4,0,0.2,1) infinite;
+        }
+        .integ-ecg-glow {
+          stroke-dasharray: 2800; stroke-dashoffset: 2800;
+          animation: integ-glow 16s cubic-bezier(0.4,0,0.2,1) infinite;
+        }
+        .integ-ecg-main-m {
+          stroke-dasharray: 800; stroke-dashoffset: 800;
+          animation: integ-draw-m 12s cubic-bezier(0.4,0,0.2,1) infinite;
+        }
+        .integ-ecg-glow-m {
+          stroke-dasharray: 800; stroke-dashoffset: 800;
+          animation: integ-glow-m 12s cubic-bezier(0.4,0,0.2,1) infinite;
+        }
+        @keyframes integ-draw {
+          0%   { stroke-dashoffset: 2800; opacity: 0; }
+          3%   { opacity: 0.22; }
+          35%  { stroke-dashoffset: 0; opacity: 0.18; }
+          40%  { stroke-dashoffset: 2800; opacity: 0.05; }
+          43%  { opacity: 0.22; }
+          75%  { stroke-dashoffset: 0; opacity: 0.16; }
+          85%  { stroke-dashoffset: 0; opacity: 0.04; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        @keyframes integ-glow {
+          0%   { stroke-dashoffset: 2800; opacity: 0; }
+          3%   { opacity: 0.10; }
+          35%  { stroke-dashoffset: 0; opacity: 0.08; }
+          40%  { stroke-dashoffset: 2800; opacity: 0.02; }
+          43%  { opacity: 0.10; }
+          75%  { stroke-dashoffset: 0; opacity: 0.06; }
+          85%  { stroke-dashoffset: 0; opacity: 0.015; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        @keyframes integ-draw-m {
+          0%   { stroke-dashoffset: 800; opacity: 0; }
+          5%   { opacity: 0.22; }
+          35%  { stroke-dashoffset: 0; opacity: 0.18; }
+          42%  { stroke-dashoffset: 800; opacity: 0.05; }
+          45%  { opacity: 0.22; }
+          75%  { stroke-dashoffset: 0; opacity: 0.16; }
+          85%  { stroke-dashoffset: 0; opacity: 0.04; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        @keyframes integ-glow-m {
+          0%   { stroke-dashoffset: 800; opacity: 0; }
+          5%   { opacity: 0.10; }
+          35%  { stroke-dashoffset: 0; opacity: 0.08; }
+          42%  { stroke-dashoffset: 800; opacity: 0.02; }
+          45%  { opacity: 0.10; }
+          75%  { stroke-dashoffset: 0; opacity: 0.06; }
+          85%  { stroke-dashoffset: 0; opacity: 0.015; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .integ-ecg-main, .integ-ecg-glow,
+          .integ-ecg-main-m, .integ-ecg-glow-m { animation: none !important; }
+        }
+      `}</style>
 
       {/* Floating particles */}
       <FloatingParticles />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20 mb-6">
           <Puzzle className="h-3.5 w-3.5 text-primary-500" />
           <span className="text-sm font-semibold text-primary-700 dark:text-primary-400">Integraciones</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        {/* Title with Pulse gradient */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
           <span className="text-slate-900 dark:text-white">Conecta con tus </span>
-          <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 dark:from-primary-400 dark:via-emerald-300 dark:to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
             herramientas favoritas
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
           Integra Pulse con las herramientas que ya usas. Automatiza flujos de trabajo, centraliza datos y potencia la productividad de tu equipo.
         </p>
       </div>
@@ -408,6 +515,57 @@ const HeroSection = () => {
 // ============================================================================
 // SECTION 2 - INTEGRATIONS GRID
 // ============================================================================
+
+const IntegrationCard = ({ integration, delay }: { integration: Integration; delay: number }) => (
+  <div className="scroll-reveal-scale" style={{ transitionDelay: `${delay}ms` }}>
+    <div
+      className={cn(
+        'group relative rounded-2xl p-px overflow-hidden',
+        'bg-gradient-to-b',
+        integration.gradient,
+        'hover:shadow-2xl transition-all duration-500',
+      )}
+    >
+      <div className="relative rounded-[15px] bg-white dark:bg-slate-900 p-6 h-full overflow-hidden group-hover:-translate-y-0.5 transition-transform duration-300">
+        <div
+          className="absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+          style={{ background: `radial-gradient(circle, ${integration.accentColor}15 0%, transparent 70%)` }}
+        />
+        <div className="flex items-start justify-between mb-4 relative z-10">
+          <div
+            className={cn(
+              'inline-flex items-center justify-center h-12 w-12 rounded-xl',
+              'ring-1 ring-inset ring-black/5 dark:ring-white/5',
+              integration.iconBg,
+            )}
+          >
+            <integration.logo className="h-6 w-6" />
+          </div>
+          <span
+            className={cn(
+              'inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide',
+              'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400',
+            )}
+          >
+            {integration.category}
+          </span>
+        </div>
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 relative z-10 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+          {integration.name}
+        </h3>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed relative z-10">
+          {integration.description}
+        </p>
+        <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/60 relative z-10">
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:gap-2.5 transition-all duration-300">
+            Conectar
+            <ArrowRight className="h-3.5 w-3.5" />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+)
 
 const IntegrationsGridSection = () => {
   const [activeCategory, setActiveCategory] = React.useState<Category>('Todos')
@@ -449,73 +607,80 @@ const IntegrationsGridSection = () => {
             ))}
           </div>
 
-          {/* Integration cards grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {/* Integration cards — Desktop grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredIntegrations.map((integration, i) => (
-              <div
-                key={integration.name}
-                className="scroll-reveal-scale"
-                style={{ transitionDelay: `${i * 60}ms` }}
-              >
-                {/* Gradient border wrapper */}
-                <div
-                  className={cn(
-                    'group relative rounded-2xl p-px overflow-hidden',
-                    'bg-gradient-to-b',
-                    integration.gradient,
-                    'hover:shadow-2xl transition-all duration-500',
-                  )}
-                >
-                  {/* Inner card */}
-                  <div className="relative rounded-[15px] bg-white dark:bg-slate-900 p-6 h-full overflow-hidden group-hover:-translate-y-0.5 transition-transform duration-300">
-                    {/* Corner gradient glow */}
-                    <div
-                      className="absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
-                      style={{ background: `radial-gradient(circle, ${integration.accentColor}15 0%, transparent 70%)` }}
-                    />
+              <IntegrationCard key={integration.name} integration={integration} delay={i * 60} />
+            ))}
+          </div>
 
-                    {/* Icon */}
-                    <div className="flex items-start justify-between mb-4 relative z-10">
-                      <div
-                        className={cn(
-                          'inline-flex items-center justify-center h-12 w-12 rounded-xl',
-                          'ring-1 ring-inset ring-black/5 dark:ring-white/5',
-                          integration.iconBg,
-                        )}
-                      >
-                        <integration.logo className="h-6 w-6" />
+          {/* Integration cards — Mobile carousel (3 rows) */}
+          <div className="sm:hidden space-y-3 overflow-hidden">
+            {[0, 1, 2].map((row) => {
+              const rowItems = filteredIntegrations.filter((_, i) => i % 3 === row)
+              const doubled = [...rowItems, ...rowItems]
+              const isReverse = row === 1
+              return (
+                <div key={row} className="overflow-hidden">
+                  <div
+                    className={cn(
+                      'flex gap-3 w-max',
+                      isReverse
+                        ? 'animate-[integ-marquee-reverse_22s_linear_infinite]'
+                        : 'animate-[integ-marquee_20s_linear_infinite]',
+                    )}
+                    style={{ animationDelay: `${row * 0.5}s` }}
+                  >
+                    {doubled.map((integration, i) => (
+                      <div key={`${integration.name}-${i}`} className="w-[240px] shrink-0">
+                        <div
+                          className={cn(
+                            'group relative rounded-2xl p-px overflow-hidden',
+                            'bg-gradient-to-b',
+                            integration.gradient,
+                          )}
+                        >
+                          <div className="relative rounded-[15px] bg-white dark:bg-slate-900 p-4 h-full overflow-hidden">
+                            <div className="flex items-center gap-3 mb-2">
+                              <div
+                                className={cn(
+                                  'inline-flex items-center justify-center h-10 w-10 rounded-xl shrink-0',
+                                  'ring-1 ring-inset ring-black/5 dark:ring-white/5',
+                                  integration.iconBg,
+                                )}
+                              >
+                                <integration.logo className="h-5 w-5" />
+                              </div>
+                              <div className="min-w-0">
+                                <h3 className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+                                  {integration.name}
+                                </h3>
+                                <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                  {integration.category}
+                                </span>
+                              </div>
+                            </div>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2">
+                              {integration.description}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <span
-                        className={cn(
-                          'inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide',
-                          'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400',
-                        )}
-                      >
-                        {integration.category}
-                      </span>
-                    </div>
-
-                    {/* Name */}
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 relative z-10 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                      {integration.name}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed relative z-10">
-                      {integration.description}
-                    </p>
-
-                    {/* Connect link */}
-                    <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/60 relative z-10">
-                      <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:gap-2.5 transition-all duration-300">
-                        Conectar
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </span>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
+            <style>{`
+              @keyframes integ-marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              @keyframes integ-marquee-reverse {
+                0% { transform: translateX(-50%); }
+                100% { transform: translateX(0); }
+              }
+            `}</style>
           </div>
         </div>
       </section>
@@ -627,53 +792,52 @@ const HowItWorksSection = () => {
 const CTASection = () => {
   return (
     <RevealSection>
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="scroll-reveal-scale relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 p-10 md:p-16 text-center noise-overlay">
-            {/* Dot pattern */}
-            <div
-              className="absolute inset-0 opacity-[0.07]"
-              style={{
-                backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                backgroundSize: '20px 20px',
-              }}
-            />
-            {/* Orbs */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent-400/20 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
+        {/* Full-width gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700" />
 
-            <div className="relative z-10">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6">
-                <CheckCircle2 className="h-3.5 w-3.5 text-white" />
-                <span className="text-sm font-semibold text-white">API Abierta</span>
-              </div>
+        {/* Dot pattern */}
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.25) 1px, transparent 0)',
+          backgroundSize: '28px 28px',
+        }} />
 
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Construye tu propia integracion
-              </h2>
-              <p className="text-lg text-primary-100 max-w-xl mx-auto mb-8">
-                Nuestra API RESTful y webhooks te permiten crear integraciones personalizadas. Documentacion completa, SDKs y soporte dedicado.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button
-                  size="lg"
-                  className="bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-8 animate-glow-pulse"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  Ver documentacion API
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white/30 text-white hover:bg-white/10 gap-2 px-8"
-                >
-                  <Mail className="h-4 w-4" />
-                  Contactar ventas
-                </Button>
-              </div>
+        {/* Animated orbs */}
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-orb" />
+        <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-orb-slow" />
+
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="scroll-reveal">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6">
+              <CheckCircle2 className="h-3.5 w-3.5 text-white" />
+              <span className="text-sm font-semibold text-white">API Abierta</span>
             </div>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+              Construye tu propia integracion
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-8">
+              Nuestra API RESTful y webhooks te permiten crear integraciones personalizadas. Documentacion completa, SDKs y soporte dedicado.
+            </p>
+          </div>
+
+          <div className="scroll-reveal stagger-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              size="lg"
+              className="bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-8 animate-glow-pulse"
+            >
+              <BookOpen className="h-4 w-4" />
+              Ver documentacion API
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-white/30 text-white hover:bg-white/10 gap-2 px-8"
+            >
+              <Mail className="h-4 w-4" />
+              Contactar ventas
+            </Button>
           </div>
         </div>
       </section>
