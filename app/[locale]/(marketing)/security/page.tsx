@@ -252,21 +252,58 @@ export default function SecurityPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-x-clip">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-50/50 via-white to-white dark:from-primary-950/30 dark:via-slate-950 dark:to-slate-950" />
-          <FloatingParticles />
+          <div className="absolute -inset-x-16 inset-y-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40" style={{ backgroundImage: 'url(/fundo-blackground.png)' }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
+          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(148,163,184,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* ECG heartbeat — Desktop */}
+        <svg className="hidden md:block absolute inset-0 z-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 450 L360 450 L390 350 L420 550 L450 300 L480 600 L510 450 L1440 450" className="sc-ecg-line" stroke="url(#sc-ecg-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <defs>
+            <linearGradient id="sc-ecg-grad" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+              <stop offset="15%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+              <stop offset="85%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+        {/* ECG heartbeat — Mobile */}
+        <svg className="md:hidden absolute inset-0 z-0 w-full h-full" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 300 L125 300 L145 230 L165 370 L185 200 L205 400 L225 300 L500 300" className="sc-ecg-line" stroke="url(#sc-ecg-grad-m)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <defs>
+            <linearGradient id="sc-ecg-grad-m" x1="0" y1="0" x2="500" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+              <stop offset="20%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+              <stop offset="80%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <style>{`
+          .sc-ecg-line {
+            stroke-dasharray: 2200;
+            stroke-dashoffset: 2200;
+            animation: sc-ecg-draw 3s ease-in-out forwards;
+          }
+          @keyframes sc-ecg-draw {
+            to { stroke-dashoffset: 0; }
+          }
+        `}</style>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="max-w-3xl mx-auto text-center">
               <div className="scroll-reveal inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-primary-200 dark:border-primary-500/20 bg-primary-50 dark:bg-primary-500/10">
                 <Shield className="h-4 w-4 text-primary-500" />
                 <span className="text-sm font-medium text-primary-700 dark:text-primary-300">Seguridad</span>
               </div>
-              <h1 className="scroll-reveal text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+              <h1 className="scroll-reveal text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-6">
                 Seguridad de Nivel{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400">Empresarial</span>
+                <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Empresarial</span>
               </h1>
               <p className="scroll-reveal text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-8">
                 Protegemos sus datos con los mas altos estandares de seguridad de la industria. Cifrado de extremo a extremo, monitoreo continuo y cumplimiento normativo completo.
@@ -289,8 +326,9 @@ export default function SecurityPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="scroll-reveal text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Caracteristicas de Seguridad
+              <h2 className="scroll-reveal text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Caracteristicas de{' '}
+                <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Seguridad</span>
               </h2>
               <p className="scroll-reveal text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 Multiples capas de proteccion disenadas para mantener sus datos seguros en todo momento.
@@ -338,8 +376,9 @@ export default function SecurityPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="scroll-reveal text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Arquitectura de Seguridad
+              <h2 className="scroll-reveal text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Arquitectura de{' '}
+                <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Seguridad</span>
               </h2>
               <p className="scroll-reveal text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 Cada capa de nuestra infraestructura esta protegida con medidas de seguridad especificas y complementarias.
@@ -394,8 +433,9 @@ export default function SecurityPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="scroll-reveal text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Certificaciones y Cumplimiento
+              <h2 className="scroll-reveal text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Certificaciones y{' '}
+                <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Cumplimiento</span>
               </h2>
               <p className="scroll-reveal text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 Cumplimos con los marcos regulatorios y estandares de seguridad mas exigentes de la industria.
@@ -491,51 +531,48 @@ export default function SecurityPage() {
       </section>
 
       {/* CTA Section */}
+      <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700" />
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)', backgroundSize: '28px 28px' }} />
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl animate-orb" />
+        <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-white/10 rounded-full blur-3xl animate-orb-slow" />
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+            Tienes preguntas sobre seguridad?
+          </h2>
+          <p className="text-lg text-primary-100 max-w-xl mx-auto mb-8">
+            Nuestro equipo de seguridad esta disponible para responder cualquier consulta sobre como protegemos sus datos y nuestra infraestructura.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              variant="secondary"
+              size="lg"
+              asChild
+              className="bg-white text-primary-700 hover:bg-primary-50 border-0 shadow-lg shadow-primary-900/30 animate-glow-pulse"
+            >
+              <Link href="/contact">
+                <Mail className="h-4 w-4 mr-2" />
+                Contactar Equipo de Seguridad
+              </Link>
+            </Button>
+            <Button
+              variant="ghost"
+              size="lg"
+              asChild
+              className="text-white border-white/20 hover:bg-white/10"
+            >
+              <Link href="/gdpr">
+                Conformidad GDPR
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Links Section */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealSection>
-            <div className="scroll-reveal relative p-8 md:p-12 rounded-2xl overflow-hidden">
-              {/* Background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-emerald-600 dark:from-primary-700 dark:to-emerald-700" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_50%)]" />
-
-              <div className="relative flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
-                <div className="flex-1">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                    Tienes preguntas sobre seguridad?
-                  </h2>
-                  <p className="text-primary-100 text-base md:text-lg max-w-xl">
-                    Nuestro equipo de seguridad esta disponible para responder cualquier consulta sobre como protegemos sus datos y nuestra infraestructura.
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    asChild
-                    className="bg-white text-primary-700 hover:bg-primary-50 border-0 shadow-lg"
-                  >
-                    <Link href="/contact">
-                      <Mail className="h-4 w-4 mr-2" />
-                      Contactar Equipo de Seguridad
-                    </Link>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="lg"
-                    asChild
-                    className="text-white border-white/20 hover:bg-white/10"
-                  >
-                    <Link href="/gdpr">
-                      Conformidad GDPR
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </RevealSection>
-
           {/* Footer links */}
           <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-wrap justify-center gap-4">
             <Link href="/privacy" className="text-sm text-primary-600 dark:text-primary-400 hover:underline font-medium">

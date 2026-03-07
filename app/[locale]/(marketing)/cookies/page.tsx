@@ -236,21 +236,58 @@ export default function CookiesPage() {
   return (
     <>
       {/* Header */}
-      <section className="relative pt-32 pb-8 md:pt-40 md:pb-12 overflow-hidden">
+      <section className="relative pt-32 pb-8 md:pt-40 md:pb-12 overflow-x-clip">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-50/50 via-white to-white dark:from-primary-950/30 dark:via-slate-950 dark:to-slate-950" />
-          <FloatingParticles />
+          <div className="absolute -inset-x-16 inset-y-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40" style={{ backgroundImage: 'url(/fundo-blackground.png)' }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
+          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(148,163,184,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* ECG heartbeat — Desktop */}
+        <svg className="hidden md:block absolute inset-0 z-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 450 L360 450 L390 350 L420 550 L450 300 L480 600 L510 450 L1440 450" className="ck-ecg-line" stroke="url(#ck-ecg-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <defs>
+            <linearGradient id="ck-ecg-grad" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+              <stop offset="15%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+              <stop offset="85%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+        {/* ECG heartbeat — Mobile */}
+        <svg className="md:hidden absolute inset-0 z-0 w-full h-full" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 300 L125 300 L145 230 L165 370 L185 200 L205 400 L225 300 L500 300" className="ck-ecg-line" stroke="url(#ck-ecg-grad-m)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <defs>
+            <linearGradient id="ck-ecg-grad-m" x1="0" y1="0" x2="500" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+              <stop offset="20%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+              <stop offset="80%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <style>{`
+          .ck-ecg-line {
+            stroke-dasharray: 2200;
+            stroke-dashoffset: 2200;
+            animation: ck-ecg-draw 3s ease-in-out forwards;
+          }
+          @keyframes ck-ecg-draw {
+            to { stroke-dashoffset: 0; }
+          }
+        `}</style>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="flex items-center gap-3 mb-4 scroll-reveal">
               <div className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-primary-50 dark:bg-primary-500/10">
                 <Shield className="h-5 w-5 text-primary-500" />
               </div>
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold">
+                <h1 className="text-3xl md:text-4xl font-extrabold">
                   <span className="text-slate-900 dark:text-white">Politica de </span>
-                  <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
                     Cookies
                   </span>
                 </h1>

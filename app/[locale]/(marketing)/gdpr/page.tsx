@@ -235,21 +235,58 @@ export default function GdprPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-x-clip">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-50/50 via-white to-white dark:from-primary-950/30 dark:via-slate-950 dark:to-slate-950" />
-          <FloatingParticles />
+          <div className="absolute -inset-x-16 inset-y-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40" style={{ backgroundImage: 'url(/fundo-blackground.png)' }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
+          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(148,163,184,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* ECG heartbeat — Desktop */}
+        <svg className="hidden md:block absolute inset-0 z-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 450 L360 450 L390 350 L420 550 L450 300 L480 600 L510 450 L1440 450" className="gd-ecg-line" stroke="url(#gd-ecg-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <defs>
+            <linearGradient id="gd-ecg-grad" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+              <stop offset="15%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+              <stop offset="85%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+        {/* ECG heartbeat — Mobile */}
+        <svg className="md:hidden absolute inset-0 z-0 w-full h-full" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 300 L125 300 L145 230 L165 370 L185 200 L205 400 L225 300 L500 300" className="gd-ecg-line" stroke="url(#gd-ecg-grad-m)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <defs>
+            <linearGradient id="gd-ecg-grad-m" x1="0" y1="0" x2="500" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+              <stop offset="20%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+              <stop offset="80%" stopColor="#14B89A" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <style>{`
+          .gd-ecg-line {
+            stroke-dasharray: 2200;
+            stroke-dashoffset: 2200;
+            animation: gd-ecg-draw 3s ease-in-out forwards;
+          }
+          @keyframes gd-ecg-draw {
+            to { stroke-dashoffset: 0; }
+          }
+        `}</style>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="max-w-3xl mx-auto text-center">
               <div className="scroll-reveal inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-primary-200 dark:border-primary-500/20 bg-primary-50 dark:bg-primary-500/10">
                 <Globe className="h-4 w-4 text-primary-500" />
                 <span className="text-sm font-medium text-primary-700 dark:text-primary-300">GDPR</span>
               </div>
-              <h1 className="scroll-reveal text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+              <h1 className="scroll-reveal text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-6">
                 Conformidad con{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400">GDPR</span>
+                <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">GDPR</span>
               </h1>
               <p className="scroll-reveal text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-8">
                 El Reglamento General de Proteccion de Datos (GDPR) es la normativa mas estricta del mundo en materia de privacidad y proteccion de datos. En Pulse, nos comprometemos a cumplir plenamente con sus requisitos.
@@ -269,8 +306,9 @@ export default function GdprPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="scroll-reveal text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Principios Fundamentales del GDPR
+              <h2 className="scroll-reveal text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Principios Fundamentales del{' '}
+                <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">GDPR</span>
               </h2>
               <p className="scroll-reveal text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 Nuestro tratamiento de datos se rige por los seis principios fundamentales establecidos en el Articulo 5 del GDPR.
@@ -310,8 +348,9 @@ export default function GdprPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="scroll-reveal text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Sus Derechos como Titular de Datos
+              <h2 className="scroll-reveal text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Sus Derechos como Titular de{' '}
+                <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Datos</span>
               </h2>
               <p className="scroll-reveal text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 El GDPR le otorga derechos amplios sobre sus datos personales. Estamos comprometidos a facilitar el ejercicio de cada uno de ellos.
@@ -347,8 +386,9 @@ export default function GdprPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealSection>
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="scroll-reveal text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Tratamiento de Datos Personales
+              <h2 className="scroll-reveal text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Tratamiento de Datos{' '}
+                <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Personales</span>
               </h2>
               <p className="scroll-reveal text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 Transparencia total sobre que datos recopilamos, con que finalidad, nuestra base legal y el periodo de conservacion.

@@ -149,40 +149,70 @@ const FloatingParticles = ({ className }: { className?: string }) => (
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/50 via-white to-white dark:from-primary-950/30 dark:via-slate-950 dark:to-slate-950" />
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-            backgroundSize: '32px 32px',
-          }}
-        />
-        {/* Orbs */}
-        <div className="absolute top-20 right-1/4 w-72 h-72 bg-primary-400/10 dark:bg-primary-400/5 rounded-full blur-3xl animate-orb-slow" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent-400/10 dark:bg-accent-400/5 rounded-full blur-3xl animate-orb" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-500/5 dark:bg-primary-500/[0.03] rounded-full blur-3xl" />
-      </div>
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-x-clip">
+      {/* Background image */}
+      <div className="absolute -inset-x-16 inset-y-0 z-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40" style={{ backgroundImage: 'url(/fundo-blackground.png)' }} />
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(rgba(148,163,184,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+
+      {/* ECG heartbeat — Desktop */}
+      <svg className="hidden md:block absolute inset-0 z-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 450 L360 450 L390 350 L420 550 L450 300 L480 600 L510 450 L1440 450" className="cm-ecg-line" stroke="url(#cm-ecg-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <defs>
+          <linearGradient id="cm-ecg-grad" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+            <stop offset="15%" stopColor="#14B89A" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+            <stop offset="85%" stopColor="#14B89A" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* ECG heartbeat — Mobile */}
+      <svg className="md:hidden absolute inset-0 z-0 w-full h-full" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 300 L125 300 L145 230 L165 370 L185 200 L205 400 L225 300 L500 300" className="cm-ecg-line" stroke="url(#cm-ecg-grad-m)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <defs>
+          <linearGradient id="cm-ecg-grad-m" x1="0" y1="0" x2="500" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#14B89A" stopOpacity="0" />
+            <stop offset="20%" stopColor="#14B89A" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+            <stop offset="80%" stopColor="#14B89A" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#14B89A" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <style>{`
+        .cm-ecg-line {
+          stroke-dasharray: 2200;
+          stroke-dashoffset: 2200;
+          animation: cm-ecg-draw 3s ease-in-out forwards;
+        }
+        @keyframes cm-ecg-draw {
+          to { stroke-dashoffset: 0; }
+        }
+      `}</style>
 
       <FloatingParticles />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20 mb-6">
           <Users className="h-3.5 w-3.5 text-primary-500" />
           <span className="text-sm font-semibold text-primary-700 dark:text-primary-400">Comunidad</span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
           <span className="text-slate-900 dark:text-white">Unete a la </span>
-          <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
             Comunidad Pulse
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
           Miles de desarrolladores alrededor del mundo construyen con Pulse.
           Unete a nuestra comunidad para aprender, compartir y contribuir.
         </p>
@@ -342,8 +372,9 @@ const PlatformsSection = () => {
         <FloatingParticles className="opacity-30" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 scroll-reveal">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Encuantranos en tus Plataformas Favoritas
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+              Encuantranos en tus Plataformas{' '}
+              <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Favoritas</span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               Conecta con la comunidad Pulse donde tu prefieras.
@@ -452,8 +483,9 @@ const ShowcaseSection = () => {
               <Star className="h-3.5 w-3.5 text-primary-500" />
               <span className="text-sm font-semibold text-primary-700 dark:text-primary-400">Showcase</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Proyectos de la Comunidad
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+              Proyectos de la{' '}
+              <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Comunidad</span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               Descubre lo que otros desarrolladores han construido con Pulse.
@@ -469,7 +501,7 @@ const ShowcaseSection = () => {
               >
                 <div className={cn(
                   'group relative overflow-hidden rounded-xl border cursor-pointer',
-                  'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800',
+                  'bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-slate-200 dark:border-slate-800',
                   'hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50',
                   'hover:-translate-y-1 transition-all duration-300',
                 )}>
@@ -558,8 +590,9 @@ const ContributeSection = () => {
         <FloatingParticles className="opacity-20" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 scroll-reveal">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Como Contribuir
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+              Como{' '}
+              <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">Contribuir</span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               Contribuir a Pulse es facil. Sigue estos tres pasos para enviar tu primera contribucion.
@@ -629,50 +662,41 @@ const ContributeSection = () => {
 const CTASection = () => {
   return (
     <RevealSection>
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="scroll-reveal-scale relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 p-10 md:p-16 text-center noise-overlay">
-            <div
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                backgroundSize: '20px 20px',
-              }}
-            />
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent-400/20 rounded-full blur-3xl" />
+      <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700" />
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)', backgroundSize: '28px 28px' }} />
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl animate-orb" />
+        <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-white/10 rounded-full blur-3xl animate-orb-slow" />
 
-            <div className="relative z-10">
-              <Sparkles className="h-8 w-8 text-primary-200 mx-auto mb-4" />
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Listo para Contribuir?
-              </h2>
-              <p className="text-lg text-primary-100 max-w-xl mx-auto mb-8">
-                Tu proxima contribucion puede marcar la diferencia. Unete a cientos
-                de desarrolladores que estan construyendo el futuro de Pulse.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                  <Button
-                    size="lg"
-                    className="bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-8 animate-glow-pulse"
-                  >
-                    <Github className="h-4 w-4" />
-                    Ver en GitHub
-                  </Button>
-                </a>
-                <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-white/30 text-white hover:bg-white/10 gap-2 px-8"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    Unirse a Discord
-                  </Button>
-                </a>
-              </div>
-            </div>
+        <div className="scroll-reveal-scale relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <Sparkles className="h-8 w-8 text-primary-200 mx-auto mb-4" />
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Listo para Contribuir?
+          </h2>
+          <p className="text-lg text-primary-100 max-w-xl mx-auto mb-8">
+            Tu proxima contribucion puede marcar la diferencia. Unete a cientos
+            de desarrolladores que estan construyendo el futuro de Pulse.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                className="bg-white text-primary-700 hover:bg-primary-50 shadow-lg shadow-primary-900/30 gap-2 px-8 animate-glow-pulse"
+              >
+                <Github className="h-4 w-4" />
+                Ver en GitHub
+              </Button>
+            </a>
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:bg-white/10 gap-2 px-8"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Unirse a Discord
+              </Button>
+            </a>
           </div>
         </div>
       </section>
