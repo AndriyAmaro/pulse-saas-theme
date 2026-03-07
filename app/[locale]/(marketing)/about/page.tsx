@@ -211,16 +211,19 @@ const FloatingParticles = ({ className }: { className?: string }) => (
 // ============================================================================
 
 const DashboardMockup = () => (
-  <div className="relative rounded-2xl border border-slate-200/60 dark:border-slate-700/60 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-2xl shadow-primary-500/10 dark:shadow-primary-500/5 overflow-hidden">
+  <div className="relative rounded-2xl border border-slate-200/40 dark:border-slate-700/40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-2xl shadow-primary-500/15 dark:shadow-primary-500/10 overflow-hidden">
+    {/* Outer glow ring */}
+    <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-primary-400/30 via-transparent to-emerald-400/20 pointer-events-none" />
+
     {/* Window chrome */}
-    <div className="flex items-center gap-2 px-4 py-2.5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800/80">
+    <div className="relative flex items-center gap-2 px-4 py-2.5 border-b border-slate-100/80 dark:border-slate-800/80 bg-slate-50/90 dark:bg-slate-800/90 backdrop-blur-sm">
       <div className="flex items-center gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-rose-400/80" />
-        <div className="w-3 h-3 rounded-full bg-amber-400/80" />
-        <div className="w-3 h-3 rounded-full bg-emerald-400/80" />
+        <div className="w-3 h-3 rounded-full bg-rose-400/80 shadow-sm shadow-rose-400/30" />
+        <div className="w-3 h-3 rounded-full bg-amber-400/80 shadow-sm shadow-amber-400/30" />
+        <div className="w-3 h-3 rounded-full bg-emerald-400/80 shadow-sm shadow-emerald-400/30" />
       </div>
       <div className="flex-1 flex justify-center">
-        <div className="flex items-center gap-2 px-4 py-1 rounded-md bg-slate-100/80 dark:bg-slate-700/50">
+        <div className="flex items-center gap-2 px-4 py-1 rounded-lg bg-slate-100/80 dark:bg-slate-700/50 border border-slate-200/50 dark:border-slate-600/30">
           <LayoutDashboard className="h-3 w-3 text-primary-500" />
           <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Pulse Dashboard</span>
         </div>
@@ -228,11 +231,11 @@ const DashboardMockup = () => (
       <div className="w-16" />
     </div>
 
-    <div className="flex">
+    <div className="relative flex">
       {/* Mini Sidebar */}
-      <div className="hidden sm:flex w-12 md:w-14 border-r border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 flex-col items-center py-4 gap-3">
+      <div className="hidden sm:flex w-12 md:w-14 border-r border-slate-100/80 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-800/30 flex-col items-center py-4 gap-3">
         {/* Logo */}
-        <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center mb-2">
+        <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center mb-2 shadow-lg shadow-primary-500/30">
           <Sparkles className="h-3.5 w-3.5 text-white" />
         </div>
         {/* Nav items */}
@@ -242,7 +245,7 @@ const DashboardMockup = () => (
             className={cn(
               'w-8 h-8 rounded-lg flex items-center justify-center transition-colors',
               i === 0
-                ? 'bg-primary-50 dark:bg-primary-500/10 text-primary-500'
+                ? 'bg-primary-50 dark:bg-primary-500/10 text-primary-500 ring-1 ring-primary-200/50 dark:ring-primary-500/20'
                 : 'text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400'
             )}
           >
@@ -256,28 +259,28 @@ const DashboardMockup = () => (
         {/* Header bar */}
         <div className="flex items-center justify-between mb-4">
           <div>
-            <div className="h-2 w-24 md:w-32 rounded bg-slate-200 dark:bg-slate-700 mb-1.5" />
-            <div className="h-1.5 w-16 md:w-20 rounded bg-slate-100 dark:bg-slate-800" />
+            <div className="h-2 w-24 md:w-32 rounded-full bg-slate-200 dark:bg-slate-700 mb-1.5" />
+            <div className="h-1.5 w-16 md:w-20 rounded-full bg-slate-100 dark:bg-slate-800" />
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary-400 to-primary-600" />
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 ring-2 ring-primary-200/50 dark:ring-primary-500/20" />
           </div>
         </div>
 
         {/* 4 Stat cards */}
         <div className="grid grid-cols-4 gap-2 md:gap-3 mb-4">
           {[
-            { value: '2.4K', color: 'from-primary-400 to-primary-600', icon: Users },
-            { value: '$12K', color: 'from-emerald-400 to-emerald-600', icon: TrendingUp },
-            { value: '96', color: 'from-blue-400 to-blue-600', icon: Puzzle },
-            { value: '99%', color: 'from-amber-400 to-amber-600', icon: Activity },
+            { value: '2.4K', color: 'from-primary-400 to-primary-600', glowColor: 'shadow-primary-500/10', icon: Users },
+            { value: '$12K', color: 'from-emerald-400 to-emerald-600', glowColor: 'shadow-emerald-500/10', icon: TrendingUp },
+            { value: '96', color: 'from-blue-400 to-blue-600', glowColor: 'shadow-blue-500/10', icon: Puzzle },
+            { value: '99%', color: 'from-amber-400 to-amber-600', glowColor: 'shadow-amber-500/10', icon: Activity },
           ].map((stat, i) => (
-            <div key={i} className="rounded-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 md:p-3">
-              <div className={cn('w-5 h-5 md:w-6 md:h-6 rounded-md bg-gradient-to-br flex items-center justify-center mb-1.5 md:mb-2', stat.color)}>
+            <div key={i} className={cn('rounded-xl border border-slate-100/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-900/90 p-2 md:p-3 shadow-sm', stat.glowColor)}>
+              <div className={cn('w-5 h-5 md:w-6 md:h-6 rounded-lg bg-gradient-to-br flex items-center justify-center mb-1.5 md:mb-2 shadow-md', stat.color)}>
                 <stat.icon className="h-2.5 w-2.5 md:h-3 md:w-3 text-white" />
               </div>
               <div className="text-xs md:text-sm font-bold text-slate-900 dark:text-white leading-none">{stat.value}</div>
-              <div className="h-1 w-8 rounded bg-slate-100 dark:bg-slate-800 mt-1" />
+              <div className="h-1 w-8 rounded-full bg-slate-100 dark:bg-slate-800 mt-1" />
             </div>
           ))}
         </div>
@@ -285,13 +288,13 @@ const DashboardMockup = () => (
         {/* Charts row */}
         <div className="grid grid-cols-5 gap-2 md:gap-3">
           {/* Bar chart */}
-          <div className="col-span-3 rounded-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 md:p-3">
-            <div className="h-1.5 w-16 rounded bg-slate-200 dark:bg-slate-700 mb-2 md:mb-3" />
+          <div className="col-span-3 rounded-xl border border-slate-100/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-900/90 p-2 md:p-3">
+            <div className="h-1.5 w-16 rounded-full bg-slate-200 dark:bg-slate-700 mb-2 md:mb-3" />
             <div className="flex items-end gap-1 md:gap-1.5 h-14 md:h-20">
               {[40, 65, 85, 55, 70, 95, 60, 75, 50, 88].map((h, i) => (
                 <div
                   key={i}
-                  className="flex-1 rounded-t-sm bg-gradient-to-t from-primary-500 to-primary-400"
+                  className="flex-1 rounded-t bg-gradient-to-t from-primary-600 to-primary-400"
                   style={{ height: `${h}%`, opacity: 0.5 + (h / 200) }}
                 />
               ))}
@@ -299,7 +302,7 @@ const DashboardMockup = () => (
           </div>
 
           {/* Donut chart */}
-          <div className="col-span-2 rounded-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 md:p-3 flex flex-col items-center justify-center">
+          <div className="col-span-2 rounded-xl border border-slate-100/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-900/90 p-2 md:p-3 flex flex-col items-center justify-center">
             <svg viewBox="0 0 36 36" className="w-12 h-12 md:w-16 md:h-16 -rotate-90">
               <circle cx="18" cy="18" r="14" fill="none" className="stroke-slate-100 dark:stroke-slate-800" strokeWidth="3" />
               <circle cx="18" cy="18" r="14" fill="none" className="stroke-primary-500" strokeWidth="3" strokeDasharray="62 26" strokeLinecap="round" />
@@ -310,7 +313,7 @@ const DashboardMockup = () => (
               {['bg-primary-500', 'bg-emerald-500', 'bg-amber-500'].map((c, i) => (
                 <div key={i} className="flex items-center gap-0.5">
                   <div className={cn('w-1.5 h-1.5 rounded-full', c)} />
-                  <div className="h-1 w-4 rounded bg-slate-100 dark:bg-slate-800" />
+                  <div className="h-1 w-4 rounded-full bg-slate-100 dark:bg-slate-800" />
                 </div>
               ))}
             </div>
@@ -320,10 +323,10 @@ const DashboardMockup = () => (
     </div>
 
     {/* Bottom status */}
-    <div className="flex items-center justify-between px-4 py-1.5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 text-[10px] text-slate-400 font-mono">
+    <div className="relative flex items-center justify-between px-4 py-1.5 border-t border-slate-100/80 dark:border-slate-800/80 bg-slate-50/80 dark:bg-slate-800/50 text-[10px] text-slate-400 font-mono">
       <div className="flex items-center gap-2">
         <span className="flex items-center gap-1 text-primary-500">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse" /> Live
+          <span className="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse shadow-sm shadow-primary-500/50" /> Live
         </span>
         <span>16 dashboards</span>
       </div>
@@ -349,43 +352,63 @@ const HeroSection = () => {
   ]
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/50 via-white to-white dark:from-primary-950/30 dark:via-slate-950 dark:to-slate-950" />
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-            backgroundSize: '32px 32px',
-          }}
-        />
-        {/* Orbs */}
-        <div className="absolute top-20 right-1/4 w-72 h-72 bg-primary-400/10 dark:bg-primary-400/5 rounded-full blur-3xl animate-orb-slow" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent-400/10 dark:bg-accent-400/5 rounded-full blur-3xl animate-orb" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-500/5 dark:bg-primary-500/[0.03] rounded-full blur-3xl" />
-      </div>
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-x-clip">
+      {/* Background Image */}
+      <div
+        className="absolute -inset-x-16 inset-y-0 z-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40"
+        style={{ backgroundImage: 'url(/fundo-blackground.png)' }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
 
-      {/* Floating particles */}
+      {/* ECG — Desktop */}
+      <svg className="absolute inset-0 z-[1] w-full h-full pointer-events-none hidden md:block" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        <defs><filter id="ab-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="ab-ecg-glow" filter="url(#ab-glow)" d="M 0,420 L 80,420 L 160,420 L 220,420 L 240,412 L 260,428 L 275,420 L 340,420 L 400,420 L 420,402 L 440,448 L 460,370 L 480,442 L 500,410 L 520,420 L 600,420 L 680,420 L 740,420 L 760,412 L 780,428 L 795,420 L 860,420 L 920,420 L 940,404 L 960,446 L 980,372 L 1000,440 L 1020,412 L 1040,420 L 1120,420 L 1200,420 L 1260,420 L 1280,412 L 1300,428 L 1315,420 L 1380,420 L 1440,420" stroke="rgb(20, 184, 154)" strokeWidth="4"/>
+          <path className="ab-ecg-main" d="M 0,420 L 80,420 L 160,420 L 220,420 L 240,412 L 260,428 L 275,420 L 340,420 L 400,420 L 420,402 L 440,448 L 460,370 L 480,442 L 500,410 L 520,420 L 600,420 L 680,420 L 740,420 L 760,412 L 780,428 L 795,420 L 860,420 L 920,420 L 940,404 L 960,446 L 980,372 L 1000,440 L 1020,412 L 1040,420 L 1120,420 L 1200,420 L 1260,420 L 1280,412 L 1300,428 L 1315,420 L 1380,420 L 1440,420" stroke="rgb(94, 234, 212)" strokeWidth="1.2"/>
+        </g>
+      </svg>
+      {/* ECG — Mobile */}
+      <svg className="absolute inset-0 z-[1] w-full h-full pointer-events-none md:hidden" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid meet" fill="none">
+        <defs><filter id="ab-glow-m" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path className="ab-ecg-glow-m" filter="url(#ab-glow-m)" d="M 0,220 L 50,220 L 100,220 L 140,220 L 150,216 L 160,224 L 167,220 L 200,220 L 240,220 L 252,212 L 264,230 L 276,200 L 288,228 L 300,216 L 312,220 L 360,220 L 410,220 L 500,220" stroke="rgb(20, 184, 154)" strokeWidth="2"/>
+          <path className="ab-ecg-main-m" d="M 0,220 L 50,220 L 100,220 L 140,220 L 150,216 L 160,224 L 167,220 L 200,220 L 240,220 L 252,212 L 264,230 L 276,200 L 288,228 L 300,216 L 312,220 L 360,220 L 410,220 L 500,220" stroke="rgb(94, 234, 212)" strokeWidth="0.7"/>
+        </g>
+      </svg>
+      <style>{`
+        .ab-ecg-main { stroke-dasharray: 2800; stroke-dashoffset: 2800; animation: ab-draw 16s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .ab-ecg-glow { stroke-dasharray: 2800; stroke-dashoffset: 2800; animation: ab-glow-a 16s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .ab-ecg-main-m { stroke-dasharray: 800; stroke-dashoffset: 800; animation: ab-draw-m 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .ab-ecg-glow-m { stroke-dasharray: 800; stroke-dashoffset: 800; animation: ab-glow-m 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        @keyframes ab-draw { 0% { stroke-dashoffset: 2800; opacity: 0; } 3% { opacity: 0.22; } 35% { stroke-dashoffset: 0; opacity: 0.18; } 40% { stroke-dashoffset: 2800; opacity: 0.05; } 43% { opacity: 0.22; } 75% { stroke-dashoffset: 0; opacity: 0.16; } 85% { stroke-dashoffset: 0; opacity: 0.04; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes ab-glow-a { 0% { stroke-dashoffset: 2800; opacity: 0; } 3% { opacity: 0.10; } 35% { stroke-dashoffset: 0; opacity: 0.08; } 40% { stroke-dashoffset: 2800; opacity: 0.02; } 43% { opacity: 0.10; } 75% { stroke-dashoffset: 0; opacity: 0.06; } 85% { stroke-dashoffset: 0; opacity: 0.015; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes ab-draw-m { 0% { stroke-dashoffset: 800; opacity: 0; } 5% { opacity: 0.22; } 35% { stroke-dashoffset: 0; opacity: 0.18; } 42% { stroke-dashoffset: 800; opacity: 0.05; } 45% { opacity: 0.22; } 75% { stroke-dashoffset: 0; opacity: 0.16; } 85% { stroke-dashoffset: 0; opacity: 0.04; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @keyframes ab-glow-m { 0% { stroke-dashoffset: 800; opacity: 0; } 5% { opacity: 0.10; } 35% { stroke-dashoffset: 0; opacity: 0.08; } 42% { stroke-dashoffset: 800; opacity: 0.02; } 45% { opacity: 0.10; } 75% { stroke-dashoffset: 0; opacity: 0.06; } 85% { stroke-dashoffset: 0; opacity: 0.015; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .ab-ecg-main, .ab-ecg-glow, .ab-ecg-main-m, .ab-ecg-glow-m { animation: none !important; } }
+      `}</style>
+
       <FloatingParticles />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20 mb-6">
           <Sparkles className="h-3.5 w-3.5 text-primary-500" />
           <span className="text-sm font-semibold text-primary-700 dark:text-primary-400">{t('hero.badge')}</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-          {t('hero.title').split(' ').slice(0, -1).join(' ')}{' '}
-          <span className="bg-gradient-to-r from-primary-400 via-blue-500 to-accent-500 dark:from-primary-300 dark:via-blue-400 dark:to-accent-400 bg-clip-text text-transparent">
+        {/* Title with Pulse gradient */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+          <span className="text-slate-900 dark:text-white">
+            {t('hero.title').split(' ').slice(0, -1).join(' ')}{' '}
+          </span>
+          <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 dark:from-primary-400 dark:via-emerald-300 dark:to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
             {t('hero.title').split(' ').slice(-1)}
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
           {t('hero.subtitle')}
         </p>
 
@@ -628,8 +651,11 @@ const TechStackSection = () => {
 
         <div className="w-full px-4 sm:px-6 lg:px-10">
           <div className="text-center mb-14 scroll-reveal">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              {t('tech.title')}
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-slate-900 dark:text-white">{t('tech.title').split(' ').slice(0, -1).join(' ')} </span>
+              <span className="bg-gradient-to-r from-primary-600 via-emerald-500 to-cyan-600 dark:from-primary-400 dark:via-emerald-300 dark:to-cyan-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
+                {t('tech.title').split(' ').slice(-1)}
+              </span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               {t('tech.subtitle')}
@@ -653,33 +679,42 @@ const TechStackSection = () => {
                     tech.glowColor,
                   )}>
                     {/* Inner card */}
-                    <div className="relative rounded-[15px] bg-white dark:bg-slate-900 p-6 h-full overflow-hidden group-hover:-translate-y-0.5 transition-transform duration-300">
+                    <div className="relative rounded-[15px] bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-6 h-full overflow-hidden group-hover:-translate-y-0.5 transition-transform duration-300">
                       {/* Corner gradient glow */}
                       <div
                         className="absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
-                        style={{ background: `radial-gradient(circle, ${tech.accentColor}15 0%, transparent 70%)` }}
+                        style={{ background: `radial-gradient(circle, ${tech.accentColor}20 0%, transparent 70%)` }}
+                      />
+
+                      {/* Grid pattern overlay */}
+                      <div
+                        className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none"
+                        style={{
+                          backgroundImage: `linear-gradient(${tech.accentColor}30 1px, transparent 1px), linear-gradient(90deg, ${tech.accentColor}30 1px, transparent 1px)`,
+                          backgroundSize: '24px 24px',
+                        }}
                       />
 
                       {/* Top row: icon + version badge */}
                       <div className="flex items-start justify-between mb-4 relative z-10">
                         <div className={cn(
                           'inline-flex items-center justify-center h-12 w-12 rounded-xl',
-                          'ring-1 ring-inset ring-black/5 dark:ring-white/5',
+                          'ring-1 ring-inset ring-black/5 dark:ring-white/10',
                           tech.iconBg,
                         )}>
                           <tech.icon className="h-6 w-6" />
                         </div>
                         <span className={cn(
-                          'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase',
+                          'inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold tracking-wide uppercase border border-current/5',
                           tech.tagBg,
                         )}>
-                          <span className={cn('w-1.5 h-1.5 rounded-full', tech.dotColor)} />
+                          <span className={cn('w-1.5 h-1.5 rounded-full animate-pulse', tech.dotColor)} />
                           {tech.version}
                         </span>
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1.5 relative z-10">
+                      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1.5 relative z-10 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                         {t(tech.titleKey)}
                       </h3>
 
@@ -689,7 +724,7 @@ const TechStackSection = () => {
                       </p>
 
                       {/* Sparkline chart area */}
-                      <div className="relative z-10 mt-auto pt-3 border-t border-slate-100 dark:border-slate-800/60">
+                      <div className="relative z-10 mt-auto pt-3 border-t border-slate-100/80 dark:border-slate-800/60">
                         <div className="flex items-center justify-between mb-1.5">
                           <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider">Adoption</span>
                           <span className="flex items-center gap-1">
