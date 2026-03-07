@@ -327,16 +327,16 @@ const HeroSection = () => {
         </g>
       </svg>
 
-      {/* ECG pulse line — Mobile (1 beat, compact, at title height) */}
+      {/* ECG pulse line — Mobile (1 beat, compact, centered, above buttons) */}
       <svg
         className="absolute inset-0 z-[1] w-full h-full pointer-events-none md:hidden"
-        viewBox="0 0 1200 1400"
-        preserveAspectRatio="xMidYMid slice"
+        viewBox="0 0 500 900"
+        preserveAspectRatio="xMidYMid meet"
         fill="none"
       >
         <defs>
           <filter id="hero-ecg-glow-m" x="-20%" y="-50%" width="140%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -345,14 +345,14 @@ const HeroSection = () => {
         </defs>
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
           <path className="hero-ecg-glow-mobile" filter="url(#hero-ecg-glow-m)"
-            d="M 100,630 L 160,630 L 220,630 L 270,630 L 282,625 L 294,635 L 302,630 L 350,630 L 400,630 L 414,620 L 428,642 L 442,606 L 456,640 L 470,624 L 484,630 L 540,630 L 600,630 L 700,630"
-            stroke="rgb(20, 184, 154)" strokeWidth="2.5" />
+            d="M 0,370 L 50,370 L 100,370 L 140,370 L 150,366 L 160,374 L 167,370 L 200,370 L 240,370 L 252,362 L 264,380 L 276,350 L 288,378 L 300,366 L 312,370 L 360,370 L 410,370 L 500,370"
+            stroke="rgb(20, 184, 154)" strokeWidth="2" />
           <path className="hero-ecg-main-mobile"
-            d="M 100,630 L 160,630 L 220,630 L 270,630 L 282,625 L 294,635 L 302,630 L 350,630 L 400,630 L 414,620 L 428,642 L 442,606 L 456,640 L 470,624 L 484,630 L 540,630 L 600,630 L 700,630"
-            stroke="rgb(94, 234, 212)" strokeWidth="0.8" />
+            d="M 0,370 L 50,370 L 100,370 L 140,370 L 150,366 L 160,374 L 167,370 L 200,370 L 240,370 L 252,362 L 264,380 L 276,350 L 288,378 L 300,366 L 312,370 L 360,370 L 410,370 L 500,370"
+            stroke="rgb(94, 234, 212)" strokeWidth="0.7" />
           <path className="hero-ecg-echo-mobile"
-            d="M 100,635 L 160,635 L 220,635 L 270,635 L 282,631 L 294,639 L 302,635 L 350,635 L 400,635 L 414,626 L 428,646 L 442,612 L 456,644 L 470,628 L 484,635 L 540,635 L 600,635 L 700,635"
-            stroke="rgb(94, 234, 212)" strokeWidth="0.3" />
+            d="M 0,374 L 50,374 L 100,374 L 140,374 L 150,371 L 160,377 L 167,374 L 200,374 L 240,374 L 252,367 L 264,383 L 276,355 L 288,381 L 300,369 L 312,374 L 360,374 L 410,374 L 500,374"
+            stroke="rgb(94, 234, 212)" strokeWidth="0.25" />
         </g>
       </svg>
 
