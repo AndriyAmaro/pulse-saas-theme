@@ -854,8 +854,8 @@ const HeroSection = () => {
                             </div>
                             {/* Conversion donut placeholder */}
                             <div className="rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/30 p-3">
-                              <p className="text-xs font-semibold text-slate-900 dark:text-white mb-2">Conversion Rate</p>
-                              <div className="flex items-center gap-3">
+                              <p className="text-xs font-semibold text-slate-900 dark:text-white mb-2 text-center">Conversion Rate</p>
+                              <div className="flex items-center justify-center gap-3">
                                 <div className="relative h-10 w-10 shrink-0">
                                   <svg viewBox="0 0 36 36" className="h-10 w-10 -rotate-90">
                                     <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor" strokeWidth="3" className="text-slate-100 dark:text-slate-700" />
