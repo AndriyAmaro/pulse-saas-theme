@@ -554,8 +554,8 @@ const HeroSection = () => {
             </p>
           </div>
 
-          {/* Dashboard Preview — Premium with Sidebar */}
-          <div className="mt-14 sm:mt-16 lg:mt-20 w-[calc(100%+2rem)] sm:w-[calc(100%+4rem)] lg:w-[calc(100%+8rem)] -mx-4 sm:-mx-8 lg:-mx-16 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
+          {/* Dashboard Preview — Full Width */}
+          <div className="mt-14 sm:mt-16 lg:mt-20 w-screen relative left-1/2 -translate-x-1/2 px-2 sm:px-4 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
             <div className="relative">
               {/* Glow behind */}
               <div className="absolute -inset-6 sm:-inset-10 rounded-[2rem] bg-gradient-to-r from-primary-500/30 via-primary-400/15 to-cyan-500/25 blur-3xl opacity-70 animate-orb" />
