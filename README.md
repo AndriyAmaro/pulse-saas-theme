@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/banner.svg" alt="Pulse Ecosystem" width="100%" />
+  <img src="assets/banner.png" alt="Pulse Ecosystem" width="100%" />
 </div>
 
 <div align="center">
