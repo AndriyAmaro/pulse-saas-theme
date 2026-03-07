@@ -40,7 +40,7 @@ Use App Router exclusively.
 
 ### Context
 
-With 100+ components, a clear organizational strategy is essential to prevent the codebase from becoming unmaintainable.
+With 100 components, a clear organizational strategy is essential to prevent the codebase from becoming unmaintainable.
 
 ### Decision
 
@@ -63,10 +63,10 @@ Adopt Atomic Design methodology with four tiers: `primitives` (atoms), `patterns
 
 | Tier | Count | Examples |
 |------|-------|----------|
-| Primitives | 17 | Button, Input, Badge, Avatar, Switch |
-| Patterns | 71 | PricingTable, AuthCard, ChatUI, HeroSection |
-| Organisms | 9 | DataTable, CommandPalette, Modal, Form |
-| Layouts | 7 | Sidebar, Header, Footer, DashboardGrid |
+| Primitives | 16 | Button, Input, Badge, Avatar, Switch |
+| Patterns | 70 | PricingTable, AuthCard, ChatUI, HeroSection |
+| Organisms | 8 | DataTable, CommandPalette, Modal, Form |
+| Layouts | 6 | Sidebar, Header, Footer, DashboardGrid |
 
 ---
 

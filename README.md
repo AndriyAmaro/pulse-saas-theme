@@ -14,8 +14,8 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-![Components](https://img.shields.io/badge/Components-104+-14B8A6?style=flat-square)
-![Pages](https://img.shields.io/badge/Pages-41-8B5CF6?style=flat-square)
+![Components](https://img.shields.io/badge/Components-100+-14B8A6?style=flat-square)
+![Pages](https://img.shields.io/badge/Pages-56-8B5CF6?style=flat-square)
 ![i18n](https://img.shields.io/badge/i18n-PT_|_EN_|_ES-F59E0B?style=flat-square)
 ![License](https://img.shields.io/badge/License-Source_Available-22C55E?style=flat-square)
 
@@ -34,7 +34,7 @@
 
 ## Overview
 
-Pulse is a production-grade design system and SaaS platform with **104+ handcrafted components**, **41 pages**, and **full i18n support** in 3 languages. Built entirely from scratch using Atomic Design methodology · not forked from any template.
+Pulse is a production-grade design system and SaaS platform with **100+ handcrafted components**, **56 pages**, and **full i18n support** in 3 languages. Built entirely from scratch using Atomic Design methodology · not forked from any template.
 
 Every component, every page, and every animation was designed and coded by hand to serve as the unified foundation for an entire ecosystem of SaaS applications.
 
@@ -80,9 +80,9 @@ The result: **3 apps already powered by Pulse**, with more in development.
 
 | Metric | Value |
 |:------:|:-----:|
-| Handcrafted Components | **104+** |
-| Total Pages | **41** |
-| Dashboard Variants | **28** |
+| Handcrafted Components | **100+** |
+| Total Pages | **56** |
+| Dashboard Variants | **25** |
 | Languages (i18n) | **3** |
 | Radix UI Primitives | **12** |
 | Route Groups | **4** |
@@ -105,20 +105,20 @@ The component library follows **Atomic Design** with a strict dependency hierarc
 
 | Tier | Count | Description | Examples |
 |------|:-----:|-------------|----------|
-| **Primitives** | 17 | Smallest UI units | Button, Input, Badge, Avatar, Switch |
-| **Patterns** | 71 | Composed components | PricingTable, ChatUI, HeroSection, AuthCard |
-| **Organisms** | 9 | Complex stateful components | DataTable, CommandPalette, Modal, Form |
-| **Layouts** | 7 | Page-level structure | Sidebar, Header, Footer, DashboardGrid |
+| **Primitives** | 16 | Smallest UI units | Button, Input, Badge, Avatar, Switch |
+| **Patterns** | 70 | Composed components | PricingTable, ChatUI, HeroSection, AuthCard |
+| **Organisms** | 8 | Complex stateful components | DataTable, CommandPalette, Modal, Form |
+| **Layouts** | 6 | Page-level structure | Sidebar, Header, Footer, DashboardGrid |
 
 ---
 
-## 28 Dashboard Variants
+## 25 Dashboard Variants
 
 Every industry vertical, one design system:
 
 <div align="center">
 
-`Analytics` `CRM` `E-commerce` `Finance` `Healthcare` `HR` `Marketing` `Real Estate` `Education` `Crypto` `Restaurant` `Calendar` `Chat` `Email` `Components` `Profile` `Notifications` `Reports` `Users` `Settings` `SaaS` `Projects` `Inventory` `HelpDesk` `Overview` `Kanban` `Invoice` `Social`
+`Analytics` `CRM` `E-commerce` `Finance` `Healthcare` `HR` `Marketing` `Real Estate` `Education` `Crypto` `Restaurant` `Calendar` `Chat` `Email` `Components` `Profile` `Notifications` `Reports` `Users` `Settings` `SaaS` `Projects` `Inventory` `HelpDesk` `Overview`
 
 </div>
 
@@ -147,8 +147,8 @@ Every industry vertical, one design system:
 
 | Group | Pages | Layout | Purpose |
 |-------|:-----:|--------|---------|
-| `(marketing)` | 7 | Full-width header + footer | Landing, about, blog, contact, pricing |
-| `(dashboard)` | 28 | Sidebar + header | Analytics, CRM, ecommerce, finance, and more |
+| `(marketing)` | 20 | Full-width header + footer | Landing, about, blog, pricing, careers, community, docs, templates, and more |
+| `(dashboard)` | 30 | Sidebar + header | Analytics, CRM, ecommerce, finance, and more |
 | `(auth)` | 4 | Split-screen + branded animations | Login, register, forgot/reset password |
 | `(standalone)` | 2 | Minimal full-width | Coming soon, maintenance |
 
@@ -156,10 +156,10 @@ Every industry vertical, one design system:
 
 ## Key Features
 
-- **104+ Components** ·Built from scratch, not forked from any template
+- **100+ Components** ·Built from scratch, not forked from any template
 - **Dark/Light Mode** ·System-aware theme with smooth transitions
 - **3 Languages** ·Portuguese, English, and Spanish with pathname-based routing
-- **28 Dashboard Variants** ·Analytics, CRM, ecommerce, finance, healthcare, HR, and more
+- **25 Dashboard Variants** ·Analytics, CRM, ecommerce, finance, healthcare, HR, and more
 - **Custom SVG Animations** ·ECG heartbeat pulses using CSS keyframes (zero JS runtime cost)
 - **Accessible** ·Radix UI primitives for keyboard navigation and screen readers
 - **Responsive** ·Mobile-first design across all components and pages
@@ -194,13 +194,13 @@ pulse-theme/
 │   └── [locale]/              # i18n routing (pt, en, es)
 │       ├── (auth)/            # Split-screen auth layout
 │       ├── (dashboard)/       # Sidebar + header layout
-│       ├── (marketing)/       # Marketing header + footer
+│       ├── (marketing)/       # Marketing header + footer (20 pages)
 │       └── (standalone)/      # Minimal full-width layout
 ├── core/
-│   ├── primitives/            # 17 atomic components
-│   ├── patterns/              # 71 composed components
-│   ├── organisms/             # 9 complex components
-│   └── layouts/               # 7 layout components
+│   ├── primitives/            # 16 atomic components
+│   ├── patterns/              # 70 composed components
+│   ├── organisms/             # 8 complex components
+│   └── layouts/               # 6 layout components
 ├── locales/                   # i18n translation files (pt, en, es)
 ├── docs/                      # Architecture & decision records
 ├── assets/                    # SVG diagrams and screenshots

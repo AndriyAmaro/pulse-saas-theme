@@ -4,7 +4,7 @@
 
 ## Overview
 
-Pulse is a production-grade design system and application platform built with Next.js 15, React 19, and Tailwind CSS 4. It follows Atomic Design principles with a clear separation of concerns across primitives, patterns, organisms, and layouts.
+Pulse is a production-grade design system and application platform built with Next.js 16, React 19, and Tailwind CSS 4. It follows Atomic Design principles with a clear separation of concerns across primitives, patterns, organisms, and layouts.
 
 The architecture is designed to be framework-agnostic at the design token level, portable across projects, and scalable from a single-page app to a multi-tenant SaaS platform.
 
@@ -106,15 +106,29 @@ app/
 │   │   ├── customers/
 │   │   ├── settings/
 │   │   └── ...
-│   ├── (marketing)/             # Public marketing pages
+│   ├── (marketing)/             # Public marketing pages (20 pages)
 │   │   ├── page.tsx             # Landing page
 │   │   ├── about/
-│   │   ├── pricing/
-│   │   └── blog/
+│   │   ├── blog/
+│   │   ├── careers/
+│   │   ├── changelog/
+│   │   ├── community/
+│   │   ├── contact/
+│   │   ├── cookies/
+│   │   ├── docs/
+│   │   ├── gdpr/
+│   │   ├── help/
+│   │   ├── integrations/
+│   │   ├── press/
+│   │   ├── privacy/
+│   │   ├── roadmap/
+│   │   ├── security/
+│   │   ├── templates/
+│   │   ├── terms/
+│   │   └── webinars/
 │   └── (standalone)/            # Full-width pages
-│       ├── crypto/
-│       ├── restaurant/
-│       └── saas/
+│       ├── coming-soon/
+│       └── maintenance/
 ├── globals.css                  # Global styles + animations
 └── middleware.ts                # i18n + auth middleware
 ```
@@ -125,7 +139,7 @@ app/
 |-------|---------|--------|------|
 | `(auth)` | Login, register, reset | Split-screen (form + branding) | Public |
 | `(dashboard)` | App functionality | Sidebar + header | Protected |
-| `(marketing)` | Landing, pricing, blog | Marketing header + footer | Public |
+| `(marketing)` | Landing, about, blog, careers, community, docs, templates, and more (20 pages) | Marketing header + footer | Public |
 | `(standalone)` | Demo/showcase pages | Minimal, full-width | Public |
 
 ---
@@ -146,7 +160,7 @@ i18n/
 
 - **Library:** `next-intl` with App Router integration
 - **Strategy:** Pathname-based (`/pt/dashboard`, `/en/dashboard`)
-- **Default locale:** `pt` (with prefix)
+- **Default locale:** `en` (with prefix)
 - **Type-safe:** All translation keys are typed via `messages/` structure
 
 ---
@@ -226,8 +240,8 @@ Next.js Server (App Router)
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| Framework | Next.js 15 (App Router) | SSR, SSG, routing, middleware |
-| UI | React 19 | Component architecture |
+| Framework | **Next.js 16** (App Router) | SSR, SSG, routing, middleware |
+| UI | **React 19** | Component architecture |
 | Styling | Tailwind CSS 4 | Utility-first CSS |
 | Variants | class-variance-authority | Component variant management |
 | Icons | Lucide React | Consistent icon system |
