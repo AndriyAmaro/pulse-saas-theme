@@ -287,7 +287,7 @@ const HeroSection = () => {
   const [isDemoOpen, setIsDemoOpen] = React.useState(false)
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-x-clip pt-20">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-x-clip pt-20">
       {/* Background Image — subtle, blended, no zoom on mobile */}
       <div
         className="absolute -inset-x-16 inset-y-0 z-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40"
