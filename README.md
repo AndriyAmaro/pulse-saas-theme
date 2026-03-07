@@ -41,7 +41,28 @@ Every component, every page, and every animation was designed and coded by hand 
 
 ## Screenshots
 
-<!-- TODO: Add new screenshots -->
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Landing Page</strong><br/>
+      <img src="assets/screenshot-landing.png" alt="Landing Page" width="100%" />
+    </td>
+    <td width="50%">
+      <strong>Authentication</strong><br/>
+      <img src="assets/screenshot-auth.png" alt="Auth Page" width="100%" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Dashboard Overview</strong><br/>
+      <img src="assets/screenshot-dashboard.png" alt="Dashboard" width="100%" />
+    </td>
+    <td width="50%">
+      <strong>Analytics Dashboard</strong><br/>
+      <img src="assets/screenshot-analytics.png" alt="Analytics" width="100%" />
+    </td>
+  </tr>
+</table>
 
 ---
 
