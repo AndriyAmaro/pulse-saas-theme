@@ -288,15 +288,15 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-x-clip pt-20">
-      {/* Background Image — subtle, blended, no zoom on mobile */}
+      {/* Background Image — green-tinted, premium feel */}
       <div
-        className="absolute -inset-x-16 inset-y-0 z-0 opacity-20 dark:opacity-30 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-30 md:dark:opacity-40"
+        className="absolute -inset-x-16 inset-y-0 z-0 opacity-30 dark:opacity-40 bg-no-repeat bg-center bg-cover md:inset-x-0 md:opacity-40 md:dark:opacity-50"
         style={{
           backgroundImage: 'url(/fundo-blackground.png)',
         }}
       />
-      {/* Soft gradient overlay for harmony */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-white/30 to-white/80 dark:from-slate-900/40 dark:via-transparent dark:to-slate-900/70" />
+      {/* Green-tinted overlay to preserve teal tones instead of washing to white */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/40 via-primary-50/20 to-white/70 dark:from-slate-900/40 dark:via-primary-950/20 dark:to-slate-900/70" />
 
       {/* ECG pulse line — Desktop (3 beats, wide) */}
       <svg
