@@ -28,6 +28,28 @@ export const metadata: Metadata = {
     icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
     apple: [{ url: '/apple-icon.svg', type: 'image/svg+xml' }],
   },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: 'https://pulse-saas-theme.vercel.app',
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Pulse Ecosystem — One Design System. Infinite SaaS.',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: ['/og-image.jpg'],
+  },
 }
 
 export default function RootLayout({
