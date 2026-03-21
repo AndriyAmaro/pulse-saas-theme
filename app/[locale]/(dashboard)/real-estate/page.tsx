@@ -269,6 +269,69 @@ const recentActivity = [
     description: '24 fotos para Av. Boa Viagem, Recife',
     timestamp: '4 dias atrás',
   },
+  {
+    id: '12',
+    type: 'success' as const,
+    title: 'Aluguel renovado',
+    description: 'Apt 302 — Rua Haddock Lobo, São Paulo',
+    timestamp: '4 dias atrás',
+  },
+  {
+    id: '13',
+    type: 'default' as const,
+    title: 'Lead qualificado',
+    description: 'João Pedro — orçamento R$1.2M, zona sul',
+    timestamp: '5 dias atrás',
+  },
+  {
+    id: '14',
+    type: 'warning' as const,
+    title: 'Documento pendente',
+    description: 'Matrícula atualizada — Rua Oscar Freire',
+    timestamp: '5 dias atrás',
+  },
+  {
+    id: '15',
+    type: 'info' as const,
+    title: 'Avaliação solicitada',
+    description: 'Cobertura duplex — Leblon, 280m²',
+    timestamp: '5 dias atrás',
+  },
+  {
+    id: '16',
+    type: 'success' as const,
+    title: 'Comissão liberada',
+    description: 'R$42K — venda Av. Beira Mar',
+    timestamp: '6 dias atrás',
+  },
+  {
+    id: '17',
+    type: 'default' as const,
+    title: 'Comparativo de mercado',
+    description: 'Relatório gerado — Jardins, SP',
+    timestamp: '6 dias atrás',
+  },
+  {
+    id: '18',
+    type: 'info' as const,
+    title: 'Parceria com corretor',
+    description: 'Mariana Oliveira — co-broker Ipanema',
+    timestamp: '6 dias atrás',
+  },
+  {
+    id: '19',
+    type: 'warning' as const,
+    title: 'Prazo de exclusividade',
+    description: 'Expira em 7 dias — Rua Augusta, 1500',
+    timestamp: '7 dias atrás',
+  },
+  {
+    id: '20',
+    type: 'success' as const,
+    title: 'Meta mensal atingida',
+    description: 'Ana Beatriz — 96% da meta cumprida',
+    timestamp: '7 dias atrás',
+  },
 ]
 
 // Top Agents Data
@@ -1079,7 +1142,7 @@ export default function RealEstatePage() {
             ) : (
               <div className="relative overflow-hidden" style={{ height: '340px' }}>
                 <div className="animate-marquee-vertical space-y-0">
-                  {[...recentActivity, ...recentActivity, ...recentActivity].map((item, i) => {
+                  {[...recentActivity, ...recentActivity].map((item, i) => {
                     const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
                       success: { bg: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800/40', icon: 'text-green-600 dark:text-green-400' },
                       info: { bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800/40', icon: 'text-blue-600 dark:text-blue-400' },
@@ -1110,10 +1173,10 @@ export default function RealEstatePage() {
                 <style>{`
                   @keyframes marquee-vertical {
                     0% { transform: translateY(0); }
-                    100% { transform: translateY(-33.333%); }
+                    100% { transform: translateY(-50%); }
                   }
                   .animate-marquee-vertical {
-                    animation: marquee-vertical 40s linear infinite;
+                    animation: marquee-vertical 50s linear infinite;
                   }
                   .animate-marquee-vertical:hover {
                     animation-play-state: paused;
