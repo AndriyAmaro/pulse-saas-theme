@@ -505,10 +505,10 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
         {/* Center content */}
         <div
           className={cn(
-            'absolute inset-0 flex flex-col items-center',
+            'absolute flex flex-col items-center',
             variant === 'semicircle' || variant === 'speedometer'
-              ? 'justify-center pt-[15%]'
-              : 'justify-center'
+              ? 'inset-x-0 top-0 h-[60%] justify-end pb-[2%]'
+              : 'inset-0 justify-center'
           )}
         >
           {(variant === 'donut' || variant === 'circle') && showPercentage ? (
