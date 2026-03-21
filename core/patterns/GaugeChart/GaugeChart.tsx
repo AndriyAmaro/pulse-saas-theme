@@ -240,8 +240,8 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
     }
 
     const renderSemicircle = () => {
-      const centerX = 35
-      const centerY = 38
+      const centerX = 28
+      const centerY = 32
       const radius = 40
       const startAngle = -180
       const endAngle = 0
