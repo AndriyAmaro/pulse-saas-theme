@@ -1079,7 +1079,7 @@ export default function RealEstatePage() {
             ) : (
               <div className="relative overflow-hidden" style={{ height: '340px' }}>
                 <div className="animate-marquee-vertical space-y-0">
-                  {[...recentActivity, ...recentActivity].map((item, i) => {
+                  {[...recentActivity, ...recentActivity, ...recentActivity].map((item, i) => {
                     const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
                       success: { bg: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800/40', icon: 'text-green-600 dark:text-green-400' },
                       info: { bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800/40', icon: 'text-blue-600 dark:text-blue-400' },
@@ -1110,10 +1110,10 @@ export default function RealEstatePage() {
                 <style>{`
                   @keyframes marquee-vertical {
                     0% { transform: translateY(0); }
-                    100% { transform: translateY(-50%); }
+                    100% { transform: translateY(-33.333%); }
                   }
                   .animate-marquee-vertical {
-                    animation: marquee-vertical 30s linear infinite;
+                    animation: marquee-vertical 40s linear infinite;
                   }
                   .animate-marquee-vertical:hover {
                     animation-play-state: paused;
