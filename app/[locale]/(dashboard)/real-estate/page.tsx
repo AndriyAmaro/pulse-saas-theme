@@ -739,7 +739,7 @@ export default function RealEstatePage() {
               </div>
 
               {/* Center: Circular progress metrics */}
-              <div className="flex items-center justify-center gap-5 sm:gap-7 lg:mx-auto lg:gap-10">
+              <div className="flex items-center justify-center gap-5 sm:gap-7 lg:gap-10">
                 {[
                   { label: 'Vendidos', value: heroData.propertiesSold, max: 20, suffix: '', color: '#a7f3d0', glowColor: 'rgba(167,243,208,0.4)', icon: CheckCircle2 },
                   { label: 'Dias Mercado', value: heroData.avgDaysOnMarket, max: 60, suffix: 'd', color: '#67e8f9', glowColor: 'rgba(103,232,249,0.4)', icon: Timer },
