@@ -695,9 +695,9 @@ export default function RealEstatePage() {
           {/* Top accent line */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-          <div className="relative p-5 sm:p-7">
+          <div className="relative p-4 sm:p-5">
             {/* Top row: Badge + trend */}
-            <div className="mb-5 flex flex-wrap items-center gap-2">
+            <div className="mb-3 flex flex-wrap items-center gap-2">
               <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.07] px-3 py-1.5 backdrop-blur-md">
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
                 <span className="text-xs font-semibold tracking-wide text-white/90 uppercase">Receita do Mês</span>
@@ -708,7 +708,7 @@ export default function RealEstatePage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-8">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8">
               {/* Left: Revenue hero number + sparkline */}
               <div className="flex flex-col justify-center lg:flex-1">
                 <div className="space-y-1">
@@ -721,13 +721,13 @@ export default function RealEstatePage() {
                   </p>
                 </div>
                 {/* Mini sparkline */}
-                <div className="mt-4 w-full max-w-[280px]">
+                <div className="mt-3 w-full max-w-[260px]">
                   <SparklineChart
                     data={heroData.revenueSparkline}
                     type="area"
                     color="#a7f3d0"
-                    width={280}
-                    height={48}
+                    width={260}
+                    height={36}
                     strokeWidth={2}
                     fillOpacity={0.15}
                     gradient
@@ -739,13 +739,13 @@ export default function RealEstatePage() {
               </div>
 
               {/* Center: Circular progress metrics */}
-              <div className="flex items-center justify-center gap-3 sm:gap-5 lg:gap-6">
+              <div className="flex items-center justify-center gap-5 sm:gap-7 lg:mx-auto lg:gap-10">
                 {[
                   { label: 'Vendidos', value: heroData.propertiesSold, max: 20, suffix: '', color: '#a7f3d0', glowColor: 'rgba(167,243,208,0.4)', icon: CheckCircle2 },
                   { label: 'Dias Mercado', value: heroData.avgDaysOnMarket, max: 60, suffix: 'd', color: '#67e8f9', glowColor: 'rgba(103,232,249,0.4)', icon: Timer },
                   { label: 'Conversão', value: heroData.conversionRate, max: 100, suffix: '%', color: '#5eead4', glowColor: 'rgba(94,234,212,0.4)', icon: Target },
                 ].map((metric) => {
-                  const r = 30
+                  const r = 34
                   const circ = 2 * Math.PI * r
                   const pct = Math.min(metric.value / metric.max, 1)
                   const progress = circ - pct * circ
@@ -753,13 +753,13 @@ export default function RealEstatePage() {
                   return (
                     <div key={metric.label} className="flex flex-col items-center gap-2">
                       <div className="relative group/ring">
-                        <svg width="76" height="76" className="-rotate-90">
+                        <svg width="84" height="84" className="-rotate-90">
                           {/* Track */}
-                          <circle cx="38" cy="38" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
+                          <circle cx="42" cy="42" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4.5" />
                           {/* Progress */}
                           <circle
-                            cx="38" cy="38" r={r} fill="none"
-                            stroke={metric.color} strokeWidth="4" strokeLinecap="round"
+                            cx="42" cy="42" r={r} fill="none"
+                            stroke={metric.color} strokeWidth="4.5" strokeLinecap="round"
                             strokeDasharray={circ} strokeDashoffset={progress}
                             style={{
                               filter: `drop-shadow(0 0 8px ${metric.glowColor})`,
@@ -768,12 +768,12 @@ export default function RealEstatePage() {
                           />
                         </svg>
                         <div className="absolute inset-0 flex flex-col items-center justify-center">
-                          <span className="text-base font-extrabold text-white leading-none">{metric.value}{metric.suffix}</span>
+                          <span className="text-lg font-extrabold text-white leading-none">{metric.value}{metric.suffix}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-1">
                         <Icon className="h-3 w-3 text-white/40" />
-                        <span className="text-[10px] font-medium tracking-wide text-white/50 uppercase">{metric.label}</span>
+                        <span className="text-[11px] font-medium tracking-wide text-white/50 uppercase">{metric.label}</span>
                       </div>
                     </div>
                   )
@@ -781,12 +781,12 @@ export default function RealEstatePage() {
               </div>
 
               {/* Right: Glassmorphism stats panel */}
-              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.05] p-4 backdrop-blur-xl lg:min-w-[270px]" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.12)' }}>
-                <div className="mb-3 flex items-center justify-between">
+              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.05] p-3.5 backdrop-blur-xl lg:min-w-[260px]" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.12)' }}>
+                <div className="mb-2 flex items-center justify-between">
                   <span className="text-[10px] font-semibold tracking-widest text-white/40 uppercase">Performance</span>
                   <BarChart3 className="h-3 w-3 text-white/30" />
                 </div>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
                   {[
                     { label: 'Ticket Médio', value: 'R$404K', change: '+12%', icon: DollarSign, accentColor: '#a7f3d0' },
                     { label: 'Visitas Agendadas', value: '47', change: '+8', icon: CalendarDays, accentColor: '#67e8f9' },
