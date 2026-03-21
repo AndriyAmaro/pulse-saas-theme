@@ -1140,11 +1140,11 @@ export default function RealEstatePage() {
                 ))}
               </div>
             ) : (
-              <div className="flex flex-col">
-                {/* Marquee scroll area */}
-                <div className="relative overflow-hidden" style={{ height: '460px' }}>
-                  <div className="animate-marquee-vertical space-y-0">
-                    {[...recentActivity, ...recentActivity].map((item, i) => {
+              <>
+                {/* Scrollable activity list */}
+                <div className="relative">
+                  <div className="space-y-3 overflow-y-auto pr-1 scrollbar-thin" style={{ maxHeight: '480px' }}>
+                    {recentActivity.map((item) => {
                       const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
                         success: { bg: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800/40', icon: 'text-green-600 dark:text-green-400' },
                         info: { bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800/40', icon: 'text-blue-600 dark:text-blue-400' },
@@ -1153,7 +1153,7 @@ export default function RealEstatePage() {
                       }
                       const style = typeStyles[item.type] ?? typeStyles.default!
                       return (
-                        <div key={`${item.id}-${i}`} className={`flex items-start gap-3 rounded-xl border ${style.border} ${style.bg} p-3 mb-3`}>
+                        <div key={item.id} className={`flex items-start gap-3 rounded-xl border ${style.border} ${style.bg} p-3 transition-all duration-200 hover:scale-[1.01] hover:shadow-sm`}>
                           <div className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${style.bg}`}>
                             {item.type === 'success' && <CheckCircle2 className={`h-4 w-4 ${style.icon}`} />}
                             {item.type === 'info' && <ArrowUpRight className={`h-4 w-4 ${style.icon}`} />}
@@ -1169,21 +1169,8 @@ export default function RealEstatePage() {
                       )
                     })}
                   </div>
-                  {/* Fade overlays */}
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-[var(--bg-primary)] to-transparent" />
+                  {/* Bottom fade */}
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[var(--bg-primary)] to-transparent" />
-                  <style>{`
-                    @keyframes marquee-vertical {
-                      0% { transform: translateY(0); }
-                      100% { transform: translateY(-50%); }
-                    }
-                    .animate-marquee-vertical {
-                      animation: marquee-vertical 50s linear infinite;
-                    }
-                    .animate-marquee-vertical:hover {
-                      animation-play-state: paused;
-                    }
-                  `}</style>
                 </div>
 
                 {/* Activity Summary */}
@@ -1205,7 +1192,7 @@ export default function RealEstatePage() {
                     <p className="text-sm font-bold text-violet-700 dark:text-violet-300">34</p>
                   </div>
                 </div>
-              </div>
+              </>
             )}
           </Card.Content>
         </Card>
