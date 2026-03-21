@@ -1140,48 +1140,71 @@ export default function RealEstatePage() {
                 ))}
               </div>
             ) : (
-              <div className="relative overflow-hidden" style={{ height: '340px' }}>
-                <div className="animate-marquee-vertical space-y-0">
-                  {[...recentActivity, ...recentActivity].map((item, i) => {
-                    const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
-                      success: { bg: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800/40', icon: 'text-green-600 dark:text-green-400' },
-                      info: { bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800/40', icon: 'text-blue-600 dark:text-blue-400' },
-                      warning: { bg: 'bg-amber-50 dark:bg-amber-900/20', border: 'border-amber-200 dark:border-amber-800/40', icon: 'text-amber-600 dark:text-amber-400' },
-                      default: { bg: 'bg-gray-50 dark:bg-gray-900/20', border: 'border-gray-200 dark:border-gray-800/40', icon: 'text-gray-600 dark:text-gray-400' },
+              <div className="flex flex-col h-full">
+                {/* Marquee scroll area */}
+                <div className="relative overflow-hidden flex-1" style={{ minHeight: '240px' }}>
+                  <div className="animate-marquee-vertical space-y-0">
+                    {[...recentActivity, ...recentActivity].map((item, i) => {
+                      const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
+                        success: { bg: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800/40', icon: 'text-green-600 dark:text-green-400' },
+                        info: { bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800/40', icon: 'text-blue-600 dark:text-blue-400' },
+                        warning: { bg: 'bg-amber-50 dark:bg-amber-900/20', border: 'border-amber-200 dark:border-amber-800/40', icon: 'text-amber-600 dark:text-amber-400' },
+                        default: { bg: 'bg-gray-50 dark:bg-gray-900/20', border: 'border-gray-200 dark:border-gray-800/40', icon: 'text-gray-600 dark:text-gray-400' },
+                      }
+                      const style = typeStyles[item.type] ?? typeStyles.default!
+                      return (
+                        <div key={`${item.id}-${i}`} className={`flex items-start gap-3 rounded-xl border ${style.border} ${style.bg} p-3 mb-3`}>
+                          <div className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${style.bg}`}>
+                            {item.type === 'success' && <CheckCircle2 className={`h-4 w-4 ${style.icon}`} />}
+                            {item.type === 'info' && <ArrowUpRight className={`h-4 w-4 ${style.icon}`} />}
+                            {item.type === 'warning' && <Clock className={`h-4 w-4 ${style.icon}`} />}
+                            {item.type === 'default' && <Eye className={`h-4 w-4 ${style.icon}`} />}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-semibold text-[var(--text-primary)]">{item.title}</p>
+                            <p className="text-xs text-[var(--text-muted)] truncate">{item.description}</p>
+                          </div>
+                          <span className="shrink-0 text-[10px] text-[var(--text-muted)]">{item.timestamp}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  {/* Fade overlays */}
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-[var(--bg-primary)] to-transparent" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[var(--bg-primary)] to-transparent" />
+                  <style>{`
+                    @keyframes marquee-vertical {
+                      0% { transform: translateY(0); }
+                      100% { transform: translateY(-50%); }
                     }
-                    const style = typeStyles[item.type] ?? typeStyles.default!
-                    return (
-                      <div key={`${item.id}-${i}`} className={`flex items-start gap-3 rounded-xl border ${style.border} ${style.bg} p-3 mb-3`}>
-                        <div className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${style.bg}`}>
-                          {item.type === 'success' && <CheckCircle2 className={`h-4 w-4 ${style.icon}`} />}
-                          {item.type === 'info' && <ArrowUpRight className={`h-4 w-4 ${style.icon}`} />}
-                          {item.type === 'warning' && <Clock className={`h-4 w-4 ${style.icon}`} />}
-                          {item.type === 'default' && <Eye className={`h-4 w-4 ${style.icon}`} />}
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-sm font-semibold text-[var(--text-primary)]">{item.title}</p>
-                          <p className="text-xs text-[var(--text-muted)] truncate">{item.description}</p>
-                        </div>
-                        <span className="shrink-0 text-[10px] text-[var(--text-muted)]">{item.timestamp}</span>
-                      </div>
-                    )
-                  })}
+                    .animate-marquee-vertical {
+                      animation: marquee-vertical 50s linear infinite;
+                    }
+                    .animate-marquee-vertical:hover {
+                      animation-play-state: paused;
+                    }
+                  `}</style>
                 </div>
-                {/* Fade overlays */}
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-[var(--bg-primary)] to-transparent" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[var(--bg-primary)] to-transparent" />
-                <style>{`
-                  @keyframes marquee-vertical {
-                    0% { transform: translateY(0); }
-                    100% { transform: translateY(-50%); }
-                  }
-                  .animate-marquee-vertical {
-                    animation: marquee-vertical 50s linear infinite;
-                  }
-                  .animate-marquee-vertical:hover {
-                    animation-play-state: paused;
-                  }
-                `}</style>
+
+                {/* Activity Summary */}
+                <div className="mt-4 grid grid-cols-4 gap-2.5">
+                  <div className="rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/15 dark:to-emerald-900/15 p-2.5 border border-green-200/50 dark:border-green-800/30 text-center">
+                    <p className="text-[10px] font-medium text-green-600 dark:text-green-400">Vendas</p>
+                    <p className="text-sm font-bold text-green-700 dark:text-green-300">8</p>
+                  </div>
+                  <div className="rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/15 dark:to-cyan-900/15 p-2.5 border border-blue-200/50 dark:border-blue-800/30 text-center">
+                    <p className="text-[10px] font-medium text-blue-600 dark:text-blue-400">Visitas</p>
+                    <p className="text-sm font-bold text-blue-700 dark:text-blue-300">23</p>
+                  </div>
+                  <div className="rounded-xl bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/15 dark:to-yellow-900/15 p-2.5 border border-amber-200/50 dark:border-amber-800/30 text-center">
+                    <p className="text-[10px] font-medium text-amber-600 dark:text-amber-400">Propostas</p>
+                    <p className="text-sm font-bold text-amber-700 dark:text-amber-300">12</p>
+                  </div>
+                  <div className="rounded-xl bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/15 dark:to-purple-900/15 p-2.5 border border-violet-200/50 dark:border-violet-800/30 text-center">
+                    <p className="text-[10px] font-medium text-violet-600 dark:text-violet-400">Leads</p>
+                    <p className="text-sm font-bold text-violet-700 dark:text-violet-300">34</p>
+                  </div>
+                </div>
               </div>
             )}
           </Card.Content>
