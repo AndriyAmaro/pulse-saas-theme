@@ -1077,7 +1077,7 @@ export default function RealEstatePage() {
                 ))}
               </div>
             ) : (
-              <div className="relative overflow-hidden" style={{ maxHeight: '340px' }}>
+              <div className="relative overflow-hidden" style={{ height: '340px' }}>
                 <div className="animate-marquee-vertical space-y-0">
                   {[...recentActivity, ...recentActivity].map((item, i) => {
                     const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
@@ -1235,8 +1235,8 @@ export default function RealEstatePage() {
                               />
                             </div>
                           </div>
-                          <div className="w-20">
-                            <SparklineChart data={agent.sparkline} type="line" color={index === 0 ? '#F59E0B' : index === 1 ? '#3B82F6' : index === 2 ? '#F43F5E' : index === 3 ? '#14B89A' : '#8B5CF6'} height={24} animated />
+                          <div className="w-24 shrink-0">
+                            <SparklineChart data={agent.sparkline} type="line" color={index === 0 ? '#F59E0B' : index === 1 ? '#3B82F6' : index === 2 ? '#F43F5E' : index === 3 ? '#14B89A' : '#8B5CF6'} width={90} height={28} strokeWidth={1.5} animated />
                           </div>
                         </div>
                       </div>
