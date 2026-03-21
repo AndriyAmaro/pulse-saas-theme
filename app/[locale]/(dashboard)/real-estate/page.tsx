@@ -1140,9 +1140,9 @@ export default function RealEstatePage() {
                 ))}
               </div>
             ) : (
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col">
                 {/* Marquee scroll area */}
-                <div className="relative overflow-hidden flex-1" style={{ minHeight: '240px' }}>
+                <div className="relative overflow-hidden" style={{ height: '460px' }}>
                   <div className="animate-marquee-vertical space-y-0">
                     {[...recentActivity, ...recentActivity].map((item, i) => {
                       const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
