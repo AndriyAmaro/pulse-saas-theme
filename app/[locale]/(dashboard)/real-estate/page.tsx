@@ -1115,10 +1115,10 @@ export default function RealEstatePage() {
       {/* ====== ROW: RECENT ACTIVITY + TOP AGENTS ====== */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Recent Activity */}
-        <Card className="relative overflow-hidden">
+        <Card className="relative overflow-hidden flex flex-col">
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-500/5 dark:from-blue-950/20 dark:to-cyan-950/20" />
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-500" />
-          <Card.Header className="relative">
+          <Card.Header className="relative shrink-0">
             <div className="flex items-center justify-between">
               <div>
                 <Card.Title className="flex items-center gap-2">
@@ -1132,7 +1132,7 @@ export default function RealEstatePage() {
               <Badge variant="info" size="sm">{recentActivity.length} eventos</Badge>
             </div>
           </Card.Header>
-          <Card.Content className="relative">
+          <Card.Content className="relative flex-1 flex flex-col">
             {isLoading ? (
               <div className="space-y-3">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -1140,10 +1140,10 @@ export default function RealEstatePage() {
                 ))}
               </div>
             ) : (
-              <>
+              <div className="flex flex-col flex-1">
                 {/* Scrollable activity list */}
-                <div className="relative">
-                  <div className="space-y-3 overflow-y-auto pr-1 scrollbar-thin" style={{ maxHeight: '480px' }}>
+                <div className="relative flex-1 min-h-0">
+                  <div className="space-y-3 overflow-y-auto pr-1 scrollbar-thin absolute inset-0">
                     {recentActivity.map((item) => {
                       const typeStyles: Record<string, { bg: string; border: string; icon: string }> = {
                         success: { bg: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800/40', icon: 'text-green-600 dark:text-green-400' },
@@ -1174,7 +1174,7 @@ export default function RealEstatePage() {
                 </div>
 
                 {/* Activity Summary */}
-                <div className="mt-4 grid grid-cols-4 gap-2.5">
+                <div className="mt-4 shrink-0 grid grid-cols-4 gap-2.5">
                   <div className="rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/15 dark:to-emerald-900/15 p-2.5 border border-green-200/50 dark:border-green-800/30 text-center">
                     <p className="text-[10px] font-medium text-green-600 dark:text-green-400">Vendas</p>
                     <p className="text-sm font-bold text-green-700 dark:text-green-300">8</p>
@@ -1192,7 +1192,7 @@ export default function RealEstatePage() {
                     <p className="text-sm font-bold text-violet-700 dark:text-violet-300">34</p>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </Card.Content>
         </Card>
