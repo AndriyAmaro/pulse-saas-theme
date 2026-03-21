@@ -240,8 +240,8 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
     }
 
     const renderSemicircle = () => {
-      const centerX = 42
-      const centerY = 44
+      const centerX = 35
+      const centerY = 38
       const radius = 40
       const startAngle = -180
       const endAngle = 0
@@ -507,7 +507,7 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
           className={cn(
             'absolute flex flex-col items-center',
             variant === 'semicircle' || variant === 'speedometer'
-              ? 'inset-x-0 top-0 h-[55%] justify-end'
+              ? 'inset-x-0 top-0 h-[50%] justify-end'
               : 'inset-0 justify-center'
           )}
         >
