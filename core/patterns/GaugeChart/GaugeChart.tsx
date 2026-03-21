@@ -507,7 +507,7 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
           className={cn(
             'absolute inset-0 flex flex-col items-center',
             variant === 'semicircle' || variant === 'speedometer'
-              ? 'justify-end pb-1'
+              ? 'justify-center pt-[15%]'
               : 'justify-center'
           )}
         >
