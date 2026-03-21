@@ -682,98 +682,139 @@ export default function RealEstatePage() {
       {isLoading ? (
         <Skeleton className="h-52 w-full rounded-2xl" />
       ) : (
-        <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-emerald-600 via-teal-500 to-cyan-500 p-0">
-          {/* Background overlays */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_60%)]" />
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.3),transparent_50%)]" />
+        <Card className="group relative overflow-hidden border-0 p-0" style={{ background: 'linear-gradient(135deg, #064e3b 0%, #0f766e 35%, #0e7490 65%, #155e75 100%)' }}>
+          {/* Premium layered background */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_20%_-20%,rgba(167,243,208,0.15),transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_120%,rgba(6,182,212,0.12),transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)]" />
+          {/* Subtle grid overlay */}
+          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+          {/* Animated glow orb */}
+          <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-teal-400/10 blur-3xl transition-transform duration-700 group-hover:translate-x-4 group-hover:-translate-y-4" />
+          <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-emerald-400/8 blur-3xl transition-transform duration-700 group-hover:-translate-x-4 group-hover:translate-y-4" />
+          {/* Top accent line */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-          <div className="relative p-4 sm:p-6">
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-              {/* Left: Revenue + Badges */}
-              <div className="space-y-3 text-center lg:text-left">
-                <div className="flex items-center justify-center gap-2 lg:justify-start">
-                  <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm text-xs">
-                    <Building2 className="mr-1 h-3 w-3" />
-                    Receita do Mês
-                  </Badge>
-                  <Badge className="border-0 bg-white/20 text-white backdrop-blur-sm text-xs">
-                    <Flame className="mr-1 h-3 w-3" />
-                    +22.8%
-                  </Badge>
-                </div>
-                <div>
-                  <span className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+          <div className="relative p-5 sm:p-7">
+            {/* Top row: Badge + trend */}
+            <div className="mb-5 flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.07] px-3 py-1.5 backdrop-blur-md">
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
+                <span className="text-xs font-semibold tracking-wide text-white/90 uppercase">Receita do Mês</span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 backdrop-blur-md">
+                <TrendingUp className="h-3 w-3 text-emerald-300" />
+                <span className="text-xs font-bold text-emerald-300">+22.8%</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-8">
+              {/* Left: Revenue hero number + sparkline */}
+              <div className="flex flex-col justify-center lg:flex-1">
+                <div className="space-y-1">
+                  <span className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-[3.5rem]" style={{ textShadow: '0 2px 24px rgba(0,0,0,0.15)' }}>
                     {formatCurrency(heroData.totalRevenue)}
                   </span>
+                  <p className="flex items-center gap-1.5 text-sm text-white/60">
+                    <ArrowUpRight className="h-3.5 w-3.5 text-emerald-300" />
+                    <span>+R$880K comparado ao mês anterior</span>
+                  </p>
                 </div>
-                <p className="flex items-center justify-center gap-1 text-sm text-white/80 lg:justify-start">
-                  <TrendingUp className="h-4 w-4" />
-                  +R$880K comparado ao mês anterior
-                </p>
+                {/* Mini sparkline */}
+                <div className="mt-4 w-full max-w-[280px]">
+                  <SparklineChart
+                    data={heroData.revenueSparkline}
+                    type="area"
+                    color="#a7f3d0"
+                    width={280}
+                    height={48}
+                    strokeWidth={2}
+                    fillOpacity={0.15}
+                    gradient
+                    animated
+                    showDot
+                    dotSize={3}
+                  />
+                </div>
               </div>
 
-              {/* Center: Vertical metrics with circular progress */}
-              <div className="flex items-center justify-center gap-4 sm:gap-6 lg:gap-8">
+              {/* Center: Circular progress metrics */}
+              <div className="flex items-center justify-center gap-3 sm:gap-5 lg:gap-6">
                 {[
-                  { label: 'Vendidos', value: heroData.propertiesSold, max: 20, suffix: '', color: '#FFFFFF', icon: CheckCircle2 },
-                  { label: 'Dias Mercado', value: heroData.avgDaysOnMarket, max: 60, suffix: 'd', color: '#A7F3D0', icon: Timer },
-                  { label: 'Conversão', value: heroData.conversionRate, max: 100, suffix: '%', color: '#99F6E4', icon: Target },
+                  { label: 'Vendidos', value: heroData.propertiesSold, max: 20, suffix: '', color: '#a7f3d0', glowColor: 'rgba(167,243,208,0.4)', icon: CheckCircle2 },
+                  { label: 'Dias Mercado', value: heroData.avgDaysOnMarket, max: 60, suffix: 'd', color: '#67e8f9', glowColor: 'rgba(103,232,249,0.4)', icon: Timer },
+                  { label: 'Conversão', value: heroData.conversionRate, max: 100, suffix: '%', color: '#5eead4', glowColor: 'rgba(94,234,212,0.4)', icon: Target },
                 ].map((metric) => {
-                  const r = 26
+                  const r = 30
                   const circ = 2 * Math.PI * r
-                  const progress = circ - (Math.min(metric.value / metric.max, 1)) * circ
+                  const pct = Math.min(metric.value / metric.max, 1)
+                  const progress = circ - pct * circ
                   const Icon = metric.icon
                   return (
-                    <div key={metric.label} className="flex flex-col items-center gap-1">
-                      <div className="relative">
-                        <svg width="68" height="68" className="-rotate-90">
-                          <circle cx="34" cy="34" r={r} fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="5" />
+                    <div key={metric.label} className="flex flex-col items-center gap-2">
+                      <div className="relative group/ring">
+                        <svg width="76" height="76" className="-rotate-90">
+                          {/* Track */}
+                          <circle cx="38" cy="38" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
+                          {/* Progress */}
                           <circle
-                            cx="34" cy="34" r={r} fill="none"
-                            stroke={metric.color} strokeWidth="5" strokeLinecap="round"
+                            cx="38" cy="38" r={r} fill="none"
+                            stroke={metric.color} strokeWidth="4" strokeLinecap="round"
                             strokeDasharray={circ} strokeDashoffset={progress}
-                            style={{ filter: `drop-shadow(0 0 6px ${metric.color}80)`, transition: 'stroke-dashoffset 1s ease-out' }}
+                            style={{
+                              filter: `drop-shadow(0 0 8px ${metric.glowColor})`,
+                              transition: 'stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                            }}
                           />
                         </svg>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Icon className="h-4 w-4 text-white/80" />
+                        <div className="absolute inset-0 flex flex-col items-center justify-center">
+                          <span className="text-base font-extrabold text-white leading-none">{metric.value}{metric.suffix}</span>
                         </div>
                       </div>
-                      <span className="text-sm font-bold text-white">{metric.value}{metric.suffix}</span>
-                      <span className="text-[10px] text-white/60">{metric.label}</span>
+                      <div className="flex items-center gap-1">
+                        <Icon className="h-3 w-3 text-white/40" />
+                        <span className="text-[10px] font-medium tracking-wide text-white/50 uppercase">{metric.label}</span>
+                      </div>
                     </div>
                   )
                 })}
               </div>
 
-              {/* Right: Quick stats panel */}
-              <div className="flex flex-col gap-3 rounded-2xl bg-white/10 p-4 backdrop-blur-sm lg:min-w-[260px]">
-                {[
-                  { label: 'Ticket Médio', value: 'R$404K', change: '+12%', icon: DollarSign, iconColor: 'text-emerald-300', bg: 'bg-emerald-400/20' },
-                  { label: 'Visitas Agendadas', value: '47', change: '+8', icon: CalendarDays, iconColor: 'text-cyan-300', bg: 'bg-cyan-400/20' },
-                  { label: 'Leads Ativos', value: '186', change: '+23%', icon: Users, iconColor: 'text-teal-200', bg: 'bg-teal-400/20' },
-                  { label: 'Taxa Ocupação', value: '91.3%', change: '+2.1%', icon: Home, iconColor: 'text-green-300', bg: 'bg-green-400/20' },
-                ].map((stat) => {
-                  const SIcon = stat.icon
-                  return (
-                    <div key={stat.label} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${stat.bg}`}>
-                          <SIcon className={`h-3.5 w-3.5 ${stat.iconColor}`} />
+              {/* Right: Glassmorphism stats panel */}
+              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.05] p-4 backdrop-blur-xl lg:min-w-[270px]" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.12)' }}>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-[10px] font-semibold tracking-widest text-white/40 uppercase">Performance</span>
+                  <BarChart3 className="h-3 w-3 text-white/30" />
+                </div>
+                <div className="flex flex-col gap-3">
+                  {[
+                    { label: 'Ticket Médio', value: 'R$404K', change: '+12%', icon: DollarSign, accentColor: '#a7f3d0' },
+                    { label: 'Visitas Agendadas', value: '47', change: '+8', icon: CalendarDays, accentColor: '#67e8f9' },
+                    { label: 'Leads Ativos', value: '186', change: '+23%', icon: Users, accentColor: '#5eead4' },
+                    { label: 'Taxa Ocupação', value: '91.3%', change: '+2.1%', icon: Home, accentColor: '#6ee7b7' },
+                  ].map((stat) => {
+                    const SIcon = stat.icon
+                    return (
+                      <div key={stat.label} className="group/stat flex items-center justify-between rounded-xl px-2.5 py-2 transition-colors duration-200 hover:bg-white/[0.04]">
+                        <div className="flex items-center gap-2.5">
+                          <div className="flex h-7 w-7 items-center justify-center rounded-lg" style={{ backgroundColor: `${stat.accentColor}15` }}>
+                            <SIcon className="h-3.5 w-3.5" style={{ color: stat.accentColor }} />
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-medium text-white/40 leading-tight">{stat.label}</p>
+                            <p className="text-sm font-bold text-white leading-tight">{stat.value}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-xs text-white/60">{stat.label}</p>
-                          <p className="text-sm font-bold text-white">{stat.value}</p>
-                        </div>
+                        <span className="text-xs font-semibold" style={{ color: stat.accentColor }}>{stat.change}</span>
                       </div>
-                      <span className={`text-xs font-semibold ${stat.iconColor}`}>{stat.change}</span>
-                    </div>
-                  )
-                })}
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>
+          {/* Bottom accent line */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </Card>
       )}
 
