@@ -144,6 +144,9 @@ const topMovingProducts: TopProduct[] = [
   { id: '3', name: 'Webcam HD 1080p', sku: 'WHD-103', image: '', soldLast30Days: 234, revenue: 11700, trend: [200, 210, 220, 225, 230, 234] },
   { id: '4', name: 'Desk Organizer Set', sku: 'DOS-104', image: '', soldLast30Days: 198, revenue: 4950, trend: [165, 175, 182, 190, 195, 198] },
   { id: '5', name: 'LED Desk Lamp', sku: 'LDL-105', image: '', soldLast30Days: 176, revenue: 7040, trend: [150, 158, 165, 170, 173, 176] },
+  { id: '6', name: 'Mechanical Keyboard', sku: 'MKB-106', image: '', soldLast30Days: 164, revenue: 13120, trend: [130, 140, 148, 155, 160, 164] },
+  { id: '7', name: 'Noise Cancelling Earbuds', sku: 'NCE-107', image: '', soldLast30Days: 152, revenue: 9120, trend: [120, 128, 135, 142, 148, 152] },
+  { id: '8', name: 'Portable SSD 1TB', sku: 'SSD-108', image: '', soldLast30Days: 143, revenue: 11440, trend: [110, 118, 126, 133, 138, 143] },
 ]
 
 // Slow Moving Products
@@ -1126,7 +1129,7 @@ export default function InventoryDashboard() {
                     </div>
                   </div>
                   <Badge variant="default" size="sm" className="bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300 border border-orange-200 dark:border-orange-800">
-                    5 products
+                    8 products
                   </Badge>
                 </div>
               </Card.Header>
