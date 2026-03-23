@@ -55,7 +55,7 @@ function getGreeting(): { greeting: string; emoji: string } {
 // MOCK DATA
 // ============================================================================
 
-const userName = 'John'
+const userName = 'Andri'
 
 // KPIs with Sparklines — each with unique gradient colors + border accent
 const kpiData = [
