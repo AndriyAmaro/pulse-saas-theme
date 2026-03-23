@@ -574,7 +574,7 @@ export default function InventoryDashboard() {
               </div>
             </div>
             {/* Premium Visual - Desktop */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center justify-center flex-1 gap-8">
               {/* Circular Progress */}
               <div className="relative">
                 <div className="relative h-28 w-28">
