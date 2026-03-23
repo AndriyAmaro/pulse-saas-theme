@@ -610,18 +610,18 @@ export default function InventoryDashboard() {
               </div>
 
               {/* Mini Stats */}
-              <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-6">
                 {[
                   { icon: CheckCircle2, label: 'In Stock', value: '1,847', color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-100 dark:bg-emerald-900/30' },
                   { icon: AlertTriangle, label: 'Low Stock', value: '23', color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-100 dark:bg-amber-900/30' },
                   { icon: XCircle, label: 'Out of Stock', value: '8', color: 'text-red-600 dark:text-red-400', bg: 'bg-red-100 dark:bg-red-900/30' },
                 ].map((stat) => (
-                  <div key={stat.label} className="flex items-center gap-3">
-                    <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${stat.bg}`}>
-                      <stat.icon className={`h-4 w-4 ${stat.color}`} />
+                  <div key={stat.label} className="flex flex-col items-center gap-2">
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${stat.bg}`}>
+                      <stat.icon className={`h-5 w-5 ${stat.color}`} />
                     </div>
-                    <div>
-                      <p className="text-[10px] text-[var(--text-muted)]">{stat.label}</p>
+                    <div className="text-center">
+                      <p className="text-[9px] uppercase tracking-widest text-[var(--text-muted)]">{stat.label}</p>
                       <p className={`text-sm font-bold ${stat.color}`}>{stat.value}</p>
                     </div>
                   </div>
