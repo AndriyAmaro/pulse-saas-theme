@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
-    url: 'https://pulse-saas-theme.vercel.app',
+    url: 'https://pulse-saas-theme.andrifullstack.workers.dev',
     siteName: siteConfig.name,
     images: [
       {

@@ -18,7 +18,7 @@
 ![i18n](https://img.shields.io/badge/i18n-PT_|_EN_|_ES-F59E0B?style=flat-square)
 ![License](https://img.shields.io/badge/License-Source_Available-22C55E?style=flat-square)
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-%E2%96%B6_View_on_Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)](https://pulse-saas-theme.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-%E2%96%B6_View_on_Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://pulse-saas-theme.andrifullstack.workers.dev)
 
 </div>
 
